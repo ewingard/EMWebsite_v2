@@ -1,3 +1,4 @@
 - [Tailwind Github Actions](https://gist.github.com/Coding-Koala222/32c68fe4f7a4fd9276182d2c02bfe1f3)
 - [LOC Free to Use](https://www.loc.gov/free-to-use/)
     - Public domain resources 
+- [Newspaper Flexbox Code Inspiration](https://github.com/muhdhisham/The_Newspaper/tree/master)
