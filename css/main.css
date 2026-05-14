@@ -42,6 +42,11 @@ p {
 
 a {
   text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  color: #005239
 }
 
 header {
