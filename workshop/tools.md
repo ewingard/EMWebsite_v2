@@ -10,6 +10,7 @@
 - [Art Institute of Chicago Open Access](https://www.artic.edu/collection-information/open-access/open-access-images)
     - type in "public domain" in search
 - [The Met Open Access](https://www.metmuseum.org/art/collection/search?searchField=All&showOnly=openAccess&sortBy=relevance)
+    - Frames for Art Camp taken from this.
 - [National Gallery of Art Open Access](https://www.nga.gov/artwork-search?download=1)
 - [LOC Free to Use](https://www.loc.gov/free-to-use/)
 - [Project Gutenberg](https://www.gutenberg.org/)
