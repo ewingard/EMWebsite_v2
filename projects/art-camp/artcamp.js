@@ -212,115 +212,82 @@ window.addEventListener(
 // Mobile swipe
 // ------------------------------
 
+const mobileFrame =
+    document.querySelector(".mobile-gallery-frame");
+
+
 let touchStartY = 0;
-let touchEndY = 0;
 
 
-
-window.addEventListener(
-    "touchstart",
-    (event)=>{
+if (mobileFrame) {
 
 
-        if(!isMobile()){
+    mobileFrame.addEventListener(
+        "touchstart",
+        (event)=>{
 
-            return;
+            touchStartY =
+                event.changedTouches[0].clientY;
 
+        },
+        {
+            passive:true
         }
-
-
-        event.preventDefault();
-
-
-        touchStartY =
-            event.changedTouches[0].screenY;
-
-
-    },
-    {
-        passive:false
-    }
-);
+    );
 
 
 
-window.addEventListener(
-    "touchend",
-    (event)=>{
+    mobileFrame.addEventListener(
+        "touchend",
+        (event)=>{
 
 
-        if(!isMobile()){
+            const touchEndY =
+                event.changedTouches[0].clientY;
 
-            return;
 
+            const distance =
+                touchStartY - touchEndY;
+
+
+
+            if(Math.abs(distance) < 50){
+
+                return;
+
+            }
+
+
+
+            if(distance > 0){
+
+                currentIndex++;
+
+            } else {
+
+                currentIndex--;
+
+            }
+
+
+
+            currentIndex =
+                Math.max(
+                    0,
+                    Math.min(
+                        currentIndex,
+                        getMaxImages() - 1
+                    )
+                );
+
+
+            showImage(currentIndex);
+
+
+        },
+        {
+            passive:true
         }
-
-
-        event.preventDefault();
-
-
-        touchEndY =
-            event.changedTouches[0].screenY;
-
-
-
-        handleSwipe();
-
-
-    },
-    {
-        passive:false
-    }
-);
-
-
-
-function handleSwipe(){
-
-
-    const distance =
-        touchStartY - touchEndY;
-
-
-
-    // Ignore tiny movements
-    if(Math.abs(distance) < 40){
-
-        return;
-
-    }
-
-
-
-    if(distance > 0){
-
-        // swipe up
-        currentIndex++;
-
-
-    } else {
-
-
-        // swipe down
-        currentIndex--;
-
-
-    }
-
-
-
-    currentIndex =
-        Math.max(
-            0,
-            Math.min(
-                currentIndex,
-                getMaxImages() - 1
-            )
-        );
-
-
-
-    showImage(currentIndex);
-
+    );
 
 }
