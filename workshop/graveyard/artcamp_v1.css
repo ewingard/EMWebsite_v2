@@ -1,0 +1,109 @@
+body, html {
+    background-image: radial-gradient(circle at 50% 50%, #cfa2c8, #961f6e); /* keeping gradient pattern consistent, with a changed color-scheme */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+    #frame1 {
+        border-image-source: url(/assets/images/frame1_AC.png);
+}
+
+    #frame2 {
+        border-image-source: url(/assets/images/frame2_AC.png);
+}
+
+    #frame3 {
+        border-image-source: url(/assets/images/frame3_AC.png);
+}
+
+.name {
+    padding: 0.5vw;
+    margin-top: 2vw; /* remove margin */
+    top: .5vw;
+    left: 40vw;
+}
+
+
+.gallery-container{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2rem;
+    padding:2rem;
+    align-items:start;
+}
+
+.frame-column{
+    display:flex;
+    flex-direction:column;
+    gap:2rem;
+}
+
+.frame{
+    position:relative;
+    width:100%;
+    aspect-ratio:4/5;
+    overflow:hidden;
+}
+
+.frame .art{
+    position:absolute;
+    inset:12%;
+    width:76%;
+    height:76%;
+
+    object-fit:cover;
+
+    z-index:1;
+
+    transition:transform .5s ease;
+}
+
+.frame .overlay{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    z-index:2;
+
+    pointer-events:none;
+}
+
+/* Mobile Optimization */
+@media (max-width: 1000px) {
+    body, html {
+        overflow-y: auto;
+    }
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* two columns on mobile */
+        gap: 1vw; /* adjust gap for mobile */
+        padding: 10px; /* adjust padding for mobile */
+    }
+
+    .name {
+        font-size: clamp(2rem, 5vw, 3rem);
+        white-space: nowrap; /* prevent wrapping */
+        overflow: hidden;
+        width: fit-content;
+        display: flex;
+        justify-content: center; /* center the text horizontally */
+        align-items: center; /* center the text vertically */
+        margin: 0.5em auto; /* smaller margins */
+        left: 0vw;
+    }
+    
+    .container {
+        padding: 20px;
+        margin: -1.5em auto; /* remove top margin */
+        left: 0vw;
+        max-width: 90%;
+        height: auto;
+    }
+}

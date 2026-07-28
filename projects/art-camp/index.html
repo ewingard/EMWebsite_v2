@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Camp Gallery</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/artcamp.css">
+    <script src="https://kit.fontawesome.com/ea87ee6546.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="menuToggle" class="menuButton" onclick="myFunction(this)" aria-label="Menu" aria-expanded="false">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </div>
+    <div id="textMenu" class="menu-hidden">
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/aboutme/">About Me</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/experience/">Experience</a></li>
+            <li><a href="/skills/">Skills</a></li>
+            <li><a href="https://github.com/ewingard" target="_blank">Github</a></li>
+            <li><a href="/interests/">Interests</a></li>
+            <li><a href="/publications/">Publications</a></li>
+          </ul>
+      </div>
+      <div class="mobileMenu">
+        <a href="/index.html" class="active-menu">Home</a>
+        <div id="myLinks">
+          <a href="/aboutme/">About Me</a>
+          <a href="/projects/">Projects</a>
+          <a href="/experience/">Experience</a>
+          <a href="/skills/">Skills</a>
+          <a href="https://github.com/ewingard" target="_blank">Visit my Github Page</a>
+          <a href="/interests/">Interests</a>
+          <a href="/publications/">Publications</a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="mobileNavToggle()">
+          <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div class="name">Art Camp</div>
+<div class="gallery-container">
+    <div class="gallery-column" data-frame="1">
+        <div class="museum-frame">
+            <div class="viewport">
+                <div class="art-strip">
+                    <img src="/assets/images/art-gallery/1.png" alt="Painting 1 - Acrylic on Paper">
+                    <img src="/assets/images/art-gallery/2.png" alt="Painting 2 - Acrylic on Canvas">
+                    <img src="/assets/images/art-gallery/3.png" alt="Painting 3 - Acrylic on Canvas">
+                    <img src="/assets/images/art-gallery/4.png" alt="Drawing 1 - Cake">
+                    <img src="/assets/images/art-gallery/5.png" alt="Painting 4 - Red Sea of Flowers">
+                    <img src="/assets/images/art-gallery/6.png" alt="Drawing 2 - Diagonal Colors">
+                    <img src="/assets/images/art-gallery/8.png" alt="Drawing 3 - Sun, Clouds, Sea">
+                    <img src="/assets/images/art-gallery/9.png" alt="Painting 6 - Handprints - Colorful and B&W">
+                    <img src="/assets/images/art-gallery/10.png" alt="Painting 7 - B&W Handprint">
+                    <img src="/assets/images/art-gallery/11.png" alt="Painting 8 - Handprint and Pattern">
+                    <img src="/assets/images/art-gallery/12.png" alt="Worksheet 1 - Hobby and Self-Portrait">
+                    <img src="/assets/images/art-gallery/13.png" alt="Worksheet 2 - Animal and Hobby">
+                    <img src="/assets/images/art-gallery/14.png" alt="Painting 9 - Beach and Stars">
+                    <img src="/assets/images/art-gallery/39.png" alt="Painting 26 - Moon and Sea">
+                    <img src="/assets/images/art-gallery/40.png" alt="Painting 27 - Night and Stars">
+                </div>
+            </div>
+            <img class="frame-overlay"
+                 src="/assets/images/frame1_AC.png"
+                 alt="">
+        </div>
+    </div>
+    <div class="gallery-column" data-frame="2">
+        <div class="museum-frame">
+            <div class="viewport">
+                <div class="art-strip">
+                    <img src="/assets/images/art-gallery/21.png" alt="Drawing 4 - Anime Character 1">
+                    <img src="/assets/images/art-gallery/22.png" alt="Painting 14 - Anime Character 2">
+                    <img src="/assets/images/art-gallery/24.png" alt="Worksheet 5 - Animal and Hobby">
+                    <img src="/assets/images/art-gallery/25.png" alt="Painting 16 - Hand">
+                    <img src="/assets/images/art-gallery/26.png" alt="Painting 17 - Faith">
+                    <img src="/assets/images/art-gallery/27.png" alt="Worksheet 6 - Hobby and Self-Portrait">
+                    <img src="/assets/images/art-gallery/28.png" alt="Painting 18 - Dual Stars">
+                    <img src="/assets/images/art-gallery/29.png" alt="Painting 20 - Acrylic on Canvas">
+                    <img src="/assets/images/art-gallery/30.png" alt="Painting 21 - Colorful Hand">
+                    <img src="/assets/images/art-gallery/31.png" alt="Painting 22 - Cross">
+                    <img src="/assets/images/art-gallery/32.png" alt="Painting 23 - Acrylic on Paper">
+                    <img src="/assets/images/art-gallery/33.png" alt="Drawing 5 - Sketch">
+                    <img src="/assets/images/art-gallery/34.png" alt="Painting 24 - Church">
+                    <img src="/assets/images/art-gallery/35.png" alt="Drawing 6 - Building">
+                    <img src="/assets/images/art-gallery/37.png" alt="Drawing 7 - Animal">
+                </div>
+            </div>
+            <img class="frame-overlay"
+                 src="/assets/images/frame2_AC.png"
+                 alt="">
+        </div>
+    </div>
+    <div class="gallery-column" data-frame="3">
+        <div class="museum-frame">
+            <div class="viewport">
+                <div class="art-strip">
+                    <img src="/assets/images/art-gallery/41.png" alt="Painting 28 - 'The Painting of Truth'">
+                    <img src="/assets/images/art-gallery/42.png" alt="Worksheet 8 - Self-Portrait">
+                    <img src="/assets/images/art-gallery/43.png" alt="Worksheet 9 - Lighting and Shadows">
+                    <img src="/assets/images/art-gallery/44.png" alt="Painting 29 - Collaborative Handprints">
+                    <img src="/assets/images/art-gallery/45.png" alt="Worksheet 10 - Hobby + Self-Portrait">
+                    <img src="/assets/images/art-gallery/46.png" alt="Painting 30 - Elements">
+                    <img src="/assets/images/art-gallery/47.png" alt="Painting 31 - Faith #2">
+                    <img src="/assets/images/art-gallery/48.png" alt="Painting 32 - Peace">
+                    <img src="/assets/images/art-gallery/49.png" alt="Painting 33 - Friend Handprints #2">
+                    <img src="/assets/images/art-gallery/50.png" alt="Worksheet 11 - Hobby and Self-Portrait">
+                    <img src="/assets/images/art-gallery/16.png" alt="Painting 11 - Forest">
+                    <img src="/assets/images/art-gallery/17.png" alt="Worksheet 3 - Hobby and Self-Portrait">
+                    <img src="/assets/images/art-gallery/18.png" alt="Painting 12 - Moon and Stars">
+                    <img src="/assets/images/art-gallery/19.png" alt="Worksheet 4 - Animal and Hobby">
+                    <img src="/assets/images/art-gallery/20.png" alt="Painting 13 - Acyrlic on Canvas">
+                </div>
+             </div>
+
+            <img class="frame-overlay"
+                 src="/assets/images/frame3_AC.png"
+                 alt="">
+        </div>
+    </div>
+    <div class="scroll-space"></div>
+    <script src="artcamp.js"></script>
+</body>
+</html>

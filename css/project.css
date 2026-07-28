@@ -1,0 +1,169 @@
+body, html {
+    background-image: radial-gradient(circle at 50% 50%, #cfa2c8, #961f6e);
+  }
+
+    .name {
+        font-size: 3.61vw; /* 5.17vh; /* 37pt; */
+        width: 29.08vw;
+        height: 13.49vh;
+        padding: 0.5vw;
+        left: 25.5vw;
+        top: 6.67vh;
+        /*lowered to match container = top: 13.67vh; */
+        /* middle location = top: 6.67vh; */
+        /* regular location = top: .67vh; */
+    }
+
+    .neuron-container {
+      width: 350px;
+      height: 525px;
+      display: block;
+      left: .02;
+      flex: 0;
+      position: absolute;
+      justify-content: space-between;
+    }
+
+    .neuron-buttons {
+      max-width: 100%;
+      max-height: 100%;
+      box-sizing: border-box;
+      flex: 0;
+    } 
+
+    .neuron-buttons:hover {
+      transform: none;
+    }
+
+    .proj-container {
+      display: block;
+      gap: 2.5vh;
+      width: 69.9vw;
+      height: 31.8vw;
+      position: absolute;
+      left: 25.5vw;
+      top: 1.81vh;
+      overflow-y: auto; /* VERTICAL scrolling */
+      overflow-x: hidden; /* NO HORIZONTAL scrolling */
+      border-radius: 0.59vw; /* 8px */
+      padding: 1vw;
+      background-color: white;
+      justify-content: space-between;
+    }
+
+    .accordion {
+      color: #961f6e;
+      background-color: white;
+    }
+
+    .toggle-btn {
+      color: #961f6e;
+      background-color: transparent;
+      border: none;
+    }
+
+    .toggle-content {
+      display: none;
+    }
+
+    .active, .accordion:hover {
+      background-color: #cfa2c8;
+    }
+
+    .panel {
+      padding: 0 18px;
+      background-color: #cfa2c8;
+      display: none;
+      overflow: hidden;
+    }
+
+    h1, h2 {
+      margin: .5vw 0;
+      padding: .5vw;
+      font-family: 'LeagueSpartan-SemiBold', sans-serif;
+      color: black;
+    }
+
+    h2 {
+      margin: .5vw 0;
+      padding: .5vw;
+      color: black;
+      font-size: 1.5rem;
+    }
+
+    h4 {
+      padding: -.3vw;
+      margin: .4vw;
+      font-family: 'LeagueSpartan-Light', sans-serif;
+      font-size: 1.25rem;
+    }
+
+    p, ol, li {
+      margin: .1vw 0;
+      padding: .5vw;
+      font-family: 'LeagueSpartan-Light', sans-serif;
+      font-size: 1.15rem;
+    }
+
+    a {
+      font-family: 'LeagueSpartan-SemiBold', sans-serif;
+      color: black;
+    }
+
+    a.visited {
+      color: white;
+    }
+    #more {display: none;}
+
+    .button-wrapper {
+      display: inline-block; /* makes the wrapper act as an inline element */
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Buttons for Links/Media */
+    .btn {
+      display: inline-block;
+      background-color: #961f6e;
+      border: none; /* Remove borders */
+      color: white;
+      padding: .5vw 1vh;
+      margin: .4vw;
+      cursor: pointer; /* Mouse pointer on hover */
+      border-radius: .59vw;
+      font-size: 1em;
+      text-decoration: none;
+    }
+
+    /* Darker background on mouse-over */
+    .btn:hover {
+      background-color: black;
+    } 
+
+    @media (max-width: 1000px) {
+      body, html {
+        overflow-y: auto;
+      }
+      
+      .proj-container {
+        left: 1vw;
+        width: 96vw;
+        height: auto;
+        overflow-y: auto;
+      }
+
+      .neuron-buttons {
+        display: none;
+      }
+
+      .name{
+        position: relative;
+        top: 3vw;
+        font-size: 2rem;
+        margin: 1em;
+      }
+
+      p, ol, li, a {
+        font-size: 1rem;
+      }
+    }
