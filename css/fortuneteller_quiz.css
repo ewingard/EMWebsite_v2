@@ -1,0 +1,246 @@
+body, html {
+    font-family: "LeagueSpartan-Light", sans-serif; /* Choose your desired font */
+    font-size: 1.5vw;
+    font-size: 1rem;
+    font-weight: 700;
+    color: black;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+body {
+    background-image: url('/assets/media/fortune-teller/Starry_BG.svg');
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+} 
+
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-family: "LeagueSpartan-SemiBold", sans-serif;
+    font-size: 2rem;
+    top: 2vh;
+}
+
+p {
+    top: 20%;
+    font-family: "LeagueSpartan-Light", sans-serif;
+    font-size: 1.5rem;
+}
+
+.container { 
+    width: 80%;
+    height: 80%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    width: 50px;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: block;
+}
+
+.menu-visible {
+    display:block;
+}
+
+/* code snippet from https://getcssscan.com/css-buttons-examples?ref=shapes-bottom */
+.option, .learn-btn, .start-quiz-btn {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+    box-sizing: border-box;
+    color: #121212;
+    cursor: pointer;
+    display: inline-flex;
+    flex: 1 1 auto;
+    font-family: "LeagueSpartan-SemiBold", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    justify-content: center;
+    line-height: 1;
+    margin: 0;
+    outline: none;
+    padding: 1rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s,-webkit-box-shadow .2s;
+    white-space: nowrap;
+    border: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.option:hover, .learn-btn:hover, .start-quiz-btn:hover {
+box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+background-color: #a3b3d8;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.hideButton {
+    padding: 10px 20px;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.mobileMenu {
+    top: 0px;
+    left: 0px;
+  }
+
+.quiz-container {
+    position: relative;
+    top: 2vw;
+    background: #fff;
+    width: 100%;
+    max-width: 800px;
+    padding: 0px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.quiz-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.question, .options, .result, .learn-btn, .instruction-slide, .start-quiz-btn {
+    position: absolute;
+    padding: 20px;
+    color: black;
+    overflow: hidden; /* NO OVERFLOW */ 
+    word-wrap: break-word;
+    left: 10%;
+    right: 10%;
+    bottom: 10%;
+}
+
+.options {
+    top: 40%;
+}
+
+.start-quiz-btn {
+    top: 75%;
+    max-height: 20%;
+}
+
+.learn-btn {
+    top: 50%;
+    display: none;
+    max-height: 20%;
+}
+    
+.question, .instruction-slide {
+    font-size: 1.2em;
+    padding: 5vw;
+    margin-bottom: 20px;
+    top: 20%;
+}
+
+.options, .learn-btn, .start-quiz-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.result {
+    font-size: 1.5em;
+    color: #172340;
+    display: none;
+    top: 20%;
+}
+
+@media (max-width: 1000px) {
+    body, html {
+      overflow-y: auto;
+    }
+
+    h2, .result {
+        font-size: 1rem;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    p {
+        font-size: .75rem;
+        padding: 10px;
+    }
+
+    .start-quiz-btn, .option {
+        font-size: .75rem;
+    }
+
+    .result {
+        font-size: 1.25rem;
+        top: 30%;
+    }
+
+    .learn-btn {
+        font-size: 1rem;
+    }
+
+    .menu-visible {
+      display: none;
+    }
+  
+    /* Ensure the menu takes the full width and is fixed at the top */
+    .mobileMenu {
+        display: block;  /* Show menu on mobile */
+        position: fixed; /* Fixed to the top of the screen */
+        top: 0;          /* Align it to the top */
+        left: 0;
+        width: 100%;     /* Full width */
+        z-index: 1000;   /* Make sure it stays above other content */
+        padding: 10px;
+        box-sizing: border-box; /* Prevents padding from affecting layout */
+      }
+ }

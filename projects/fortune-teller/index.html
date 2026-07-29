@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> FortuneTeller Quiz</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/fortuneteller_quiz.css">
+    <script src="https://kit.fontawesome.com/ea87ee6546.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+        <div id="textMenu" class="menu-visible">
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/aboutme/">About Me</a></li>
+                <li><a href="/projects/">Projects</a></li>
+                <li><a href="/experience/">Experience</a></li>
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="https://github.com/ewingard">Github</a></li>
+                <li><a href="/interests/">Interests</a></li>
+                <li><a href="/publications/">Publications</a></li>
+              </ul>
+          </div>
+          <div class="mobileMenu">
+            <a href="/index.html" class="active-menu">Home</a>
+            <div id="myLinks">
+              <a href="/aboutme/">About Me</a>
+              <a href="/projects/">Projects</a>
+              <a href="/experience/">Experience</a>
+              <a href="/skills/">Skills</a>
+              <a href="https://github.com/ewingard" target="_blank">Visit my Github Page</a>
+              <a href="/interests/">Interests</a>
+              <a href="/publications/">Publications</a>
+            </div>
+                <a href="javascript:void(0);" class="icon" onclick="mobileNavToggle()">
+                  <i class="fa fa-bars"></i>
+                </a>
+            </div>
+    <div id="video-container" class="video-container">
+        <video id="intro-video" class="intro-video" autoplay muted>
+            <source src="/assets/media/fortune-teller/Blank_IntroVideo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="quiz-container" style="display: none">
+        <img src="/assets/media/fortune-teller/quiz_container_v4.png" alt="Quiz Container Background" class="quiz-image">
+        <div id="instruction-slide" class="instruction-slide">
+            <h2>Is Friendship in the Cards?</h2>
+            <p>In this quiz, you will be given an activity and a constraint.</br>
+            You will then have to choose either who will join you or for how long.</br>
+            <button id="start-quiz-btn" class="start-quiz-btn">Reveal My Future</button>
+        </div>        
+        <div class="question"></div>
+        <div class="options"></div>
+        <div class="result" style="display: none;">Your Fortune: <span id="fortune"></span></div>
+        <button class="learn-btn" style="display: none;">Learn More</button>
+    </div>
+    <script src="/projects/fortuneteller-quiz/script.js"></script>
+</body>
+</html>
+
+<!-- python3 -m http.server 8000 -->
