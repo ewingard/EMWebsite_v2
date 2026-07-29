@@ -1,5 +1,5 @@
 body, html {
-    background-image: radial-gradient(circle at 50% 50%, #cfa2c8, #961f6e); /* keeping gradient pattern consistent, with a changed color-scheme */
+    background-image: radial-gradient(circle at 50% 50%, #f2e6f6, #8a6b99); /* keeping gradient pattern consistent, with a changed color-scheme */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
