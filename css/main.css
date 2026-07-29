@@ -15,7 +15,7 @@ body {
 
 .newspaper {
   max-width: 97vw;
-  max-height: 97vh !important;
+  max-height: auto;
   background-color: #FFFFFD;
   padding: 2vw;
 }
@@ -164,8 +164,8 @@ article {
 }
 
 #ez {
-  max-width: 20vw;
-  max-height: 20vw;
+  max-width: 25vw;
+  max-height: 25vw;
   width: auto;
   height: auto;
   border: .1vw solid black;
