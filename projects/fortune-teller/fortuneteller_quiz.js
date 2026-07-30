@@ -84,7 +84,7 @@ const fortunes = {
     Butterfly: { SmGrp: 0, LgGrp: 1, SmDur: 0, LgDur: 1 },
     Rabbit: { SmGrp: 0, LgGrp: 1, SmDur: 1, LgDur: 0 },
     Swan: { SmGrp: 1, LgGrp: 0, SmDur: 0, LgDur: 1 },
-    Chameleon: { SmGrp: 0, LgGrp: 0, SmDur: 0, LgDur: 0 }  // Special case: requires equal scores
+    Chameleon: { SmGrp: 1, LgGrp: 1, SmDur: 1, LgDur: 1 }  // Special case: requires equal scores
 };
 
 const questionEl = document.querySelector(".question");

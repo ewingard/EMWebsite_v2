@@ -80,29 +80,11 @@ const workbook = {
             rows: [
 
                 {
-                    Skill: "Microsoft Excel",
-                    Category: "Data Analysis",
-                    Type: "Software",
-                    Years: 8,
-                    Level: 5
-                },
-
-
-                {
-                    Skill: "Power Query",
+                    Skill: "Excel",
                     Category: "Data Analysis",
                     Type: "Software",
                     Years: 3,
-                    Level: 4
-                },
-
-
-                {
-                    Skill: "Power Pivot",
-                    Category: "Data Analysis",
-                    Type: "Software",
-                    Years: 2,
-                    Level: 3
+                    Level: 5
                 },
 
 
@@ -110,8 +92,8 @@ const workbook = {
                     Skill: "Python",
                     Category: "Programming",
                     Type: "Language",
-                    Years: 6,
-                    Level: 5
+                    Years: 1,
+                    Level: 2
                 },
 
 
@@ -119,17 +101,25 @@ const workbook = {
                     Skill: "JavaScript",
                     Category: "Programming",
                     Type: "Language",
-                    Years: 5,
-                    Level: 4
+                    Years: 1,
+                    Level: 3
                 },
 
 
                 {
-                    Skill: "HTML/CSS",
+                    Skill: "HTML",
                     Category: "Programming",
                     Type: "Language",
-                    Years: 6,
+                    Years: 4,
                     Level: 5
+                },
+
+                {
+                    Skill: "CSS",
+                    Category: "Programming",
+                    Type: "Language",
+                    Years: 3,
+                    Level: 4
                 },
 
 
@@ -137,23 +127,23 @@ const workbook = {
                     Skill: "SQL",
                     Category: "Database",
                     Type: "Language",
-                    Years: 4,
-                    Level: 4
+                    Years: 1,
+                    Level: 3
                 },
 
 
                 {
                     Skill: "Chart.js",
-                    Category: "Visualization",
+                    Category: "Programming",
                     Type: "Library",
-                    Years: 1,
-                    Level: 4
+                    Years: 0,
+                    Level: 2
                 },
 
 
                 {
-                    Skill: "Tableau",
-                    Category: "Visualization",
+                    Skill: "R",
+                    Category: "Data Analysis",
                     Type: "Software",
                     Years: 2,
                     Level: 3
@@ -162,10 +152,10 @@ const workbook = {
 
                 {
                     Skill: "SPSS",
-                    Category: "Statistics",
+                    Category: "Data Analysis",
                     Type: "Software",
-                    Years: 5,
-                    Level: 4
+                    Years: 2,
+                    Level: 3
                 },
 
 
@@ -173,8 +163,8 @@ const workbook = {
                     Skill: "REDCap",
                     Category: "Research",
                     Type: "Software",
-                    Years: 5,
-                    Level: 5
+                    Years: 2,
+                    Level: 4
                 },
 
 
@@ -182,19 +172,173 @@ const workbook = {
                     Skill: "E-Prime",
                     Category: "Research",
                     Type: "Software",
-                    Years: 4,
-                    Level: 4
+                    Years: 2,
+                    Level: 3
+                },
+
+                                {
+                    Skill: "E-Basic",
+                    Category: "Research",
+                    Type: "Software",
+                    Years: 1,
+                    Level: 3
                 },
 
 
                 {
                     Skill: "ResourceSpace",
-                    Category: "Research",
+                    Category: "Library",
+                    Type: "Software",
+                    Years: 1,
+                    Level: 3
+                },
+
+                {
+                    Skill: "PyTorch",
+                    Category: "Machine Learning",
+                    Type: "Software",
+                    Years: 1,
+                    Level: 2
+                },
+
+               {
+                    Skill: "Aviary",
+                    Category: "Library",
+                    Type: "Software",
+                    Years: 1,
+                    Level: 4
+                },
+
+                {
+                    Skill: "MS Office",
+                    Category: "Productivity",
+                    Type: "Software",
+                    Years: 5,
+                    Level: 5
+                },
+
+
+                {
+                    Skill: "Google Suite",
+                    Category: "Productivity",
+                    Type: "Software",
+                    Years: 5,
+                    Level: 5
+                },
+                
+                
+                {
+                    Skill: "Obsidian",
+                    Category: "Organization",
+                    Type: "Software",
+                    Years: 2,
+                    Level: 4
+                },
+
+
+                {
+                    Skill: "Notion",
+                    Category: "Organization",
+                    Type: "Software",
+                    Years: 1,
+                    Level: 3
+                },
+                
+
+                {
+                    Skill: "OpenAthens",
+                    Category: "Library",
+                    Type: "Software",
+                    Years: 1,
+                    Level: 2
+                },
+
+
+                {
+                    Skill: "LibGuides",
+                    Category: "Library",
+                    Type: "Software",
+                    Years: 1,
+                    Level: 3
+                },
+
+                {
+                    Skill: "Photoshop",
+                    Category: "Creative",
                     Type: "Software",
                     Years: 2,
                     Level: 3
-                }
+                },
 
+
+                {
+                    Skill: "WordPress",
+                    Category: "Library",
+                    Type: "Software",
+                    Years: 1,
+                    Level: 5
+                },
+
+
+                {
+                    Skill: "MATLAB",
+                    Category: "Data Analysis",
+                    Type: "Software",
+                    Years: 2,
+                    Level: 3
+                },
+
+
+                {
+                    Skill: "Canva",
+                    Category: "Creative",
+                    Type: "Software",
+                    Years: 4,
+                    Level: 5
+                },
+
+
+                {
+                    Skill: "Affinity Studio",
+                    Category: "Creative",
+                    Type: "Software",
+                    Years: 0,
+                    Level: 2
+                },
+
+                {
+                    Skill: "Java",
+                    Category: "Programming",
+                    Type: "Software",
+                    Years: 2,
+                    Level: 3
+                },
+
+
+                {
+                    Skill: "French",
+                    Category: "Languages",
+                    Type: "Language",
+                    Years: 14,
+                    Level: 5
+                },
+
+
+                {
+                    Skill: "Spanish",
+                    Category: "Languages",
+                    Type: "Language",
+                    Years: 1,
+                    Level: 2
+                },
+
+                {
+                    Skill: "ASL",
+                    Category: "Languages",
+                    Type: "Language",
+                    Years: 2,
+                    Level: 3
+                },
             ]
 
         },
@@ -257,6 +401,7 @@ Dashboard: {
         source: "proficiency"
     }
 
+
     ]
 
 },
@@ -265,12 +410,12 @@ Dashboard: {
 
         // ==================================
         // SHEET 3
-        // CERTIFICATIONS
+        // CertificatesS
         // ==================================
 
-        Certifications: {
+        Certificates: {
 
-            name: "Certifications",
+            name: "Certificates",
 
             type: "table",
 
@@ -279,46 +424,221 @@ Dashboard: {
 
             columns: [
 
-                "Certification",
+                "Certificates",
                 "Provider",
                 "Year",
-                "Status"
-
+                "Status",
+                "Link"
             ],
 
 
             rows: [
-
-                {
-                    Certification:
-                        "Google Data Analytics Certificate",
+                {   Certificates:
+                        "Responsible Conduct of Research for Undergrad Students",
 
                     Provider:
-                        "Google",
+                        "CITI Program",
 
                     Year:
-                        2025,
+                        2020,
 
                     Status:
-                        "Completed"
+                        "Completed",
+
+                    Link:
+                        "/assets/media/certificates/Citi-ResponsibleUndergrad.pdf",
+
                 },
 
-
                 {
-                    Certification:
-                        "Microsoft Excel Certification",
+                    Certificates:
+                        "Social & Behavioral Researchers Certificate",
 
                     Provider:
-                        "Microsoft",
+                        "CITI Program",
 
                     Year:
                         2024,
 
                     Status:
+                        "Completed",
+
+                    Link:
+                        "/assets/media/certificates/CITI_SocBeh.pdf"
+                },
+
+
+                {
+                    Certificates:
+                        "Responsible Conduct of Research Certificate",
+
+                    Provider:
+                        "CITI Program",
+
+                    Year:
+                        2024,
+
+                    Status:
+                        "Completed",
+
+                    Link:
+                        "/assets/media/certificates/CITI_SocBehRR.pdf"
+                },
+
+                {
+                    Certificates:
+                        "Canva Essentials",
+
+                    Provider:
+                        "Canva",
+
+                    Year:
+                        2026,
+
+                    Status:
+                        "Completed",
+
+                    Link:
+                        "/assets/media/certificates/Canva_Essentials.pdf"
+                },
+
+
+                {
+                    Certificates:
+                        "Graphic Design Essentials",
+
+                    Provider:
+                        "Canva",
+
+                    Year:
+                        2026,
+
+                    Status:
+                        "Completed",
+
+                    Link:
+                        "/assets/media/certificates/Canva_GraphicDesign.pdf"
+                },
+
+                {
+                    Certificates:
+                        "Data Cleaning in Excel: Techniques to Clean Messy Data",
+
+                    Provider:
+                        "Coursera",
+
+                    Year:
+                        2026,
+
+                    Status:
+                        "Completed",
+
+                    Link:
+                        "/assets/media/certificates/Coursera_DataCleaning.pdf"
+                },
+
+
+                {
+                    Certificates:
+                        "How to create a Jira SCRUM project",
+
+                    Provider:
+                        "Coursera",
+
+                    Year:
+                        2026,
+
+                    Status:
+                        "Completed",
+
+                    Link:
+                        "/assets/media/certificates/Coursera_JiraSCRUM.pdf"
+                },
+
+                {
+                    Certificates:
+                        "Managing Teams Documents and Files",
+
+                    Provider:
+                        "Coursera",
+
+                    Year:
+                        2026,
+
+                    Status:
+                        "Completed",
+
+                    Link:
+                        "/assets/media/certificates/Coursera_Teams.pdf"
+                },
+
+                {
+                    Certificates:
+                        "Overview of Data Visualization",
+
+                    Provider:
+                        "Coursera",
+
+                    Year:
+                        2026,
+                    
+                    Status:
+                        "Completed",
+
+                    Link:
+                        "/assets/media/certificates/Coursera_DataViz.pdf"
+                },
+
+
+                {
+                    Certificates:
+                        "Create Charts and Dashboards Using Microsoft Excel",
+
+                    Provider:
+                        "Coursera",
+
+                    Year:
+                        2026,
+                    
+                    Status:
+                        "Completed",
+
+                    Link:
+                        "/assets/media/certificates/Coursera_ChartsDashboards.pdf"
+                },
+
+
+                {
+                    Certificates:
+                        "Finding, Sorting, & Filtering Data in Microsoft Excel",
+
+                    Provider:
+                        "Coursera",
+
+                    Year:
+                        2026,
+                    
+                    Status:
+                        "Completed",
+
+                    Link:
+                        "/assets/media/certificates/Coursera_FindingExcel.pdf"
+                },
+
+
+                {
+                    Certificates:
+                        "MRI Safety Certification",
+
+                    Provider:
+                        "Cabin MRI at the University of Rochester",
+
+                    Year:
+                        2021,
+                    
+                    Status:
                         "Completed"
                 }
-
-
             ]
 
         }

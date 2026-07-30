@@ -399,51 +399,6 @@ Links
 
 }
 
-
-/* ========================================
-   PROJECT STATUS
-======================================== */
-
-.status {
-
-    padding: 3px 8px;
-
-    border-radius: 12px;
-
-    font-size: 12px;
-
-    font-weight: 600;
-
-}
-
-
-.status.complete {
-
-    background: #d9ead3;
-
-    color: #27632a;
-
-}
-
-
-.status.progress {
-
-    background: #fff2cc;
-
-    color: #8a6d00;
-
-}
-
-
-.status.archived {
-
-    background: #e7e7e7;
-
-    color: #666;
-
-}
-
-
 /* ========================================
    CELL COMMENTS
 ======================================== */

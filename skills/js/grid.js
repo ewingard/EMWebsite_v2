@@ -126,7 +126,7 @@ function renderTable(sheet) {
     }
 
     spreadsheet.style.gridTemplateColumns =
-        `50px repeat(${sheet.columns.length}, 160px)`;
+        `50px repeat(${sheet.columns.length}, 19vw)`;
 
 
     spreadsheet.style.gridAutoRows =
@@ -551,12 +551,24 @@ function createCell(
 
     else {
 
+    if (column === "Link" && value) {
+
+        cell.innerHTML = `
+            <a href="${value}"
+               target="_blank"
+               rel="noopener noreferrer">
+                View PDF <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        `;
+
+    } else {
 
         cell.textContent =
             value ?? "";
 
-
     }
+
+}
 
 
 
@@ -641,21 +653,21 @@ function createChart(
 
 
                         backgroundColor:[
-
-                            "#107C41",
                             "#217346",
-                            "#70AD47",
-                            "#A9D18E",
-                            "#C6E0B4",
-                            "#5B9BD5",
-                            "#ED7D31"
-
+                            "#3f8077",
+                            "#2e3e64",
+                            "#5e4c83",
+                            "#947394",                        
+                            "#e2738c",
+                            "#cd5f66",
+                            "#ffa67c",
+                            "#f5e1a2",
+                            "#61bb46",
                         ],
 
 
                         borderColor:
-                            "#217346",
-
+                            "#2e3e64",
 
                         borderWidth:
                             1
