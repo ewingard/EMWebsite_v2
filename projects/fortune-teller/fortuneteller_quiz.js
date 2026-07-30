@@ -236,3 +236,8 @@ function isSafari() {
     const ua = navigator.userAgent;
     return /Safari/.test(ua) && !/Chrome/.test(ua);  // Safari is identified, but not Chrome
 }
+
+function isFirefox() {
+    const ua = navigator.userAgent;
+    return /Firefox/.test(ua) && !/Chrome/.test(ua);  // Safari is identified, but not Chrome
+}
