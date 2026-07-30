@@ -356,9 +356,13 @@ Links
     color: #0563c1;
 
     text-decoration: underline;
-
+    
 }
 
+#PDF-link:visited {
+    color: #820682
+
+}
 
 .cell.link:hover {
 

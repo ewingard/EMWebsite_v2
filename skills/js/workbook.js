@@ -436,14 +436,14 @@ Dashboard: {
 
     {
         type: "bar",
-        title: "Experience Years",
+        title: "Years of Experience",
         source: "experience"
     },
 
 
     {
         type: "radar",
-        title: "Technical Proficiency",
+        title: "Skill Proficiencies",
         source: "proficiency"
     }
 

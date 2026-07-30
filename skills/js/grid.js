@@ -719,10 +719,7 @@ function createChart(
 
                     legend:{
                         display:
-                            chart.type !== "bar",
-                        display:
-                            chart.type !== "radar"
-
+                            chart.type !== "bar" && chart.type !== "radar"
                     }
 
 
