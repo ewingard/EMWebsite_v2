@@ -152,9 +152,7 @@ function renderSheetTabs() {
 function switchWorkbookSheet(sheetName) {
 
 
-    Workbook.switchSheet(
-        sheetName
-    );
+    Workbook.switchSheet("Sheets");
 
 
     refreshSheetTabs();

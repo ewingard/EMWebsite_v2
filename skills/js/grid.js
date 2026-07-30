@@ -1,25 +1,19 @@
 /*
 ==========================================
-GRID.JS
+GRID_V2.JS
 Portfolio.xlsx Spreadsheet Website
 
+Compatible with:
+workbook_v2.js
+
 Handles:
-- Spreadsheet rendering
-- Cell creation
-- Cell editing
-- Selection
-- Keyboard navigation
-- Workbook integration
+- Table rendering
+- Dashboard rendering
+- Cell selection
+- Spreadsheet styling
+- Chart.js visualization
 ==========================================
 */
-
-
-// ==========================================
-// GRID SETTINGS
-// ==========================================
-
-const GRID_ROWS = 20;
-const GRID_COLUMNS = 26;
 
 
 // ==========================================
@@ -38,42 +32,20 @@ const nameBox =
     document.querySelector(".name-box");
 
 
-// ==========================================
-// ACTIVE CELL
-// ==========================================
 
 let selectedCell = null;
 
 
 // ==========================================
-// COLUMN LETTERS
+// GRID SETTINGS
 // ==========================================
 
-function getColumnLetter(index) {
-
-    let letter = "";
-
-    while (index >= 0) {
-
-        letter =
-            String.fromCharCode(
-                (index % 26) + 65
-            )
-            + letter;
-
-        index =
-            Math.floor(index / 26) - 1;
-
-    }
-
-    return letter;
-
-}
+const ROW_HEIGHT = 25;
 
 
 
 // ==========================================
-// CREATE GRID
+// MAIN RENDER FUNCTION
 // ==========================================
 
 function generateGrid() {
@@ -93,16 +65,63 @@ function generateGrid() {
     spreadsheet.innerHTML = "";
 
 
-    const activeSheet =
+    const sheet =
         Workbook.getActiveSheet();
 
 
-    const sheetData =
-        activeSheet.cells;
+
+    if (!sheet) return;
 
 
 
-    // Corner cell
+    if (sheet.type === "dashboard") {
+
+
+        renderDashboard();
+
+
+        return;
+
+    }
+
+
+
+    if (sheet.type === "table") {
+
+
+        renderTable(sheet);
+
+
+        return;
+
+    }
+
+
+}
+
+
+
+// ==========================================
+// TABLE RENDERER
+// ==========================================
+
+function renderTable(sheet) {
+
+
+    spreadsheet.style.gridTemplateColumns =
+        `50px repeat(${sheet.columns.length}, 160px)`;
+
+
+    spreadsheet.style.gridAutoRows =
+        "32px";
+
+
+    /*
+    --------------------------
+    CORNER CELL
+    --------------------------
+    */
+
 
     const corner =
         document.createElement("div");
@@ -112,138 +131,344 @@ function generateGrid() {
         "corner-cell";
 
 
-    spreadsheet.appendChild(
-        corner
+    spreadsheet.appendChild(corner);
+
+
+
+    /*
+    --------------------------
+    COLUMN HEADERS
+    --------------------------
+    */
+
+    function getColumnLetter(index) {
+
+
+    let letter = "";
+
+
+    while(index >= 0){
+
+
+        letter =
+            String.fromCharCode(
+                (index % 26) + 65
+            )
+            +
+            letter;
+
+
+        index =
+            Math.floor(index / 26) - 1;
+
+
+    }
+
+
+    return letter;
+
+}
+
+
+    sheet.columns.forEach(
+        (column, index) => {
+
+
+            const header =
+                document.createElement("div");
+
+
+            header.className =
+                "column-header";
+
+
+            header.textContent =
+                getColumnLetter(index);
+
+
+            spreadsheet.appendChild(header);
+
+
+
+        }
     );
 
 
 
-    // Column headers
-
-    for (
-        let col = 0;
-        col < GRID_COLUMNS;
-        col++
-    ) {
+    /*
+    --------------------------
+    TABLE HEADER ROW
+    --------------------------
+    */
 
 
-        const header =
-            document.createElement("div");
+    const headerRow =
+        document.createElement("div");
 
 
-        header.className =
-            "column-header";
+    headerRow.className =
+        "row-header";
 
 
-        header.textContent =
-            getColumnLetter(col);
+    headerRow.textContent =
+        "1";
 
 
-        spreadsheet.appendChild(
-            header
-        );
-
-    }
+    spreadsheet.appendChild(headerRow);
 
 
 
-    // Rows + cells
-
-    for (
-        let row = 1;
-        row <= GRID_ROWS;
-        row++
-    ) {
-
-
-        const rowHeader =
-            document.createElement("div");
-
-
-        rowHeader.className =
-            "row-header";
-
-
-        rowHeader.textContent =
-            row;
-
-
-        spreadsheet.appendChild(
-            rowHeader
-        );
-
-
-
-        for (
-            let col = 0;
-            col < GRID_COLUMNS;
-            col++
-        ) {
-
-
-            const reference =
-                `${getColumnLetter(col)}${row}`;
-
+    sheet.columns.forEach(
+        column => {
 
 
             const cell =
+                createCell(
+                    column,
+                    true
+                );
+
+
+            cell.classList.add(
+                "table-header"
+            );
+
+
+            spreadsheet.appendChild(cell);
+
+
+        }
+    );
+
+
+
+    /*
+    --------------------------
+    DATA ROWS
+    --------------------------
+    */
+
+
+    sheet.rows.forEach(
+        (row, rowIndex) => {
+
+
+            const rowHeader =
                 document.createElement("div");
 
 
-
-            cell.className =
-                "cell";
-
-
-            cell.dataset.cell =
-                reference;
+            rowHeader.className =
+                "row-header";
 
 
-
-            cell.textContent =
-                sheetData[reference]
-                ||
-                "";
-
-
-
-            cell.addEventListener(
-                "click",
-                () => {
-
-                    selectCell(cell);
-
-                }
-            );
-
-
-
-            cell.addEventListener(
-                "dblclick",
-                () => {
-
-                    editCell(cell);
-
-                }
-            );
-
+            rowHeader.textContent =
+                rowIndex + 2;
 
 
             spreadsheet.appendChild(
-                cell
+                rowHeader
+            );
+
+
+
+            sheet.columns.forEach(
+                column => {
+
+
+                    const value =
+                        row[column];
+
+
+
+                    const cell =
+                        createCell(
+                            value,
+                            false,
+                            column,
+                            rowIndex
+                        );
+
+
+
+                    spreadsheet.appendChild(
+                        cell
+                    );
+
+
+                }
             );
 
 
         }
+    );
+
+
+}
+
+
+// ==========================================
+// CREATE CELL
+// ==========================================
+
+function createCell(
+    value,
+    header=false,
+    column="",
+    rowIndex=0
+) {
+
+
+    const cell =
+        document.createElement("div");
+
+
+
+    cell.className =
+        "cell";
+
+
+
+    if (header) {
+
+        cell.classList.add(
+            "header-cell"
+        );
 
     }
 
 
 
-    selectCell(
-        document.querySelector(
-            '[data-cell="A1"]'
-        )
+    /*
+    --------------------------
+    SKILL LEVEL FORMATTING
+    --------------------------
+    */
+
+
+    if (
+
+        Workbook.state.activeSheet === "Skills"
+
+        &&
+
+        column === "Level"
+
+        &&
+
+        typeof value === "number"
+
+    ) {
+
+
+        cell.textContent =
+            "★".repeat(value);
+
+
+
+        cell.classList.add(
+            `level-${value}`
+        );
+
+
+    }
+
+    else {
+
+
+        cell.textContent =
+            value ?? "";
+
+
+    }
+
+
+
+
+    cell.addEventListener(
+        "click",
+        () => {
+
+            selectCell(cell);
+
+        }
+    );
+
+
+
+    return cell;
+
+
+}
+
+
+
+// ==========================================
+// DASHBOARD
+// ==========================================
+
+function renderDashboard() {
+
+
+    const metrics =
+        Workbook.getSkillMetrics();
+
+
+
+    spreadsheet.innerHTML = `
+
+        <div class="dashboard-grid">
+
+
+            <div class="kpi-card">
+
+                <h3>Total Skills</h3>
+
+                <span>
+                    ${metrics.totalSkills}
+                </span>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <h3>Total Experience</h3>
+
+                <span>
+                    ${metrics.totalYears} yrs
+                </span>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <h3>Average Level</h3>
+
+                <span>
+                    ${metrics.averageLevel}
+                    ★
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="chart-container">
+
+            <canvas id="skillsCategoryChart"></canvas>
+
+        </div>
+
+
+    `;
+
+
+
+    createCategoryChart(
+        metrics.categories
     );
 
 
@@ -252,7 +477,89 @@ function generateGrid() {
 
 
 // ==========================================
-// SELECT CELL
+// CHART.JS
+// ==========================================
+
+function createCategoryChart(categories) {
+
+
+    const canvas =
+        document.getElementById(
+            "skillsCategoryChart"
+        );
+
+
+    if (!canvas) return;
+
+
+
+    new Chart(
+        canvas,
+        {
+
+            type: "bar",
+
+
+            data: {
+
+
+                labels:
+                    Object.keys(categories),
+
+
+                datasets: [
+
+                    {
+
+                        label:
+                            "Skills by Category",
+
+
+                        data:
+                            Object.values(categories),
+
+
+                        backgroundColor:
+                            "#107C41"
+
+                    }
+
+                ]
+
+
+            },
+
+
+            options: {
+
+                responsive:true,
+
+
+                plugins: {
+
+                    legend: {
+
+                        display:false
+
+                    }
+
+                }
+
+
+            }
+
+
+        }
+
+    );
+
+
+}
+
+
+
+// ==========================================
+// CELL SELECTION
 // ==========================================
 
 function selectCell(cell) {
@@ -261,16 +568,22 @@ function selectCell(cell) {
     if (!cell) return;
 
 
+
     if (selectedCell) {
+
 
         selectedCell.classList.remove(
             "selected"
         );
 
+
     }
 
 
-    selectedCell = cell;
+
+    selectedCell =
+        cell;
+
 
 
     selectedCell.classList.add(
@@ -278,29 +591,16 @@ function selectCell(cell) {
     );
 
 
-    const reference =
-        cell.dataset.cell;
-
-
-
-    if (nameBox) {
-
-        nameBox.textContent =
-            reference;
-
-    }
-
-
 
     if (formulaBar) {
 
+
         formulaBar.value =
-            Workbook.getCellValue(
-                Workbook.state.activeSheet,
-                reference
-            );
+            cell.textContent;
+
 
     }
+
 
 
 }
@@ -308,271 +608,10 @@ function selectCell(cell) {
 
 
 // ==========================================
-// EDIT CELL
+// SHEET RENDER HOOK
 // ==========================================
 
-function editCell(cell) {
-
-
-    const reference =
-        cell.dataset.cell;
-
-
-    cell.contentEditable = true;
-
-
-    cell.classList.add(
-        "editing"
-    );
-
-
-    cell.focus();
-
-
-
-    cell.addEventListener(
-        "blur",
-        finishEditing,
-        {
-            once:true
-        }
-    );
-
-
-
-    cell.addEventListener(
-        "keydown",
-        event => {
-
-
-            if (
-                event.key === "Enter"
-            ) {
-
-                event.preventDefault();
-
-                cell.blur();
-
-            }
-
-
-        }
-    );
-
-
-
-    function finishEditing() {
-
-
-        cell.contentEditable = false;
-
-
-        cell.classList.remove(
-            "editing"
-        );
-
-
-
-        Workbook.updateCell(
-
-            Workbook.state.activeSheet,
-
-            reference,
-
-            cell.textContent
-
-        );
-
-
-        if (formulaBar) {
-
-            formulaBar.value =
-                cell.textContent;
-
-        }
-
-
-    }
-
-}
-
-
-
-// ==========================================
-// FORMULA BAR UPDATE
-// ==========================================
-
-if (formulaBar) {
-
-
-    formulaBar.addEventListener(
-        "change",
-        () => {
-
-
-            if (!selectedCell)
-                return;
-
-
-
-            const reference =
-                selectedCell.dataset.cell;
-
-
-
-            Workbook.updateCell(
-
-                Workbook.state.activeSheet,
-
-                reference,
-
-                formulaBar.value
-
-            );
-
-
-
-            selectedCell.textContent =
-                formulaBar.value;
-
-
-        }
-    );
-
-
-}
-
-
-
-// ==========================================
-// KEYBOARD NAVIGATION
-// ==========================================
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-
-        if (!selectedCell)
-            return;
-
-
-
-        const current =
-            selectedCell.dataset.cell;
-
-
-
-        let column =
-            current.charCodeAt(0) - 65;
-
-
-
-        let row =
-            parseInt(
-                current.substring(1)
-            );
-
-
-
-        switch(event.key) {
-
-
-            case "ArrowUp":
-
-                row--;
-
-                break;
-
-
-            case "ArrowDown":
-
-                row++;
-
-                break;
-
-
-            case "ArrowLeft":
-
-                column--;
-
-                break;
-
-
-            case "ArrowRight":
-
-                column++;
-
-                break;
-
-
-            case "Tab":
-
-                event.preventDefault();
-
-                column++;
-
-                break;
-
-
-            default:
-
-                return;
-
-        }
-
-
-
-        if (
-
-            row < 1 ||
-            row > GRID_ROWS ||
-            column < 0 ||
-            column >= GRID_COLUMNS
-
-        ) {
-
-            return;
-
-        }
-
-
-
-        const nextReference =
-            `${getColumnLetter(column)}${row}`;
-
-
-
-        const nextCell =
-            document.querySelector(
-                `[data-cell="${nextReference}"]`
-            );
-
-
-
-        if (nextCell) {
-
-            selectCell(nextCell);
-
-
-            nextCell.scrollIntoView({
-                block:"nearest",
-                inline:"nearest"
-            });
-
-        }
-
-
-    }
-);
-
-
-
-// ==========================================
-// WORKBOOK CONNECTION
-// ==========================================
-
-function renderSheet(sheetName) {
+function renderSheet() {
 
 
     generateGrid();
@@ -583,7 +622,7 @@ function renderSheet(sheetName) {
 
 
 // ==========================================
-// START APPLICATION
+// INITIALIZE
 // ==========================================
 
 document.addEventListener(
@@ -600,13 +639,15 @@ document.addEventListener(
 
 
 // ==========================================
-// GLOBAL EXPORT
+// EXPORT
 // ==========================================
 
 window.Grid = {
 
+
     generateGrid,
 
     renderSheet
+
 
 };
