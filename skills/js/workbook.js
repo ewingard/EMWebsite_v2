@@ -26,18 +26,17 @@ Designed for grid_v2.js
         projectsCompleted: 12,
 
 
-        publications: 5,
+        publications: 1,
 
 
-        yearsResearchExperience: 6,
+        yearsResearchExperience: 5,
+
+        yearsLibraryExperience: 2,
 
 
         favoriteTools: [
 
-            "Excel",
-            "Python",
-            "SQL",
-            "REDCap"
+            "Excel"
 
         ]
 
@@ -93,7 +92,7 @@ const workbook = {
                     Category: "Programming",
                     Type: "Language",
                     Years: 1,
-                    Level: 2
+                    Level: 3
                 },
 
 
@@ -107,7 +106,7 @@ const workbook = {
 
 
                 {
-                    Skill: "HTML",
+                    Skill: "HTML5",
                     Category: "Programming",
                     Type: "Language",
                     Years: 4,
@@ -115,7 +114,7 @@ const workbook = {
                 },
 
                 {
-                    Skill: "CSS",
+                    Skill: "CSS3",
                     Category: "Programming",
                     Type: "Language",
                     Years: 3,
@@ -124,38 +123,28 @@ const workbook = {
 
 
                 {
-                    Skill: "SQL",
+                    Skill: "PostgreSQL",
                     Category: "Database",
                     Type: "Language",
                     Years: 1,
                     Level: 3
                 },
 
-
-                {
-                    Skill: "Chart.js",
-                    Category: "Programming",
-                    Type: "Library",
-                    Years: 0,
-                    Level: 2
-                },
-
-
                 {
                     Skill: "R",
                     Category: "Data Analysis",
-                    Type: "Software",
+                    Type: "Language",
                     Years: 2,
-                    Level: 3
+                    Level: 4
                 },
 
 
                 {
                     Skill: "SPSS",
                     Category: "Data Analysis",
-                    Type: "Software",
+                    Type: "Language",
                     Years: 2,
-                    Level: 3
+                    Level: 4
                 },
 
 
@@ -173,15 +162,15 @@ const workbook = {
                     Category: "Research",
                     Type: "Software",
                     Years: 2,
-                    Level: 3
+                    Level: 4
                 },
 
                                 {
                     Skill: "E-Basic",
                     Category: "Research",
-                    Type: "Software",
+                    Type: "Language",
                     Years: 1,
-                    Level: 3
+                    Level: 4
                 },
 
 
@@ -190,15 +179,7 @@ const workbook = {
                     Category: "Library",
                     Type: "Software",
                     Years: 1,
-                    Level: 3
-                },
-
-                {
-                    Skill: "PyTorch",
-                    Category: "Machine Learning",
-                    Type: "Software",
-                    Years: 1,
-                    Level: 2
+                    Level: 4
                 },
 
                {
@@ -241,7 +222,7 @@ const workbook = {
                     Category: "Organization",
                     Type: "Software",
                     Years: 1,
-                    Level: 3
+                    Level: 4
                 },
                 
 
@@ -250,7 +231,7 @@ const workbook = {
                     Category: "Library",
                     Type: "Software",
                     Years: 1,
-                    Level: 2
+                    Level: 3
                 },
 
 
@@ -259,7 +240,7 @@ const workbook = {
                     Category: "Library",
                     Type: "Software",
                     Years: 1,
-                    Level: 3
+                    Level: 4
                 },
 
                 {
@@ -267,7 +248,7 @@ const workbook = {
                     Category: "Creative",
                     Type: "Software",
                     Years: 2,
-                    Level: 3
+                    Level: 4
                 },
 
 
@@ -283,7 +264,7 @@ const workbook = {
                 {
                     Skill: "MATLAB",
                     Category: "Data Analysis",
-                    Type: "Software",
+                    Type: "Language",
                     Years: 2,
                     Level: 3
                 },
@@ -298,18 +279,18 @@ const workbook = {
                 },
 
 
-                {
-                    Skill: "Affinity Studio",
-                    Category: "Creative",
-                    Type: "Software",
-                    Years: 0,
-                    Level: 2
-                },
+                // {
+                //     Skill: "Affinity Studio",
+                //     Category: "Creative",
+                //     Type: "Software",
+                //     Years: 0,
+                //     Level: 2
+                // },
 
                 {
                     Skill: "Java",
                     Category: "Programming",
-                    Type: "Software",
+                    Type: "Language",
                     Years: 2,
                     Level: 3
                 },
@@ -325,20 +306,85 @@ const workbook = {
 
 
                 {
-                    Skill: "Spanish",
-                    Category: "Languages",
-                    Type: "Language",
-                    Years: 1,
-                    Level: 2
-                },
-
-                {
                     Skill: "ASL",
                     Category: "Languages",
                     Type: "Language",
                     Years: 2,
                     Level: 3
                 },
+
+                {
+                    Skill: "Zoom",
+                    Category: "Productivity",
+                    Type: "Software",
+                    Years: 4,
+                    Level: 5
+                },
+
+                {
+                    Skill: "Basecamp",
+                    Category: "Productivity",
+                    Type: "Software",
+                    Years: 1,
+                    Level: 4
+                },
+
+                {
+                    Skill: "Trello",
+                    Category: "Productivity",
+                    Type: "Software",
+                    Years: 2,
+                    Level: 5
+                },
+
+                {
+                    Skill: "GitHub",
+                    Category: "Programming",
+                    Type: "Software",
+                    Years: 4,
+                    Level: 4
+                },
+
+                {
+                    Skill: "MODS",
+                    Category: "Library",
+                    Type: "Schema",
+                    Years: 1,
+                    Level: 4
+                },
+
+
+                {
+                    Skill: "Library of Congress Classification",
+                    Category: "Library",
+                    Type: "Classification",
+                    Years: 1,
+                    Level: 4
+                },
+
+                {
+                    Skill: "Paleography",
+                    Category: "History",
+                    Type: "Classification",
+                    Years: 1,
+                    Level: 4
+                },
+
+                {
+                    Skill: "Trint",
+                    Category: "Library",
+                    Type: "Software",
+                    Years: 1,
+                    Level: 4
+                },
+
+                {
+                    Skill: "XML",
+                    Category: "Library",
+                    Type: "Schema",
+                    Years: 2,
+                    Level: 4
+                }
             ]
 
         },
@@ -448,6 +494,20 @@ Dashboard: {
                     Link:
                         "/assets/media/certificates/Citi-ResponsibleUndergrad.pdf",
 
+                },
+
+                {
+                    Certificates:
+                        "MRI Safety Certification",
+
+                    Provider:
+                        "Cabin MRI at the University of Rochester",
+
+                    Year:
+                        2021,
+                    
+                    Status:
+                        "Completed"
                 },
 
                 {
@@ -628,16 +688,16 @@ Dashboard: {
 
                 {
                     Certificates:
-                        "MRI Safety Certification",
+                        "College of Charleston Life Coach Certification",
 
                     Provider:
-                        "Cabin MRI at the University of Rochester",
+                        "College of Charleston",
 
                     Year:
-                        2021,
+                        2026,
                     
                     Status:
-                        "Completed"
+                        "Upcoming"
                 }
             ]
 

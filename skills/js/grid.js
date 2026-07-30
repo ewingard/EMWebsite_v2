@@ -554,7 +554,7 @@ function createCell(
     if (column === "Link" && value) {
 
         cell.innerHTML = `
-            <a href="${value}"
+            <a id="PDF-link" href="${value}"
                target="_blank"
                rel="noopener noreferrer">
                 View PDF <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -718,11 +718,10 @@ function createChart(
 
 
                     legend:{
-
-
                         display:
-                            chart.type !== "bar"
-
+                            chart.type !== "bar",
+                        display:
+                            chart.type !== "radar"
 
                     }
 

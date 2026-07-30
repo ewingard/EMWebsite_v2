@@ -351,7 +351,7 @@ Headers inside sheets
 Links
 */
 
-.cell.link {
+.cell.link, #PDF-link {
 
     color: #0563c1;
 
@@ -365,6 +365,7 @@ Links
     color: #217346;
 
 }
+
 
 
 /* ========================================
@@ -664,7 +665,7 @@ Excel red triangle
 
     background:white;
 
-    height:350px;
+    height:415px;
 
     border-radius:14px;
 
@@ -709,7 +710,7 @@ Excel red triangle
 
     width:100% !important;
 
-    height:300px !important;
+    height:415px !important;
 
 }
 
