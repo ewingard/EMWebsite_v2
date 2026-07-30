@@ -1,50 +1,53 @@
- /*
+/*
 ==========================================
-NAVIGATION.JS
+NAVIGATION_V2.JS
 Portfolio.xlsx Spreadsheet Website
 
 Handles:
-- Excel worksheet tabs
+- Workbook tabs
 - Sheet switching
 - Active states
-- Sheet creation UI
 ==========================================
 */
 
-
-// ==========================================
-// ELEMENT REFERENCES
-// ==========================================
 
 const sheetTabsContainer =
     document.querySelector(".sheet-tabs");
 
 
+
+
 // ==========================================
-// INITIALIZE NAVIGATION
+// INITIALIZE
 // ==========================================
 
 function initializeNavigation() {
 
+
     if (!sheetTabsContainer) {
 
+
         console.error(
-            "Sheet tab container not found"
+            "Sheet tabs container missing"
         );
 
+
         return;
+
 
     }
 
 
     renderSheetTabs();
 
+
 }
 
 
 
+
 // ==========================================
-// CREATE SHEET TABS
+// RENDER TABS
 // ==========================================
 
 function renderSheetTabs() {
@@ -57,6 +60,7 @@ function renderSheetTabs() {
         Workbook.getSheets();
 
 
+
     Object.keys(sheets).forEach(
         sheetName => {
 
@@ -65,59 +69,55 @@ function renderSheetTabs() {
                 sheets[sheetName];
 
 
+
             const tab =
                 document.createElement("button");
+
 
 
             tab.className =
                 "sheet-tab";
 
 
+
             tab.textContent =
                 sheet.name;
 
 
-            /*
-            Apply sheet color
-            */
 
-            if (sheet.color) {
+            if(sheet.color){
+
 
                 tab.classList.add(
                     sheet.color
                 );
 
+
             }
 
 
 
-            /*
-            Active state
-            */
-
-            if (
+            if(
 
                 Workbook.state.activeSheet
                 ===
                 sheetName
 
-            ) {
+            ){
+
 
                 tab.classList.add(
                     "active"
                 );
 
+
             }
 
 
 
-            /*
-            Click event
-            */
-
             tab.addEventListener(
                 "click",
-                () => {
+                ()=>{
 
 
                     switchWorkbookSheet(
@@ -129,19 +129,19 @@ function renderSheetTabs() {
             );
 
 
+
             sheetTabsContainer.appendChild(
                 tab
             );
+
 
 
         }
     );
 
 
-    createAddSheetButton();
-
-
 }
+
 
 
 
@@ -149,16 +149,17 @@ function renderSheetTabs() {
 // SWITCH SHEET
 // ==========================================
 
-function switchWorkbookSheet(sheetName) {
+function switchWorkbookSheet(sheetName){
 
-
-    Workbook.switchSheet("Sheets");
+    Workbook.switchSheet(
+        sheetName
+    );
 
 
     refreshSheetTabs();
 
-
 }
+
 
 
 
@@ -166,7 +167,7 @@ function switchWorkbookSheet(sheetName) {
 // UPDATE ACTIVE TAB
 // ==========================================
 
-function refreshSheetTabs() {
+function refreshSheetTabs(){
 
 
     const tabs =
@@ -175,67 +176,34 @@ function refreshSheetTabs() {
         );
 
 
-    tabs.forEach(tab => {
+
+    tabs.forEach(
+        tab=>{
 
 
-        tab.classList.remove(
-            "active"
-        );
-
-
-        if (
-
-            tab.textContent
-            ===
-            Workbook.state.activeSheet
-
-        ) {
-
-            tab.classList.add(
+            tab.classList.remove(
                 "active"
             );
 
+
+            if(
+
+                tab.textContent
+                ===
+                Workbook.state.activeSheet
+
+            ){
+
+
+                tab.classList.add(
+                    "active"
+                );
+
+
+            }
+
+
         }
-
-
-    });
-
-
-}
-
-
-
-// ==========================================
-// ADD SHEET BUTTON
-// ==========================================
-
-function createAddSheetButton() {
-
-
-    const button =
-        document.createElement("button");
-
-
-    button.className =
-        "add-sheet";
-
-
-    button.innerHTML =
-        "+";
-
-
-    button.title =
-        "Create new worksheet";
-
-
-    button.addEventListener(
-        "click",
-        createNewSheet
-    );
-
-
-    sheetTabsContainer.appendChild(
-        button
     );
 
 
@@ -243,88 +211,37 @@ function createAddSheetButton() {
 
 
 
-// ==========================================
-// CREATE NEW WORKSHEET
-// ==========================================
-
-function createNewSheet() {
-
-
-    const sheetCount =
-        Object.keys(
-            Workbook.getSheets()
-        ).length;
-
-
-    const newName =
-        `Sheet${sheetCount + 1}`;
-
-
-
-    Workbook.createSheet(
-        newName,
-        "green"
-    );
-
-
-    renderSheetTabs();
-
-
-    switchWorkbookSheet(
-        newName
-    );
-
-
-}
-
-
 
 // ==========================================
-// REMOVE SHEET TAB
-// ==========================================
-
-function removeSheetTab(sheetName) {
-
-
-    Workbook.deleteSheet(
-        sheetName
-    );
-
-
-    renderSheetTabs();
-
-
-}
-
-
-
-// ==========================================
-// INITIAL LOAD
+// START
 // ==========================================
 
 document.addEventListener(
     "DOMContentLoaded",
-    () => {
+    ()=>{
+
 
         initializeNavigation();
+
 
     }
 );
 
 
 
+
 // ==========================================
-// PUBLIC API
+// EXPORT
 // ==========================================
 
 window.WorkbookNavigation = {
+
 
     renderSheetTabs,
 
     switchWorkbookSheet,
 
-    refreshSheetTabs,
+    refreshSheetTabs
 
-    createNewSheet
 
 };

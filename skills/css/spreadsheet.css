@@ -1,3 +1,20 @@
+html.dashboard-active,
+body.dashboard-active {
+
+    overflow:hidden;
+
+    height:100vh;
+
+}
+
+
+body.dashboard-active #spreadsheet {
+
+    height:100vh;
+
+    overflow:hidden;
+
+}
 /*
 ==========================================
 SPREADSHEET.CSS
@@ -43,6 +60,9 @@ Styles:
 
     border-top: 1px solid #d9d9d9;
 
+    height:100vh;
+
+    overflow:hidden;
 }
 
 
@@ -560,28 +580,197 @@ Excel red triangle
 
 }
 
+/* ========================================
+   DASHBOARD MODE
+======================================== */
+
+.spreadsheet.dashboard-mode {
+
+    display:block;
+
+    width:100%;
+
+    min-height:100vh;
+
+    background:#f8f9fa;
+
+    overflow-y:hidden;
+}
+
+
+/* Main dashboard wrapper */
+
+.dashboard-container {
+
+    width:100%;
+
+    padding:25px;
+
+    box-sizing:border-box;
+
+}
+
+
+/* ========================================
+   KPI METRIC CARDS
+======================================== */
+
+
+.metric-grid {
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.dashboard-card {
+
+    background:white;
+
+    height:120px;
+
+    border-radius:14px;
+
+    padding:15px;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.12);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+
+.dashboard-title {
+
+    font-size:14px;
+
+    color:#666;
+
+    margin-bottom:8px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
+
+
+.dashboard-value {
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#217346;
+
+}
+
+
+
+/* ========================================
+   DASHBOARD CHART CARDS
+   Matches KPI card styling
+======================================== */
+
+
+.chart-grid {
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:18px;
+
+    margin-top:20px;
+
+}
+
+
+
+.chart-card {
+
+    background:white;
+
+    height:350px;
+
+    border-radius:14px;
+
+    padding:18px;
+
+    box-sizing:border-box;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.12);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+
+
+.chart-card h3 {
+
+    margin:0 0 10px 0;
+
+    text-align:center;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#666;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
+
+
+.chart-card canvas {
+
+    width:100% !important;
+
+    height:300px !important;
+
+}
+
+
+
 
 /* ========================================
    RESPONSIVE
 ======================================== */
 
-@media(max-width:900px){
+@media(max-width:1100px){
 
-    .spreadsheet {
+    .chart-grid {
 
         grid-template-columns:
-            40px
-            repeat(26,100px);
-
-        grid-auto-rows:30px;
+            1fr;
 
     }
-
-
-    .cell {
-
-        font-size:13px;
-
-    }
-
 }

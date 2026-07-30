@@ -77,7 +77,7 @@ function generateGrid() {
     if (sheet.type === "dashboard") {
 
 
-        renderDashboard();
+        renderDashboard(sheet);
 
 
         return;
@@ -107,6 +107,23 @@ function generateGrid() {
 
 function renderTable(sheet) {
 
+    
+    document.body.classList.remove(
+        "dashboard-active"
+    );
+
+    spreadsheet.classList.remove(
+        "dashboard-mode"
+    );
+
+
+    if(sheet.type !== "dashboard"){
+
+        document.body.classList.remove(
+            "dashboard-active"
+        );
+
+    }
 
     spreadsheet.style.gridTemplateColumns =
         `50px repeat(${sheet.columns.length}, 160px)`;
@@ -305,6 +322,166 @@ function renderTable(sheet) {
 
 }
 
+function renderDashboard(sheet){
+
+    document.body.classList.add(
+        "dashboard-active"
+    );
+
+    spreadsheet.classList.add(
+        "dashboard-mode"
+    );
+
+    const dashboard =
+        document.createElement("div");
+
+
+    dashboard.className =
+        "dashboard-container";
+
+
+
+    const metrics =
+        Workbook.getSkillMetrics();
+
+
+
+    /*
+    ==========================
+    KPI CARDS
+    ==========================
+    */
+
+    const metricSection =
+        document.createElement("div");
+
+
+    metricSection.className =
+        "metric-grid";
+
+
+
+    sheet.metrics.forEach(metric=>{
+
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "dashboard-card";
+
+
+        card.innerHTML = `
+
+            <div class="dashboard-title">
+
+                ${metric.title}
+
+            </div>
+
+
+            <div class="dashboard-value">
+
+                ${metrics[metric.value]}
+
+            </div>
+
+        `;
+
+
+        metricSection.appendChild(card);
+
+
+    });
+
+
+
+    dashboard.appendChild(
+        metricSection
+    );
+
+
+
+    /*
+    ==========================
+    CHARTS
+    ==========================
+    */
+
+
+    const chartSection =
+        document.createElement("div");
+
+
+    chartSection.className =
+        "chart-grid";
+
+
+
+    sheet.charts.forEach(chart=>{
+
+
+        const chartCard =
+            document.createElement("div");
+
+
+        chartCard.className =
+            "chart-card";
+
+
+
+        chartCard.innerHTML = `
+
+            <h3>
+                ${chart.title}
+            </h3>
+
+            <canvas></canvas>
+
+        `;
+
+
+
+        const canvas =
+            chartCard.querySelector(
+                "canvas"
+            );
+
+
+        chartSection.appendChild(
+            chartCard
+        );
+
+
+        setTimeout(()=>{
+
+        createChart(
+            canvas,
+            chart,
+            metrics
+        );
+
+    },100);
+
+
+    });
+
+
+
+    dashboard.appendChild(
+        chartSection
+    );
+
+
+
+    spreadsheet.appendChild(
+        dashboard
+    );
+
+
+}
+
 
 // ==========================================
 // CREATE CELL
@@ -406,90 +583,32 @@ function createCell(
 // DASHBOARD
 // ==========================================
 
-function renderDashboard() {
-
-
-    const metrics =
-        Workbook.getSkillMetrics();
-
-
-
-    spreadsheet.innerHTML = `
-
-        <div class="dashboard-grid">
-
-
-            <div class="kpi-card">
-
-                <h3>Total Skills</h3>
-
-                <span>
-                    ${metrics.totalSkills}
-                </span>
-
-            </div>
-
-
-            <div class="kpi-card">
-
-                <h3>Total Experience</h3>
-
-                <span>
-                    ${metrics.totalYears} yrs
-                </span>
-
-            </div>
-
-
-            <div class="kpi-card">
-
-                <h3>Average Level</h3>
-
-                <span>
-                    ${metrics.averageLevel}
-                    ★
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-        <div class="chart-container">
-
-            <canvas id="skillsCategoryChart"></canvas>
-
-        </div>
-
-
-    `;
-
-
-
-    createCategoryChart(
-        metrics.categories
-    );
-
-
-}
-
-
 
 // ==========================================
-// CHART.JS
+// CHART.JS RENDERER
 // ==========================================
 
-function createCategoryChart(categories) {
+function createChart(
+    canvas,
+    chart,
+    metrics
+){
 
 
-    const canvas =
-        document.getElementById(
-            "skillsCategoryChart"
+    const data =
+        metrics[chart.source];
+
+
+    if (!data) {
+
+        console.warn(
+            "Missing chart data:",
+            chart.source
         );
 
+        return;
 
-    if (!canvas) return;
+    }
 
 
 
@@ -497,51 +616,104 @@ function createCategoryChart(categories) {
         canvas,
         {
 
-            type: "bar",
+
+            type:
+                chart.type,
 
 
-            data: {
+            data:{
 
 
                 labels:
-                    Object.keys(categories),
+                    Object.keys(data),
 
 
-                datasets: [
+                datasets:[
 
                     {
 
                         label:
-                            "Skills by Category",
+                            chart.title,
 
 
                         data:
-                            Object.values(categories),
+                            Object.values(data),
 
 
-                        backgroundColor:
-                            "#107C41"
+                        backgroundColor:[
+
+                            "#107C41",
+                            "#217346",
+                            "#70AD47",
+                            "#A9D18E",
+                            "#C6E0B4",
+                            "#5B9BD5",
+                            "#ED7D31"
+
+                        ],
+
+
+                        borderColor:
+                            "#217346",
+
+
+                        borderWidth:
+                            1
 
                     }
 
                 ]
 
-
             },
 
 
-            options: {
+            options:{
+
 
                 responsive:true,
 
 
-                plugins: {
+                maintainAspectRatio:false,
 
-                    legend: {
 
-                        display:false
+                scales:
+
+                    chart.type === "radar"
+
+                    ?
+
+                    {
+
+                        r:{
+
+                            beginAtZero:true,
+
+                            min:0,
+
+                            max:5
+
+                        }
 
                     }
+
+                    :
+
+                    {},
+
+
+
+                plugins:{
+
+
+                    legend:{
+
+
+                        display:
+                            chart.type !== "bar"
+
+
+                    }
+
 
                 }
 
@@ -555,8 +727,6 @@ function createCategoryChart(categories) {
 
 
 }
-
-
 
 // ==========================================
 // CELL SELECTION
@@ -610,16 +780,68 @@ function selectCell(cell) {
 // ==========================================
 // SHEET RENDER HOOK
 // ==========================================
+function renderSheet(){
 
-function renderSheet() {
+
+    const sheet =
+        Workbook.getActiveSheet();
 
 
-    generateGrid();
+    if(!sheet){
 
+        console.error(
+            "No active sheet"
+        );
+
+        return;
+
+    }
+
+
+    if(sheet.type !== "dashboard"){
+
+        document.body.classList.remove(
+            "dashboard-active"
+        );
+
+        spreadsheet.classList.remove(
+            "dashboard-mode"
+        );
+
+    }
+
+
+
+    spreadsheet.innerHTML = "";
+
+
+    switch(sheet.type){
+
+
+        case "table":
+
+            renderTable(sheet);
+
+            break;
+
+
+        case "dashboard":
+
+            renderDashboard(sheet);
+
+            break;
+
+
+        default:
+
+            console.warn(
+                "Unknown sheet type:",
+                sheet.type
+            );
+
+    }
 
 }
-
-
 
 // ==========================================
 // INITIALIZE

@@ -20,6 +20,28 @@ Designed for grid_v2.js
 // ==========================================
 // WORKBOOK STATE
 // ==========================================
+    const dashboardData = {
+
+
+        projectsCompleted: 12,
+
+
+        publications: 5,
+
+
+        yearsResearchExperience: 6,
+
+
+        favoriteTools: [
+
+            "Excel",
+            "Python",
+            "SQL",
+            "REDCap"
+
+        ]
+
+    };
 
 const workbook = {
 
@@ -184,15 +206,60 @@ const workbook = {
         // DASHBOARD
         // ==================================
 
-        Dashboard: {
+Dashboard: {
 
-            name: "Dashboard",
+    name: "Dashboard",
 
-            type: "dashboard",
+    type: "dashboard",
 
-            color: "blue"
+    color: "blue",
 
+
+    metrics: [
+
+        {
+            title: "Total Skills",
+            value: "totalSkills"
         },
+
+        {
+            title: "Unique Skill Domains",
+            value: "skillDomains"
+        },
+
+        {
+            title: "Average Proficiency",
+            value: "averageLevel"
+        }
+
+    ],
+
+
+    charts: [
+
+    {
+        type: "doughnut",
+        title: "Skills by Category",
+        source: "categories"
+    },
+
+
+    {
+        type: "bar",
+        title: "Experience Years",
+        source: "experience"
+    },
+
+
+    {
+        type: "radar",
+        title: "Technical Proficiency",
+        source: "proficiency"
+    }
+
+    ]
+
+},
 
 
 
@@ -341,15 +408,12 @@ function getSkillMetrics() {
 
 
 
-    const totalYears =
-        skills.reduce(
-
-            (sum, skill) =>
-                sum + skill.Years,
-
-            0
-
-        );
+    const skillDomains =
+        new Set(
+            skills.map(
+                skill => skill.Category
+            )
+        ).size;
 
 
 
@@ -376,18 +440,13 @@ function getSkillMetrics() {
     const categories = {};
 
 
-
     skills.forEach(skill => {
 
-
-        if (
-            !categories[skill.Category]
-        ) {
+        if (!categories[skill.Category]) {
 
             categories[skill.Category] = 0;
 
         }
-
 
         categories[skill.Category]++;
 
@@ -395,21 +454,60 @@ function getSkillMetrics() {
 
 
 
-    return {
+const experience =
+    skills.reduce(
+        (obj, skill)=>{
+
+            obj[skill.Skill] =
+                skill.Years;
+
+            return obj;
+
+        },
+        {}
+    );
 
 
-        totalSkills,
 
-        totalYears,
+const proficiency =
+    skills.reduce(
+        (obj, skill)=>{
 
-        averageLevel,
+            obj[skill.Skill] =
+                skill.Level;
 
-        categories
+            return obj;
+
+        },
+        {}
+    );
 
 
-    };
 
+return {
 
+    totalSkills,
+
+    skillDomains,
+
+    averageLevel,
+
+    categories,
+
+    experience,
+
+    proficiency,
+
+    projectsCompleted:
+        dashboardData.projectsCompleted,
+
+    publications:
+        dashboardData.publications,
+
+    yearsResearchExperience:
+        dashboardData.yearsResearchExperience
+
+};
 }
 
 
