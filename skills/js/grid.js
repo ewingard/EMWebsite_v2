@@ -18,7 +18,7 @@ Handles:
 // GRID SETTINGS
 // ==========================================
 
-const GRID_ROWS = 100;
+const GRID_ROWS = 20;
 const GRID_COLUMNS = 26;
 
 

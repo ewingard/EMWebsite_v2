@@ -56,13 +56,11 @@
             Portfolio.xlsx
         </div>
 
-        <div class="window-right">
-
+        <!-- <div class="window-right">
             <button id="theme-toggle">
                 <i class="fa-solid fa-moon"></i>
             </button>
-
-        </div>
+        </div> -->
 
     </header>
 
@@ -75,43 +73,41 @@
         <div class="ribbon-tabs">
 
             <button class="ribbon-tab active">
-                Home
+                <a href="/index.html">Home</a>
             </button>
 
             <button class="ribbon-tab">
-                Insert
+                <a href="/projects/projects.html">Projects</a>
             </button>
-
             <button class="ribbon-tab">
-                View
+                <a href="/publications/publications.html">Publications</a>
             </button>
-
             <button class="ribbon-tab">
-                Portfolio
+                <a href="https://github.com/ewingard">Github</a>
+            </button>
+            <button class="ribbon-tab">
+                <a href="/about/about.html">About Me</a>
+            </button>
+            <button class="ribbon-tab">
+                <a href="/experience/experience.html">Experience</a>
             </button>
 
         </div>
 
         <div class="ribbon-toolbar">
-
             <div class="tool-group">
-
                 <button>
                     <i class="fa-solid fa-copy"></i>
                 </button>
-
                 <button>
                     <i class="fa-solid fa-paste"></i>
                 </button>
-
             </div>
 
             <div class="tool-group">
-
                 <button>
                     <i class="fa-solid fa-filter"></i>
                 </button>
-
                 <button>
                     <i class="fa-solid fa-arrow-down-wide-short"></i>
                 </button>
@@ -159,14 +155,10 @@
             fx
 
         </div>
-
         <input
-            type="text"
+            type="Text"
             id="formula-bar"
-            readonly
-            value='="Welcome to my interactive portfolio!"'
-        >
-
+            readonly>
     </section>
 
     <!-- ===================================== -->
@@ -174,10 +166,8 @@
     <!-- ===================================== -->
 
     <main class="workbook">
-
-        <!-- Row / Column Headers + Grid -->
-
-        <section class="spreadsheet"></section>
+        <section class="spreadsheet" id="spreadsheet"></section>
+    </main>
     </div>
     <script src="js/workbook.js"></script>
     <script src="js/grid.js"></script>
