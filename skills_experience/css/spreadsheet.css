@@ -1,0 +1,736 @@
+html.dashboard-active,
+body.dashboard-active {
+
+    overflow:hidden;
+
+    height:100vh;
+
+}
+
+
+body.dashboard-active #spreadsheet {
+
+    height:100vh;
+
+    overflow:hidden;
+
+}
+/*
+==========================================
+SPREADSHEET.CSS
+Portfolio.xlsx Spreadsheet Website
+
+Styles:
+- Excel-like grid
+- Cells
+- Headers
+- Selection
+- Frozen panes
+- Data formatting
+==========================================
+*/
+
+
+/* ========================================
+   SPREADSHEET CONTAINER
+======================================== */
+
+.spreadsheet {
+
+    display: grid;
+
+    /*
+    First column is row numbers.
+    Remaining columns are spreadsheet columns.
+    */
+
+    grid-template-columns:
+        50px
+        repeat(26, 120px);
+
+    grid-auto-rows: 32px;
+
+    width: max-content;
+
+    min-width: 100%;
+
+    background: white;
+
+    border-left: 1px solid #d9d9d9;
+
+    border-top: 1px solid #d9d9d9;
+
+    height:100vh;
+
+    overflow:hidden;
+}
+
+
+/* ========================================
+   EXCEL GRID CELLS
+======================================== */
+
+.cell {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 8px;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    font-size: 14px;
+
+    color: #222;
+
+    background: #ffffff;
+
+    border-right: 1px solid #d9d9d9;
+
+    border-bottom: 1px solid #d9d9d9;
+
+    cursor: cell;
+
+    user-select: none;
+
+}
+
+.header-cell {
+
+    background:#f3f3f3;
+
+    font-weight:bold;
+
+    border-bottom:2px solid #c8c8c8;
+
+}
+
+    .level-5 { color:#107C41; }
+    .level-4 { color:#2E8B57; }
+    .level-3 { color:#E0A800; }
+    .level-2 { color:#D9534F; }
+    .level-1 { color:#B22222; }
+
+/*
+Excel-like hover
+*/
+
+.cell:hover {
+
+    background: #f3faf5;
+
+}
+
+
+/* ========================================
+   ACTIVE CELL
+======================================== */
+
+.cell.selected {
+
+    outline: 2px solid #217346;
+
+    outline-offset: -2px;
+
+    z-index: 10;
+
+}
+
+
+/*
+Small fill handle like Excel
+*/
+
+.cell.selected::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+
+    height: 7px;
+
+    right: -1px;
+
+    bottom: -1px;
+
+    background: #217346;
+
+    cursor: crosshair;
+
+}
+
+
+/* ========================================
+   COLUMN HEADERS
+======================================== */
+
+.column-header {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #f3f3f3;
+
+    border-right: 1px solid #cfcfcf;
+
+    border-bottom: 1px solid #cfcfcf;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #444;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 20;
+
+}
+
+
+/*
+Selected column header
+*/
+
+.column-header.active {
+
+    background: #d9eadf;
+
+    color: #217346;
+
+}
+
+
+/* ========================================
+   ROW HEADERS
+======================================== */
+
+.row-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f3f3f3;
+
+    border-right: 1px solid #cfcfcf;
+
+    border-bottom: 1px solid #cfcfcf;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #555;
+
+    position: sticky;
+
+    left: 0;
+
+    z-index: 15;
+
+}
+
+
+/*
+Selected row number
+*/
+
+.row-header.active {
+
+    background: #d9eadf;
+
+    color: #217346;
+
+}
+
+
+/* ========================================
+   CORNER CELL
+======================================== */
+
+.corner-cell {
+
+    background: #f3f3f3;
+
+    border-right: 1px solid #cfcfcf;
+
+    border-bottom: 1px solid #cfcfcf;
+
+    position: sticky;
+
+    top: 0;
+
+    left: 0;
+
+    z-index: 30;
+
+}
+
+
+/* ========================================
+   FROZEN PANES
+======================================== */
+
+.sticky {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 20;
+
+}
+
+
+/*
+Keeps first column visible
+*/
+
+.spreadsheet .row-header {
+
+    position: sticky;
+
+    left: 0;
+
+}
+
+
+/* ========================================
+   CELL CONTENT TYPES
+======================================== */
+
+
+/*
+Titles
+*/
+
+.cell.title {
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: #217346;
+
+}
+
+
+/*
+Headers inside sheets
+*/
+
+.cell.table-header {
+
+    font-weight: 700;
+
+    background: #e8f2eb;
+
+    color: #1d5d38;
+
+}
+
+
+/*
+Links
+*/
+
+.cell.link, #PDF-link {
+
+    color: #0563c1;
+
+    text-decoration: underline;
+    
+}
+
+#PDF-link:visited {
+    color: #820682
+
+}
+
+.cell.link:hover {
+
+    color: #217346;
+
+}
+
+
+
+/* ========================================
+   SKILL CELLS
+======================================== */
+
+.skill-level {
+
+    display: flex;
+
+    gap: 3px;
+
+}
+
+
+.skill-bar {
+
+    height: 8px;
+
+    width: 12px;
+
+    background: #d9d9d9;
+
+    border-radius: 2px;
+
+}
+
+
+.skill-bar.active {
+
+    background: #217346;
+
+}
+
+/* ========================================
+   CELL COMMENTS
+======================================== */
+
+
+/*
+Excel red triangle
+*/
+
+.cell.has-comment::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    right: 0;
+
+    width: 0;
+
+    height: 0;
+
+    border-top:
+
+        10px solid #c00000;
+
+    border-left:
+
+        10px solid transparent;
+
+}
+
+
+/* ========================================
+   FORMULA CELLS
+======================================== */
+
+.cell.formula {
+
+    color: #7030a0;
+
+    font-family:
+
+        "Consolas",
+        monospace;
+
+}
+
+
+/* ========================================
+   DASHBOARD CELLS
+======================================== */
+
+.cell.dashboard-card {
+
+    background: #ffffff;
+
+    border-radius: 8px;
+
+    box-shadow:
+
+        0 2px 8px rgba(0,0,0,.08);
+
+    margin: 5px;
+
+}
+
+
+/* ========================================
+   MULTI CELL SELECTION
+======================================== */
+
+.cell.range-selected {
+
+    background: #e7f3eb;
+
+}
+
+
+/* ========================================
+   EDIT MODE
+======================================== */
+
+.cell.editing {
+
+    cursor: text;
+
+    background: white;
+
+    outline: 2px solid #217346;
+
+}
+
+
+/* ========================================
+   DARK MODE
+======================================== */
+
+.dark-mode .spreadsheet {
+
+    background: #1e1e1e;
+
+}
+
+
+.dark-mode .cell {
+
+    background: #252525;
+
+    color: #ddd;
+
+    border-color: #444;
+
+}
+
+
+.dark-mode .cell:hover {
+
+    background: #304a39;
+
+}
+
+
+.dark-mode .column-header,
+.dark-mode .row-header,
+.dark-mode .corner-cell {
+
+    background: #202020;
+
+    color: #ccc;
+
+    border-color: #444;
+
+}
+
+/* ========================================
+   DASHBOARD MODE
+======================================== */
+
+.spreadsheet.dashboard-mode {
+
+    display:block;
+
+    width:100%;
+
+    min-height:100vh;
+
+    background:#f8f9fa;
+
+    overflow-y:hidden;
+}
+
+
+/* Main dashboard wrapper */
+
+.dashboard-container {
+
+    width:100%;
+
+    padding:25px;
+
+    box-sizing:border-box;
+
+}
+
+
+/* ========================================
+   KPI METRIC CARDS
+======================================== */
+
+
+.metric-grid {
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.dashboard-card {
+
+    background:white;
+
+    height:120px;
+
+    border-radius:14px;
+
+    padding:15px;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.12);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+
+.dashboard-title {
+
+    font-size:14px;
+
+    color:#666;
+
+    margin-bottom:8px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
+
+
+.dashboard-value {
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#217346;
+
+}
+
+
+
+/* ========================================
+   DASHBOARD CHART CARDS
+   Matches KPI card styling
+======================================== */
+
+
+.chart-grid {
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:18px;
+
+    margin-top:20px;
+
+}
+
+
+
+.chart-card {
+
+    background:white;
+
+    height:415px;
+
+    border-radius:14px;
+
+    padding:18px;
+
+    box-sizing:border-box;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.12);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+
+
+.chart-card h3 {
+
+    margin:0 0 10px 0;
+
+    text-align:center;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#666;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
+
+
+.chart-card canvas {
+
+    width:100% !important;
+
+    height:415px !important;
+
+}
+
+
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media(max-width:1100px){
+
+    .chart-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+}

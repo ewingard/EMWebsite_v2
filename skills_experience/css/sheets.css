@@ -1,0 +1,493 @@
+/*
+==========================================
+SHEETS.CSS
+Portfolio.xlsx Spreadsheet Website
+
+Styles:
+- Workbook sheet tabs
+- Navigation tabs
+- Active states
+- Sheet controls
+==========================================
+*/
+
+
+/* ========================================
+   WORKBOOK TAB BAR
+======================================== */
+
+.sheet-tabs {
+
+    display: flex;
+
+    align-items: center;
+
+    height: 42px;
+
+    background: #f3f3f3;
+
+    border-top: 1px solid #d0d0d0;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    padding-left: 8px;
+
+    user-select: none;
+
+}
+
+
+/*
+Scrollbar for tabs
+*/
+
+.sheet-tabs::-webkit-scrollbar {
+
+    height: 5px;
+
+}
+
+
+.sheet-tabs::-webkit-scrollbar-thumb {
+
+    background: #b7b7b7;
+
+    border-radius: 5px;
+
+}
+
+
+/* ========================================
+   INDIVIDUAL SHEET TAB
+======================================== */
+
+.sheet-tab {
+
+    position: relative;
+
+    height: 32px;
+
+    min-width: 100px;
+
+    padding: 0 18px;
+
+    margin-right: 3px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            #ffffff,
+            #e8e8e8
+        );
+
+
+    border:
+
+        1px solid #cfcfcf;
+
+
+    border-bottom:
+
+        none;
+
+
+    border-radius:
+
+        8px 8px 0 0;
+
+
+    color: #444;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+
+    transition:
+
+        background .15s ease,
+
+        color .15s ease,
+
+        transform .15s ease;
+
+}
+
+
+/* ========================================
+   HOVER STATE
+======================================== */
+
+.sheet-tab:hover {
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            #ffffff,
+            #dfeee4
+        );
+
+
+    color: #217346;
+
+}
+
+
+/* ========================================
+   ACTIVE SHEET
+======================================== */
+
+.sheet-tab.active {
+
+    background: white;
+
+    color: #217346;
+
+    font-weight: 700;
+
+    border-top:
+
+        3px solid #217346;
+
+
+    transform:
+
+        translateY(-2px);
+
+
+}
+
+
+/*
+Small green underline
+*/
+
+.sheet-tab.active::after {
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-1px;
+
+    left:0;
+
+    right:0;
+
+    height:2px;
+
+    background:white;
+
+}
+
+
+/* ========================================
+   SHEET COLORS
+======================================== */
+
+
+/*
+Excel allows colored worksheet tabs.
+*/
+
+.sheet-tab.green {
+
+    border-top:
+
+        3px solid #217346;
+
+}
+
+
+.sheet-tab.blue {
+
+    border-top:
+
+        3px solid #4472c4;
+
+}
+
+
+.sheet-tab.orange {
+
+    border-top:
+
+        3px solid #ed7d31;
+
+}
+
+
+.sheet-tab.purple {
+
+    border-top:
+
+        3px solid #7030a0;
+
+}
+
+
+.sheet-tab.red {
+
+    border-top:
+
+        3px solid #c00000;
+
+}
+
+
+/* ========================================
+   ADD SHEET BUTTON
+======================================== */
+
+.add-sheet {
+
+    width:34px;
+
+    height:32px;
+
+    margin-left:8px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    border-radius:50%;
+
+
+    color:#217346;
+
+    background:transparent;
+
+
+    font-size:18px;
+
+
+    transition:.15s ease;
+
+}
+
+
+.add-sheet:hover {
+
+    background:#d9eadf;
+
+}
+
+
+/* ========================================
+   SHEET NAVIGATION BUTTONS
+======================================== */
+
+.sheet-scroll {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:4px;
+
+    padding:0 6px;
+
+}
+
+
+.sheet-scroll button {
+
+    width:26px;
+
+    height:26px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    background:white;
+
+    border:
+
+        1px solid #ccc;
+
+
+    border-radius:4px;
+
+
+    color:#555;
+
+}
+
+
+.sheet-scroll button:hover {
+
+    background:#e7f3eb;
+
+    color:#217346;
+
+}
+
+
+/* ========================================
+   HIDDEN SHEETS
+======================================== */
+
+
+/*
+Used for Achievements / Easter eggs
+*/
+
+.sheet-tab.hidden {
+
+    display:none;
+
+}
+
+
+/* ========================================
+   LOCKED SHEETS
+======================================== */
+
+.sheet-tab.locked {
+
+    color:#999;
+
+    background:#eeeeee;
+
+}
+
+
+.sheet-tab.locked::before {
+
+    content:"🔒";
+
+    margin-right:6px;
+
+    font-size:11px;
+
+}
+
+
+/* ========================================
+   SHEET STATUS INDICATOR
+======================================== */
+
+.sheet-status {
+
+    margin-left:auto;
+
+    padding-right:15px;
+
+    color:#666;
+
+    font-size:12px;
+
+}
+
+
+/* ========================================
+   DARK MODE
+======================================== */
+
+.dark-mode .sheet-tabs {
+
+    background:#202020;
+
+    border-color:#444;
+
+}
+
+
+.dark-mode .sheet-tab {
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            #333,
+            #252525
+        );
+
+
+    color:#ccc;
+
+    border-color:#444;
+
+}
+
+
+.dark-mode .sheet-tab:hover {
+
+    color:#7ee49a;
+
+    background:#304a39;
+
+}
+
+
+.dark-mode .sheet-tab.active {
+
+    background:#252525;
+
+    color:#7ee49a;
+
+}
+
+
+.dark-mode .add-sheet {
+
+    color:#7ee49a;
+
+}
+
+
+.dark-mode .sheet-scroll button {
+
+    background:#252525;
+
+    color:#ccc;
+
+    border-color:#555;
+
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media(max-width:700px){
+
+    .sheet-tab {
+
+        min-width:80px;
+
+        padding:0 12px;
+
+        font-size:12px;
+
+    }
+
+
+    .sheet-status {
+
+        display:none;
+
+    }
+
+}
