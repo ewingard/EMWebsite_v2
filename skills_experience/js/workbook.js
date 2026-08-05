@@ -65,9 +65,11 @@ const workbook = {
                 "Institution",
                 "Degree",
                 "Domain",
+                "Thesis",
+                // "Link",
                 "Awards",
                 "Honors",
-                "GPA",
+                "GPA"
                 // "Projects",
                 // "Courses"
             ],
@@ -77,6 +79,7 @@ const workbook = {
                 Institution: "College of Charleston",
                 Degree: "Master of Arts",
                 Domain: "History, Concentration in Public History",
+                Thesis: "",
                 Awards: "None (yet!)",
                 Honors: "",
                 GPA: ""
@@ -85,6 +88,8 @@ const workbook = {
                 Institution: "State University of New York at Oswego",
                 Degree: "Bachelor of Arts",
                 Domain: "Cognitive Science, Psychology",
+                Thesis: "The Impact of Biases in Facial Recognition Artificial Neural Networks  ",
+                Link: "/projects/projects.html#HT",
                 Awards: "Excellence in French, Distinguished Cognitive Science Senior",
                 Honors: "Summa Cum Laude, Honors College",
                 GPA: "3.66"
@@ -787,7 +792,27 @@ Dashboard: {
 
 };
 
+// ==========================================
+// CLEAN WORKBOOK DATA
+// ==========================================
 
+Object.values(workbook.sheets).forEach(sheet => {
+
+    sheet.rows?.forEach(row => {
+
+        Object.keys(row).forEach(key => {
+
+            if (typeof row[key] === "string") {
+
+                row[key] = row[key].trim();
+
+            }
+
+        });
+
+    });
+
+});
 
 
 // ==========================================

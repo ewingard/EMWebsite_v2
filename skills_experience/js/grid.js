@@ -110,15 +110,15 @@ function getColumnWidth(sheet, columnName) {
 
     // Check every cell in the column
     sheet.rows.forEach(row => {
-        const value = String(row[columnName] ?? "");
-        longest = Math.max(longest, value.length);
+        const value = String(row[columnName] ?? "").trim();
+        longest = Math.max(longest, value.length);  
     });
 
     // Approximate character width (8px per character)
-    const width = longest * 8 + 32;
+    const width = longest * 8 + 24;
 
     // Clamp to a reasonable range
-    return Math.min(Math.max(width, 100), 400);
+    return Math.min(Math.max(width, 100), 475);
 }
 
 function renderTable(sheet) {
@@ -146,7 +146,7 @@ function renderTable(sheet) {
 );
 
     spreadsheet.style.gridTemplateColumns =
-        `100px ${widths.join(" ")}`;
+        `50px ${widths.join(" ")}`;
 
 
     spreadsheet.style.gridAutoRows =
@@ -322,7 +322,8 @@ function renderTable(sheet) {
                             value,
                             false,
                             column,
-                            rowIndex
+                            rowIndex,
+                            row
                         );
 
 
@@ -511,7 +512,8 @@ function createCell(
     value,
     header=false,
     column="",
-    rowIndex=0
+    rowIndex=0,
+    row=null
 ) {
 
 
@@ -574,17 +576,35 @@ function createCell(
     if (column === "Link" && value) {
 
         cell.innerHTML = `
-            <a id="PDF-link" href="${value}"
+            <a class="pdf-link"
+               href="${value}"
                target="_blank"
                rel="noopener noreferrer">
                 View PDF <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
         `;
 
-    } else {
+    }
 
-        cell.textContent =
-            value ?? "";
+    else if (column === "Thesis" && value && row?.Link) {
+
+        cell.innerHTML = `
+            ${value}
+            <a class="project-link"
+               href="${row.Link}"
+               target="_blank"
+               rel="noopener noreferrer">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        `;
+
+    }
+
+    else {
+
+        cell.textContent = typeof value === "string"
+        ? value.trim()
+        : value ?? "";
 
     }
 
@@ -794,7 +814,7 @@ function selectCell(cell) {
 
 
         formulaBar.value =
-            cell.textContent;
+            formulaBar.value = cell.textContent.trim();
 
 
     }
