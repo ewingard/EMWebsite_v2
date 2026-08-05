@@ -31,7 +31,7 @@ Designed for grid_v2.js
 
         yearsResearchExperience: 5,
 
-        yearsLibraryExperience: 2,
+        yearsLibraryExperience: 1,
 
 
         favoriteTools: [
@@ -45,8 +45,7 @@ Designed for grid_v2.js
 const workbook = {
 
 
-    activeSheet: "Skills",
-
+    activeSheet: "Education",
 
     sheets: {
 
@@ -55,6 +54,85 @@ const workbook = {
         // SHEET 1
         // SKILLS DATABASE
         // ==================================
+        Education: {
+            name: "Education",
+
+            type: "table",
+
+            color: "red",
+
+            columns: [
+                "Institution",
+                "Degree",
+                "Domain",
+                "Awards",
+                "Honors",
+                "GPA",
+                // "Projects",
+                // "Courses"
+            ],
+
+            rows: [
+            {
+                Institution: "College of Charleston",
+                Degree: "Master of Arts",
+                Domain: "History, Concentration in Public History",
+                Awards: "None (yet!)",
+                Honors: "",
+                GPA: ""
+            },
+            {
+                Institution: "State University of New York at Oswego",
+                Degree: "Bachelor of Arts",
+                Domain: "Cognitive Science, Psychology",
+                Awards: "Excellence in French, Distinguished Cognitive Science Senior",
+                Honors: "Summa Cum Laude, Honors College",
+                GPA: "3.66"
+             },
+            ] 
+        },
+        Experience: {
+            name: "Experience",
+
+            type: "table",
+
+            color: "orange",
+
+            columns: [
+                "Position",
+                "Type",
+                "Organization",
+                "Location",
+                "Category",
+                "Skills",
+                "Achievement",
+                "Dates",
+            ],
+
+            rows: [
+                { 
+                    Position: "Digital Library Analyst",
+                    Type: "Job",
+                    Organization: "College of Charleston, Lowcountry Digital Library",
+                    Location: "Charleston, SC",
+                    Category: "Library",
+                    Skills: "Metadata, Digitization, IT",
+                    Achievement: "Uploaded over 16,000 files in the first year across 43 collections.",
+                    Dates: "August 2025 - Present"
+                },
+
+                {
+                    Position: "Digital Library Analyst",
+                    Type: "Job",
+                    Organization: "College of Charleston, Lowcountry Digital Library",
+                    Location: "Charleston, SC",
+                    Category: "Library",
+                    Skills: "Metadata, Digitization, IT",
+                    Achievement: "Uploaded 16,000+ files in the first year across 43 collections.",
+                    Dates: "August 2025 - Present"
+                },
+            ]
+        },
 
         Skills: {
 
@@ -62,7 +140,7 @@ const workbook = {
 
             type: "table",
 
-            color: "green",
+            color: "yellow",
 
 
             columns: [
@@ -402,7 +480,7 @@ Dashboard: {
 
     type: "dashboard",
 
-    color: "blue",
+    color: "green",
 
 
     metrics: [
@@ -465,7 +543,7 @@ Dashboard: {
 
             type: "table",
 
-            color: "orange",
+            color: "blue",
 
 
             columns: [

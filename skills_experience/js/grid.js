@@ -104,6 +104,22 @@ function generateGrid() {
 // ==========================================
 // TABLE RENDERER
 // ==========================================
+function getColumnWidth(sheet, columnName) {
+    // Start with the header text
+    let longest = String(columnName).length;
+
+    // Check every cell in the column
+    sheet.rows.forEach(row => {
+        const value = String(row[columnName] ?? "");
+        longest = Math.max(longest, value.length);
+    });
+
+    // Approximate character width (8px per character)
+    const width = longest * 8 + 32;
+
+    // Clamp to a reasonable range
+    return Math.min(Math.max(width, 100), 400);
+}
 
 function renderTable(sheet) {
 
@@ -125,8 +141,12 @@ function renderTable(sheet) {
 
     }
 
+    const widths = sheet.columns.map(col =>
+    `${getColumnWidth(sheet, col)}px`
+);
+
     spreadsheet.style.gridTemplateColumns =
-        `50px repeat(${sheet.columns.length}, 19vw)`;
+        `100px ${widths.join(" ")}`;
 
 
     spreadsheet.style.gridAutoRows =

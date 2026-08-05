@@ -38,31 +38,18 @@ Styles:
 .spreadsheet {
 
     display: grid;
-
-    /*
-    First column is row numbers.
-    Remaining columns are spreadsheet columns.
-    */
-
-    grid-template-columns:
+    /* grid-template-columns:
         50px
         repeat(26, 120px);
-
-    grid-auto-rows: 32px;
-
+    grid-auto-rows: 32px; */
     width: max-content;
-
     min-width: 100%;
-
     background: white;
-
     border-left: 1px solid #d9d9d9;
-
     border-top: 1px solid #d9d9d9;
-
     height:100vh;
-
-    overflow:hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 
