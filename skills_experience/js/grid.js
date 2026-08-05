@@ -589,12 +589,11 @@ function createCell(
     else if (column === "Thesis" && value && row?.Link) {
 
         cell.innerHTML = `
-            ${value}
             <a class="project-link"
                href="${row.Link}"
                target="_blank"
                rel="noopener noreferrer">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            ${value} <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
         `;
 

@@ -338,7 +338,7 @@ Headers inside sheets
 Links
 */
 
-.cell.link, #PDF-link {
+.cell.link, .pdf-link, .project-link {
 
     color: #0563c1;
 
@@ -346,7 +346,7 @@ Links
     
 }
 
-#PDF-link:visited {
+.pdf-link:visited, .project-link:visited {
     color: #820682
 
 }
@@ -568,7 +568,7 @@ Excel red triangle
     display:grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(4, 1fr);
 
     gap:18px;
 

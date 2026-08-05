@@ -23,16 +23,10 @@ Designed for grid_v2.js
     const dashboardData = {
 
 
-        projectsCompleted: 12,
-
+        projectsCompleted: 1,
+        //need to actually calculate this given projects page.
 
         publications: 1,
-
-
-        yearsResearchExperience: 5,
-
-        yearsLibraryExperience: 1,
-
 
         favoriteTools: [
 
@@ -69,9 +63,10 @@ const workbook = {
                 // "Link",
                 "Awards",
                 "Honors",
-                "GPA"
+                "GPA",
                 // "Projects",
-                // "Courses"
+                // "Courses",
+                "Graduated"
             ],
 
             rows: [
@@ -81,8 +76,9 @@ const workbook = {
                 Domain: "History, Concentration in Public History",
                 Thesis: "",
                 Awards: "None (yet!)",
-                Honors: "",
-                GPA: ""
+                Honors: "None (yet!)",
+                GPA: "",
+                Graduated: "Expected 2029"
             },
             {
                 Institution: "State University of New York at Oswego",
@@ -92,7 +88,8 @@ const workbook = {
                 Link: "/projects/projects.html#HT",
                 Awards: "Excellence in French, Distinguished Cognitive Science Senior",
                 Honors: "Summa Cum Laude, Honors College",
-                GPA: "3.66"
+                GPA: 3.66,
+                Graduated: 2023
              },
             ] 
         },
@@ -111,7 +108,7 @@ const workbook = {
                 "Category",
                 "Skills",
                 "Achievement",
-                "Dates",
+                // "Dates",
             ],
 
             rows: [
@@ -123,7 +120,10 @@ const workbook = {
                     Category: "Library",
                     Skills: "Metadata, Digitization, IT",
                     Achievement: "Uploaded over 16,000 files in the first year across 43 collections.",
-                    Dates: "August 2025 - Present"
+                    yearStart: 2025,
+                    yearEnd: null,
+                    monthStart: 8,
+                    monthEnd: null
                 },
 
                 {
@@ -134,7 +134,10 @@ const workbook = {
                     Category: "Library",
                     Skills: "Metadata, Digitization, IT",
                     Achievement: "Uploaded 16,000+ files in the first year across 43 collections.",
-                    Dates: "August 2025 - Present"
+                    yearStart: "August 2025 - Present",
+                    yearEnd: null,
+                    monthStart: 8,
+                    monthEnd: null
                 },
             ]
         },
@@ -503,6 +506,11 @@ Dashboard: {
         {
             title: "Average Proficiency",
             value: "averageLevel"
+        },
+
+        {
+            title: "Years of Experience (Overall)",
+            value: "totalYearsExperience"
         }
 
     ],
@@ -875,6 +883,37 @@ function switchSheet(sheetName) {
 // DASHBOARD CALCULATIONS
 // ==========================================
 
+function getExperienceYears() {
+
+    const jobs = workbook.sheets.Experience.rows;
+    const currentYear = new Date().getFullYear();
+
+    const totals = {
+        Library: 0,
+        Research: 0,
+        "Non-profit": 0,
+        Misc: 0
+    };
+
+    jobs.forEach(job => {
+
+        if (!(job.Category in totals)) return;
+
+        const end =
+            job.EndYear === null
+                ? currentYear
+                : job.EndYear;
+
+        totals[job.Category] += end - job.StartYear;
+    });
+
+    return {
+        yearsLibraryExperience: totals.Library,
+        yearsResearchExperience: totals.Research,
+        yearsNonProfitExperience: totals["Non-profit"],
+        yearsMiscExperience: totals.Misc
+    };
+}
 
 function getSkillMetrics() {
 
@@ -922,7 +961,6 @@ function getSkillMetrics() {
 
     const categories = {};
 
-
     skills.forEach(skill => {
 
         if (!categories[skill.Category]) {
@@ -951,6 +989,15 @@ const experience =
     );
 
 
+// const totalYearsExperience = (dashboardData.yearsResearchExperience + dashboardData.yearsLibraryExperience + dashboardData.yearsNonProfitExperience);
+// instead of using dashboardData(), variables are hardcoded and calculations are completed to get a better years of experience estimate in getExperienceYears()
+const experienceYears = getExperienceYears();
+
+const totalYearsExperience =
+    experienceYears.yearsLibraryExperience +
+    experienceYears.yearsResearchExperience +
+    experienceYears.yearsNonProfitExperience +
+    experienceYears.yearsMiscExperience;
 
 const proficiency =
     skills.reduce(
@@ -987,10 +1034,15 @@ return {
     publications:
         dashboardData.publications,
 
-    yearsResearchExperience:
-        dashboardData.yearsResearchExperience
+    experienceYears,
+
+    totalYearsExperience,
+
+    projectsCompleted: dashboardData.projectsCompleted,
+    publications: dashboardData.publications
 
 };
+
 }
 
 
