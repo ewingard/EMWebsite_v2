@@ -105,22 +105,27 @@ function generateGrid() {
 // TABLE RENDERER
 // ==========================================
 function getColumnWidth(sheet, columnName) {
-    // Start with the header text
+
     let longest = String(columnName).length;
 
-    // Check every cell in the column
     sheet.rows.forEach(row => {
-        const value = String(row[columnName] ?? "").trim();
-        longest = Math.max(longest, value.length);  
+
+        const value =
+            columnName === "Dates"
+                ? Workbook.formatDates(row)
+                : row[columnName];
+
+        longest = Math.max(
+            longest,
+            String(value ?? "").length
+        );
     });
 
-    // Approximate character width (8px per character)
-    const width = longest * 8 + 24;
-
-    // Clamp to a reasonable range
-    return Math.min(Math.max(width, 100), 475);
+    return Math.min(
+        Math.max(longest * 8 + 24, 100),
+        470
+    );
 }
-
 function renderTable(sheet) {
 
     
@@ -313,7 +318,9 @@ function renderTable(sheet) {
 
 
                     const value =
-                        row[column];
+                    column === "Dates"
+                        ? Workbook.formatDates(row)
+                        : row[column];
 
 
 

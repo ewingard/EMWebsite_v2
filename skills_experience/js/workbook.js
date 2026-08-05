@@ -108,7 +108,7 @@ const workbook = {
                 "Category",
                 "Skills",
                 "Achievement",
-                // "Dates",
+                "Dates",
             ],
 
             rows: [
@@ -120,10 +120,12 @@ const workbook = {
                     Category: "Library",
                     Skills: "Metadata, Digitization, IT",
                     Achievement: "Uploaded over 16,000 files in the first year across 43 collections.",
-                    yearStart: 2025,
-                    yearEnd: null,
-                    monthStart: 8,
-                    monthEnd: null
+
+                    StartYear: 2025,
+                    StartMonth: 8,
+
+                    EndYear: null,
+                    EndMonth: null
                 },
 
                 {
@@ -135,9 +137,12 @@ const workbook = {
                     Skills: "Metadata, Digitization, IT",
                     Achievement: "Uploaded 16,000+ files in the first year across 43 collections.",
                     yearStart: "August 2025 - Present",
-                    yearEnd: null,
-                    monthStart: 8,
-                    monthEnd: null
+
+                    StartYear: 2025,
+                    StartMonth: 8,
+
+                    EndYear: null,
+                    EndMonth: null
                 },
             ]
         },
@@ -882,11 +887,44 @@ function switchSheet(sheetName) {
 // ==========================================
 // DASHBOARD CALCULATIONS
 // ==========================================
+// clean up the dates format for the sheet after we're done using the dates for calculations
+const MONTHS = [
+    "",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+];
+
+function formatDates(job) {
+
+    const start =
+        `${MONTHS[job.StartMonth]} ${job.StartYear}`;
+
+    const end =
+        job.EndYear === null
+            ? "Present"
+            : `${MONTHS[job.EndMonth]} ${job.EndYear}`;
+
+    return `${start} - ${end}`;
+}
+
 
 function getExperienceYears() {
 
     const jobs = workbook.sheets.Experience.rows;
-    const currentYear = new Date().getFullYear();
+    const now = new Date();
+
+    const currentYear = now.getFullYear();
+    const currentMonth = now.getMonth() + 1;
 
     const totals = {
         Library: 0,
@@ -899,12 +937,21 @@ function getExperienceYears() {
 
         if (!(job.Category in totals)) return;
 
-        const end =
-            job.EndYear === null
-                ? currentYear
-                : job.EndYear;
+        const endYear =
+            job.EndYear ?? currentYear;
 
-        totals[job.Category] += end - job.StartYear;
+        const endMonth =
+            job.EndMonth ?? currentMonth;
+
+        const months =
+            (endYear - job.StartYear) * 12 +
+            (endMonth - job.StartMonth);
+
+        totals[job.Category] += months / 12;
+    });
+
+    Object.keys(totals).forEach(key => {
+        totals[key] = Number(totals[key].toFixed(1));
     });
 
     return {
@@ -1034,7 +1081,7 @@ return {
     publications:
         dashboardData.publications,
 
-    experienceYears,
+    ...experienceYears,
 
     totalYearsExperience,
 
@@ -1131,6 +1178,8 @@ window.Workbook = {
 
     getSheetRows,
 
-    getSheetColumns
+    getSheetColumns,
+
+    formatDates
 
 };
