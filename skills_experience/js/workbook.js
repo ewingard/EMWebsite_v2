@@ -129,21 +129,48 @@ const workbook = {
                 },
 
                 {
-                    Position: "Digital Library Analyst",
+                    Position: "Psychology Summer Camp",
                     Type: "Job",
-                    Organization: "College of Charleston, Lowcountry Digital Library",
-                    Location: "Charleston, SC",
-                    Category: "Library",
-                    Skills: "Metadata, Digitization, IT",
-                    Achievement: "Uploaded 16,000+ files in the first year across 43 collections.",
+                    Organization: "University of South Carolina (B-RAD Lab, STARR Lab)",
+                    Location: "Columbia, SC",
+                    Category: "Research",
+                    Skills: "Recruitment, EEG, Data Management",
+                    Achievement: "Coordinated 4 weeks of summer camps, boosting recruitment by 19%.",
                     yearStart: "August 2025 - Present",
 
                     StartYear: 2025,
-                    StartMonth: 8,
+                    StartMonth: 6,
 
-                    EndYear: null,
-                    EndMonth: null
+                    EndYear: 2025,
+                    EndMonth: 7
                 },
+
+                {
+                    Position: "Rooster Tales Summer Camp",
+                    Type: "Job",
+                    Organization: "University of South Carolina (B-RAD Lab)",
+                    Location: "Columbia, SC",
+                    Category: "Research",
+                    Skills: "Survey Administration, Data Management",
+                    Achievement: "Developed, databases to host and track survey data for 18 participants across 2 cohorts.",
+                    yearStart: "August 2025 - Present",
+
+                    Periods: [
+                    {
+                        StartYear: 2024,
+                        StartMonth: 6,
+                        EndYear: 2024,
+                        EndMonth: 7
+                    },
+                    {
+                        StartYear: 2025,
+                        StartMonth: 6,
+                        EndYear: 2025,
+                        EndMonth: 7
+                    }
+                ]
+
+                }
             ]
         },
 
@@ -903,20 +930,27 @@ const MONTHS = [
     "November",
     "December"
 ];
-
-function formatDates(job) {
-
-    const start =
-        `${MONTHS[job.StartMonth]} ${job.StartYear}`;
+function formatPeriod(period) {
+    const start = `${MONTHS[period.StartMonth]} ${period.StartYear}`;
 
     const end =
-        job.EndYear === null
+        period.EndYear == null
             ? "Present"
-            : `${MONTHS[job.EndMonth]} ${job.EndYear}`;
+            : `${MONTHS[period.EndMonth]} ${period.EndYear}`;
 
     return `${start} - ${end}`;
 }
 
+function formatDates(job) {
+    const periods = job.Periods ?? [{
+        StartYear: job.StartYear,
+        StartMonth: job.StartMonth,
+        EndYear: job.EndYear,
+        EndMonth: job.EndMonth
+    }];
+
+    return periods.map(formatPeriod).join(", ");
+}
 
 function getExperienceYears() {
 
@@ -937,17 +971,24 @@ function getExperienceYears() {
 
         if (!(job.Category in totals)) return;
 
-        const endYear =
-            job.EndYear ?? currentYear;
+        const periods = job.Periods ?? [{
+            StartYear: job.StartYear,
+            StartMonth: job.StartMonth,
+            EndYear: job.EndYear,
+            EndMonth: job.EndMonth
+        }];
 
-        const endMonth =
-            job.EndMonth ?? currentMonth;
+        periods.forEach(period => {
 
-        const months =
-            (endYear - job.StartYear) * 12 +
-            (endMonth - job.StartMonth);
+            const endYear = period.EndYear ?? currentYear;
+            const endMonth = period.EndMonth ?? currentMonth;
 
-        totals[job.Category] += months / 12;
+            const months =
+                (endYear - period.StartYear) * 12 +
+                (endMonth - period.StartMonth);
+
+            totals[job.Category] += months / 12;
+        });
     });
 
     Object.keys(totals).forEach(key => {

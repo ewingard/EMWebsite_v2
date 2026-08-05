@@ -122,10 +122,11 @@ function getColumnWidth(sheet, columnName) {
     });
 
     return Math.min(
-        Math.max(longest * 8 + 24, 100),
-        470
+        Math.max(longest * 8 + 8, 80),
+        560
     );
 }
+
 function renderTable(sheet) {
 
     
