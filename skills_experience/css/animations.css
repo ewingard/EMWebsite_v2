@@ -33,7 +33,7 @@ Animations:
    WORKBOOK OPEN ANIMATION
 ======================================== */
 
-.excel-window {
+/* .excel-window {
 
     animation:
 
@@ -69,14 +69,14 @@ Animations:
 
     }
 
-}
+} */
 
 
 /* ========================================
    LOADING SCREEN
 ======================================== */
 
-#loading-screen {
+/* #loading-screen {
 
     animation:
 
@@ -127,14 +127,14 @@ Animations:
 
     }
 
-}
+} */
 
 
-/* ========================================
+/* /* ========================================
    LOADING BAR ANIMATION
 ======================================== */
 
-.loading-progress {
+/* .loading-progress {
 
     animation:
 
@@ -165,7 +165,7 @@ Animations:
 
     }
 
-}
+} */ */
 
 
 /* ========================================
@@ -220,37 +220,6 @@ Animations:
 
 }
 
-
-/* ========================================
-   CELL FLASH
-   Used after updates/formulas
-======================================== */
-
-.cell.updated {
-
-    animation:
-
-        cell-update .8s ease;
-
-}
-
-
-@keyframes cell-update {
-
-    0% {
-
-        background:#d9ead3;
-
-    }
-
-
-    100% {
-
-        background:white;
-
-    }
-
-}
 
 
 /* ========================================
@@ -437,79 +406,6 @@ Animations:
 }
 
 
-/* ========================================
-   TOAST NOTIFICATIONS
-======================================== */
-
-.toast {
-
-    opacity:0;
-
-    transform:
-
-        translateY(20px);
-
-}
-
-
-.toast.show {
-
-    animation:
-
-        toast-show .35s ease forwards;
-
-}
-
-
-@keyframes toast-show {
-
-    from {
-
-        opacity:0;
-
-        transform:
-
-            translateY(20px);
-
-    }
-
-
-    to {
-
-        opacity:1;
-
-        transform:
-
-            translateY(0);
-
-    }
-
-}
-
-
-/* ========================================
-   FORMULA CALCULATION EFFECT
-======================================== */
-
-.formula-calculating {
-
-    animation:
-
-        calculating 1s infinite;
-
-}
-
-
-@keyframes calculating {
-
-    50% {
-
-        opacity:.4;
-
-    }
-
-}
-
 
 /* ========================================
    DASHBOARD CHART CARDS
@@ -570,53 +466,6 @@ Animations:
 
 }
 
-
-/* ========================================
-   EASTER EGG / ACHIEVEMENT UNLOCK
-======================================== */
-
-.achievement-unlocked {
-
-    animation:
-
-        achievement-pop .6s ease;
-
-}
-
-
-@keyframes achievement-pop {
-
-    0% {
-
-        transform:
-
-            scale(.5);
-
-        opacity:0;
-
-    }
-
-
-    60% {
-
-        transform:
-
-            scale(1.15);
-
-    }
-
-
-    100% {
-
-        transform:
-
-            scale(1);
-
-        opacity:1;
-
-    }
-
-}
 
 
 /* ========================================

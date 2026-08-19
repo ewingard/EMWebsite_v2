@@ -89,6 +89,19 @@ Styles:
 
 }
 
+.education-cell {
+    background:#d8e8ff;
+    color:#245;
+    font-weight:bold;
+}
+
+
+.experience-cell {
+    background:#ffe1cc;
+    color:#633;
+    font-weight:bold;
+}
+
 .header-cell {
 
     background:#f3f3f3;
