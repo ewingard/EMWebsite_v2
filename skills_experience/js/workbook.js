@@ -137,16 +137,16 @@ const workbook = {
                         "Charleston, SC",
 
                     Field:
-                        "History, Concentration in Public History",
+                        "History",
 
                     Description:
-                        "Graduate program",
+                        "Concentration in Public History",
 
                     Achievements:
                         "Received Principal's Fellowship Award AY 2026-2027",
 
                     StartYear:
-                        2025,
+                        2026,
 
                     EndYear:
                         2029
@@ -179,10 +179,24 @@ const workbook = {
                         2019,
 
                     EndYear:
-                        2023
+                        2023,
 
+                    cellComments: {
+                        Description: {
+                            title: "Honors Thesis",
+
+                            text:
+                                "View my Honors Thesis Project.",
+
+                            links: [
+                                {
+                                    label: "Honors Thesis",
+                                    url: "/projects/projects.html#HT"
+                                }
+                            ]
+                        }
+                    }
                 },
-
                 {
 
                     Type:
@@ -316,7 +330,45 @@ const workbook = {
 
                     ]
 
-                }
+                },
+
+
+                {
+
+                    Type:
+                        "Job",
+
+                    Title:
+                        "Psychology Summer Camp",
+
+                    Organization:
+                        "University of South Carolina (B-RAD Lab, STARR Lab)",
+
+                    Location:
+                        "Columbia, SC",
+
+                    Field:
+                        "Research",
+
+                    Description:
+                        "Recruitment, EEG, Data Management",
+
+                    Achievements:
+                        "Coordinated four weeks of summer camps, increasing recruitment by 19%.",
+
+                    StartYear:
+                        2025,
+
+                    StartMonth:
+                        6,
+
+                    EndYear:
+                        2025,
+
+                    EndMonth:
+                        7
+
+                },
 
             ]
 

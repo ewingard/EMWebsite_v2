@@ -428,35 +428,244 @@ Links
    CELL COMMENTS
 ======================================== */
 
+.cell.has-comment {
+    position: relative;
+}
 
-/*
-Excel red triangle
-*/
+
+/* Excel red comment indicator */
 
 .cell.has-comment::before {
 
     content: "";
-
     position: absolute;
-
     top: 0;
-
     right: 0;
-
     width: 0;
-
     height: 0;
-
     border-top:
-
         10px solid #c00000;
-
     border-left:
-
         10px solid transparent;
+}
+
+
+/* Comment popup */
+
+.cell-comment {
+
+    display: none;
+
+    position: fixed;
+
+    top: 20px;
+    left: auto;
+    right: (100% + 8px);
+
+    width: 260px;
+
+    padding: 12px 14px;
+
+    background: #fff2cc;
+
+    border:
+        1px solid #c9b458;
+
+    border-radius: 2px;
+
+    box-shadow:
+        3px 3px 8px rgba(0, 0, 0, 0.25);
+
+    color: #222;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+    z-index: 1000;
 
 }
 
+
+/* Show comment on hover */
+
+.cell.has-comment:hover
+.cell-comment {
+
+    display: block;
+
+}
+
+
+/* Comment title */
+
+.cell-comment-title {
+
+    font-weight: 600;
+
+    margin-bottom: 6px;
+
+    color: #333;
+
+}
+
+
+/* Comment body */
+
+.cell-comment-text {
+
+    margin-bottom: 8px;
+
+}
+
+
+/* Links */
+
+.cell-comment-links {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.cell-comment-links a {
+
+    color: #0563c1;
+
+    text-decoration: underline;
+
+}
+
+
+.cell-comment-links a:hover {
+
+    color: #003f88;
+
+}
+
+/* ==========================================
+   COMMENTED CELL
+   ========================================== */
+
+.cell.has-comment {
+    position: relative;
+}
+
+
+/* ==========================================
+   EXCEL-STYLE RED EARMARK
+   ========================================== */
+
+.comment-earmark {
+position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 11px solid #c00000;
+    border-left: 11px solid transparent;
+    cursor: pointer;
+    z-index: 20;
+    pointer-events: auto;
+
+}
+
+
+/* ==========================================
+   COMMENT POPUP
+   ========================================== */
+
+.cell-comment {
+    position: fixed;
+    display: none;
+    width: 280px;
+    max-width: 280px;
+    padding: 12px 14px;
+    box-sizing: border-box;
+    background: #fffef5;
+    border: 1px solid #b7b7b7;
+    border-left: 3px solid #c00000;
+    border-radius: 2px;
+    box-shadow:
+        3px 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 99999;
+    color: #222;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    pointer-events: auto;
+}
+
+.cell-comment.comment-open {
+    display: block;
+}
+
+
+/* ==========================================
+   COMMENT TITLE
+   ========================================== */
+
+.cell-comment-title {
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+
+    color: #333;
+
+}
+
+
+/* ==========================================
+   COMMENT TEXT
+   ========================================== */
+
+.cell-comment-text {
+
+    margin-bottom: 8px;
+
+}
+
+
+/* ==========================================
+   COMMENT LINKS
+   ========================================== */
+
+.cell-comment-links {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.cell-comment-links a {
+
+    color: #0563c1;
+
+    text-decoration: underline;
+
+    cursor: pointer;
+
+}
+
+
+.cell-comment-links a:hover {
+
+    color: #003d7a;
+
+}
 
 /* ========================================
    FORMULA CELLS

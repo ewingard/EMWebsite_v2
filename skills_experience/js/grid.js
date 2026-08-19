@@ -26,15 +26,7 @@ const formulaBar =
 const nameBox =
     document.querySelector(".name-box");
 
-// const ribbonMenu =
-//     document.getElementById("ribbon-menu");
-
-// const filterButton =
-//     document.getElementById("filter-button");
-
-// const sortButton =
-//     document.getElementById("sort-button");
-
+let selectedCell = null;
 
 // ==========================================
 // GRID INITIALIZATION
@@ -327,6 +319,11 @@ function renderTable(sheet) {
 
 }
 
+function getCellComment(row, column) {
+     return row?.cellComments?.[column] || null;
+
+}
+
 function renderDashboard(sheet){
 document.body.classList.add(
         "dashboard-active"
@@ -406,8 +403,7 @@ metricSection.className =
 
 
     /*
-
-      ==========================
+    ==========================
     CHARTS
     ==========================
     */
@@ -456,18 +452,11 @@ metricSection.className =
             chartCard
         );
 
-
-        setTimeout(()=>{
-
         createChart(
             canvas,
             chart,
             metrics
         );
-
-    },100);
-
-
     });
 
 
@@ -492,22 +481,32 @@ metricSection.className =
 
 function createCell(
     value,
-    header=false,
-    column="",
-    rowIndex=0,
-    row=null
+    header = false,
+    column = "",
+    rowIndex,
+    row = null
 ) {
-
 
     const cell =
         document.createElement("div");
-
-
 
     cell.className =
         "cell";
 
 
+    // ==========================================
+    // GET COMMENT
+    // ==========================================
+
+    const comment =
+        !header
+            ? getCellComment(row, column)
+            : null;
+
+
+    // ==========================================
+    // HEADER
+    // ==========================================
 
     if (header) {
 
@@ -517,7 +516,12 @@ function createCell(
 
     }
 
-     if (
+
+    // ==========================================
+    // CELL VALUE
+    // ==========================================
+
+    if (
 
         Workbook.state.activeSheet === "Skills"
 
@@ -531,42 +535,49 @@ function createCell(
 
     ) {
 
-
         cell.textContent =
             "★".repeat(value);
-
-
 
         cell.classList.add(
             `level-${value}`
         );
 
-
     }
 
-    else {
-
-    if (column === "Link" && value) {
+    else if (
+        column === "Link" &&
+        value
+    ) {
 
         cell.innerHTML = `
-            <a class="pdf-link"
-               href="${value}"
-               target="_blank"
-               rel="noopener noreferrer">
-                View PDF <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <a
+                class="pdf-link"
+                href="${value}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                View PDF
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
         `;
 
     }
 
-    else if (column === "Thesis" && value && row?.Link) {
+    else if (
+        column === "Thesis" &&
+        value &&
+        row?.Link
+    ) {
 
         cell.innerHTML = `
-            <a class="project-link"
-               href="${row.Link}"
-               target="_blank"
-               rel="noopener noreferrer">
-            ${value} <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <a
+                class="project-link"
+                href="${row.Link}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                ${value}
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
         `;
 
@@ -574,39 +585,494 @@ function createCell(
 
     else {
 
-        cell.textContent = typeof value === "string"
-        ? value.trim()
-        : value ?? "";
+        cell.textContent =
+            typeof value === "string"
+                ? value.trim()
+                : value ?? "";
 
     }
+
+
+// ==========================================
+// COMMENT
+// ==========================================
+
+if (comment) {
+
+    cell.classList.add("has-comment");
+
+
+    // ==========================================
+    // RED EARMARK
+    // ==========================================
+
+    const earmark =
+        document.createElement("span");
+
+    earmark.className =
+        "comment-earmark";
+
+    earmark.setAttribute(
+        "aria-label",
+        "Show comment"
+    );
+
+    cell.appendChild(earmark);
+
+
+    // ==========================================
+    // COMMENT BOX
+    // ==========================================
+
+    const commentBox =
+        document.createElement("div");
+
+    commentBox.className =
+        "cell-comment";
+
+
+    // ==========================================
+    // COMMENT TITLE
+    // ==========================================
+
+    if (comment.title) {
+
+        const title =
+            document.createElement("div");
+
+        title.className =
+            "cell-comment-title";
+
+        title.textContent =
+            comment.title;
+
+        commentBox.appendChild(title);
+
+    }
+
+
+    // ==========================================
+    // COMMENT TEXT
+    // ==========================================
+
+    if (comment.text) {
+
+        const text =
+            document.createElement("div");
+
+        text.className =
+            "cell-comment-text";
+
+        text.textContent =
+            comment.text;
+
+        commentBox.appendChild(text);
+
+    }
+
+
+    // ==========================================
+    // COMMENT LINKS
+    // ==========================================
+
+    if (
+        Array.isArray(comment.links) &&
+        comment.links.length
+    ) {
+
+        const links =
+            document.createElement("div");
+
+        links.className =
+            "cell-comment-links";
+
+
+        comment.links.forEach(link => {
+
+            const anchor =
+                document.createElement("a");
+
+            anchor.href =
+                link.url;
+
+            anchor.textContent =
+                link.label;
+
+            anchor.target =
+                "_blank";
+
+            anchor.rel =
+                "noopener noreferrer";
+
+            links.appendChild(anchor);
+
+        });
+
+
+        commentBox.appendChild(links);
+
+    }
+
+
+    // ==========================================
+    // PUT COMMENT ON BODY
+    // ==========================================
+
+    document.body.appendChild(
+        commentBox
+    );
+
+
+    commentBox.style.position =
+        "fixed";
+
+    commentBox.style.display =
+        "none";
+
+    commentBox.style.zIndex =
+        "99999";
+
+
+    // Store reference
+    cell._commentBox =
+        commentBox;
+
+
+    // ==========================================
+    // OPEN COMMENT
+    // ==========================================
+
+    function openComment() {
+
+        /*
+        Close every other comment first.
+        */
+
+        document
+            .querySelectorAll(
+                ".cell-comment.comment-open"
+            )
+            .forEach(other => {
+
+                other.style.display =
+                    "none";
+
+                other.classList.remove(
+                    "comment-open"
+                );
+
+            });
+
+
+        /*
+        Get the position of the cell.
+        */
+
+        const rect =
+            cell.getBoundingClientRect();
+
+
+        /*
+        Show the box before measuring it.
+        */
+
+        commentBox.style.display =
+            "block";
+
+
+        /*
+        Get actual rendered dimensions.
+        */
+
+        const popupWidth =
+            commentBox.offsetWidth;
+
+        const popupHeight =
+            commentBox.offsetHeight;
+
+
+        const gap = 4;
+
+        const padding = 10;
+
+
+        // --------------------------------------
+        // DEFAULT: RIGHT OF CELL
+        // --------------------------------------
+
+        let left =
+            rect.right + gap;
+
+        let top =
+            rect.top;
+
+
+        // --------------------------------------
+        // NOT ENOUGH ROOM ON RIGHT
+        // --------------------------------------
+
+        if (
+            left + popupWidth >
+            window.innerWidth - padding
+        ) {
+
+            left =
+                rect.left -
+                popupWidth -
+                gap;
+
+        }
+
+
+        // --------------------------------------
+        // KEEP INSIDE LEFT EDGE
+        // --------------------------------------
+
+        if (left < padding) {
+
+            left =
+                padding;
+
+        }
+
+
+        // --------------------------------------
+        // KEEP INSIDE BOTTOM EDGE
+        // --------------------------------------
+
+        if (
+            top + popupHeight >
+            window.innerHeight - padding
+        ) {
+
+            top =
+                window.innerHeight -
+                popupHeight -
+                padding;
+
+        }
+
+
+        // --------------------------------------
+        // KEEP INSIDE TOP EDGE
+        // --------------------------------------
+
+        if (top < padding) {
+
+            top =
+                padding;
+
+        }
+
+
+        // --------------------------------------
+        // POSITION
+        // --------------------------------------
+
+        commentBox.style.left =
+            `${left}px`;
+
+        commentBox.style.top =
+            `${top}px`;
+
+
+        // --------------------------------------
+        // OPEN
+        // --------------------------------------
+
+        commentBox.classList.add(
+            "comment-open"
+        );
+
+    }
+
+
+    // ==========================================
+    // CLOSE COMMENT
+    // ==========================================
+
+    function closeComment() {
+
+        commentBox.style.display =
+            "none";
+
+        commentBox.classList.remove(
+            "comment-open"
+        );
+
+    }
+
+
+    // ==========================================
+    // TOGGLE COMMENT
+    // ==========================================
+
+    function toggleComment(event) {
+
+        /*
+        IMPORTANT:
+        Prevent the document click handler from
+        immediately closing the popup.
+        */
+
+        event.stopPropagation();
+
+
+        const isOpen =
+            commentBox.classList.contains(
+                "comment-open"
+            );
+
+
+        if (isOpen) {
+
+            closeComment();
+
+        }
+
+        else {
+
+            openComment();
+
+        }
+
+    }
+
+
+    // ==========================================
+    // CLICK CELL
+    // ==========================================
+
+    cell.addEventListener(
+        "click",
+        event => {
+
+            /*
+            Select the cell.
+            */
+
+            selectCell(cell);
+
+
+            /*
+            Open/close its comment.
+            */
+
+            toggleComment(event);
+
+        }
+    );
+
+
+    // ==========================================
+    // CLICK RED EARMARK
+    // ==========================================
+
+    earmark.addEventListener(
+        "click",
+        event => {
+
+            /*
+            DO NOT use cell.click() here.
+
+            Directly toggle the comment.
+            */
+
+            toggleComment(event);
+
+        }
+    );
+
+
+    // ==========================================
+    // CLICK INSIDE COMMENT
+    // ==========================================
+
+    commentBox.addEventListener(
+        "click",
+        event => {
+
+            /*
+            Keep the comment open when clicking
+            inside the sticky note.
+
+            Links still work normally.
+            */
+
+            event.stopPropagation();
+
+        }
+    );
 
 }
 
 
+// ==========================================
+// NORMAL CELL
+// ==========================================
 
+else {
 
     cell.addEventListener(
         "click",
-        () => {
+        event => {
+
+            event.stopPropagation();
 
             selectCell(cell);
 
         }
     );
 
-
-
-    return cell;
-
-
+}
+return cell;
 }
 
-
-
 // ==========================================
-// DASHBOARD
+// CLOSE COMMENTS WHEN CLICKING OUTSIDE
 // ==========================================
 
+document.addEventListener(
+    "click",
+    event => {
+
+        /*
+        If the click occurred inside a comment,
+        leave the comment open.
+        */
+
+        if (
+            event.target.closest(
+                ".cell-comment"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+        Otherwise close every open comment.
+        */
+
+        document
+            .querySelectorAll(
+                ".cell-comment.comment-open"
+            )
+            .forEach(comment => {
+
+                comment.style.display =
+                    "none";
+
+                comment.classList.remove(
+                    "comment-open"
+                );
+
+            });
+
+    }
+);
 
 // ==========================================
 // CHART.JS RENDERER
@@ -830,6 +1296,11 @@ function renderSheet(){
 
     }
 
+    document
+    .querySelectorAll(".cell-comment")
+    .forEach(
+        comment => comment.remove()
+    );
 
 
     spreadsheet.innerHTML = "";
