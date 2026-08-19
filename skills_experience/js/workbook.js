@@ -1,178 +1,331 @@
 /*
 ==========================================
-WORKBOOK_V2.JS
+WORKBOOK.JS
 Portfolio.xlsx Spreadsheet Website
-
-Data-driven workbook architecture
 
 Handles:
 - Workbook state
 - Sheet navigation
 - Table data
 - Dashboard metrics
-- Portfolio data models
-
-Designed for grid_v2.js
+- Filtering
+- Sorting
+- Dates
+- Formula evaluation
+- Cell references
+- Formula bar support
 ==========================================
 */
 
+// ==========================================
+// DASHBOARD DATA
+// ==========================================
+
+const dashboardData = {
+
+    projectsCompleted: 1,
+
+    publications: 1,
+
+    favoriteTools: [
+        "Excel"
+    ]
+
+};
+
 
 // ==========================================
-// WORKBOOK STATE
+// WORKBOOK DATA
 // ==========================================
-    const dashboardData = {
-
-
-        projectsCompleted: 1,
-        //need to actually calculate this given projects page.
-
-        publications: 1,
-
-        favoriteTools: [
-
-            "Excel"
-
-        ]
-
-    };
 
 const workbook = {
 
+    activeSheet: "Background",
 
-    activeSheet: "Education",
+    filters: {
+        Background: "All",
+        Skills: "All",
+        Certificates: "All"
+    },
+
+    sorts: {
+
+        Background: {
+            column: null,
+            direction: null
+        },
+
+        Skills: {
+            column: null,
+            direction: null
+        },
+
+        Certificates: {
+            column: null,
+            direction: null
+        }
+
+    },
+
+
+    /*
+    ------------------------------------------
+    CELL FORMULAS
+    ------------------------------------------
+
+    Optional formula storage.
+
+    Example:
+
+    formulas: {
+        Background: {
+            "I2": "=A2"
+        }
+    }
+
+    */
+
+    formulas: {},
+
+
+    /*
+    ------------------------------------------
+    SHEETS
+    ------------------------------------------
+    */
 
     sheets: {
 
+        // =====================================
+        // BACKGROUND
+        // =====================================
 
-        // ==================================
-        // SHEET 1
-        // SKILLS DATABASE
-        // ==================================
-        Education: {
-            name: "Education",
+        Background: {
+
+            name: "Background",
 
             type: "table",
 
             color: "red",
 
             columns: [
-                "Institution",
-                "Degree",
-                "Domain",
-                "Thesis",
-                // "Link",
-                "Awards",
-                "Honors",
-                "GPA",
-                // "Projects",
-                // "Courses",
-                "Graduated"
-            ],
 
-            rows: [
-            {
-                Institution: "College of Charleston",
-                Degree: "Master of Arts",
-                Domain: "History, Concentration in Public History",
-                Thesis: "",
-                Awards: "None (yet!)",
-                Honors: "None (yet!)",
-                GPA: "",
-                Graduated: "Expected 2029"
-            },
-            {
-                Institution: "State University of New York at Oswego",
-                Degree: "Bachelor of Arts",
-                Domain: "Cognitive Science, Psychology",
-                Thesis: "The Impact of Biases in Facial Recognition Artificial Neural Networks  ",
-                Link: "/projects/projects.html#HT",
-                Awards: "Excellence in French, Distinguished Cognitive Science Senior",
-                Honors: "Summa Cum Laude, Honors College",
-                GPA: 3.66,
-                Graduated: 2023
-             },
-            ] 
-        },
-        Experience: {
-            name: "Experience",
-
-            type: "table",
-
-            color: "orange",
-
-            columns: [
-                "Position",
                 "Type",
+                "Title",
                 "Organization",
                 "Location",
-                "Category",
-                "Skills",
-                "Achievement",
-                "Dates",
+                "Field",
+                "Description",
+                "Achievements",
+                "Dates"
+
             ],
 
             rows: [
-                { 
-                    Position: "Digital Library Analyst",
-                    Type: "Job",
-                    Organization: "College of Charleston, Lowcountry Digital Library",
-                    Location: "Charleston, SC",
-                    Category: "Library",
-                    Skills: "Metadata, Digitization, IT",
-                    Achievement: "Uploaded over 16,000 files in the first year across 43 collections.",
 
-                    StartYear: 2025,
-                    StartMonth: 8,
+                {
 
-                    EndYear: null,
-                    EndMonth: null
+                    Type: "Education",
+
+                    Title:
+                        "Master of Arts",
+
+                    Organization:
+                        "College of Charleston",
+
+                    Location:
+                        "Charleston, SC",
+
+                    Field:
+                        "History, Concentration in Public History",
+
+                    Description:
+                        "Graduate program",
+
+                    Achievements:
+                        "Received Principal's Fellowship Award AY 2026-2027",
+
+                    StartYear:
+                        2025,
+
+                    EndYear:
+                        2029
+
                 },
 
                 {
-                    Position: "Psychology Summer Camp",
-                    Type: "Job",
-                    Organization: "University of South Carolina (B-RAD Lab, STARR Lab)",
-                    Location: "Columbia, SC",
-                    Category: "Research",
-                    Skills: "Recruitment, EEG, Data Management",
-                    Achievement: "Coordinated 4 weeks of summer camps, boosting recruitment by 19%.",
-                    yearStart: "August 2025 - Present",
 
-                    StartYear: 2025,
-                    StartMonth: 6,
+                    Type: "Education",
 
-                    EndYear: 2025,
-                    EndMonth: 7
+                    Title:
+                        "Bachelor of Arts",
+
+                    Organization:
+                        "State University of New York at Oswego",
+
+                    Location:
+                        "Oswego, NY",
+
+                    Field:
+                        "Cognitive Science, Psychology",
+
+                    Description:
+                        "Honors College",
+
+                    Achievements:
+                        "Summa Cum Laude; Distinguished Cognitive Science Senior; Excellence in French",
+
+                    StartYear:
+                        2019,
+
+                    EndYear:
+                        2023
+
                 },
 
                 {
-                    Position: "Rooster Tales Summer Camp",
-                    Type: "Job",
-                    Organization: "University of South Carolina (B-RAD Lab)",
-                    Location: "Columbia, SC",
-                    Category: "Research",
-                    Skills: "Survey Administration, Data Management",
-                    Achievement: "Developed, databases to host and track survey data for 18 participants across 2 cohorts.",
-                    yearStart: "August 2025 - Present",
+
+                    Type:
+                        "Job",
+
+                    Title:
+                        "Digital Library Analyst",
+
+                    Organization:
+                        "College of Charleston, Lowcountry Digital Library",
+
+                    Location:
+                        "Charleston, SC",
+
+                    Field:
+                        "Library",
+
+                    Description:
+                        "Metadata, digitization, IT",
+
+                    Achievements:
+                        "Uploaded over 16,000 files across 43 collections.",
+
+                    StartYear:
+                        2025,
+
+                    StartMonth:
+                        8,
+
+                    EndYear:
+                        null,
+
+                    EndMonth:
+                        null
+
+                },
+
+                {
+
+                    Type:
+                        "Job",
+
+                    Title:
+                        "Psychology Summer Camp",
+
+                    Organization:
+                        "University of South Carolina (B-RAD Lab, STARR Lab)",
+
+                    Location:
+                        "Columbia, SC",
+
+                    Field:
+                        "Research",
+
+                    Description:
+                        "Recruitment, EEG, Data Management",
+
+                    Achievements:
+                        "Coordinated four weeks of summer camps, increasing recruitment by 19%.",
+
+                    StartYear:
+                        2025,
+
+                    StartMonth:
+                        6,
+
+                    EndYear:
+                        2025,
+
+                    EndMonth:
+                        7
+
+                },
+
+                {
+
+                    Type:
+                        "Job",
+
+                    Title:
+                        "Rooster Tales Summer Camp",
+
+                    Organization:
+                        "University of South Carolina (B-RAD Lab)",
+
+                    Location:
+                        "Columbia, SC",
+
+                    Field:
+                        "Research",
+
+                    Description:
+                        "Survey Administration, Data Management",
+
+                    Achievements:
+                        "Developed databases to host and track survey data for 18 participants across 2 cohorts.",
 
                     Periods: [
-                    {
-                        StartYear: 2024,
-                        StartMonth: 6,
-                        EndYear: 2024,
-                        EndMonth: 7
-                    },
-                    {
-                        StartYear: 2025,
-                        StartMonth: 6,
-                        EndYear: 2025,
-                        EndMonth: 7
-                    }
-                ]
+
+                        {
+
+                            StartYear:
+                                2024,
+
+                            StartMonth:
+                                6,
+
+                            EndYear:
+                                2024,
+
+                            EndMonth:
+                                7
+
+                        },
+
+                        {
+
+                            StartYear:
+                                2025,
+
+                            StartMonth:
+                                6,
+
+                            EndYear:
+                                2025,
+
+                            EndMonth:
+                                7
+
+                        }
+
+                    ]
 
                 }
+
             ]
+
         },
+
+
+        // =====================================
+        // SKILLS
+        // =====================================
 
         Skills: {
 
@@ -181,7 +334,6 @@ const workbook = {
             type: "table",
 
             color: "yellow",
-
 
             columns: [
 
@@ -193,7 +345,6 @@ const workbook = {
 
             ],
 
-
             rows: [
 
                 {
@@ -204,7 +355,6 @@ const workbook = {
                     Level: 5
                 },
 
-
                 {
                     Skill: "Python",
                     Category: "Programming",
@@ -213,7 +363,6 @@ const workbook = {
                     Level: 3
                 },
 
-
                 {
                     Skill: "JavaScript",
                     Category: "Programming",
@@ -221,7 +370,6 @@ const workbook = {
                     Years: 1,
                     Level: 3
                 },
-
 
                 {
                     Skill: "HTML5",
@@ -239,7 +387,6 @@ const workbook = {
                     Level: 4
                 },
 
-
                 {
                     Skill: "PostgreSQL",
                     Category: "Database",
@@ -256,7 +403,6 @@ const workbook = {
                     Level: 4
                 },
 
-
                 {
                     Skill: "SPSS",
                     Category: "Data Analysis",
@@ -264,7 +410,6 @@ const workbook = {
                     Years: 2,
                     Level: 4
                 },
-
 
                 {
                     Skill: "REDCap",
@@ -274,7 +419,6 @@ const workbook = {
                     Level: 4
                 },
 
-
                 {
                     Skill: "E-Prime",
                     Category: "Research",
@@ -283,14 +427,13 @@ const workbook = {
                     Level: 4
                 },
 
-                                {
+                {
                     Skill: "E-Basic",
                     Category: "Research",
                     Type: "Language",
                     Years: 1,
                     Level: 4
                 },
-
 
                 {
                     Skill: "ResourceSpace",
@@ -300,7 +443,7 @@ const workbook = {
                     Level: 4
                 },
 
-               {
+                {
                     Skill: "Aviary",
                     Category: "Library",
                     Type: "Software",
@@ -316,7 +459,6 @@ const workbook = {
                     Level: 5
                 },
 
-
                 {
                     Skill: "Google Suite",
                     Category: "Productivity",
@@ -324,8 +466,7 @@ const workbook = {
                     Years: 5,
                     Level: 5
                 },
-                
-                
+
                 {
                     Skill: "Obsidian",
                     Category: "Organization",
@@ -334,7 +475,6 @@ const workbook = {
                     Level: 4
                 },
 
-
                 {
                     Skill: "Notion",
                     Category: "Organization",
@@ -342,7 +482,6 @@ const workbook = {
                     Years: 1,
                     Level: 4
                 },
-                
 
                 {
                     Skill: "OpenAthens",
@@ -351,7 +490,6 @@ const workbook = {
                     Years: 1,
                     Level: 3
                 },
-
 
                 {
                     Skill: "LibGuides",
@@ -369,7 +507,6 @@ const workbook = {
                     Level: 4
                 },
 
-
                 {
                     Skill: "WordPress",
                     Category: "Library",
@@ -377,7 +514,6 @@ const workbook = {
                     Years: 1,
                     Level: 5
                 },
-
 
                 {
                     Skill: "MATLAB",
@@ -387,7 +523,6 @@ const workbook = {
                     Level: 3
                 },
 
-
                 {
                     Skill: "Canva",
                     Category: "Creative",
@@ -395,15 +530,6 @@ const workbook = {
                     Years: 4,
                     Level: 5
                 },
-
-
-                // {
-                //     Skill: "Affinity Studio",
-                //     Category: "Creative",
-                //     Type: "Software",
-                //     Years: 0,
-                //     Level: 2
-                // },
 
                 {
                     Skill: "Java",
@@ -413,7 +539,6 @@ const workbook = {
                     Level: 3
                 },
 
-
                 {
                     Skill: "French",
                     Category: "Languages",
@@ -421,7 +546,6 @@ const workbook = {
                     Years: 14,
                     Level: 5
                 },
-
 
                 {
                     Skill: "ASL",
@@ -471,7 +595,6 @@ const workbook = {
                     Level: 4
                 },
 
-
                 {
                     Skill: "Library of Congress Classification",
                     Category: "Library",
@@ -503,93 +626,109 @@ const workbook = {
                     Years: 2,
                     Level: 4
                 }
+
             ]
 
         },
 
 
-
-        // ==================================
-        // SHEET 2
+        // =====================================
         // DASHBOARD
-        // ==================================
+        // =====================================
 
-Dashboard: {
+        Dashboard: {
 
-    name: "Dashboard",
+            name: "Dashboard",
 
-    type: "dashboard",
+            type: "dashboard",
 
-    color: "green",
+            color: "green",
 
+            metrics: [
 
-    metrics: [
+                {
+                    title:
+                        "Total Skills",
 
-        {
-            title: "Total Skills",
-            value: "totalSkills"
+                    value:
+                        "totalSkills"
+                },
+
+                {
+                    title:
+                        "Unique Skill Domains",
+
+                    value:
+                        "skillDomains"
+                },
+
+                {
+                    title:
+                        "Average Proficiency",
+
+                    value:
+                        "averageLevel"
+                },
+
+                {
+                    title:
+                        "Years of Experience (Overall)",
+
+                    value:
+                        "totalYearsExperience"
+                }
+
+            ],
+
+            charts: [
+
+                {
+                    type:
+                        "doughnut",
+
+                    title:
+                        "Skills by Category",
+
+                    source:
+                        "categories"
+                },
+
+                {
+                    type:
+                        "bar",
+
+                    title:
+                        "Years of Experience",
+
+                    source:
+                        "experience"
+                },
+
+                {
+                    type:"radar",
+
+                    title: "Skill Proficiencies",
+
+                    source: "proficiency"
+                }
+
+            ]
+
         },
-
-        {
-            title: "Unique Skill Domains",
-            value: "skillDomains"
-        },
-
-        {
-            title: "Average Proficiency",
-            value: "averageLevel"
-        },
-
-        {
-            title: "Years of Experience (Overall)",
-            value: "totalYearsExperience"
-        }
-
-    ],
-
-
-    charts: [
-
-    {
-        type: "doughnut",
-        title: "Skills by Category",
-        source: "categories"
-    },
-
-
-    {
-        type: "bar",
-        title: "Years of Experience",
-        source: "experience"
-    },
-
-
-    {
-        type: "radar",
-        title: "Skill Proficiencies",
-        source: "proficiency"
-    }
-
-
-    ]
-
-},
-
-
-
-        // ==================================
-        // SHEET 3
-        // CertificatesS
-        // ==================================
+        // =====================================
+        // CERTIFICATES
+        // =====================================
 
         Certificates: {
 
-            name: "Certificates",
+            name:
+                "Certificates",
 
-            type: "table",
+            type:
+                "table",
 
-            color: "blue",
-
+            color:
+                "blue",
 
             columns: [
 
@@ -598,11 +737,13 @@ Dashboard: {
                 "Year",
                 "Status",
                 "Link"
+
             ],
 
-
             rows: [
-                {   Certificates:
+
+                {
+                    Certificates:
                         "Responsible Conduct of Research for Undergrad Students",
 
                     Provider:
@@ -615,8 +756,7 @@ Dashboard: {
                         "Completed",
 
                     Link:
-                        "/assets/media/certificates/Citi-ResponsibleUndergrad.pdf",
-
+                        "/assets/media/certificates/Citi-ResponsibleUndergrad.pdf"
                 },
 
                 {
@@ -628,7 +768,7 @@ Dashboard: {
 
                     Year:
                         2021,
-                    
+
                     Status:
                         "Completed"
                 },
@@ -649,7 +789,6 @@ Dashboard: {
                     Link:
                         "/assets/media/certificates/CITI_SocBeh.pdf"
                 },
-
 
                 {
                     Certificates:
@@ -685,7 +824,6 @@ Dashboard: {
                         "/assets/media/certificates/Canva_Essentials.pdf"
                 },
 
-
                 {
                     Certificates:
                         "Graphic Design Essentials",
@@ -719,7 +857,6 @@ Dashboard: {
                     Link:
                         "/assets/media/certificates/Coursera_DataCleaning.pdf"
                 },
-
 
                 {
                     Certificates:
@@ -764,14 +901,13 @@ Dashboard: {
 
                     Year:
                         2026,
-                    
+
                     Status:
                         "Completed",
 
                     Link:
                         "/assets/media/certificates/Coursera_DataViz.pdf"
                 },
-
 
                 {
                     Certificates:
@@ -782,14 +918,13 @@ Dashboard: {
 
                     Year:
                         2026,
-                    
+
                     Status:
                         "Completed",
 
                     Link:
                         "/assets/media/certificates/Coursera_ChartsDashboards.pdf"
                 },
-
 
                 {
                     Certificates:
@@ -800,14 +935,13 @@ Dashboard: {
 
                     Year:
                         2026,
-                    
+
                     Status:
                         "Completed",
 
                     Link:
                         "/assets/media/certificates/Coursera_FindingExcel.pdf"
                 },
-
 
                 {
                     Certificates:
@@ -818,33 +952,39 @@ Dashboard: {
 
                     Year:
                         2026,
-                    
+
                     Status:
                         "Upcoming"
                 }
+
             ]
 
         }
 
-
     }
-
 
 };
 
+
 // ==========================================
-// CLEAN WORKBOOK DATA
+// DATA CLEANING
 // ==========================================
 
 Object.values(workbook.sheets).forEach(sheet => {
-
-    sheet.rows?.forEach(row => {
+    if (!sheet.rows) {
+        return;
+    }
+    sheet.rows.forEach(row => {
 
         Object.keys(row).forEach(key => {
 
-            if (typeof row[key] === "string") {
+            if (
+                typeof row[key] ===
+                "string"
+            ) {
 
-                row[key] = row[key].trim();
+                row[key] =
+                    row[key].trim();
 
             }
 
@@ -859,7 +999,6 @@ Object.values(workbook.sheets).forEach(sheet => {
 // SHEET MANAGEMENT
 // ==========================================
 
-
 function getActiveSheet() {
 
     return workbook.sheets[
@@ -868,8 +1007,6 @@ function getActiveSheet() {
 
 }
 
-
-
 function getSheets() {
 
     return workbook.sheets;
@@ -877,9 +1014,7 @@ function getSheets() {
 }
 
 
-
 function switchSheet(sheetName) {
-
 
     if (!workbook.sheets[sheetName]) {
 
@@ -887,36 +1022,71 @@ function switchSheet(sheetName) {
             `Sheet ${sheetName} does not exist`
         );
 
-        return;
+        return false;
 
     }
 
-
-    workbook.activeSheet = sheetName;
-
+    workbook.activeSheet =
+        sheetName;
 
     if (
-        typeof renderSheet === "function"
-    ) {
+        typeof window.renderSheet ==="function") {
 
-        renderSheet();
+        window.renderSheet();
 
     }
 
+    else if (
+        typeof window.Grid !==
+        "undefined" &&
+        typeof window.Grid.renderSheet ===
+        "function"
+    ) {
+
+        window.Grid.renderSheet();
+
+    }
 
     updateSheetTitle(sheetName);
+
+
+    return true;
+
+}
+
+// ==========================================
+// RENDER WORKBOOK
+// ==========================================
+
+function renderWorkbook() {
+
+    /*
+    grid.js exports Grid.renderSheet().
+    */
+
+    if (
+        typeof window.Grid !==
+        "undefined" &&
+
+        typeof window.Grid.renderSheet ===
+        "function"
+    ) {
+
+        window.Grid.renderSheet();
+
+    }
 
 }
 
 
-
-
 // ==========================================
-// DASHBOARD CALCULATIONS
+// DATES
 // ==========================================
-// clean up the dates format for the sheet after we're done using the dates for calculations
+
 const MONTHS = [
+
     "",
+
     "January",
     "February",
     "March",
@@ -929,82 +1099,267 @@ const MONTHS = [
     "October",
     "November",
     "December"
-];
-function formatPeriod(period) {
-    const start = `${MONTHS[period.StartMonth]} ${period.StartYear}`;
 
-    const end =
-        period.EndYear == null
-            ? "Present"
-            : `${MONTHS[period.EndMonth]} ${period.EndYear}`;
+];
+
+
+function formatPeriod(
+    period,
+    type
+) {
+
+    let start;
+    let end;
+
+
+    if (
+        type ===
+        "Education"
+    ) {
+
+        start =
+            period.StartYear;
+
+        end =
+            period.EndYear;
+
+    }
+
+    else {
+
+        start =
+            period.StartMonth
+
+                ? `${MONTHS[
+                    period.StartMonth
+                ]} ${period.StartYear}`
+
+                : period.StartYear;
+
+
+        end =
+            period.EndYear == null
+
+                ? "Present"
+
+                : period.EndMonth
+
+                    ? `${MONTHS[
+                        period.EndMonth
+                    ]} ${period.EndYear}`
+
+                    : period.EndYear;
+
+    }
 
     return `${start} - ${end}`;
+
 }
 
-function formatDates(job) {
-    const periods = job.Periods ?? [{
-        StartYear: job.StartYear,
-        StartMonth: job.StartMonth,
-        EndYear: job.EndYear,
-        EndMonth: job.EndMonth
-    }];
+function formatDates(row) {
 
-    return periods.map(formatPeriod).join(", ");
+    const periods =
+        row.Periods ??
+        [
+
+            {
+
+                StartYear:
+                    row.StartYear,
+
+                StartMonth:
+                    row.StartMonth,
+
+                EndYear:
+                    row.EndYear,
+
+                EndMonth:
+                    row.EndMonth
+
+            }
+
+        ];
+
+
+    return periods
+        .map(
+            period =>
+                formatPeriod(
+                    period,
+                    row.Type
+                )
+        )
+        .join(", ");
+
 }
+
+
+// ==========================================
+// EXPERIENCE CALCULATIONS
+// ==========================================
 
 function getExperienceYears() {
 
-    const jobs = workbook.sheets.Experience.rows;
-    const now = new Date();
+    const jobs =
+        workbook.sheets
+            .Background
+            .rows
+            .filter(
+                row =>
+                    row.Type ===
+                    "Job"
+            );
 
-    const currentYear = now.getFullYear();
-    const currentMonth = now.getMonth() + 1;
+
+    const now =
+        new Date();
+
+
+    const currentYear =
+        now.getFullYear();
+
+
+    const currentMonth =
+        now.getMonth() + 1;
+
 
     const totals = {
-        Library: 0,
-        Research: 0,
-        "Non-profit": 0,
-        Misc: 0
+
+        Library:
+            0,
+
+        Research:
+            0,
+
+        "Non-profit":
+            0,
+
+        Misc:
+            0
+
     };
 
-    jobs.forEach(job => {
 
-        if (!(job.Category in totals)) return;
+    jobs.forEach(
+        job => {
 
-        const periods = job.Periods ?? [{
-            StartYear: job.StartYear,
-            StartMonth: job.StartMonth,
-            EndYear: job.EndYear,
-            EndMonth: job.EndMonth
-        }];
+            /*
+            If a new Field appears,
+            create it automatically.
+            */
 
-        periods.forEach(period => {
+            if (
+                !(job.Field in totals)
+            ) {
 
-            const endYear = period.EndYear ?? currentYear;
-            const endMonth = period.EndMonth ?? currentMonth;
+                totals[job.Field] =
+                    0;
 
-            const months =
-                (endYear - period.StartYear) * 12 +
-                (endMonth - period.StartMonth);
+            }
 
-            totals[job.Category] += months / 12;
-        });
-    });
+
+            const periods =
+                job.Periods ??
+                [
+
+                    {
+
+                        StartYear:
+                            job.StartYear,
+
+                        StartMonth:
+                            job.StartMonth,
+
+                        EndYear:
+                            job.EndYear,
+
+                        EndMonth:
+                            job.EndMonth
+
+                    }
+
+                ];
+
+
+            periods.forEach(
+                period => {
+
+                    if (
+                        !period.StartYear
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const endYear =
+                        period.EndYear ??
+                        currentYear;
+
+
+                    const startMonth =
+                        period.StartMonth ??
+                        1;
+
+
+                    const endMonth =
+                        period.EndMonth ??
+                        currentMonth;
+
+
+                    const months =
+                        (
+                            (
+                                endYear -
+                                period.StartYear
+                            ) * 12
+                        ) +
+
+                        (
+                            endMonth -
+                            startMonth
+                        );
+
+
+                    totals[job.Field] +=
+                        Math.max(
+                            months,
+                            0
+                        ) / 12;
+
+                }
+            );
+
+        }
+    );
+
 
     Object.keys(totals).forEach(key => {
         totals[key] = Number(totals[key].toFixed(1));
     });
 
     return {
-        yearsLibraryExperience: totals.Library,
-        yearsResearchExperience: totals.Research,
-        yearsNonProfitExperience: totals["Non-profit"],
-        yearsMiscExperience: totals.Misc
+
+        yearsLibraryExperience:
+            totals.Library ?? 0,
+
+        yearsResearchExperience:
+            totals.Research ?? 0,
+
+        yearsNonProfitExperience:
+            totals["Non-profit"] ?? 0,
+
+        yearsMiscExperience:
+            totals.Misc ?? 0
     };
 }
 
-function getSkillMetrics() {
+// ==========================================
+// SKILL METRICS
+// ==========================================
 
+function getSkillMetrics() {
 
     const skills =
         workbook.sheets
@@ -1012,10 +1367,8 @@ function getSkillMetrics() {
             .rows;
 
 
-
     const totalSkills =
         skills.length;
-
 
 
     const skillDomains =
@@ -1025,116 +1378,172 @@ function getSkillMetrics() {
             )
         ).size;
 
-
-
     const averageLevel =
-        (
+        totalSkills
 
-            skills.reduce(
+            ? (skills.reduce(
+                    (sum, skill) =>
+                        sum +
+                        (Number(skill.Level) || 0),
+                    0
+                )
 
-                (sum, skill) =>
-                    sum + skill.Level,
+                /
 
-                0
+                totalSkills).toFixed(1)
 
-            )
-
-            /
-
-            totalSkills
-
-        ).toFixed(1);
+            : "0.0";
 
 
+    /*
+    ------------------------------------------
+    CATEGORY COUNTS
+    ------------------------------------------
+    */
 
-    const categories = {};
-
-    skills.forEach(skill => {
-
-        if (!categories[skill.Category]) {
-
-            categories[skill.Category] = 0;
-
-        }
-
-        categories[skill.Category]++;
-
-    });
+    const categories =
+        {};
 
 
+    skills.forEach(
+        skill => {
 
-const experience =
-    skills.reduce(
-        (obj, skill)=>{
-
-            obj[skill.Skill] =
-                skill.Years;
-
-            return obj;
-
-        },
-        {}
-    );
+            const category =
+                skill.Category ||
+                "Other";
 
 
-// const totalYearsExperience = (dashboardData.yearsResearchExperience + dashboardData.yearsLibraryExperience + dashboardData.yearsNonProfitExperience);
-// instead of using dashboardData(), variables are hardcoded and calculations are completed to get a better years of experience estimate in getExperienceYears()
-const experienceYears = getExperienceYears();
+            if (
+                !categories[
+                    category
+                ]
+            ) {
+        
+        categories[skill.Category] = 0;
+            }
 
-const totalYearsExperience =
-    experienceYears.yearsLibraryExperience +
-    experienceYears.yearsResearchExperience +
-    experienceYears.yearsNonProfitExperience +
-    experienceYears.yearsMiscExperience;
+            categories[skill.Category]++;
 
-const proficiency =
-    skills.reduce(
-        (obj, skill)=>{
-
-            obj[skill.Skill] =
-                skill.Level;
-
-            return obj;
-
-        },
-        {}
-    );
+        });
 
 
+    /*
+    ------------------------------------------
+    EXPERIENCE
+    ------------------------------------------
+    */
 
-return {
+    const experience =
+        skills.reduce(
+            (obj, skill)=>{
 
-    totalSkills,
+                obj[
+                    skill.Skill
+                ] =
+                    Number(
+                        skill.Years
+                    ) || 0;
 
-    skillDomains,
 
-    averageLevel,
+                return obj;
 
-    categories,
+            },
+            {}
+        );
 
-    experience,
 
-    proficiency,
+    /*
+    ------------------------------------------
+    EXPERIENCE YEARS
+    ------------------------------------------
+    */
 
-    projectsCompleted:
-        dashboardData.projectsCompleted,
+    const experienceYears = getExperienceYears();
 
-    publications:
-        dashboardData.publications,
 
-    ...experienceYears,
+    const totalYearsExperience =
 
-    totalYearsExperience,
+        experienceYears.yearsLibraryExperience +
 
-    projectsCompleted: dashboardData.projectsCompleted,
+        experienceYears.yearsResearchExperience +
+
+        experienceYears.yearsNonProfitExperience +
+
+        experienceYears.yearsMiscExperience;
+
+
+    /*
+    ------------------------------------------
+    PROFICIENCY
+    ------------------------------------------
+    */
+
+    const proficiency =
+        skills.reduce(
+            (obj, skill)=>{
+
+                obj[skill.Skill] =
+                    Number(skill.Level) || 0;
+
+                return obj;
+
+            },
+            {}
+        );
+
+    return {
+
+        totalSkills,
+
+        skillDomains,
+
+        averageLevel,
+
+        categories,
+
+        experience,
+
+        proficiency,
+
+        projectsCompleted:
+            dashboardData.projectsCompleted,
+
+        publications:
+            dashboardData.publications,
+
+        ...experienceYears,
+
+        totalYearsExperience, projectsCompleted: dashboardData.projectsCompleted,
     publications: dashboardData.publications
 
-};
+    };
 
 }
 
 
+// ==========================================
+// SHEET TITLE
+// ==========================================
 
+function updateSheetTitle(
+    sheetName
+) {
+
+    const title =
+        document.querySelector(
+            ".window-title"
+        );
+
+
+    if (!title) {
+        return;
+    }
+
+
+    title.textContent =
+        `Portfolio.xlsx - ${sheetName}`;
+
+}
 
 // ==========================================
 // TABLE HELPERS
@@ -1154,8 +1563,6 @@ function getSheetRows(sheetName) {
     return sheet.rows || [];
 
 }
-
-
 
 function getSheetColumns(sheetName) {
 
@@ -1193,21 +1600,18 @@ function updateSheetTitle(sheetName) {
     title.textContent =
         `Portfolio.xlsx - ${sheetName}`;
 
-}
-
-
-
-
+} 
 // ==========================================
-// EXPORT
+// PUBLIC API
 // ==========================================
-
 
 window.Workbook = {
 
+    state:
+        workbook,
 
-    state: workbook,
 
+    // Sheet management
 
     getActiveSheet,
 
@@ -1215,12 +1619,19 @@ window.Workbook = {
 
     switchSheet,
 
-    getSkillMetrics,
+
+    // Data
 
     getSheetRows,
 
     getSheetColumns,
 
-    formatDates
+    // Dates
 
+    formatDates,
+
+
+    // Dashboard
+
+    getSkillMetrics
 };

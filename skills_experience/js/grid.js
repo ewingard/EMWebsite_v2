@@ -1,10 +1,7 @@
 /*
 ==========================================
-GRID_V2.JS
+GRID.JS
 Portfolio.xlsx Spreadsheet Website
-
-Compatible with:
-workbook_v2.js
 
 Handles:
 - Table rendering
@@ -23,46 +20,41 @@ Handles:
 const spreadsheet =
     document.getElementById("spreadsheet");
 
-
 const formulaBar =
     document.getElementById("formula-bar");
-
 
 const nameBox =
     document.querySelector(".name-box");
 
+// const ribbonMenu =
+//     document.getElementById("ribbon-menu");
 
+// const filterButton =
+//     document.getElementById("filter-button");
 
-let selectedCell = null;
+// const sortButton =
+//     document.getElementById("sort-button");
 
 
 // ==========================================
-// GRID SETTINGS
+// GRID INITIALIZATION
 // ==========================================
 
 const ROW_HEIGHT = 25;
 
-
-
-// ==========================================
-// MAIN RENDER FUNCTION
-// ==========================================
-
 function generateGrid() {
-
 
     if (!spreadsheet) {
 
         console.error(
-            "Spreadsheet container missing"
+            "Spreadsheet container missing."
         );
 
         return;
 
     }
 
-
-    spreadsheet.innerHTML = "";
+spreadsheet.innerHTML = "";
 
 
     const sheet =
@@ -72,8 +64,6 @@ function generateGrid() {
 
     if (!sheet) return;
 
-
-
     if (sheet.type === "dashboard") {
 
 
@@ -81,27 +71,18 @@ function generateGrid() {
 
 
         return;
-
     }
 
-
-
-    if (sheet.type === "table") {
+        if (sheet.type === "table") {
 
 
         renderTable(sheet);
 
 
         return;
-
+        }
     }
-
-
-}
-
-
-
-// ==========================================
+    // ==========================================
 // TABLE RENDERER
 // ==========================================
 function getColumnWidth(sheet, columnName) {
@@ -128,9 +109,7 @@ function getColumnWidth(sheet, columnName) {
 }
 
 function renderTable(sheet) {
-
-    
-    document.body.classList.remove(
+     document.body.classList.remove(
         "dashboard-active"
     );
 
@@ -140,12 +119,10 @@ function renderTable(sheet) {
 
 
     if(sheet.type !== "dashboard"){
-
         document.body.classList.remove(
-            "dashboard-active"
+        "dashboard-active"
         );
-
-    }
+        }
 
     const widths = sheet.columns.map(col =>
     `${getColumnWidth(sheet, col)}px`
@@ -173,8 +150,7 @@ function renderTable(sheet) {
     corner.className =
         "corner-cell";
 
-
-    spreadsheet.appendChild(corner);
+        spreadsheet.appendChild(corner);
 
 
 
@@ -210,7 +186,7 @@ function renderTable(sheet) {
 
     return letter;
 
-}
+    }
 
 
     sheet.columns.forEach(
@@ -269,7 +245,7 @@ function renderTable(sheet) {
                 createCell(
                     column,
                     true
-                );
+                    );
 
 
             cell.classList.add(
@@ -352,8 +328,7 @@ function renderTable(sheet) {
 }
 
 function renderDashboard(sheet){
-
-    document.body.classList.add(
+document.body.classList.add(
         "dashboard-active"
     );
 
@@ -375,8 +350,7 @@ function renderDashboard(sheet){
 
 
 
-    /*
-    ==========================
+    /*==========================
     KPI CARDS
     ==========================
     */
@@ -384,8 +358,7 @@ function renderDashboard(sheet){
     const metricSection =
         document.createElement("div");
 
-
-    metricSection.className =
+metricSection.className =
         "metric-grid";
 
 
@@ -433,7 +406,8 @@ function renderDashboard(sheet){
 
 
     /*
-    ==========================
+
+      ==========================
     CHARTS
     ==========================
     */
@@ -543,16 +517,7 @@ function createCell(
 
     }
 
-
-
-    /*
-    --------------------------
-    SKILL LEVEL FORMATTING
-    --------------------------
-    */
-
-
-    if (
+     if (
 
         Workbook.state.activeSheet === "Skills"
 

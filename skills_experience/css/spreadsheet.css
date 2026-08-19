@@ -123,9 +123,27 @@ Excel-like hover
 */
 
 .cell:hover {
-
     background: #f3faf5;
+}
 
+.cell.range-selected {
+    background: #e7f3eb;
+}
+
+.cell.range-selected:hover {
+    background: #d9eadf;
+}
+
+.cell.selected {
+    background: #ffffff;
+    outline: 2px solid #217346;
+    outline-offset: -2px;
+    z-index: 10;
+}
+
+.cell.selected.range-selected {
+    background: #d9eadf;
+    outline: 2px solid #217346;
 }
 
 
@@ -164,10 +182,12 @@ Small fill handle like Excel
 
     background: #217346;
 
-    cursor: crosshair;
-
+    cursor: cell;
 }
 
+/* .cell {
+    cursor: default;
+} */
 
 /* ========================================
    COLUMN HEADERS
