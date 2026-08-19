@@ -161,13 +161,13 @@ const workbook = {
                         "Bachelor of Arts",
 
                     Organization:
-                        "State University of New York at Oswego",
+                        "State University of New York at Oswego (SUNY Oswego",
 
                     Location:
                         "Oswego, NY",
 
                     Field:
-                        "Cognitive Science, Psychology",
+                        "Cognitive Science/Psychology",
 
                     Description:
                         "Honors College",
@@ -197,6 +197,7 @@ const workbook = {
                         }
                     }
                 },
+
                 {
 
                     Type:
@@ -215,7 +216,7 @@ const workbook = {
                         "Library",
 
                     Description:
-                        "Metadata, digitization, IT",
+                        "Metadata, Digitization, IT",
 
                     Achievements:
                         "Uploaded over 16,000 files across 43 collections.",
@@ -237,13 +238,193 @@ const workbook = {
                 {
 
                     Type:
+                        "Volunteer",
+
+                    Title:
+                        "Peer Reviewer",
+
+                    Organization:
+                        "DigitalArc",
+
+                    Location:
+                        "Remote",
+
+                    Field:
+                        "Library",
+
+                    Description:
+                        "Peer Review, Communication, Quality Assessment",
+
+                    Achievements:
+                        "Reviewed a 156 page toolkit, giving technical and community-based feedback.",
+
+                    StartYear:
+                        2026,
+
+                    StartMonth:
+                        5,
+
+                    EndYear:
+                        2026,
+
+                    EndMonth:
+                        5
+
+                },
+
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "Digital Research Mentor",
+
+                    Organization:
+                        "Buist Academy, College of Charleston",
+
+                    Location:
+                        "Charleston, SC",
+
+                    Field:
+                        "Education",
+
+                    Description:
+                        "Mentorship, Research Education, Group Facilitation",
+
+                    Achievements:
+                        "Created a research 'quick-start' guide; Supervised 11 students' group projects.",
+
+                    StartYear:
+                        2026,
+
+                    StartMonth:
+                        4,
+
+                    EndYear:
+                        2026,
+
+                    EndMonth:
+                        5
+
+                },
+
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "Volunteer Copyeditor and Author",
+
+                    Organization:
+                        "Wikipedia",
+
+                    Location:
+                        "Remote",
+
+                    Field:
+                        "Education",
+
+                    Description:
+                        "Copyediting, Metadata, Publication",
+
+                    Achievements:
+                        "Edit over 300 articles, averaging 1,299,990 total views; author 8 articles.",
+
+                    StartYear:
+                        2026,
+
+                    StartMonth:
+                        4,
+
+                    EndYear:
+                        null,
+
+                    EndMonth:
+                        null
+
+                },
+
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "Volunteer Transcriber",
+
+                    Organization:
+                        "6+ Organizations*",
+
+                    Location:
+                        "Remote",
+
+                    Field:
+                        "Research",
+
+                    Description:
+                        "Copyediting, Paleography, Transcription",
+
+                    Achievements:
+                        "Transcribed 100, reviewed 28, and translated 5 historical documents across 142 pages.",
+
+                    StartYear:
+                        2026,
+
+                    StartMonth:
+                        4,
+
+                    EndYear:
+                        null,
+
+                    EndMonth:
+                        null,
+
+                    cellComments: {
+                        Organization: {
+                            title: "Organizations I Transcribe For",
+
+                            text:
+                                "The list is growing, but I currently transcribe for: South Carolina Historical Society, Library of Congress, National Archives, Smithsonian, Zooniverse, and the Wikimedia Foundation.",
+
+                            links: [
+                                {
+                                    label: "By The People - Library of Congress",
+                                    url: "https://www.crowd.loc.gov/"
+                                },
+                                {
+                                    label: "Citizen Archivist Missions - National Archives",
+                                    url: "https://www.archives.gov/citizen-archivist/missions"
+                                },
+                                {
+                                    label: "Volunpeer - Smithsonian",
+                                    url: "https://transcription.si.edu/"
+                                },
+                                {
+                                    label: "Zooniverse",
+                                    url: "https://www.zooniverse.org/"
+                                },
+                                {
+                                    label: "Wikisource - Wikimedia Foundation",
+                                    url: "https://en.wikisource.org/wiki/User:Ezardwizard"
+                                }
+                            ]
+                        }
+                    }
+
+                },
+
+                {
+
+                    Type:
                         "Job",
 
                     Title:
-                        "Psychology Summer Camp",
+                        "Psychology Summer Camp Coordinator",
 
                     Organization:
-                        "University of South Carolina (B-RAD Lab, STARR Lab)",
+                        "University of South Carolina (UofSC), B-RAD Lab & STARR Lab",
 
                     Location:
                         "Columbia, SC",
@@ -267,7 +448,27 @@ const workbook = {
                         2025,
 
                     EndMonth:
-                        7
+                        7,
+
+                    cellComments: {
+                        Organization: {
+                            title: "Lab Names",
+
+                            text:
+                                "The Brain Research Across Development Laboratory (B-RAD Lab) is led by Primary Investigator (PI) Caitlin Hudac. The Study of Trauma, Adolescents, Relationships, & Resilience Laboratory (STARR Lab) is led by PI Michelle Brown. Both Labs were located in the Psychology Dept. at the University of South Carolina.",
+
+                            links: [
+                                {
+                                    label: "Brain Research Across Development Lab",
+                                    url: "https://www.b-radlab.com/sc-wb-study.html"
+                                },
+                                {
+                                    label: "Study of Trauma, Adolescents, Relationships, & Resilience Lab",
+                                    url: "https://starr-lab.com/"
+                                }
+                            ]
+                        }
+                    }
 
                 },
 
@@ -277,10 +478,10 @@ const workbook = {
                         "Job",
 
                     Title:
-                        "Rooster Tales Summer Camp",
+                        "Rooster Tales Summer Camp Assistant",
 
                     Organization:
-                        "University of South Carolina (B-RAD Lab)",
+                        "University of South Carolina, B-RAD Lab",
 
                     Location:
                         "Columbia, SC",
@@ -289,7 +490,7 @@ const workbook = {
                         "Research",
 
                     Description:
-                        "Survey Administration, Data Management",
+                        "Survey Administration, Data Collection, Data Management",
 
                     Achievements:
                         "Developed databases to host and track survey data for 18 participants across 2 cohorts.",
@@ -332,6 +533,42 @@ const workbook = {
 
                 },
 
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "Volunteer Software Developer",
+
+                    Organization:
+                        "FreeMoCap Foundation",
+
+                    Location:
+                        "Remote",
+
+                    Field:
+                        "Computer Science",
+
+                    Description:
+                        "Manual Creation, Programming, Machine Learning",
+
+                    Achievements:
+                        "Drafted 4 user manuals/documentation; Provide ideation and user feedback.",
+
+                    StartYear:
+                        2025,
+
+                    StartMonth:
+                        3,
+
+                    EndYear:
+                        null,
+
+                    EndMonth:
+                        null
+
+                },
 
                 {
 
@@ -339,10 +576,82 @@ const workbook = {
                         "Job",
 
                     Title:
-                        "Psychology Summer Camp",
+                        "Peer Support & Social Group Facilitator",
 
                     Organization:
-                        "University of South Carolina (B-RAD Lab, STARR Lab)",
+                        "Harriet Hancock Center",
+
+                    Location:
+                        "Columbia, SC",
+
+                    Field:
+                        "Non-Profit",
+
+                    Description:
+                        "Recruitment, Group Facilitation, Peer Support",
+
+                    Achievements:
+                        "Coordinated emotional and social support groups, reaching up to 30 attendees/month.",
+
+                    StartYear:
+                        2024,
+
+                    StartMonth:
+                        11,
+
+                    EndYear:
+                        2025,
+
+                    EndMonth:
+                        7
+
+                },
+
+                {
+
+                    Type:
+                        "Job",
+
+                    Title:
+                        "Summer Camp Arts Instructor",
+
+                    Organization:
+                        "New Bethel Foundation",
+
+                    Location:
+                        "Lexington, SC",
+
+                    Field:
+                        "Education",
+
+                    Description:
+                        "Classroom Management, Lesson Planning, Behavior Management",
+
+                    Achievements:
+                        "Designed and implemented interactive art lessons for 50+ children, aged 5-17.",
+                    StartYear:
+                        2024,
+
+                    StartMonth:
+                        7,
+
+                    EndYear:
+                        2024,
+
+                    EndMonth:
+                        7
+                },
+
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "Room Moderator",
+
+                    Organization:
+                        "AutismConnect Conference",
 
                     Location:
                         "Columbia, SC",
@@ -351,13 +660,139 @@ const workbook = {
                         "Research",
 
                     Description:
-                        "Recruitment, EEG, Data Management",
+                        "Group Facilitation, Room Moderation, Training",
 
                     Achievements:
-                        "Coordinated four weeks of summer camps, increasing recruitment by 19%.",
+                        "Moderated 2 rooms for 5h30mins; Trained 2 people on room moderation.",
 
                     StartYear:
+                        2024,
+
+                    StartMonth:
+                        4,
+
+                    EndYear:
+                        2024,
+
+                    EndMonth:
+                        4,
+
+                    cellComments: {
+                        Organization: {
+                            title: "AutismConnect Conference",
+
+                            text: "The AutismConnect Conference is collaboratively led by the Department of Disabilities and Special Needs (DDSN) and the Carolina Autism and Neurodevelopment (CAN) Research Center. I served as a Room Moderator for the 2nd annual iteration of the conference.",
+                        
+                            links: [
+                                {
+                                    label: "AutismConnect 2025 Conference",
+                                    url: "https://aging.sc.gov/events/2nd-annual-autismconnect-conference"
+                                }
+                            ]
+                        }
+                    }
+
+                },
+
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "Advisory Board Member",
+
+                    Organization:
+                        "University of South Carolina, Rhys Dreeszen-Bowman, Ph.D. Candidate",
+
+                    Location:
+                        "Columbia, SC",
+
+                    Field:
+                        "Research",
+
+                    Description:
+                        "Consulting, Community Advising, Recruitment",
+
+                    Achievements:
+                        "Review methodologies; Recruit particicpants; Develop community resource.",
+
+                    StartYear:
+                        2024,
+
+                    StartMonth:
+                        5,
+
+                    EndYear:
                         2025,
+
+                    EndMonth:
+                        2
+
+                },
+
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "Thesis Advisee",
+
+                    Organization:
+                        "University of South Carolina, Miranda Foster, Ph.D. Candidate",
+
+                    Location:
+                        "Columbia, SC",
+
+                    Field:
+                        "Research",
+
+                    Description:
+                        "Consulting, Research Education, Peer Review",
+
+                    Achievements:
+                        "Refine survey instruments; Consult on inclusive methodologies",
+
+                    StartYear:
+                        2024,
+
+                    StartMonth:
+                        8,
+
+                    EndYear:
+                        2024,
+
+                    EndMonth:
+                        8
+
+                },
+                
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "CAN Trainee Committee Member",
+
+                    Organization:
+                        "Carolina Autism and Neurodevelopment (CAN) Research Center, UofSC",
+
+                    Location:
+                        "Columbia, SC",
+
+                    Field:
+                        "Research",
+
+                    Description:
+                        "Group Facilitation, Event Planning, Research Education",
+
+                    Achievements:
+                        "Plan and facilitate 2 events per semester, reaching 200+ CAN Trainee members.",
+
+                    StartYear:
+                        2024,
 
                     StartMonth:
                         6,
@@ -370,10 +805,473 @@ const workbook = {
 
                 },
 
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "Volunteer Judge",
+
+                    Organization:
+                        "3 Organizations*",
+
+                    Location:
+                        "Columbia, SC",
+
+                    Field:
+                        "Research",
+
+                    Description:
+                        "Mentorship, Research Education, Research Review",
+
+                    Achievements:
+                        "Evaluate and give feedback on 25 posters across 3 events.",
+
+                    StartYear:
+                        2024,
+
+                    StartMonth:
+                        4,
+
+                    EndYear:
+                        2025,
+
+                    EndMonth:
+                        6,
+
+                    cellComments: {
+                        Organization: {
+                            title: "Volunteer Judge Organizations",
+
+                            text: "I served as a judge for the SC Junior Science and Humanities Symposium (JSHS), University of South Carolina Region II Science and Engineering Fair, and DiscoverUSC (2024) conferences.",
+                        
+                            links: [
+                                {
+                                    label: "DOD Junior Science and Humanities Symposium",
+                                    url: "https://scacademysci.org/junior-science-and-humanities-symposia-jshs/"
+                                },
+
+                                {
+                                    label: "University of South Carolina Region II Science and Engineering Fair",
+                                    url: "https://sc.edu/study/colleges_schools/artsandsciences/centers_and_institutes/science_education/science_fair/index.php"
+                                },
+
+                                {
+                                    label: "DiscoverUSC",
+                                    url: "https://sc.edu/about/signature_events/discover_uofsc/"
+                                }
+                            ]
+                        }
+                    }
+
+                },
+
+                {
+
+                    Type:
+                        "Job",
+
+                    Title:
+                        "Research Coordinator",
+
+                    Organization:
+                        "University of South Carolina, B-RAD Lab",
+
+                    Location:
+                        "Columbia, SC",
+
+                    Field:
+                        "Research",
+
+                    Description:
+                        "Recruitment, Stimulus Creation, Presentation",
+
+                    Achievements:
+                        "Collected data in 150+ research sessions using EEG, ECG, interviews, and surveys.",
+
+                    StartYear:
+                        2024,
+
+                    StartMonth:
+                        2,
+
+                    EndYear:
+                        2025,
+
+                    EndMonth:
+                        7
+
+                },
+
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "Volunteer Researcher",
+
+                    Organization:
+                        "Study of Trauma, Adolescents, Relationships, & Resilience (STARR) Lab",
+
+                    Location:
+                        "Columbia, SC",
+
+                    Field:
+                        "Research",
+
+                    Description:
+                        "Publication, Data Analysis, Data Management",
+
+                    Achievements:
+                        "Revised statistical analyses and created 5 tables.",
+
+                    StartYear:
+                        2023,
+
+                    StartMonth:
+                        7,
+
+                    // EndYear:
+                    //     2026,
+
+                    // EndMonth:
+                    //     7
+
+                },
+
+                {
+
+                    Type:
+                        "Job",
+
+                    Title:
+                        "Animal Care Technician",
+
+                    Organization:
+                        "Carolina Wildlife Center",
+
+                    Location:
+                        "Columbia, SC",
+
+                    Field:
+                        "Non-Profit",
+
+                    Description:
+                        "Animal Husbandry, Veterinary Medicine, Data Management",
+
+                    Achievements:
+                        "Cared for 70+ native species daily, documenting medication, diet, and behavior.",
+                    StartYear:
+                        2023,
+
+                    StartMonth:
+                        9,
+
+                    EndYear:
+                        2024,
+
+                    EndMonth:
+                        1
+                },
+
+                {
+                    Type:
+                        "Job",
+
+                    Title:
+                        "Students Helping Oz Peers (SHOP) Coordinator",
+
+                    Organization:
+                        "State University of New York",
+
+                    Location:
+                        "Oswego, NY",
+
+                    Field:
+                        "Non-Profit",
+
+                    Description:
+                        "Team Management, Fundraising, Data Management",
+
+                    Achievements:
+                        "Supervised 4 interns, 80 student volunteers/year; hosted 5 fundraising events.",
+
+                    StartYear:
+                        2022,
+
+                    StartMonth:
+                        8,
+
+                    EndYear:
+                        2023,
+
+                    EndMonth:
+                         5
+
+                },
+
+                {
+                    Type:
+                        "Job",
+
+                    Title:
+                        "Clubhouse Specialist Substitute",
+
+                    Organization:
+                        "Oswego County Opportunities",
+
+                    Location:
+                        "Oswego, NY",
+
+                    Field:
+                        "Non-Profit",
+
+                    Description:
+                        "Peer Support, Group Facilitation, Behavior Management",
+
+                    Achievements:
+                        "Facilitated groups of 10+ per day of youth ages 12-21.",
+
+                    StartYear:
+                        2022,
+
+                    StartMonth:
+                        8,
+
+                    EndYear:
+                        2023,
+
+                    EndMonth:
+                         5
+
+                },
+
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "Data Collector",
+
+                    Organization:
+                        "State University of New York at Oswego, JKLab",
+
+                    Location:
+                        "Oswego, NY",
+
+                    Field:
+                        "Research",
+
+                    Description:
+                        "Stimulus Creation, Data Collection, Team Collaboration",
+
+                    Achievements:
+                        "Created and refined 10+ audio stimulus files using Audacity.",
+
+                    StartYear:
+                        2022,
+
+                    StartMonth:
+                        5,
+
+                    EndYear:
+                        2022,
+
+                    EndMonth:
+                         12
+
+                },
+
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "Board Member",
+
+                    Organization:
+                        "Student Health Advisory Council, SUNY Oswego",
+
+                    Location:
+                        "Oswego, NY",
+
+                    Field:
+                        "Research",
+
+                    Description:
+                        "Consulting, Community Advising",
+
+                    Achievements:
+                        "Provided recommendations for student health resources on campus.",
+
+                    StartYear:
+                        2022,
+
+                    StartMonth:
+                        1,
+
+                    EndYear:
+                        2022,
+
+                    EndMonth:
+                         5
+
+                },
+
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "President, Vice President",
+
+                    Organization:
+                        "Queer Trans Outreach Center, SUNY Oswego",
+
+                    Location:
+                        "Oswego, NY",
+
+                    Field:
+                        "Education",
+
+                    Description:
+                        "Presentation, Group Facilitation, Event Planning",
+
+                    Achievements:
+                        "Changed LGBTQ+ campus resources via President's Cabinet.",
+
+                    StartYear:
+                        2021,
+
+                    StartMonth:
+                        8,
+
+                    EndYear:
+                        2023,
+
+                    EndMonth:
+                         5
+
+                },
+
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "President, Vice President",
+
+                    Organization:
+                        "Cognitive Science Club, SUNY Oswego",
+
+                    Location:
+                        "Oswego, NY",
+
+                    Field:
+                        "Education",
+
+                    Description:
+                        "Group Facilitation, Event Planning",
+
+                    Achievements:
+                        "Directed and planned 5 educational and social events.",
+
+                    StartYear:
+                        2020,
+
+                    StartMonth:
+                        8,
+
+                    EndYear:
+                        2023,
+
+                    EndMonth:
+                         5
+
+                },
+
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
+                        "Undergraduate Research Assistant",
+
+                    Organization:
+                        "State University of New York at Oswego, RAD Lab",
+
+                    Location:
+                        "Oswego, NY",
+
+                    Field:
+                        "Research",
+
+                    Description:
+                        "Presentation, Data Collection, Data Analysis",
+
+                    Achievements:
+                        "Collected data from 10 participants, presented poster at a local conference.",
+
+                    StartMonth:
+                        1,
+                    
+                    StartYear:
+                        2020,
+
+                    EndYear:
+                        2021,
+
+                    EndMonth:
+                         4
+
+                },
+
+                {
+                    Type:
+                        "Job",
+
+                    Title:
+                        "Peer Specialist",
+
+                    Organization:
+                        "Oswego County Opportunities",
+
+                    Location:
+                        "Oswego, NY",
+
+                    Field:
+                        "Non-Profit",
+
+                    Description:
+                        "Presentation, Group Facilitation, Lesson Planning",
+
+                    Achievements:
+                        "Developed comprehensive training on sex ed and LGBTQ+ topics for youth ages 12-21.",
+
+                    StartYear:
+                        2019,
+
+                    StartMonth:
+                        9,
+
+                    EndYear:
+                        2022,
+
+                    EndMonth:
+                         6
+
+                },
+
             ]
 
         },
-
 
         // =====================================
         // SKILLS
@@ -805,7 +1703,7 @@ const workbook = {
                         2020,
 
                     Status:
-                        "Completed",
+                        "Complete",
 
                     Link:
                         "/assets/media/certificates/Citi-ResponsibleUndergrad.pdf"
@@ -822,7 +1720,7 @@ const workbook = {
                         2021,
 
                     Status:
-                        "Completed"
+                        "Complete"
                 },
 
                 {
@@ -836,7 +1734,7 @@ const workbook = {
                         2024,
 
                     Status:
-                        "Completed",
+                        "Complete",
 
                     Link:
                         "/assets/media/certificates/CITI_SocBeh.pdf"
@@ -853,7 +1751,7 @@ const workbook = {
                         2024,
 
                     Status:
-                        "Completed",
+                        "Complete",
 
                     Link:
                         "/assets/media/certificates/CITI_SocBehRR.pdf"
@@ -870,7 +1768,7 @@ const workbook = {
                         2026,
 
                     Status:
-                        "Completed",
+                        "Complete",
 
                     Link:
                         "/assets/media/certificates/Canva_Essentials.pdf"
@@ -887,7 +1785,7 @@ const workbook = {
                         2026,
 
                     Status:
-                        "Completed",
+                        "Complete",
 
                     Link:
                         "/assets/media/certificates/Canva_GraphicDesign.pdf"
@@ -904,7 +1802,7 @@ const workbook = {
                         2026,
 
                     Status:
-                        "Completed",
+                        "Complete",
 
                     Link:
                         "/assets/media/certificates/Coursera_DataCleaning.pdf"
@@ -921,7 +1819,7 @@ const workbook = {
                         2026,
 
                     Status:
-                        "Completed",
+                        "Complete",
 
                     Link:
                         "/assets/media/certificates/Coursera_JiraSCRUM.pdf"
@@ -938,7 +1836,7 @@ const workbook = {
                         2026,
 
                     Status:
-                        "Completed",
+                        "Complete",
 
                     Link:
                         "/assets/media/certificates/Coursera_Teams.pdf"
@@ -955,7 +1853,7 @@ const workbook = {
                         2026,
 
                     Status:
-                        "Completed",
+                        "Complete",
 
                     Link:
                         "/assets/media/certificates/Coursera_DataViz.pdf"
@@ -972,7 +1870,7 @@ const workbook = {
                         2026,
 
                     Status:
-                        "Completed",
+                        "Complete",
 
                     Link:
                         "/assets/media/certificates/Coursera_ChartsDashboards.pdf"
@@ -989,7 +1887,7 @@ const workbook = {
                         2026,
 
                     Status:
-                        "Completed",
+                        "Complete",
 
                     Link:
                         "/assets/media/certificates/Coursera_FindingExcel.pdf"
@@ -1014,9 +1912,7 @@ const workbook = {
         }
 
     }
-
 };
-
 
 // ==========================================
 // DATA CLEANING
@@ -1283,10 +2179,10 @@ function getExperienceYears() {
         Research:
             0,
 
-        "Non-profit":
+        "Non-Profit":
             0,
 
-        Misc:
+        Education:
             0
 
     };
@@ -1400,10 +2296,10 @@ function getExperienceYears() {
             totals.Research ?? 0,
 
         yearsNonProfitExperience:
-            totals["Non-profit"] ?? 0,
+            totals["Non-Profit"] ?? 0,
 
-        yearsMiscExperience:
-            totals.Misc ?? 0
+        yearsEduExperience:
+            totals.Education ?? 0
     };
 }
 
@@ -1521,7 +2417,7 @@ function getSkillMetrics() {
 
         experienceYears.yearsNonProfitExperience +
 
-        experienceYears.yearsMiscExperience;
+        experienceYears.yearsEduExperience;
 
 
     /*
