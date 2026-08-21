@@ -241,6 +241,43 @@ const workbook = {
                         "Volunteer",
 
                     Title:
+                        "Volunteer Editor",
+
+                    Organization:
+                        "Internet Archive (Open Library)",
+
+                    Location:
+                        "Remote",
+
+                    Field:
+                        "Library",
+
+                    Description:
+                        "Copyediting, Metadata",
+
+                    Achievements:
+                        "Edit metadata for 4 books.",
+
+                    StartYear:
+                        2026,
+
+                    StartMonth:
+                        7,
+
+                    EndYear:
+                        null,
+
+                    EndMonth:
+                        null
+
+                },
+
+                {
+
+                    Type:
+                        "Volunteer",
+
+                    Title:
                         "Peer Reviewer",
 
                     Organization:
@@ -1905,6 +1942,20 @@ const workbook = {
 
                     Status:
                         "Upcoming"
+                },
+
+                {
+                    Certificates:
+                        "Certified Interpretive Guide Certificate",
+
+                    Provider:
+                        "National Association for Interpreters",
+
+                    Year:
+                        2026,
+
+                    Status:
+                        "Tentative"
                 }
 
             ]
