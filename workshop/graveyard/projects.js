@@ -1,10 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
     /* =================================================
        PROJECT DATA
+       Keep your existing projects array above this point.
     ================================================= */
 
     const projects = [
+
+        /* -------------------------------------------------
+           KEEP YOUR EXISTING PROJECT OBJECTS HERE
+        ------------------------------------------------- */
 
         {
             title: "Publications",
@@ -57,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
             `
         },
 
-
         {
             title: "Thesis",
             shelf: 1,
@@ -94,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
             `
         },
 
-
         {
             title: "Research",
             shelf: 1,
@@ -122,7 +125,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 </p>
             `
         },
-
 
         {
             title: "Teaching",
@@ -154,7 +156,6 @@ document.addEventListener("DOMContentLoaded", function () {
             `
         },
 
-
         {
             title: "Projects",
             shelf: 1,
@@ -184,7 +185,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 </p>
             `
         },
-
 
         {
             title: "Code",
@@ -216,7 +216,6 @@ document.addEventListener("DOMContentLoaded", function () {
             `
         },
 
-
         {
             title: "Design",
             shelf: 2,
@@ -247,7 +246,6 @@ document.addEventListener("DOMContentLoaded", function () {
             `
         },
 
-
         {
             title: "Archive",
             shelf: 2,
@@ -275,7 +273,6 @@ document.addEventListener("DOMContentLoaded", function () {
             `
         },
 
-
         {
             title: "Fieldwork",
             shelf: 2,
@@ -302,7 +299,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 </p>
             `
         },
-
 
         {
             title: "Data",
@@ -333,7 +329,6 @@ document.addEventListener("DOMContentLoaded", function () {
             `
         },
 
-
         {
             title: "Writing",
             shelf: 2,
@@ -362,7 +357,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 </p>
             `
         },
-
 
         {
             title: "Media",
@@ -393,12 +387,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 </p>
             `
         }
-
     ];
 
 
     /* =================================================
-       GET HTML ELEMENTS
+       DOM
     ================================================= */
 
     const shelfOne =
@@ -410,20 +403,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const viewer =
         document.getElementById("book-viewer");
 
-    const openBook =
-        document.getElementById("open-book");
-
-    const cover =
-        document.getElementById("book-front-cover");
-
     const backdrop =
         document.getElementById("viewer-backdrop");
+
+    const openBook =
+        document.getElementById("open-book");
 
     const closeButton =
         document.getElementById("close-book");
 
     const coverTitle =
         document.getElementById("cover-title");
+
+    const backCoverTitle =
+        document.getElementById("back-cover-title");
 
     const leftTitle =
         document.getElementById("left-title");
@@ -437,21 +430,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const rightContent =
         document.getElementById("right-content");
 
+    const pageFlipLayer =
+        document.getElementById("page-flip-layer");
 
-    /* =================================================
-       SAFETY CHECK
-    ================================================= */
+    const previousButton =
+        document.getElementById("previous-page");
 
-    /*
-     * If one of the important elements is missing,
-     * this will make the problem obvious in the
-     * browser console.
-     */
+    const nextButton =
+        document.getElementById("next-page");
 
-    if (!shelfOne || !shelfTwo) {
 
+    if (
+        !shelfOne ||
+        !shelfTwo ||
+        !viewer ||
+        !openBook
+    ) {
         console.error(
-            "ERROR: Could not find shelf-one or shelf-two."
+            "Book viewer could not initialize."
         );
 
         return;
@@ -459,14 +455,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =================================================
-       CREATE BOOK
+       STATE
+    ================================================= */
+
+    let activeProject = null;
+
+    let activeShelfBook = null;
+
+    let pageIndex = 0;
+
+    let isAnimating = false;
+
+    let closeTimer = null;
+
+
+    /*
+     * This is deliberately a separate timing system.
+     *
+     * It makes the physical sequence obvious and gives
+     * you places to add sound, texture loading, or
+     * higher-quality 3D assets later.
+     */
+
+    const TIMING = {
+
+        pull: 850,
+
+        face: 600,
+
+        open: 800,
+
+        page: 720,
+
+        close: 800
+    };
+
+
+    /* =================================================
+       CREATE SHELF BOOK
     ================================================= */
 
     function createBook(project) {
-
-        /*
-         * Wrapper
-         */
 
         const wrapper =
             document.createElement("div");
@@ -480,20 +509,12 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-        /*
-         * Shadow
-         */
-
         const shadow =
             document.createElement("div");
 
         shadow.className =
             "book-shadow";
 
-
-        /*
-         * Book
-         */
 
         const book =
             document.createElement("div");
@@ -503,12 +524,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         book.style.setProperty(
             "--width",
-            project.width + "px"
+            `${project.width}px`
         );
 
         book.style.setProperty(
             "--height",
-            project.height + "px"
+            `${project.height}px`
         );
 
         book.style.setProperty(
@@ -521,11 +542,6 @@ document.addEventListener("DOMContentLoaded", function () {
             project.accent
         );
 
-
-        /*
-         * Title size
-         */
-
         book.style.setProperty(
             "--title-size",
             project.width < 60
@@ -534,10 +550,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-        /*
-         * Spine
-         */
-
         const spine =
             document.createElement("div");
 
@@ -545,10 +557,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "book-spine decoration-" +
             project.decoration;
 
-
-        /*
-         * Title
-         */
 
         const title =
             document.createElement("span");
@@ -560,10 +568,6 @@ document.addEventListener("DOMContentLoaded", function () {
             project.title;
 
 
-        /*
-         * Assemble
-         */
-
         spine.appendChild(title);
 
         book.appendChild(spine);
@@ -573,18 +577,14 @@ document.addEventListener("DOMContentLoaded", function () {
         wrapper.appendChild(book);
 
 
-        /*
-         * Clicking the book opens it.
-         */
-
         wrapper.addEventListener(
-        "click",
-        function () {
+            "click",
+            () => {
 
-            openProject(
-                project,
-                wrapper
-            );
+                openProject(
+                    project,
+                    wrapper
+                );
 
             }
         );
@@ -595,34 +595,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =================================================
-       CREATE ALL BOOKS
+       BUILD SHELVES
     ================================================= */
 
-    projects.forEach(
-        function (project) {
+    projects.forEach(project => {
 
-            const book =
-                createBook(project);
+        const book =
+            createBook(project);
 
+        if (project.shelf === 1) {
 
-            if (project.shelf === 1) {
+            shelfOne.appendChild(book);
 
-                shelfOne.appendChild(book);
+        } else {
 
-            } else {
-
-                shelfTwo.appendChild(book);
-
-            }
+            shelfTwo.appendChild(book);
 
         }
-    );
 
+    });
 
-    /*
-     * This should appear in your browser console.
-     * It's useful for confirming that JS ran.
-     */
 
     console.log(
         "Bookshelf loaded:",
@@ -630,266 +622,476 @@ document.addEventListener("DOMContentLoaded", function () {
         "books"
     );
 
-/* =================================================
-   OPEN PROJECT
-================================================= */
 
-function openProject(project, bookElement) {
+    /* =================================================
+       POPULATE BOOK
+    ================================================= */
 
-    if (
-        viewer.classList.contains("active")
-    ) {
-        return;
+    function populateBook(project) {
+
+        activeProject = project;
+
+        coverTitle.textContent =
+            project.title;
+
+        backCoverTitle.textContent =
+            project.title;
+
+        leftTitle.textContent =
+            project.leftTitle;
+
+        leftContent.innerHTML =
+            project.leftContent;
+
+        rightTitle.textContent =
+            project.rightTitle;
+
+        rightContent.innerHTML =
+            project.rightContent;
     }
 
 
-    /* ================================================
-       POPULATE
-    ================================================ */
+    /* =================================================
+       CALCULATE SHELF POSITION
+    ================================================= */
 
-    coverTitle.textContent =
-        project.title;
-
-    leftTitle.textContent =
-        project.leftTitle;
-
-    leftContent.innerHTML =
-        project.leftContent;
-
-    rightTitle.textContent =
-        project.rightTitle;
-
-    rightContent.innerHTML =
-        project.rightContent;
-
-
-    /* ================================================
-       FIND ORIGINAL BOOK
-    ================================================ */
-
-    const bookRect =
-        bookElement.getBoundingClientRect();
-
-
-    const bookCenterX =
-        bookRect.left +
-        bookRect.width / 2;
-
-    const bookCenterY =
-        bookRect.top +
-        bookRect.height / 2;
-
-
-    const viewportCenterX =
-        window.innerWidth / 2;
-
-    const viewportCenterY =
-        window.innerHeight / 2;
-
-
-    const startX =
-        bookCenterX -
-        viewportCenterX;
-
-    const startY =
-        bookCenterY -
-        viewportCenterY;
-
-
-    /* ================================================
-       START SCALE
-    ================================================ */
-
-    const targetWidth =
-        Math.min(
-            900,
-            window.innerWidth * 0.86
-        );
-
-    const startScale =
-        Math.max(
-            bookRect.width / targetWidth,
-            0.12
-        );
-
-
-    /* ================================================
-       POSITION VIEWER BOOK
-    ================================================ */
-
-    openBook.style.setProperty(
-        "--book-start-x",
-        `${startX}px`
-    );
-
-    openBook.style.setProperty(
-        "--book-start-y",
-        `${startY}px`
-    );
-
-    openBook.style.setProperty(
-        "--book-start-scale",
-        startScale
-    );
-
-
-    /* ================================================
-       MARK ORIGINAL
-    ================================================ */
-
-    bookElement.classList.add(
-        "being-opened"
-    );
-
-
-    /* ================================================
-       SHOW VIEWER
-    ================================================ */
-
-    viewer.classList.add(
-        "active"
-    );
-
-    document.body.style.overflow =
-        "hidden";
-
-
-    /*
-     * Force initial transform to render.
-     */
-    void openBook.offsetWidth;
-
-
-    /* ================================================
-       START PHYSICAL ANIMATION
-    ================================================ */
-
-    requestAnimationFrame(() => {
-
-        openBook.classList.add(
-            "expanding"
-        );
-
-    });
-
-
-    /*
-     * Hide the shelf book slightly after the
-     * duplicate has started moving.
-     */
-    setTimeout(() => {
-
-        bookElement.classList.add(
-            "book-has-left"
-        );
-
-    }, 180);
-}
-
-
-/* =================================================
-   CLOSE PROJECT
-================================================= */
-
-function closeProject() {
-
-    if (
-        !viewer.classList.contains("active")
-    ) {
-        return;
-    }
-
-
-    /*
-     * Find the physical book that originally
-     * opened the viewer.
-     */
-
-    const openedBook =
-        document.querySelector(
-            ".book-wrapper.being-opened"
-        );
-
-
-    /*
-     * If we know where the original book is,
-     * calculate its current position.
-     */
-
-    if (openedBook) {
+    function calculateStartPosition(bookElement) {
 
         const rect =
-            openedBook.getBoundingClientRect();
+            bookElement.getBoundingClientRect();
 
-        const bookCenterX =
+        const centerX =
             rect.left +
             rect.width / 2;
 
-        const bookCenterY =
+        const centerY =
             rect.top +
             rect.height / 2;
 
-        const targetX =
-            bookCenterX -
+        const viewportCenterX =
             window.innerWidth / 2;
 
-        const targetY =
-            bookCenterY -
+        const viewportCenterY =
             window.innerHeight / 2;
 
-        const targetScale =
+
+        /*
+         * The viewer book is centered on screen.
+         *
+         * These values tell the 3D book where its
+         * journey begins.
+         */
+
+        const x =
+            centerX -
+            viewportCenterX;
+
+        const y =
+            centerY -
+            viewportCenterY;
+
+
+        /*
+         * Closed shelf book is dramatically smaller
+         * than the open viewer.
+         */
+
+        const viewerHeight =
+            Math.min(
+                620,
+                window.innerHeight * .78
+            );
+
+        const scale =
             Math.max(
-                rect.width /
-                Math.min(
-                    900,
-                    window.innerWidth * 0.86
-                ),
-                0.08
+                rect.height /
+                viewerHeight,
+                .12
+            );
+
+
+        return {
+            x,
+            y,
+            scale
+        };
+    }
+
+
+    /* =================================================
+       OPEN PROJECT
+    ================================================= */
+
+    function openProject(project, bookElement) {
+
+        if (
+            isAnimating ||
+            viewer.classList.contains("active")
+        ) {
+            return;
+        }
+
+
+        isAnimating = true;
+
+        activeShelfBook =
+            bookElement;
+
+
+        populateBook(project);
+
+
+        /*
+         * Determine where the book is on the shelf.
+         */
+
+        const start =
+            calculateStartPosition(
+                bookElement
             );
 
 
         openBook.style.setProperty(
-            "--book-start-x",
-            `${targetX}px`
+            "--start-x",
+            `${start.x}px`
         );
 
         openBook.style.setProperty(
-            "--book-start-y",
-            `${targetY}px`
+            "--start-y",
+            `${start.y}px`
         );
 
         openBook.style.setProperty(
-            "--book-start-scale",
-            targetScale
+            "--start-scale",
+            start.scale
+        );
+
+
+        /*
+         * Pull target.
+         *
+         * Slightly toward the viewer and outward
+         * before it turns.
+         */
+
+        const pullX =
+            start.x * .72;
+
+        const pullY =
+            start.y * .72;
+
+
+        openBook.style.setProperty(
+            "--pull-x",
+            `${pullX}px`
         );
 
         openBook.style.setProperty(
-            "--book-start-rotation",
-            "70deg"
+            "--pull-y",
+            `${pullY}px`
+        );
+
+
+        /*
+         * Reset state.
+         */
+
+        viewer.classList.remove(
+            "is-pulling",
+            "is-facing",
+            "is-opening",
+            "is-open",
+            "is-closing"
+        );
+
+
+        /*
+         * Reset page layer.
+         */
+
+        pageFlipLayer.innerHTML = "";
+
+
+        /*
+         * Show viewer.
+         */
+
+        viewer.classList.add(
+            "active"
+        );
+
+        document.body.style.overflow =
+            "hidden";
+
+
+        /*
+         * Make the shelf book temporarily
+         * non-interactive but leave it visible.
+         */
+
+        bookElement.classList.add(
+            "being-opened"
+        );
+
+
+        /*
+         * Force browser to commit initial
+         * transform before beginning animation.
+         */
+
+        void openBook.offsetWidth;
+
+
+        /*
+         * -----------------------------------------
+         * PHASE 1
+         * Pull book out of shelf.
+         * -----------------------------------------
+         */
+
+        requestAnimationFrame(() => {
+
+            viewer.classList.add(
+                "is-pulling"
+            );
+
+        });
+
+
+        setTimeout(() => {
+
+            /*
+             * -------------------------------------
+             * PHASE 2
+             * Rotate book toward viewer.
+             * -------------------------------------
+             */
+
+            viewer.classList.remove(
+                "is-pulling"
+            );
+
+            viewer.classList.add(
+                "is-facing"
+            );
+
+        }, TIMING.pull);
+
+
+        setTimeout(() => {
+
+            /*
+             * Now the shelf book disappears.
+             *
+             * The viewer copy has physically
+             * reached the center.
+             */
+
+            bookElement.classList.add(
+                "book-has-left"
+            );
+
+
+            /*
+             * -------------------------------------
+             * PHASE 3
+             * Open the physical covers.
+             * -------------------------------------
+             */
+
+            viewer.classList.remove(
+                "is-facing"
+            );
+
+            viewer.classList.add(
+                "is-opening"
+            );
+
+        }, TIMING.pull + TIMING.face);
+
+
+        setTimeout(() => {
+
+            /*
+             * -------------------------------------
+             * PHASE 4
+             * Fully open.
+             * -------------------------------------
+             */
+
+            viewer.classList.remove(
+                "is-opening"
+            );
+
+            viewer.classList.add(
+                "is-open"
+            );
+
+            isAnimating = false;
+
+        }, TIMING.pull + TIMING.face + TIMING.open);
+    }
+
+
+    /* =================================================
+       PAGE TURN
+    ================================================= */
+
+    function turnPage(direction) {
+
+        if (
+            !viewer.classList.contains("is-open") ||
+            isAnimating
+        ) {
+            return;
+        }
+
+
+        /*
+         * For the current two-page implementation,
+         * we only demonstrate the physical page
+         * mechanism.
+         *
+         * Later this becomes:
+         *
+         * pageIndex → page object → page renderer.
+         */
+
+        isAnimating = true;
+
+
+        const page =
+            document.createElement("div");
+
+        page.className =
+            "page-flip";
+
+
+        /*
+         * Give the page the same visual surface
+         * as the real pages.
+         *
+         * Later this can become:
+         *
+         * background-image: url(...)
+         *
+         * or an actual generated page DOM node.
+         */
+
+        if (direction === "next") {
+
+            page.style.background =
+                "linear-gradient(" +
+                "to left," +
+                "#e4d8c0," +
+                "#f8efdf 14%," +
+                "#f8efdf 86%," +
+                "#d8c9af" +
+                ")";
+
+        } else {
+
+            page.style.left = "9px";
+            page.style.right = "auto";
+
+            page.style.transformOrigin =
+                "right center";
+
+            page.style.animationName =
+                "page-turn-back";
+
+        }
+
+
+        pageFlipLayer.appendChild(page);
+
+
+        page.addEventListener(
+            "animationend",
+            () => {
+
+                page.remove();
+
+                isAnimating = false;
+
+            },
+            {
+                once: true
+            }
         );
     }
 
 
-    /*
-     * Reverse the opening.
-     */
+    /* =================================================
+       CLOSE PROJECT
+    ================================================= */
 
-    openBook.classList.remove(
-        "expanding"
-    );
+    function closeProject() {
+
+        if (
+            !viewer.classList.contains("active") ||
+            isAnimating
+        ) {
+            return;
+        }
 
 
-    /*
-     * Wait for the physical book to travel
-     * back toward the shelf.
-     */
+        isAnimating = true;
 
-    setTimeout(
-        function () {
 
-            if (openedBook) {
+        /*
+         * Remove the open state.
+         */
 
-                openedBook.classList.remove(
+        viewer.classList.remove(
+            "is-open",
+            "is-opening"
+        );
+
+
+        /*
+         * Reverse the cover animation first.
+         */
+
+        viewer.classList.add(
+            "is-facing"
+        );
+
+
+        /*
+         * Then rotate the entire book back toward
+         * its shelf orientation.
+         */
+
+        setTimeout(() => {
+
+            viewer.classList.remove(
+                "is-facing"
+            );
+
+            viewer.classList.add(
+                "is-pulling"
+            );
+
+        }, TIMING.open);
+
+
+        /*
+         * Finally return the book to the exact
+         * shelf location.
+         */
+
+        setTimeout(() => {
+
+            viewer.classList.remove(
+                "is-pulling"
+            );
+
+
+            if (activeShelfBook) {
+
+                activeShelfBook.classList.remove(
+                    "book-has-left",
                     "being-opened"
                 );
             }
@@ -904,30 +1106,19 @@ function closeProject() {
                 "";
 
 
-            /*
-             * Reset transforms for the next book.
-             */
+            pageFlipLayer.innerHTML =
+                "";
 
-            openBook.style.removeProperty(
-                "--book-start-x"
-            );
 
-            openBook.style.removeProperty(
-                "--book-start-y"
-            );
+            isAnimating = false;
 
-            openBook.style.removeProperty(
-                "--book-start-scale"
-            );
+            activeProject = null;
 
-            openBook.style.removeProperty(
-                "--book-start-rotation"
-            );
+            activeShelfBook = null;
 
-        },
-        850
-    );
-}
+        }, TIMING.open + TIMING.close);
+    }
+
 
     /* =================================================
        CLOSE BUTTON
@@ -955,7 +1146,7 @@ function closeProject() {
 
     document.addEventListener(
         "keydown",
-        function (event) {
+        event => {
 
             if (
                 event.key === "Escape" &&
@@ -971,38 +1162,44 @@ function closeProject() {
 
 
     /* =================================================
-       PAGE BUTTONS
+       PAGE CONTROLS
     ================================================= */
 
-    document
-        .getElementById("previous-page")
-        .addEventListener(
-            "click",
-            function (event) {
+    nextButton.addEventListener(
+        "click",
+        event => {
 
-                event.stopPropagation();
+            event.stopPropagation();
 
-                console.log(
-                    "Previous page clicked"
-                );
+            turnPage("next");
 
-            }
-        );
+        }
+    );
 
 
-    document
-        .getElementById("next-page")
-        .addEventListener(
-            "click",
-            function (event) {
+    previousButton.addEventListener(
+        "click",
+        event => {
 
-                event.stopPropagation();
+            event.stopPropagation();
 
-                console.log(
-                    "Next page clicked"
-                );
+            turnPage("previous");
 
-            }
-        );
+        }
+    );
+
+
+    /* =================================================
+       PREVENT LINKS FROM CLOSING BOOK
+    ================================================= */
+
+    openBook.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+        }
+    );
 
 });

@@ -1,10 +1,22 @@
 /* =====================================================
-   BASIC RESET
+   PROJECTS — BASE STYLES
+   projects.css
+===================================================== */
+
+
+/* =====================================================
+   RESET
 ===================================================== */
 
 * {
     box-sizing: border-box;
 }
+
+
+html {
+    min-height: 100%;
+}
+
 
 body {
     margin: 0;
@@ -47,16 +59,18 @@ body {
 ===================================================== */
 
 .page-header {
-    text-align: center;
-
     max-width: 700px;
 
     margin:
         0 auto 70px;
+
+    text-align: center;
 }
 
+
 .eyebrow {
-    margin: 0 0 12px;
+    margin:
+        0 0 12px;
 
     font-family:
         Arial,
@@ -66,14 +80,15 @@ body {
 
     font-weight: bold;
 
-    letter-spacing: 0.25em;
+    letter-spacing: .25em;
 
     text-transform: uppercase;
 
     color: #73563c;
 }
 
-h1 {
+
+.page-header h1 {
     margin: 0;
 
     font-size:
@@ -82,11 +97,12 @@ h1 {
     font-weight: normal;
 }
 
+
 .intro {
+    max-width: 550px;
+
     margin:
         20px auto 0;
-
-    max-width: 550px;
 
     line-height: 1.7;
 
@@ -102,15 +118,12 @@ h1 {
     width:
         min(1100px, 95vw);
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 
     position: relative;
 }
 
-
-/* =====================================================
-   SHELF UNIT
-===================================================== */
 
 .shelf-unit {
     position: relative;
@@ -122,7 +135,7 @@ h1 {
 
 
 /* =====================================================
-   BOOK AREA
+   SHELF BOOKS
 ===================================================== */
 
 .books {
@@ -142,22 +155,18 @@ h1 {
         0 25px;
 
     overflow: visible;
-
-    /*
-     * Needed for 3D interactions.
-     */
-    perspective: 1200px;
 }
 
 
 /* =====================================================
-   BOOK WRAPPER
+   SHELF BOOK WRAPPER
 ===================================================== */
 
 .book-wrapper {
     position: relative;
 
-    flex: 0 0 auto;
+    flex:
+        0 0 auto;
 
     height: 285px;
 
@@ -165,23 +174,29 @@ h1 {
 
     align-items: flex-end;
 
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    appearance: none;
+
     transform-origin:
         bottom center;
 
+    transform:
+        rotate(var(--rotation));
+
     transition:
-        transform 0.35s
+        transform .35s
         cubic-bezier(.2,.8,.2,1);
 
-    /*
-     * Very important.
-     */
     z-index: 2;
 }
 
-
-/* =====================================================
-   HOVER
-===================================================== */
 
 .book-wrapper:hover {
     transform:
@@ -192,21 +207,26 @@ h1 {
     z-index: 100;
 }
 
-/* =====================================================
-   BOOK BEING PULLED FROM SHELF
-===================================================== */
-.book-wrapper.being-opened {
 
-    pointer-events: none;
-    opacity: 1;
+.book-wrapper:focus-visible {
+    outline:
+        3px solid
+        rgba(255,255,255,.9);
+
+    outline-offset:
+        5px;
 }
 
-.book-wrapper.book-has-left {
+
+.book-wrapper.being-opened {
+    pointer-events: none;
+
     opacity: 0;
 }
 
+
 /* =====================================================
-   BOOK
+   SHELF BOOK
 ===================================================== */
 
 .book {
@@ -216,7 +236,10 @@ h1 {
 
     height: var(--height);
 
-    background: var(--color);
+    display: block;
+
+    background:
+        var(--color);
 
     border-radius:
         2px
@@ -224,22 +247,21 @@ h1 {
         4px
         2px;
 
-    cursor: pointer;
-
     box-shadow:
         inset 5px 0 7px
-            rgba(255,255,255,0.15),
+            rgba(255,255,255,.15),
 
         inset -6px 0 8px
-            rgba(0,0,0,0.25),
+            rgba(0,0,0,.25),
 
         3px 5px 7px
-            rgba(0,0,0,0.3);
+            rgba(0,0,0,.3);
 
     transition:
-        filter 0.3s ease,
-        box-shadow 0.3s ease;
+        filter .3s ease,
+        box-shadow .3s ease;
 }
+
 
 .book-wrapper:hover .book {
     filter:
@@ -247,18 +269,18 @@ h1 {
 
     box-shadow:
         inset 5px 0 7px
-            rgba(255,255,255,0.18),
+            rgba(255,255,255,.18),
 
         inset -6px 0 8px
-            rgba(0,0,0,0.18),
+            rgba(0,0,0,.18),
 
         10px 18px 25px
-            rgba(0,0,0,0.35);
+            rgba(0,0,0,.35);
 }
 
 
 /* =====================================================
-   BOOK SPINE
+   SHELF SPINE
 ===================================================== */
 
 .book-spine {
@@ -275,6 +297,7 @@ h1 {
     overflow: hidden;
 }
 
+
 .book-title {
     position: relative;
 
@@ -282,22 +305,23 @@ h1 {
 
     color: white;
 
-    font-size: var(--title-size);
+    font-size:
+        var(--title-size);
 
-    font-weight: normal;
-
-    letter-spacing: 0.08em;
+    letter-spacing:
+        .08em;
 
     text-align: center;
 
-    writing-mode: vertical-rl;
+    writing-mode:
+        vertical-rl;
 
     transform:
         rotate(180deg);
 
     text-shadow:
         1px 1px 2px
-        rgba(0,0,0,0.6);
+        rgba(0,0,0,.6);
 }
 
 
@@ -305,11 +329,8 @@ h1 {
    SPINE DECORATIONS
 ===================================================== */
 
-/* Lines */
-
 .decoration-lines::before,
 .decoration-lines::after {
-
     content: "";
 
     position: absolute;
@@ -323,20 +344,19 @@ h1 {
         var(--accent);
 }
 
+
 .decoration-lines::before {
     top: 15px;
 }
+
 
 .decoration-lines::after {
     bottom: 15px;
 }
 
 
-/* Bands */
-
 .decoration-bands::before,
 .decoration-bands::after {
-
     content: "";
 
     position: absolute;
@@ -349,22 +369,21 @@ h1 {
     background:
         var(--accent);
 
-    opacity: 0.8;
+    opacity: .8;
 }
+
 
 .decoration-bands::before {
     top: 25px;
 }
+
 
 .decoration-bands::after {
     bottom: 25px;
 }
 
 
-/* Panel */
-
 .decoration-panel::before {
-
     content: "";
 
     position: absolute;
@@ -381,14 +400,11 @@ h1 {
 
     border-radius: 3px;
 
-    opacity: 0.8;
+    opacity: .8;
 }
 
 
-/* Ornament */
-
 .decoration-ornament::before {
-
     content: "✦";
 
     position: absolute;
@@ -406,10 +422,7 @@ h1 {
 }
 
 
-/* Classic */
-
 .decoration-classic::before {
-
     content: "";
 
     position: absolute;
@@ -430,7 +443,7 @@ h1 {
 
 
 /* =====================================================
-   BOOK SHADOW
+   SHELF SHADOW
 ===================================================== */
 
 .book-shadow {
@@ -448,22 +461,23 @@ h1 {
     border-radius: 50%;
 
     background:
-        rgba(0,0,0,0.3);
+        rgba(0,0,0,.3);
 
     filter:
         blur(5px);
 
     transition:
-        transform 0.35s ease,
-        opacity 0.35s ease;
+        transform .35s ease,
+        opacity .35s ease;
 }
+
 
 .book-wrapper:hover .book-shadow {
     transform:
         translateX(-50%)
-        scaleX(0.65);
+        scaleX(.65);
 
-    opacity: 0.5;
+    opacity: .5;
 }
 
 
@@ -484,17 +498,17 @@ h1 {
             #4d2a15
         );
 
-    border-radius:
-        3px;
+    border-radius: 3px;
 
     border-top:
         3px solid
-        rgba(255,255,255,0.15);
+        rgba(255,255,255,.15);
 
     box-shadow:
         0 5px 0 #321a0d,
+
         0 12px 20px
-            rgba(0,0,0,0.35);
+            rgba(0,0,0,.35);
 
     z-index: 200;
 }
@@ -511,15 +525,17 @@ h1 {
 
     z-index: 5000;
 
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
     visibility: hidden;
 
     pointer-events: none;
+
+    --book-color: #5b2925;
+    --book-accent: #d6ad57;
+
+    --cover-width: min(390px, 72vw);
+    --cover-height: min(663px, 82vh);
 }
+
 
 .book-viewer.active {
     visibility: visible;
@@ -527,658 +543,145 @@ h1 {
     pointer-events: auto;
 }
 
+
 /* =====================================================
    BACKDROP
 ===================================================== */
 
 .viewer-backdrop {
-
     position: absolute;
+
     inset: 0;
-    background: rgba(22,16,11,0.82);
-    backdrop-filter: blur(6px);
+
+    background:
+        rgba(69, 49, 31, .35);
+
+    backdrop-filter:
+        blur(3px);
+
     opacity: 0;
+
     transition:
-        opacity 0.5s ease;
+        opacity .45s ease;
 }
+
 
 .book-viewer.active
 .viewer-backdrop {
     opacity: 1;
 }
 
-/* =====================================================
-   PHYSICAL BOOK COVERS
-===================================================== */
-
-.book-cover {
-
-    position: absolute;
-
-    top: 0;
-    bottom: 0;
-
-    width: 50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #71352f,
-            #4c201e
-        );
-
-    border-radius: 4px;
-
-    transform-style: preserve-3d;
-
-    box-shadow:
-        0 10px 25px rgba(0,0,0,.35);
-
-    z-index: 20;
-}
-
 
 /* =====================================================
-   FRONT COVER
+   BOOK STAGE
 ===================================================== */
 
-.book-front-cover {
-
-    right: 0;
-
-    transform-origin:
-        left center;
-
-    transform:
-        rotateY(-178deg);
-
-    transition:
-        transform
-        0.85s
-        cubic-bezier(.2,.75,.2,1);
-
-    transition-delay:
-        0.35s;
-}
-
-.book-front-cover::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: -8px;
-
-    top: 0;
-    bottom: 0;
-
-    width: 10px;
-
-    background:
-        linear-gradient(
-            to right,
-            rgba(0,0,0,.45),
-            rgba(255,255,255,.12),
-            rgba(0,0,0,.35)
-        );
-
-    box-shadow:
-        2px 0 4px rgba(0,0,0,.3);
-
-    transform:
-        translateZ(5px);
-}
-
-
-/* =====================================================
-   OPEN FRONT COVER
-===================================================== */
-
-.open-book.expanding .book-front-cover {
-
-    transform:
-        rotateY(0deg);
-}
-
-/* =====================================================
-   OPEN BOOK — PHYSICAL OBJECT
-===================================================== */
-
-.open-book {
-
-    position: relative;
-
-    width:
-        min(900px, 86vw);
-
-    height:
-        min(620px, 78vh);
-
-    transform-style: preserve-3d;
-
-    /*
-     * This is the camera distance for the 3D scene.
-     */
-    perspective: 1800px;
-
-    /*
-     * The book initially lives at the location of
-     * the physical spine on the shelf.
-     */
-    transform:
-        translate3d(
-            var(--book-start-x, 0px),
-            var(--book-start-y, 0px),
-            -450px
-        )
-        rotateY(78deg)
-        rotateX(4deg)
-        scale(
-            var(--book-start-scale, 0.15)
-        );
-
-    transform-origin:
-        left center;
-
-    opacity: 0;
-
-    transition:
-        transform
-        1.25s
-        cubic-bezier(.2, .85, .25, 1),
-
-        opacity
-        0.12s linear;
-}
-
-.book-block {
-
+.book-stage {
     position: absolute;
 
     inset: 0;
 
-    transform-style: preserve-3d;
+    display: flex;
 
-    z-index: 10;
-}
-
-
-
-/* =====================================================
-   BOOK PULLS OUT AND OPENS
-===================================================== */
-
-.open-book.expanding {
-
-    transform:
-        translate3d(
-            0,
-            0,
-            0
-        )
-        rotateY(0deg)
-        rotateX(0deg)
-        scale(1);
-
-    opacity: 1;
-}
-
-/* =====================================================
-   BOOK DEPTH
-===================================================== */
-
-.open-book::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 4px;
-    bottom: 4px;
-
-    width: 18px;
-
-    transform:
-        translateX(-50%)
-        translateZ(-10px);
-
-    background:
-        linear-gradient(
-            to right,
-            rgba(50,35,20,0.35),
-            rgba(255,255,255,0.15),
-            rgba(50,35,20,0.35)
-        );
-
-    filter:
-        blur(1px);
-
-    z-index: 0;
+    align-items: center;
+    justify-content: center;
 
     pointer-events: none;
 }
 
-/* =====================================================
-   CENTER GUTTER
-===================================================== */
-
-.open-book::after {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    bottom: 0;
-
-    left: 50%;
-
-    width: 10px;
-
-    transform:
-        translateX(-50%)
-        translateZ(18px);
-
-    background:
-        linear-gradient(
-            to right,
-            rgba(50,35,20,.30),
-            rgba(255,255,255,.32),
-            rgba(50,35,20,.18)
-        );
-
-    box-shadow:
-        0 0 12px
-        rgba(0,0,0,.18);
-
-    z-index: 100;
-
-    pointer-events: none;
-}
 
 /* =====================================================
-   PAGES
+   COVER
+
+   The cover is exactly one page wide.
+
+   Ratio:
+       5 : 8.5
 ===================================================== */
 
-.book-page {
-
+.book-cover {
     position: absolute;
 
-    top: 0;
-    bottom: 0;
+    width:
+        var(--cover-width);
 
-    width: 50%;
+    height:
+        var(--cover-height);
 
-    padding:
-        clamp(25px, 4vw, 50px);
+    display: flex;
 
-    color: #33271d;
-
-    transform-style: preserve-3d;
-
-    opacity: 1;
+    align-items: center;
+    justify-content: center;
 
     overflow: hidden;
 
-    backface-visibility: hidden;
+    pointer-events: auto;
 
-    box-shadow:
-        0 12px 30px
-        rgba(0,0,0,0.28);
-}
+    color:
+        #f5e7c7;
 
-
-/* =====================================================
-   LEFT PAGE
-===================================================== */
-
-.left-page {
-
-    left: 0;
+    background:
+        var(--book-color);
 
     border-radius:
-        5px 0 0 5px;
-
-    background:
-        linear-gradient(
-            to right,
-            #e6dac2 0%,
-            #f4ead5 12%,
-            #f8efdf 100%
-        );
-
-    transform-origin:
-        right center;
-}
-
-
-/* =====================================================
-   RIGHT PAGE
-===================================================== */
-
-.right-page {
-
-    right: 0;
-
-    border-radius:
-        0 5px 5px 0;
-
-    background:
-        linear-gradient(
-            to left,
-            #e4d8c0 0%,
-            #f4ead5 12%,
-            #f8efdf 100%
-        );
-
-    transform-origin:
-        left center;
-}
-
-
-/* =====================================================
-   PAGE EDGE SHADOWS
-===================================================== */
-
-.left-page::after {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    right: 0;
-    bottom: 0;
-
-    width: 30px;
-
-    background:
-        linear-gradient(
-            to right,
-            transparent,
-            rgba(70,50,30,0.12)
-        );
-
-    pointer-events: none;
-}
-
-
-.right-page::after {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    bottom: 0;
-
-    width: 30px;
-
-    background:
-        linear-gradient(
-            to left,
-            transparent,
-            rgba(70,50,30,0.12)
-        );
-
-    pointer-events: none;
-}
-
-/* =====================================================
-   BOOK GUTTER
-===================================================== */
-
-.open-book .left-page::after,
-.open-book .right-page::after {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    bottom: 0;
-
-    width: 20px;
-
-    pointer-events: none;
-}
-
-.open-book .left-page::after {
-
-    right: 0;
-
-    background:
-        linear-gradient(
-            to right,
-            transparent,
-            rgba(80,60,40,0.12)
-        );
-}
-
-.open-book .right-page::after {
-
-    left: 0;
-
-    background:
-        linear-gradient(
-            to left,
-            transparent,
-            rgba(80,60,40,0.12)
-        );
-}
-
-
-/* =====================================================
-   PAGE CONTENT
-===================================================== */
-
-.page-content {
-    height: 100%;
-
-    overflow-y: auto;
-}
-
-.page-label {
-
-    display: block;
-
-    margin-bottom: 15px;
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size: 10px;
-
-    font-weight: bold;
-
-    letter-spacing:
-        0.2em;
-
-    color:
-        #927548;
-}
-
-.book-page h2 {
-
-    margin:
-        0 0 25px;
-
-    font-size:
-        clamp(25px, 4vw, 38px);
-
-    font-weight:
-        normal;
-}
-
-.book-page p {
-
-    line-height:
-        1.75;
-}
-
-.book-page a {
-
-    color:
-        #713a32;
-
-    font-weight:
-        bold;
-}
-
-
-/* =====================================================
-   PAGE NUMBERS
-===================================================== */
-
-.page-number {
-
-    position: absolute;
-
-    bottom: 20px;
-
-    color:
-        #9b8b72;
-
-    font-size: 12px;
-}
-
-.left-page .page-number {
-    left: 30px;
-}
-
-.right-page .page-number {
-    right: 30px;
-}
-
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
-
-.book-nav {
-
-    position: absolute;
-
-    top: 50%;
-
-    z-index: 500;
-
-    width: 45px;
-    height: 45px;
-
-    transform:
-        translateY(-50%);
-
-    border: none;
-
-    border-radius: 50%;
-
-    background:
-        rgba(255,255,255,0.9);
-
-    color:
-        #3b2b21;
-
-    font-size: 20px;
-
-    cursor: pointer;
+        4px 7px 7px 4px;
 
     box-shadow:
-        0 4px 10px
-        rgba(0,0,0,0.25);
+        inset 8px 0 14px
+            rgba(255,255,255,.12),
+
+        inset -10px 0 18px
+            rgba(0,0,0,.25),
+
+        0 18px 45px
+            rgba(0,0,0,.35);
 }
 
-.previous {
-    left: -60px;
-}
 
-.next {
-    right: -60px;
-}
-
-
-/* =====================================================
-   CLOSE BUTTON
-===================================================== */
-
-.close-book {
+.book-cover::before {
+    content: "";
 
     position: absolute;
 
-    top: 25px;
-    right: 30px;
-
-    z-index: 1000;
-
-    width: 45px;
-    height: 45px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background:
-        white;
-
-    color:
-        #33251c;
-
-    font-size: 30px;
-
-    cursor: pointer;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 700px) {
-
-    .open-book {
-
-        width: 92vw;
-
-        height: 70vh;
-    }
-
-    .book-page {
-
-        padding: 25px;
-    }
-
-    .previous {
-        left: 5px;
-    }
-
-    .next {
-        right: 5px;
-    }
-
-    .close-book {
-
-        top: 15px;
-        right: 15px;
-    }
-}
-
-
-/* =====================================================
-   COVER DESIGN
-===================================================== */
-
-.cover-decoration {
-    position: absolute;
-
-    inset: 35px;
+    inset: 18px;
 
     border:
         1px solid
-        #d9b86b;
+        var(--book-accent);
+
+    opacity: .7;
+
+    pointer-events: none;
+}
+
+
+.book-cover::after {
+    content: "";
+
+    position: absolute;
+
+    left: 25px;
+    right: 25px;
+
+    top: 25px;
+    bottom: 25px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    pointer-events: none;
+}
+
+
+.book-cover-decoration {
+    position: relative;
+
+    z-index: 2;
+
+    width: 72%;
+
+    min-height: 60%;
 
     display: flex;
 
@@ -1187,50 +690,208 @@ h1 {
     align-items: center;
     justify-content: center;
 
-    gap: 18px;
-
-    color:
-        #d9b86b;
+    gap: 22px;
 
     text-align: center;
+
+    border:
+        1px solid
+        rgba(214,173,87,.45);
+
+    padding:
+        35px 20px;
 }
 
-.cover-small {
+
+.book-cover-small {
     font-family:
         Arial,
         sans-serif;
 
     font-size: 10px;
 
+    font-weight: bold;
+
     letter-spacing:
-        0.25em;
+        .24em;
+
+    color:
+        var(--book-accent);
 }
 
-.cover-title {
+
+.book-cover-title {
+    max-width: 90%;
+
     font-size:
-        clamp(25px, 4vw, 45px);
+        clamp(28px, 5vw, 44px);
 
-    max-width: 80%;
+    line-height: 1.1;
+
+    font-weight:
+        normal;
+
+    color:
+        #f7ecd6;
 }
 
-.cover-line {
-    width: 50px;
+
+.book-cover-line {
+    width: 55px;
 
     height: 1px;
 
     background:
-        #d9b86b;
+        var(--book-accent);
 }
+
+
+/* =====================================================
+   OPEN BOOK
+
+   Each interior page has exactly the same dimensions
+   as the cover.
+
+   Total spread:
+       2 × cover width
+===================================================== */
+
+.open-book-spread {
+    position: absolute;
+
+    width:
+        calc(
+            var(--cover-width) * 2
+        );
+
+    height:
+        var(--cover-height);
+
+    display: flex;
+
+    align-items: stretch;
+
+    pointer-events: auto;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    box-shadow:
+        0 18px 45px
+        rgba(0,0,0,.35);
+}
+
+
+/* =====================================================
+   INDIVIDUAL PAGES
+===================================================== */
+
+.book-page {
+    position: relative;
+
+    width:
+        var(--cover-width);
+
+    height:
+        var(--cover-height);
+
+    flex:
+        0 0 var(--cover-width);
+
+    overflow: hidden;
+
+    color:
+        #33271d;
+
+    background:
+        linear-gradient(
+            90deg,
+            #eee2c8 0%,
+            #f8f0df 6%,
+            #f8f0df 94%,
+            #e8dcc2 100%
+        );
+
+    border: 1px solid
+        rgba(102,77,47,.18);
+}
+
+
+.book-page-left {
+    border-radius:
+        4px 0 0 4px;
+
+    box-shadow:
+        inset -12px 0 18px
+        rgba(75,50,27,.08);
+}
+
+
+.book-page-right {
+    border-radius:
+        0 4px 4px 0;
+
+    box-shadow:
+        inset 12px 0 18px
+        rgba(75,50,27,.08);
+}
+
+
+/* =====================================================
+   PAGE INNER AREA
+===================================================== */
+
+.book-page::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 22px;
+
+    border:
+        1px solid
+        rgba(123,94,55,.16);
+
+    pointer-events: none;
+}
+
+
+.page-inner {
+    position: relative;
+
+    height: 100%;
+
+    padding:
+        55px 45px 50px;
+
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #b8a27d
+        transparent;
+}
+
+
+.page-inner::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.page-inner::-webkit-scrollbar-thumb {
+    background:
+        #b8a27d;
+
+    border-radius:
+        10px;
+}
+
 
 /* =====================================================
    PAGE CONTENT
 ===================================================== */
-
-.page-content {
-    height: 100%;
-
-    overflow-y: auto;
-}
 
 .page-label {
     display: block;
@@ -1245,12 +906,14 @@ h1 {
 
     font-weight: bold;
 
-    letter-spacing:
-        0.2em;
+    letter-spacing: .2em;
 
     color:
         #927548;
+
+    text-transform: uppercase;
 }
+
 
 .book-page h2 {
     margin:
@@ -1261,12 +924,19 @@ h1 {
 
     font-weight:
         normal;
+
+    line-height: 1.15;
 }
 
+
 .book-page p {
+    margin:
+        0 0 20px;
+
     line-height:
         1.75;
 }
+
 
 .book-page a {
     color:
@@ -1277,6 +947,12 @@ h1 {
 }
 
 
+.project-chart {
+    width: 100%;
+    height: 300px;
+}
+
+
 /* =====================================================
    PAGE NUMBERS
 ===================================================== */
@@ -1284,65 +960,128 @@ h1 {
 .page-number {
     position: absolute;
 
-    bottom: 20px;
+    bottom: 24px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: .12em;
 
     color:
-        #9b8b72;
-
-    font-size: 12px;
+        #a18b69;
 }
 
-.left-page .page-number {
-    left: 30px;
+
+.page-number-left {
+    left: 35px;
 }
 
-.right-page .page-number {
-    right: 30px;
+
+.page-number-right {
+    right: 35px;
 }
 
 
 /* =====================================================
-   NAVIGATION
+   BOOK GUTTER
 ===================================================== */
 
-.book-nav {
+.book-gutter {
     position: absolute;
 
-    top: 50%;
+    top: 0;
+    bottom: 0;
 
-    z-index: 500;
+    left: 50%;
 
-    width: 45px;
-    height: 45px;
+    width: 20px;
 
     transform:
-        translateY(-50%);
+        translateX(-50%);
 
-    border: none;
+    pointer-events: none;
 
-    border-radius: 50%;
+    z-index: 20;
 
     background:
-        rgba(255,255,255,0.9);
+        linear-gradient(
+            to right,
+            rgba(50,35,20,.03),
+            rgba(50,35,20,.16),
+            rgba(255,255,255,.2),
+            rgba(50,35,20,.10),
+            rgba(50,35,20,.02)
+        );
 
-    color:
-        #3b2b21;
+    opacity: .75;
+}
 
-    font-size: 20px;
 
-    cursor: pointer;
+/* =====================================================
+   PAGE FLIP LAYER
+===================================================== */
+
+.page-flip-layer {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 50;
+
+    overflow: hidden;
+}
+
+
+.page-flip {
+    position: absolute;
+
+    top: 0;
+
+    width:
+        var(--cover-width);
+
+    height:
+        var(--cover-height);
+
+    background:
+        linear-gradient(
+            90deg,
+            #eee2c8,
+            #faf3e3 50%,
+            #ded1b5
+        );
+
+    border:
+        1px solid
+        rgba(80,55,30,.15);
 
     box-shadow:
-        0 4px 10px
-        rgba(0,0,0,0.25);
+        0 8px 18px
+        rgba(45,30,15,.15);
+
+    transform-origin:
+        left center;
 }
 
-.previous {
-    left: -60px;
+
+.page-flip.next {
+    right: 0;
+
+    transform-origin:
+        left center;
 }
 
-.next {
-    right: -60px;
+
+.page-flip.previous {
+    left: 0;
+
+    transform-origin:
+        right center;
 }
 
 
@@ -1351,18 +1090,17 @@ h1 {
 ===================================================== */
 
 .close-book {
-    position: absolute;
+    position: fixed;
 
     top: 25px;
     right: 30px;
 
-    z-index: 1000;
+    z-index: 6000;
 
     width: 45px;
     height: 45px;
 
     border: none;
-
     border-radius: 50%;
 
     background:
@@ -1374,12 +1112,144 @@ h1 {
     font-size: 30px;
 
     cursor: pointer;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,.25);
+
+    transition:
+        transform .2s ease;
+}
+
+
+.close-book:hover {
+    transform:
+        scale(1.06);
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.book-nav {
+    position: fixed;
+
+    top: 50%;
+
+    z-index: 5500;
+
+    width: 45px;
+    height: 45px;
+
+    transform:
+        translateY(-50%);
+
+    border: none;
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.92);
+
+    color:
+        #3b2b21;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 10px
+        rgba(0,0,0,.25);
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        opacity .2s ease;
+}
+
+
+.book-nav:hover:not(:disabled) {
+    background:
+        white;
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+
+.book-nav:disabled {
+    opacity: .3;
+
+    cursor:
+        default;
+}
+
+
+.previous {
+    left: 30px;
+}
+
+
+.next {
+    right: 30px;
+}
+
+
+/* =====================================================
+   VISIBILITY STATES
+===================================================== */
+
+.book-cover.is-visible {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+.open-book-spread.visible {
+    opacity: 1;
+
+    visibility: visible;
 }
 
 
 /* =====================================================
    MOBILE
 ===================================================== */
+
+@media (max-width: 900px) {
+
+    .book-viewer {
+        --cover-width: min(350px, 70vw);
+        --cover-height: min(595px, 80vh);
+    }
+
+
+    .book-nav {
+        width: 42px;
+        height: 42px;
+    }
+
+
+    .previous {
+        left: 12px;
+    }
+
+
+    .next {
+        right: 12px;
+    }
+
+
+    .page-inner {
+        padding:
+            45px 35px 45px;
+    }
+
+}
+
 
 @media (max-width: 700px) {
 
@@ -1388,42 +1258,131 @@ h1 {
             50px 10px 80px;
     }
 
+
     .books {
-        justify-content: flex-start;
+        justify-content:
+            flex-start;
 
-        overflow-x: auto;
+        overflow-x:
+            auto;
 
-        scrollbar-width: none;
+        scrollbar-width:
+            none;
     }
+
 
     .books::-webkit-scrollbar {
         display: none;
     }
 
+
     .book-wrapper {
         flex-shrink: 0;
     }
 
-    .open-book {
-        width: 92vw;
 
-        height: 70vh;
+    .book-viewer {
+        --cover-width: min(300px, 72vw);
+        --cover-height: min(510px, 76vh);
     }
 
-    .book-page {
-        padding: 25px;
+
+    .open-book-spread {
+        transform:
+            scale(.78);
     }
+
+
+    .page-inner {
+        padding:
+            40px 28px 40px;
+    }
+
+
+    .book-page::before {
+        inset: 16px;
+    }
+
 
     .previous {
-        left: 5px;
+        left: 8px;
     }
 
+
     .next {
-        right: 5px;
+        right: 8px;
     }
+
 
     .close-book {
         top: 15px;
         right: 15px;
     }
+
+}
+
+
+/* =====================================================
+   VERY SMALL SCREENS
+===================================================== */
+
+@media (max-width: 500px) {
+
+    .book-viewer {
+        --cover-width: min(270px, 70vw);
+        --cover-height: min(459px, 72vh);
+    }
+
+
+    .open-book-spread {
+        transform:
+            scale(.63);
+    }
+
+
+    .book-nav {
+        width: 38px;
+        height: 38px;
+
+        font-size: 17px;
+    }
+
+
+    .page-inner {
+        padding:
+            35px 22px 35px;
+    }
+
+
+    .book-page h2 {
+        font-size: 24px;
+    }
+
+
+    .book-page p {
+        font-size: 14px;
+    }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+    }
+
 }
