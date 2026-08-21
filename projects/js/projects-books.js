@@ -54,10 +54,10 @@ document.addEventListener(
             );
 
 
-        const shelfTwo =
-            document.getElementById(
-                "shelf-two"
-            );
+        // const shelfTwo =
+        //     document.getElementById(
+        //         "shelf-two"
+        //     );
 
 
         const viewer =
@@ -137,10 +137,10 @@ document.addEventListener(
                 shelfOne
             ],
 
-            [
-                "shelf-two",
-                shelfTwo
-            ],
+            // [
+            //     "shelf-two",
+            //     shelfTwo
+            // ],
 
             [
                 "book-viewer",
@@ -703,8 +703,8 @@ document.addEventListener(
                 "";
 
 
-            shelfTwo.innerHTML =
-                "";
+            // shelfTwo.innerHTML =
+            //     "";
 
 
             projectLibrary.forEach(
@@ -746,20 +746,22 @@ document.addEventListener(
 
 
                     if (
-                        shelf === 2
+                        shelf === 1
                     ) {
-
-                        shelfTwo.appendChild(
-                            book
-                        );
-
-                    } else {
 
                         shelfOne.appendChild(
                             book
                         );
 
-                    }
+                    } 
+                    
+                    // else {
+
+                    //     shelfOne.appendChild(
+                    //         book
+                    //     );
+
+                    // }
 
                 }
             );
@@ -768,9 +770,9 @@ document.addEventListener(
             console.log(
                 "Project book shelves built:",
                 shelfOne.children.length,
-                "books on shelf one;",
-                shelfTwo.children.length,
-                "books on shelf two."
+                "books on shelf one;"
+            //     shelfTwo.children.length,
+            //     "books on shelf two."
             );
 
         }

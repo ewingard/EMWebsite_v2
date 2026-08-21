@@ -397,8 +397,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const shelfOne =
         document.getElementById("shelf-one");
 
-    const shelfTwo =
-        document.getElementById("shelf-two");
+    // const shelfTwo =
+    //     document.getElementById("shelf-two");
 
     const viewer =
         document.getElementById("book-viewer");
@@ -442,7 +442,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (
         !shelfOne ||
-        !shelfTwo ||
+        // !shelfTwo ||
         !viewer ||
         !openBook
     ) {
@@ -607,11 +607,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             shelfOne.appendChild(book);
 
-        } else {
+        } 
+        
+        // else {
 
-            shelfTwo.appendChild(book);
+        //     shelfTwo.appendChild(book);
 
-        }
+        // }
 
     });
 

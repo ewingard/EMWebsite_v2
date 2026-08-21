@@ -37,7 +37,7 @@ body {
             #cdb895
         );
 
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 
@@ -60,10 +60,8 @@ body {
 
 .page-header {
     max-width: 700px;
-
     margin:
-        0 auto 70px;
-
+        0 auto 50px;
     text-align: center;
 }
 
@@ -102,7 +100,7 @@ body {
     max-width: 550px;
 
     margin:
-        20px auto 0;
+        10px auto 0;
 
     line-height: 1.7;
 
@@ -127,9 +125,7 @@ body {
 
 .shelf-unit {
     position: relative;
-
     margin-bottom: 90px;
-
     overflow: visible;
 }
 
@@ -487,7 +483,6 @@ body {
 
 .shelf {
     position: relative;
-
     height: 30px;
 
     background:
@@ -506,7 +501,6 @@ body {
 
     box-shadow:
         0 5px 0 #321a0d,
-
         0 12px 20px
             rgba(0,0,0,.35);
 
