@@ -99,7 +99,7 @@ const projects = [
     {
         id: "volunteer",
 
-        title: "Transcriptions",
+        title: "Transcription",
 
         shelf: 1,
 
@@ -107,7 +107,125 @@ const projects = [
 
         width: 60,
 
-        height: 300
+        height: 300,
+
+        pages: [
+            {
+                number: 1,
+
+                label: "Organization",
+
+                title: "By The People – Library of Congress",
+
+                content: `<p>
+                I have completed 8 campaigns, 93 pages, and 131 total actions (saves, submits, and reviews) for the By The People transcription campaigns.</br>
+                </br>
+                <a href="https://crowd.loc.gov/">By The People <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
+                <a href="/assets/media/experience/ServiceLetter_LOC_082226.pdf">Download my Service Letter <i class="fa-solid fa-file-lines"></i></a>
+                </p>`
+            },
+
+            {
+                number: 2,
+
+                label: "Organization",
+
+                title: "Citizen Archivist Missions - National Archives",
+
+                content: `<p>
+                I have transcribed 5 pages from the <a href="https://catalog.archives.gov/id/598">Records of the President's Commission on the Assassination of President Kennedy <i class="fa-solid fa-arrow-up-right-from-square"></i></a> campaign.</br>
+                </br>
+                <a href="https://www.archives.gov/citizen-archivist/missions">Citizen Archives Missions <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
+                </p>`
+            },
+
+            {
+                number: 3,
+
+                label: "Organization",
+
+                title: "Colored Conventions Project - University of Delaware",
+
+                content: `<p>
+                I have transcribed 3 pages for the Colored Conventions Project (transcribing E.W. Harper's documents).</br>
+                </br>
+                <a href="https://coloredconventions.org/">Colored Conventions Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
+                </p>`
+            },
+
+            {
+                number: 4,
+
+                label: "Organization",
+
+                title: "Volunpeer - Digital Volunteer for the Smithsonian",
+
+                content: `<p>
+                I have reviewed 1 page for the Smithsonian Volunpeer Program.</br>
+                </br>
+                <a href="https://transcription.si.edu/">Smithsonian Transcriptions <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
+                </p>`
+            },
+
+            {
+                number: 5,
+
+                label: "Organization",
+
+                title: "WikiSource",
+
+                content: `<p>
+                I have reviewed 18 page for the 1933 North Dakota Session Laws project, 2 pages for the Tutira-Guthrie-Smith monthly project, and 1 page for the "A Dark Night's Work and Other Tales" monthly project.</br>
+                </br>
+                <a href="https://en.wikisource.org/wiki/Main_Page">WikiSource <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
+                <a href="https://en.wikisource.org/wiki/Special:Contributions/Ezardwizard">My Contributions <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
+                </p>`
+            },
+
+            {
+                number: 6,
+
+                label: "Organization",
+
+                title: "Zooniverse",
+
+                content: `<p>
+                I have reviewed/classified 4 pages across 2 projects, including the E.W. Harper papers for the Colored Conventions Project at the University of Delaware.</br>
+                </br>
+                <a href="https://www.zooniverse.org/">Zooniverse <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </p>`
+            },
+
+            {
+                number: 7,
+
+                label: "Organization",
+
+                title: "Distributed Proofreaders",
+
+                content: `<p>
+                I am planning to volunteer with Project Gutenberg in the future, with their Distributed Proofreaders program.</br>
+                </br>
+                <a href="https://www.pgdp.net/c/">Distributed Proofreaders <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="https://www.gutenberg.org/">Project Gutenberg <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </p>`
+            },
+            {
+                number: 8,
+
+                label: "Organization",
+
+                title: "Lowcountry Digital Library and the South Carolina Historical Society",
+
+                content:
+                `<p>
+                I have completed transcriptions and translations for materials in French for the Lowcountry Digital Library and the South Carolina Historical Society.</br>
+                </br>
+                <a href="https://lcdl.library.cofc.edu/">LCDL <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
+                <a href="https://schistory.org/archives/start-research/">South Carolina Historical Society (SCHS) <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </p>`
+            }
+        ],
     },
 
 
@@ -515,7 +633,7 @@ const projects = [
     {
         id: "eeg",
 
-        title: "Electroencephalography (EEG)",
+        title: "EEG",
 
         shelf: 1,
 
