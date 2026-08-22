@@ -387,7 +387,8 @@ const projects = [
                 title: "FairFace Results",
 
                 content: `
-                <p>
+                <p>FairFace, the model trained on balanced data, did substantially better on accuracy
+                rates overall than the unbalanced model (IRNv1). Using a balanced dataset may help alleviate model bias.
                 </p>
                 `
             },
@@ -400,7 +401,8 @@ const projects = [
                 title: "IRNv1 Results",
 
                 content: `
-                <p>
+                <p> The IRNv1 model performed worse overall, across all conditions. 
+                This model was also had the only accuracy rates that were worse than chance, on transgender men's faces (gender modality x gender identity).
                 </p>
                 `
             },
@@ -413,7 +415,9 @@ const projects = [
                 title: "Final Takeaways",
 
                 content: `
-                <p>
+                <p>Using balanced datasets can help mitigate model bias and increase accuracy rates on diverse faces. 
+                We should include a masculine/feminine gender spectrum to include non-binary people in future gender evaluations.
+                We should consider the impacts of AGR or facial recognition on transgender populations, given poor accuracy rates.
                 </p>
                 `
             },
