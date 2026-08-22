@@ -262,12 +262,7 @@ const projects = [
                 content: `
                     <p>
                         A collection of academic and
-                        professional publications.
-                    </p>
-
-                    <p>
-                        This project documents selected
-                        research, writing, and scholarly work.
+                        professional publications & presentations.
                     </p>
                 `
             },
@@ -280,58 +275,60 @@ const projects = [
 
                 label: "2026",
 
-                title: "Current Publications",
+                title: "Current Publications & Presentations",
 
                 content: `
-                    <p>
-                        <strong>
-                            Paper Title
-                        </strong>
-                    </p>
+                    <p>Wingard, E.M. (2026, April). Beyond the Black Box: Digital Library Workflows Behind the Lowcountry Digital Library. Presented at the LibLearning Rretreat, Charleston, SC.</p>
 
                     <p>
-                        Journal Name
-                    </p>
-
-                    <p>
-                        Description of the publication
-                        and its contribution.
-                    </p>
-
-                    <p>
-                        <a href="/documents/paper.pdf">
-                            Read PDF →
+                        <a href="LibLearning2026 _DigitalLib.pdf">
+                            Presentation <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i>
                         </a>
                     </p>
                 `
             },
 
-
             {
-                number: "3",
+                number: 3,
 
                 type: "text",
 
-                label: "2025",
+                label: "Research",
 
-                title: "Previous Work",
+                title: "2024",
 
-                content: `
-                    <p>
-                        Another publication from 2025.
-                    </p>
-
-                    <p>
-                        <a href="/documents/publication.pdf">
-                            Read publication →
+                content: `<p>
+                Hersey, J., Morgan, A., Cheever, A., Nelson, C.M., Wingard, E.M., & Hudac, C.M. (2024, April).
+                Exploring Nonverbal Communication Differences Among Individuals in Romantic Partnerships: A Neuroscientific Perspective.
+                Award winning section poster presented at DiscoverUSC, Columbia, SC.</p>
+                
+                <p>
+                    <a href="/assets/media/experience/LoveBrain_HerseyMorgan.pdf" target="_blank">
+                            Presentation PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i>
+                    </a> | <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/lovebrain_nv_discoverscposter_finalversion.pdf" target="_blank">
+                            B-RAD <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </a>
-                    </p>
-                `
+                </p>`
+
+            },
+
+            {
+                number: 4,
+
+                type: "text",
+
+                label: "Research",
+
+                title: "2023",
+
+                content: `<p>
+                        <strong>Wingard, E.M.</strong> (2023, May). The Impact of Biases in Facial Recognition Artificial Neural Networks. <a href="https://www.illuminatenrhc.com/post/the-impact-of-biases-in-facial-recognition-artificial-neural-networks-by-ezra-wingard\" target="_blank">Illuminate NRHC, 5, 25-32.</a>
+                    </p>`
             },
 
 
             {
-                number: "4",
+                number: "5",
 
                 type: "chart",
 
@@ -352,7 +349,7 @@ const projects = [
 
 
             {
-                number: "5",
+                number: "6",
 
                 type: "links",
 
