@@ -6,7 +6,7 @@
 
 /* =====================================================
    RESET
-===================================================== */
+========x============================================= */
 
 * {
     box-sizing: border-box;
@@ -15,6 +15,7 @@
 
 html {
     min-height: 100%;
+    overflow: none;
 }
 
 
@@ -70,9 +71,7 @@ body {
     margin:
         0 0 12px;
 
-    font-family:
-        Arial,
-        sans-serif;
+    font-family: 'Noto Sans', sans-serif;
 
     font-size: 12px;
 
@@ -90,21 +89,20 @@ body {
     margin: 0;
 
     font-size:
-        clamp(40px, 7vw, 70px);
+        clamp(30px, 7vw, 50px);
 
     font-weight: normal;
 }
 
 
 .intro {
-    max-width: 550px;
-
+    max-width: 600px;
     margin:
         10px auto 0;
-
     line-height: 1.7;
-
+    font-size: 18px;
     color: #67523c;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 
@@ -401,12 +399,9 @@ body {
 
 
 .decoration-ornament::before {
-    content: "✦";
+    content: "⋆˙⟡";
 
     position: absolute;
-
-    left: 50%;
-    top: 50%;
 
     transform:
         translate(-50%, -50%);
@@ -414,7 +409,39 @@ body {
     color:
         var(--accent);
 
-    font-size: 18px;
+    font-size: 10px;
+
+        position: absolute;
+
+    left: 35%;
+    right: 35%;
+
+    top: 18px;
+
+    opacity: .8;
+}
+
+.decoration-ornament::after {
+    content: "⋆˙⟡";
+
+    position: absolute;
+
+    transform:
+        translate(-50%, -50%);
+
+    color:
+        var(--accent);
+
+    font-size: 10px;
+
+        position: absolute;
+
+    left: 35%;
+    right: 35%;
+
+    bottom: 10px;
+
+    opacity: .8;
 }
 
 
@@ -698,10 +725,7 @@ body {
 
 
 .book-cover-small {
-    font-family:
-        Arial,
-        sans-serif;
-
+    font-family: 'Noto Sans', sans-serif;
     font-size: 10px;
 
     font-weight: bold;
@@ -809,6 +833,7 @@ body {
 
     border: 1px solid
         rgba(102,77,47,.18);
+    overflow-y: hidden;
 }
 
 
@@ -859,7 +884,7 @@ body {
     padding:
         55px 45px 50px;
 
-    overflow-y: auto;
+    overflow-y: none;
 
     scrollbar-width: thin;
 
@@ -892,9 +917,7 @@ body {
 
     margin-bottom: 15px;
 
-    font-family:
-        Arial,
-        sans-serif;
+    font-family: 'Noto Sans', sans-serif;
 
     font-size: 10px;
 
@@ -914,7 +937,7 @@ body {
         0 0 25px;
 
     font-size:
-        clamp(25px, 4vw, 38px);
+        clamp(18px, 4vw, 24px);
 
     font-weight:
         normal;
@@ -929,6 +952,9 @@ body {
 
     line-height:
         1.75;
+
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.15rem;
 }
 
 
@@ -956,9 +982,7 @@ body {
 
     bottom: 24px;
 
-    font-family:
-        Arial,
-        sans-serif;
+    font-family: 'Noto Sans', sans-serif;
 
     font-size: 9px;
 
@@ -975,7 +999,7 @@ body {
 
 
 .page-number-right {
-    right: 35px;
+    right: 15px;
 }
 
 

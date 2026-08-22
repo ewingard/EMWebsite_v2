@@ -12,21 +12,82 @@
 const projects = [
 
     {
+        id: "",
+
+        title: "Trans Advisory Board",
+
+        shelf: 1,
+
+        color: "#575757",
+
+        accent: "#d6ad57",
+
+        width: 30,
+
+        height: 250,
+
+        decoration: "ornament"
+
+
+    },
+
+    {
+        id: "masters",
+
+        title: "Master's Thesis",
+        
+        shelf: 1,
+
+        color: "black",
+
+        accent: "#d6ad57",
+
+        width: 53,
+
+        height: 275,
+
+        rotation: "1deg",
+
+        decoration: "panel",
+
+        pages: [
+            {
+
+            }
+        ]
+    },
+
+    {
+        id: "volunteer",
+
+        title: "Transcriptions",
+
+        shelf: 1,
+
+        color: "#6b4423",
+
+        width: 60,
+
+        height: 300
+    },
+
+
+    {
         id: "publications",
 
         title: "Publications",
 
         shelf: 1,
 
-        color: "#762f30",
+        color: "#7f1313",
 
         accent: "#d6ad57",
 
-        width: 68,
+        width: 38,
 
         height: 260,
 
-        rotation: "-1deg",
+        rotation: "-0.8deg",
 
         decoration: "lines",
 
@@ -34,7 +95,7 @@ const projects = [
         pages: [
 
             {
-                number: "001",
+                number: "1",
 
                 type: "intro",
 
@@ -57,7 +118,7 @@ const projects = [
 
 
             {
-                number: "002",
+                number: "2",
 
                 type: "text",
 
@@ -91,7 +152,7 @@ const projects = [
 
 
             {
-                number: "003",
+                number: "3",
 
                 type: "text",
 
@@ -114,7 +175,7 @@ const projects = [
 
 
             {
-                number: "004",
+                number: "4",
 
                 type: "chart",
 
@@ -129,14 +190,13 @@ const projects = [
 
                     <canvas
                         class="project-chart"
-                        data-chart="publication-years"
-                    ></canvas>
+                        data-chart="publication-years"></canvas>
                 `
             },
 
 
             {
-                number: "005",
+                number: "5",
 
                 type: "links",
 
@@ -162,17 +222,44 @@ const projects = [
         ]
     },
 
-
     {
-        id: "thesis",
+        id: "aphantasia",
 
-        title: "Thesis",
+        title: "Aphantasia",
 
         shelf: 1,
 
-        color: "#344b62",
+        color: "#B12C00",
 
         accent: "#d0b56d",
+
+        width: 20,
+
+        height: 320,
+
+        rotation: "1.5deg",
+
+        decoration: "bands",
+
+        pages: [
+            {
+
+            }
+        ]
+
+    },
+
+
+    {
+        id: "AI",
+
+        title: "Bachelor's Thesis",
+
+        shelf: 1,
+
+        color: "#ac812c",
+
+        accent: "#493306",
 
         width: 62,
 
@@ -180,81 +267,223 @@ const projects = [
 
         rotation: "0.5deg",
 
-        decoration: "panel",
+        decoration: "classic",
 
 
         pages: [
 
             {
-                number: "001",
+                number: "1",
 
-                label: "Research",
+                label: "Background",
 
-                title: "My Thesis",
+                title: "AI Bias",
 
                 content: `
-                    <p>
-                        A description of the research,
-                        methodology, and results.
+                    <p> Circa 2014, there were a lot of conversations sparked about the potential harms of
+                    computer vision and AI uses, especially in government organizations and commercial contexts.
                     </p>
                 `
             },
 
 
             {
-                number: "002",
+                number: "2",
+
+                label: "Background",
+
+                title: "Thesis Study",
+
+                content: `
+                    <p>
+                        My thesis work conducted at SUNY Oswego sought to probe how computer vision algorithms
+                        may be impacted by diversity of gender modality in the datasets based on training.
+                    </br>
+                    </br>
+                        <a href="/assets/media/experience/HonorsThesis_Publication_Website.pdf">Thesis PDF <i class="fa-solid fa-file-lines"></i></a> | 
+                        <a href="assets/media/Thesis/HonorsThesis-Poster-Graph.pdf">Poster <i class="fa-solid fa-file-image"></i></a></br>
+                        <a href="media/Thesis/QUEST-WebsiteCopy.pdf" target="_blank">Presentation <i class="fa-solid fa-file-powerpoint"></i></a> |
+                        <a href="https://github.com/ewingard/HonorsThesis" target="_blank">Code <i class="fa-solid fa-laptop-code"></i></a>
+                    </p>
+                `
+            },
+
+
+            {
+                number: "3",
+
+                label: "Introduction",
+
+                title: "AI Bias",
+
+                content: `
+                    <p> In the field of artificial intelligence, the topic of neural network prejudice and bias is becoming more well-known by the day.
+                    More instances of unethical AI practices have been documented by the <a href="https://www.aiaaic.org/aiaaic-repository" target="_blank">AIAAIC database</a>, with instances branching outside of the scope of this project.</a>
+                    </p>
+                `
+            },
+
+            {
+                number: "4",
+
+                label: "Introduction",
+
+                title: "Facial Recognition",
+
+                content: `
+                    <p> Facial recognition software (commercial use or not) can be deeply flawed in accuracy and equity depending on gender and racial features.
+                    Some studies show that facial recognition and automatic gender recognition (AGR) technology’s accuracy rates are significantly worse on <a href="https://www.media.mit.edu/projects/gender-shades/overview/" target="_blank">Black women</a> and <a href="https://www.morgan-klaus.com/pdfs/pubs/Scheuerman-CSCW2019-HowComputersSeeGender.pdf" target="_blank"> transgender people.
+                    </p>
+                `
+            },
+
+            {
+                number: "5",
 
                 label: "Methodology",
 
-                title: "Research Design",
+                title: "Dataset Creation",
 
                 content: `
-                    <p>
-                        Detailed explanation of the
-                        research methodology.
+                    <p> Using the <a href="https://github.com/instaloader/instaloader" target="_blank">Instaloader API  <i class="fa-solid fa-arrow-up-right-from-square"></i></a>, I created two novel datasets based on gender modality.
+                    One dataset had transgender people's faces, and the other had cisgender people's faces. Due to limitations, only cisgender faces were balanced based on race. Datasets were balanced between men and women's faces.
                     </p>
                 `
             },
 
-
             {
-                number: "003",
+                number: "6",
+
+                label: "Methodology",
+
+                title: "Model Testing",
+
+                content: `
+                    <p> After the datasets were created, I tested them on two pretrained Convolutional Neural Network (CNN) models. One model (FairFace) was balanced on racial categories;
+                    the other (IRNv1) made no claims on racial balancing. Both transgender and cisgender faces were tested and compared for accuracy.
+                    </p>
+                `
+            },
+            
+            {
+                number: "7",
 
                 label: "Results",
 
-                title: "Findings",
+                title: "Overall Results",
 
                 content: `
-                    <p>
-                        Summary of the principal findings.
-                    </p>
+                <p>Women (regardless of gender modality) were more likely to be classified correctly compared to men, with one exception in IRNv1 model predictions.
+                Gender modality had the largest effect; the interaction between gender modality and identity had the smallest effect on accuracy.
+                </p>
                 `
             },
 
-
             {
-                number: "004",
+                number: "8",
 
-                label: "Resources",
+                label: "Results",
 
-                title: "Thesis Materials",
+                title: "FairFace Results",
 
                 content: `
-                    <p>
-                        <a href="/documents/thesis.pdf">
-                            Thesis PDF →
-                        </a>
-                    </p>
+                <p>
+                </p>
+                `
+            },
 
-                    <p>
-                        <a href="/documents/thesis-slides.pdf">
-                            Presentation Slides →
-                        </a>
-                    </p>
+            {
+                number: "9",
+
+                label: "Results",
+
+                title: "IRNv1 Results",
+
+                content: `
+                <p>
+                </p>
+                `
+            },
+
+            {
+                number: "10",
+
+                label: "Conclusion",
+
+                title: "Final Takeaways",
+
+                content: `
+                <p>
+                </p>
+                `
+            },
+
+            {
+                number: "11",
+
+                label: "Further Information",
+
+                title: "Data Privacy Notice",
+
+                content: `
+                <p> The datasets scraped during this project will not be shared due to privacy reasons. Transgender people are an at-risk group due to political persecution. There are ethical concerns about
+                datasets on transgender individuals being made public. The full methodology is available in my <a href="/assets/media/experience/HonorsThesis_Publication_Website.pdf">thesis</a> for dataset replication.
+                </p>
+                `
+            },
+
+            {
+                number: "12",
+
+                label: "Further Information",
+
+                title: "Further Readings and Resources",
+
+                content: `
+                <p><ul>
+                <li><a href="https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/hrt-transgender-dataset">HRT Transgender Dataset <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                <li><a href="https://cmci.colorado.edu/idlab/assets/bibliography/pdf/Scheuerman2021-bigdata-autoessentalization.pdf">Auto-essentialization: Gender in automated facial analysis as extended colonial project <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                </ul></p>
                 `
             }
-
         ]
+    },
+
+    {
+        id: "clinpsych",
+
+        title: "Childhood Maltreatment",
+
+        shelf: 1,
+
+        color: "#134225",
+        
+        accent: "#d4b86a",
+
+        width: 30,
+
+        height: 230,
+
+        rotation: "-0.3deg",
+
+        decoration: "ornament"
+
+    },
+
+    {
+        id: "eeg",
+
+        title: "Electroencephalography (EEG)",
+
+        shelf: 1,
+
+        color: "#195762",
+
+        accent: "#d4b86a",
+
+        width: 50,
+
+        height: 290,
     },
 
 
@@ -265,23 +494,23 @@ const projects = [
 
         shelf: 1,
 
-        color: "#405c46",
+        color: "#133458",
 
         accent: "#d4b86a",
 
-        width: 73,
+        width: 85,
 
-        height: 250,
+        height: 330,
 
         rotation: "-0.5deg",
 
-        decoration: "bands",
+        decoration: "panel",
 
 
         pages: [
 
             {
-                number: "001",
+                number: "1",
 
                 label: "Research",
 
@@ -297,7 +526,7 @@ const projects = [
 
 
             {
-                number: "002",
+                number: "2",
 
                 label: "Current Work",
 
@@ -311,8 +540,133 @@ const projects = [
             }
 
         ]
-    }
+    },
 
-    /* Continue adding projects here. */
+    {
+        id: "art camp",
+        
+        title: "Art Camp",
+
+        shelf: 1,
+
+        color: "#2a1244",
+
+        accent: "#d0b56d",
+
+        width: 62,
+
+        height: 285,
+
+        rotation: "-1.55deg",
+
+        decoration: "classic",
+
+        pages: [
+            { 
+                number: 1,
+
+                label: "Creative Writing and Art Camp",
+
+                title: "",
+
+                content: ` <p>
+                    The Creative Writing and Art Camp hosted by the <a href="http://www.newbethelfoundation.org/board-members/">New Bethel Foundation</a> was held from July 22 to July 25th, 2024
+                    and focused on providing an enriching art education and outlet for local youth during the summer.
+                </p> `
+            },
+
+            {
+                number: 2,
+
+                label: "Lesson Planning",
+
+                title: "",
+
+                content: ` <p>
+                    Educational topics covered included:</br>
+                        1. Shading and Values</br>
+                        2. Textures and Patterns</br>
+                        3. Color Theory</br>
+                        4. Composition and Project Drafting</br>
+                    </p> `
+            },
+            {
+                number: 3,
+
+                label: "",
+
+                content: `<p>
+                    
+                </p>`
+
+            }
+        ]
+
+    },
+
+    {
+        id: "fr",
+
+        title: "French",
+
+        shelf: 1,
+
+        color: "#612D53",
+
+        accent: "#d0b56d",
+
+        width: 25,
+
+        height: 200,
+
+        rotation: "-3.3deg",
+
+        decoration: "bands",
+
+        pages: [
+            {
+
+            }
+        ]
+    },
+
+    {
+        id: "",
+
+        title: "Researcher \u00A0 Mentorship",
+
+        shelf: 1,
+
+        color: "#853953",
+
+        accent: "#d0b56d",
+
+        decoration: "ornament",
+
+        rotation: "1deg",
+
+        width: 35,
+
+        height: 273,
+
+    },
+
+    {
+        id: " ",
+
+        title: "HiTOP",
+
+        color: "#8a475c",
+
+        accent: "#d0b56d",
+
+        decoration: "panel",
+
+        rotation: "-.5deg",
+
+        width: 30,
+
+        height: 200
+    }
 
 ];

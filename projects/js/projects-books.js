@@ -617,9 +617,9 @@ document.addEventListener(
 
             book.style.setProperty(
                 "--title-size",
-                width < 60
-                    ? "11px"
-                    : "13px"
+                width < 70
+                    ? "10px"
+                    : "12px"
             );
 
 
