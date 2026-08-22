@@ -81,7 +81,17 @@ const projects = [
 
         pages: [
             {
+                number: 1,
 
+                label: "Background",
+
+                title: "Topic",
+
+                content: `<p>
+                My thesis topic for the Master's in History program will be titled "Bad Brains: An Investigation of Phrenology 
+                and Physiognomy within Enslaved Populations in the Antebellum South." I hope to investigate resilience in Black 
+                populations and the medical and sociocultural history of phrenology and physiognomy.
+                </p>`
             }
         ]
     },
