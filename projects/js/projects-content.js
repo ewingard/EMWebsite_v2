@@ -295,21 +295,16 @@ const projects = [
 
                 label: "Research",
 
-                title: "2024",
+                title: "2025",
 
-                content: `<p>
-                Hersey, J., Morgan, A., Cheever, A., Nelson, C.M., Wingard, E.M., & Hudac, C.M. (2024, April).
-                Exploring Nonverbal Communication Differences Among Individuals in Romantic Partnerships: A Neuroscientific Perspective.
-                Award winning section poster presented at DiscoverUSC, Columbia, SC.</p>
-                
+                content: `<p> 
+                <strong>Wingard, E.M.,</strong> Nelson, C.M., Xia, M., & Hudac, C.M. (2025, April). Is Friendship in the Cards? How Adolescent Brains Make Quantity Decisions Involving Friendship. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/wingard_sans.pdf" target="_blank">Presented at the Social & Affective Neuroscience Society annual meeting, Chicago, IL.</a>
+                | <a href="/assets/media/experience/Wingard_SANS_Final.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
+                </p>
                 <p>
-                    <a href="/assets/media/experience/LoveBrain_HerseyMorgan.pdf" target="_blank">
-                            Presentation PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i>
-                    </a> | <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/lovebrain_nv_discoverscposter_finalversion.pdf" target="_blank">
-                            B-RAD <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
+                Arcement, J., Patel, M., <strong>Wingard, E.M.,</strong> Cheever, A., McFadden, J., Nelson, C.M., & Hudac, C.M. (2025, April). The Influence of Anxiety on Social Preferences in Adolescents: Exploring Group Size and Duration Choices. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-anxiety.pdf" target="_blank">Presented at DiscoverUSC, Columbia, SC.</a> 
+                | <a href="/assets/media/experience/SocialAnxiety_ArcementPatel.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
                 </p>`
-
             },
 
             {
@@ -319,16 +314,96 @@ const projects = [
 
                 label: "Research",
 
+                title: "2025",
+
+                content: `<p>
+                Johnson, M., <strong>Wingard, E.M.,</strong> Nelson, C.M., & Hudac, C.M. (2025, April). Do I know you? Influence of adolescent social interactions on brain responses to familiar and AI-generated faces. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/johnson_sans25.pdf" target="_blank">Presented at the Social & Affective Neuroscience Society annual meeting, Chicago, IL.</a> 
+                | <a href="/assets/media/experience/FacePerception_Johnson.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
+                </p>
+                <p>
+                Arcement, J., Patel, M., <strong>Wingard, E.M.,</strong> Cheever, A., McFadden, J., Nelson, C.M., & Hudac, C.M. (2025, April). The Influence of Anxiety on Social Preferences in Adolescents: Exploring Group Size and Duration Choices. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-anxiety.pdf" target="_blank">Presented at DiscoverUSC, Columbia, SC.</a> 
+                | <a href="/assets/media/experience/SocialAnxiety_ArcementPatel.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
+                </p>`
+            },
+
+            {
+                number: 5,
+
+                type: "text",
+
+                label: "Research",
+
+                title: "2025",
+                
+                content: `<p>
+                    Hersey, J., Du Plessis, V., <strong>Wingard, E.M.,</strong> McFadden, J., Nelson, C.M., & Hudac, C.M. (2025, April). Social Quantity Preferences in Adolescence: Investigating the Correlation between the Need to Belong and Decisions in Social Quantity. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-ntbs.pdf" target="_blank">Poster at  DiscoverUSC, Columbia, SC.</a>
+                    | <a href="/assets/media/experience/NTBS_HerseyPlessis.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
+                    </p>`
+            },
+
+            {
+                number: 6,
+
+                type: "text",
+
+                label: "Research",
+
+                title: "2024",
+
+                content: `<p>
+                Hersey, J., Morgan, A., Cheever, A., Nelson, C.M., Wingard, E.M., & Hudac, C.M. (2024, April).
+                Exploring Nonverbal Communication Differences Among Individuals in Romantic Partnerships: A Neuroscientific Perspective.
+                <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/lovebrain_nv_discoverscposter_finalversion.pdf">Award winning section poster presented at DiscoverUSC, Columbia, SC.</a> 
+                | <a href="/assets/media/experience/LoveBrain_HerseyMorgan.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
+                </p>
+                `
+
+            },
+
+            {
+                number: 7,
+
+                type: "text",
+
+                label: "Research",
+
+                title: "2024, Continued",
+
+                content: ``
+            },
+
+            {
+                number: 8,
+
+                type: "text",
+
+                label: "Research",
+
                 title: "2023",
 
                 content: `<p>
-                        <strong>Wingard, E.M.</strong> (2023, May). The Impact of Biases in Facial Recognition Artificial Neural Networks. <a href="https://www.illuminatenrhc.com/post/the-impact-of-biases-in-facial-recognition-artificial-neural-networks-by-ezra-wingard\" target="_blank">Illuminate NRHC, 5, 25-32.</a>
-                    </p>`
+                <strong>Wingard, E.M.</strong> (2023, May). The Impact of Biases in Facial Recognition Artificial Neural Networks. <a href="https://www.illuminatenrhc.com/post/the-impact-of-biases-in-facial-recognition-artificial-neural-networks-by-ezra-wingard\" target="_blank">Illuminate NRHC, 5, 25-32.</a>
+                | <a href="/assets/media/experience/HonorsThesis_Publication_Website.pdf" target="_blank"> PDF <i class="fa-solid fa-file-lines" alt="document icon"></i></a> | <a href="media/Thesis/HonorsThesis-Poster-Graph.pdf" target="_blank"><i class="fa-solid fa-file-image"></i>Poster </a> | <a href="media/Thesis/QUEST-WebsiteCopy.pdf" target="_blank"><i class="fa-solid fa-file-powerpoint"></i> Presentation</a> | <a href="https://github.com/ewingard/HonorsThesis" target="_blank"><i class="fa-solid fa-laptop-code"></i> Code</a>
+                
+                </p>`
+            },
+
+            {
+                number: 9,
+
+                type: "text",
+
+                label: "Research",
+
+                title: "2021",
+
+                content: `<p>`
+
             },
 
 
             {
-                number: "5",
+                number: 10,
 
                 type: "chart",
 
@@ -345,33 +420,7 @@ const projects = [
                         class="project-chart"
                         data-chart="publication-years"></canvas>
                 `
-            },
-
-
-            {
-                number: "6",
-
-                type: "links",
-
-                label: "Resources",
-
-                title: "Materials",
-
-                content: `
-                    <p>
-                        <a href="/documents/publications.pdf">
-                            Publication PDF →
-                        </a>
-                    </p>
-
-                    <p>
-                        <a href="/documents/presentation.pdf">
-                            Presentation →
-                        </a>
-                    </p>
-                `
             }
-
         ]
     },
 
