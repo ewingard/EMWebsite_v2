@@ -26,8 +26,37 @@ const projects = [
 
         height: 250,
 
-        decoration: "ornament"
+        decoration: "ornament",
 
+        pages: [
+            {
+                number: 1,
+
+                label: "Background",
+
+                title: "Transgender Advisory Board",
+
+                content: `<p>
+                    In collaboration with a Ph.D. Candidate at the University of South Carolina and other advisory board members, I
+                    attended meetings to review interview questions and promote a more ethical, descriptive methodology used for their research.
+                </p>`
+            },
+
+            {
+                number: 2,
+
+                label: "Background",
+
+                title: "Resource",
+
+                content: `<p>
+                Later, we collaborated with the Harriet Hancock Center to provide an online/social media-based resource that provided guidance and information
+                on navigating legal, social, and transitioning support in South Carolina.</br>
+                </br>
+                <a href="https://github.com/ewingard/tadv_scmap">Code Mockup <i class="fa-solid fa-laptop-code"></i></a>
+                </p>`
+            }
+        ]
 
     },
 
@@ -90,7 +119,6 @@ const projects = [
         rotation: "-0.8deg",
 
         decoration: "lines",
-
 
         pages: [
 
