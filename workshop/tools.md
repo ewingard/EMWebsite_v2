@@ -33,6 +33,7 @@
 
 ### About Me Page:
 - [Windows 95 UI Kit](https://github.com/themesberg/windows-95-ui-kit/blob/master/README.md)
+- [Windows 95 Cursors](https://lelegofrog.github.io/wincurscheme95.html)
 
 ### Color Palettes:
 - [Coolors](coolors.co)
