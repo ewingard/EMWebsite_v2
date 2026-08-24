@@ -6,6 +6,11 @@
     box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'Windows 95 Sans Serif';
+  src: url("/assets/fonts/w-95-sans-serif.woff");
+}
+
 html,
 body {
     margin: 0;
@@ -15,8 +20,9 @@ body {
 }
 
 body {
-    font-family: "MS Sans Serif", "Microsoft Sans Serif", Arial, sans-serif;
-    font-size: 13px;
+    /* font-family: "MS Sans Serif", "Microsoft Sans Serif", Arial, sans-serif; */
+    font-family: "Windows 95 Sans Serif";
+    font-size: 10px;
     color: #000;
 
     cursor: url("/assets/cursors/arrow_s.cur"), default;
@@ -138,11 +144,6 @@ p, h1, h2, h3, h4, h5, h6 {
 
     min-width: 0;
 }
-
-
-/* =========================================
-   RESIZE CURSORS
-   ========================================= */
 
 
 /* =========================================
@@ -290,11 +291,11 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .window-content h1 {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .window-content h2 {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .window-content hr {
@@ -346,7 +347,6 @@ p, h1, h2, h3, h4, h5, h6 {
 
     height: 450px;
     min-height: 450px;
-
 }
 
 #readmeWindow.active {
@@ -356,6 +356,10 @@ p, h1, h2, h3, h4, h5, h6 {
 #readmeWindow .title-bar,
 #readmeWindow .window-menu {
     flex-shrink: 0;
+}
+
+#readmeWindow p {
+    font-size: 12px;
 }
 
 /* =========================================
@@ -532,6 +536,14 @@ p, h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
+/* =========================================
+   "SYSTEM INFORMATION" / MY COMPUTER WINDOW
+   ========================================= */
+
+    #computerWindow {
+        right: 25px;
+        top: 25px;
+    }
 
 /* =========================================
    INTEREST INFORMATION WINDOW
@@ -560,8 +572,8 @@ p, h1, h2, h3, h4, h5, h6 {
    ========================================= */
 
    #favoritesWindow {
-    min-height: 250px;
-    min-width: 300px;
+    min-height: 200px;
+    min-width: 250px;
    }
 
 
@@ -691,6 +703,9 @@ p, h1, h2, h3, h4, h5, h6 {
     flex-shrink: 0;
 }
 
+.paint-toolbar p {
+    font-size: 10px;
+}
 
 /* =========================================
    PAINT CANVAS CONTAINER
@@ -778,7 +793,7 @@ p, h1, h2, h3, h4, h5, h6 {
     color: #000;
 
     font-family: inherit;
-    font-size: 13px;
+    font-size: 10px;
 
     cursor: url("/assets/cursors/select.cur"), pointer;
 }
@@ -790,7 +805,6 @@ p, h1, h2, h3, h4, h5, h6 {
 .paint-menu > #paintFileMenu:focus {
     background: #000080;
     color: white;
-
     outline: none;
 }
 
@@ -849,7 +863,7 @@ p, h1, h2, h3, h4, h5, h6 {
     color: #000;
 
     font-family: inherit;
-    font-size: 13px;
+    font-size: 10px;
 
     text-align: left;
 
