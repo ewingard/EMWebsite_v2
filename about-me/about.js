@@ -4,6 +4,7 @@
 
 const windows = document.querySelectorAll(".window");
 const desktopIcons = document.querySelectorAll(".desktop-icon");
+
 const startButton = document.getElementById("startButton");
 const startMenu = document.getElementById("startMenu");
 const taskbarItems = document.getElementById("taskbarItems");
@@ -12,14 +13,109 @@ let highestZ = 10;
 
 
 /* =========================================
+   WINDOW DIMENSION STORAGE
+   ========================================= */
+
+const windowDefaults = new Map();
+
+
+windows.forEach(windowElement => {
+
+    /*
+     * Store the original dimensions and position.
+     *
+     * These are used as the minimum dimensions for
+     * windows that cannot be made smaller.
+     */
+
+    windowDefaults.set(windowElement.id, {
+        width: windowElement.offsetWidth,
+        height: windowElement.offsetHeight,
+        left: windowElement.offsetLeft,
+        top: windowElement.offsetTop
+    });
+
+});
+
+
+/* =========================================
+   GET WINDOW DEFAULTS
+   ========================================= */
+
+function getWindowDefaults(windowElement) {
+
+    return windowDefaults.get(windowElement.id) || {
+        width: 250,
+        height: 250,
+        left: 0,
+        top: 0
+    };
+
+}
+
+
+/* =========================================
    OPEN WINDOWS
    ========================================= */
 
 function openWindow(windowId) {
 
-    const windowElement = document.getElementById(windowId);
+    const windowElement =
+        document.getElementById(windowId);
 
     if (!windowElement) return;
+
+
+    const defaults =
+        getWindowDefaults(windowElement);
+
+
+    /*
+     * If a window has somehow ended up smaller
+     * than its original dimensions, repair it
+     * before opening it.
+     */
+
+    const resizeType =
+        windowElement.dataset.resize;
+
+
+    if (
+        resizeType === "both-grow" ||
+        resizeType === "paint" ||
+        resizeType === "horizontal"
+    ) {
+
+        if (
+            windowElement.offsetWidth <
+            defaults.width
+        ) {
+
+            windowElement.style.width =
+                `${defaults.width}px`;
+
+        }
+
+    }
+
+
+    if (
+        resizeType === "both-grow" ||
+        resizeType === "paint"
+    ) {
+
+        if (
+            windowElement.offsetHeight <
+            defaults.height
+        ) {
+
+            windowElement.style.height =
+                `${defaults.height}px`;
+
+        }
+
+    }
+
 
     windowElement.classList.add("active");
     windowElement.classList.remove("minimized");
@@ -27,6 +123,23 @@ function openWindow(windowId) {
     bringToFront(windowElement);
 
     updateTaskbar();
+
+
+    /*
+     * Paint needs to calculate its canvas after
+     * becoming visible.
+     */
+
+    if (windowId === "paintWindow") {
+
+        requestAnimationFrame(() => {
+
+            resizePaintCanvas();
+
+        });
+
+    }
+
 }
 
 
@@ -36,10 +149,18 @@ function openWindow(windowId) {
 
 function closeWindow(windowElement) {
 
+    /*
+     * Closing only changes visibility.
+     *
+     * It does NOT change width, height,
+     * top, or left.
+     */
+
     windowElement.classList.remove("active");
     windowElement.classList.remove("minimized");
 
     updateTaskbar();
+
 }
 
 
@@ -53,6 +174,7 @@ function minimizeWindow(windowElement) {
     windowElement.classList.add("minimized");
 
     updateTaskbar();
+
 }
 
 
@@ -68,6 +190,7 @@ function restoreWindow(windowElement) {
     bringToFront(windowElement);
 
     updateTaskbar();
+
 }
 
 
@@ -79,7 +202,9 @@ function bringToFront(windowElement) {
 
     highestZ++;
 
-    windowElement.style.zIndex = highestZ;
+    windowElement.style.zIndex =
+        highestZ;
+
 }
 
 
@@ -89,26 +214,28 @@ function bringToFront(windowElement) {
 
 desktopIcons.forEach(icon => {
 
-    icon.addEventListener("dblclick", () => {
+    icon.addEventListener("click", event => {
 
-        const windowId = icon.dataset.window;
+        event.preventDefault();
+
+        const windowId =
+            icon.dataset.window;
 
         openWindow(windowId);
 
     });
 
-});
 
-
-/* Also allow a single click on mobile */
-
-desktopIcons.forEach(icon => {
+    /*
+     * Single click on mobile.
+     */
 
     icon.addEventListener("click", () => {
 
         if (window.innerWidth <= 600) {
 
-            const windowId = icon.dataset.window;
+            const windowId =
+                icon.dataset.window;
 
             openWindow(windowId);
 
@@ -125,39 +252,74 @@ desktopIcons.forEach(icon => {
 
 windows.forEach(windowElement => {
 
-    const closeButton = windowElement.querySelector(".close");
-    const minimizeButton = windowElement.querySelector(".minimize");
-    const maximizeButton = windowElement.querySelector(".maximize");
+    const closeButton =
+        windowElement.querySelector(".close");
+
+    const minimizeButton =
+        windowElement.querySelector(".minimize");
+
+    const maximizeButton =
+        windowElement.querySelector(".maximize");
 
 
-    closeButton.addEventListener("click", (event) => {
+    if (closeButton) {
 
-        event.stopPropagation();
+        closeButton.addEventListener("click", event => {
 
-        closeWindow(windowElement);
+            event.stopPropagation();
 
-    });
+            closeWindow(windowElement);
 
+        });
 
-    minimizeButton.addEventListener("click", (event) => {
-
-        event.stopPropagation();
-
-        minimizeWindow(windowElement);
-
-    });
+    }
 
 
-    maximizeButton.addEventListener("click", (event) => {
+    if (minimizeButton) {
 
-        event.stopPropagation();
+        minimizeButton.addEventListener("click", event => {
 
-        windowElement.classList.toggle("maximized");
+            event.stopPropagation();
 
-        bringToFront(windowElement);
+            minimizeWindow(windowElement);
 
-    });
+        });
 
+    }
+
+
+    if (maximizeButton) {
+
+        maximizeButton.addEventListener("click", event => {
+
+            event.stopPropagation();
+
+            windowElement.classList.toggle("maximized");
+
+            bringToFront(windowElement);
+
+
+            if (
+                windowElement.id === "paintWindow"
+            ) {
+
+                requestAnimationFrame(() => {
+
+                    resizePaintCanvas();
+
+                });
+
+            }
+
+        });
+
+    }
+
+
+    /*
+     * Clicking anywhere in the window brings
+     * it forward.
+     */
 
     windowElement.addEventListener("mousedown", () => {
 
@@ -172,46 +334,71 @@ windows.forEach(windowElement => {
    START MENU
    ========================================= */
 
-startButton.addEventListener("click", (event) => {
+if (startButton && startMenu) {
 
-    event.stopPropagation();
+    startButton.addEventListener("click", event => {
 
-    startMenu.classList.toggle("open");
+        event.stopPropagation();
 
-});
+        startMenu.classList.toggle("open");
+
+    });
 
 
-document.addEventListener("click", (event) => {
+    document.addEventListener("click", event => {
 
-    if (
-        !startMenu.contains(event.target) &&
-        !startButton.contains(event.target)
-    ) {
+        if (
+            !startMenu.contains(event.target) &&
+            !startButton.contains(event.target)
+        ) {
 
-        startMenu.classList.remove("open");
+            startMenu.classList.remove("open");
 
-    }
+        }
 
-});
+    });
+
+}
 
 
 /* =========================================
    START MENU WINDOW LINKS
    ========================================= */
 
-document.querySelectorAll("[data-window]").forEach(button => {
+document.querySelectorAll("[data-window]")
+    .forEach(button => {
 
-    button.addEventListener("click", () => {
+        /*
+         * Desktop icons already have their own
+         * handlers. This additionally supports
+         * Start Menu buttons/links.
+         */
 
-        const windowId = button.dataset.window;
+        if (
+            button.classList.contains("desktop-icon")
+        ) {
+            return;
+        }
 
-        openWindow(windowId);
 
-        startMenu.classList.remove("open");
+        button.addEventListener("click", event => {
+
+            const windowId =
+                button.dataset.window;
+
+            if (!windowId) return;
+
+            event.preventDefault();
+
+            openWindow(windowId);
+
+            if (startMenu) {
+                startMenu.classList.remove("open");
+            }
+
+        });
 
     });
-
-});
 
 
 /* =========================================
@@ -220,7 +407,10 @@ document.querySelectorAll("[data-window]").forEach(button => {
 
 function updateTaskbar() {
 
+    if (!taskbarItems) return;
+
     taskbarItems.innerHTML = "";
+
 
     windows.forEach(windowElement => {
 
@@ -230,32 +420,48 @@ function updateTaskbar() {
         const isMinimized =
             windowElement.classList.contains("minimized");
 
+
         if (!isActive && !isMinimized) {
             return;
         }
 
 
+        const titleElement =
+            windowElement.querySelector(".title");
+
+        if (!titleElement) return;
+
+
         const title =
-            windowElement.querySelector(".title").innerText.trim();
+            titleElement.innerText.trim();
+
 
         const taskButton =
             document.createElement("button");
 
-        taskButton.className = "taskbar-item";
+        taskButton.className =
+            "taskbar-item";
 
-        taskButton.innerText = title;
+        taskButton.innerText =
+            title;
 
 
         if (isMinimized) {
 
-            taskButton.classList.add("taskbar-minimized");
+            taskButton.classList.add(
+                "taskbar-minimized"
+            );
 
         }
 
 
         taskButton.addEventListener("click", () => {
 
-            if (windowElement.classList.contains("minimized")) {
+            if (
+                windowElement.classList.contains(
+                    "minimized"
+                )
+            ) {
 
                 restoreWindow(windowElement);
 
@@ -276,7 +482,7 @@ function updateTaskbar() {
 
 
 /* =========================================
-   DRAGGABLE WINDOWS
+   WINDOW DRAGGING
    ========================================= */
 
 windows.forEach(windowElement => {
@@ -284,43 +490,77 @@ windows.forEach(windowElement => {
     const titleBar =
         windowElement.querySelector(".title-bar");
 
+
+    if (!titleBar) return;
+
+
     let isDragging = false;
 
     let offsetX = 0;
     let offsetY = 0;
 
 
-    titleBar.addEventListener("mousedown", (event) => {
+    /*
+     * ONLY the title bar moves the window.
+     *
+     * Resize detection is deliberately NOT
+     * performed here.
+     */
+
+    titleBar.addEventListener("mousedown", event => {
+
+        /*
+         * Never drag when clicking window buttons.
+         */
 
         if (
-            windowElement.classList.contains("maximized") ||
             event.target.closest(".window-buttons")
         ) {
             return;
         }
 
+
+        if (
+            windowElement.classList.contains("maximized")
+        ) {
+            return;
+        }
+
+
         isDragging = true;
 
         bringToFront(windowElement);
 
+
         offsetX =
-            event.clientX - windowElement.offsetLeft;
+            event.clientX -
+            windowElement.offsetLeft;
 
         offsetY =
-            event.clientY - windowElement.offsetTop;
+            event.clientY -
+            windowElement.offsetTop;
+
+
+        event.preventDefault();
 
     });
 
 
-    document.addEventListener("mousemove", (event) => {
+    document.addEventListener("mousemove", event => {
 
         if (!isDragging) return;
 
-        let newX = event.clientX - offsetX;
-        let newY = event.clientY - offsetY;
+
+        let newX =
+            event.clientX - offsetX;
+
+        let newY =
+            event.clientY - offsetY;
 
 
-        /* Keep window partially on screen */
+        /*
+         * Keep the window partially visible.
+         */
 
         newX = Math.max(
             -windowElement.offsetWidth + 100,
@@ -340,8 +580,11 @@ windows.forEach(windowElement => {
         );
 
 
-        windowElement.style.left = `${newX}px`;
-        windowElement.style.top = `${newY}px`;
+        windowElement.style.left =
+            `${newX}px`;
+
+        windowElement.style.top =
+            `${newY}px`;
 
     });
 
@@ -375,220 +618,779 @@ windows.forEach(windowElement => {
     let startTop = 0;
 
 
+    const defaults =
+        getWindowDefaults(windowElement);
+
+
+    /*
+     * =====================================
+     * RESIZE DIRECTION
+     * =====================================
+     */
+
     function getResizeDirection(event) {
 
-        if (windowElement.classList.contains("maximized")) {
+        /*
+         * Maximized windows cannot be resized.
+         */
+
+        if (
+            windowElement.classList.contains(
+                "maximized"
+            )
+        ) {
             return "";
         }
+
+
+        /*
+         * The title bar is MOVE ONLY.
+         *
+         * This prevents its edges from acting
+         * as resize handles.
+         */
+
+        const titleBar =
+            windowElement.querySelector(".title-bar");
+
+
+        if (
+            titleBar &&
+            event.target.closest(".title-bar")
+        ) {
+            return "";
+        }
+
+
+        const resizeType =
+            windowElement.dataset.resize;
+
+
+        if (!resizeType) {
+            return "";
+        }
+
 
         const rect =
             windowElement.getBoundingClientRect();
 
         const edgeSize = 8;
 
+
         const nearLeft =
-            event.clientX - rect.left <= edgeSize;
+            event.clientX -
+            rect.left <= edgeSize;
 
         const nearRight =
-            rect.right - event.clientX <= edgeSize;
+            rect.right -
+            event.clientX <= edgeSize;
 
         const nearTop =
-            event.clientY - rect.top <= edgeSize;
+            event.clientY -
+            rect.top <= edgeSize;
 
         const nearBottom =
-            rect.bottom - event.clientY <= edgeSize;
+            rect.bottom -
+            event.clientY <= edgeSize;
 
 
-        if (nearTop && nearLeft) return "nw";
-        if (nearTop && nearRight) return "ne";
-        if (nearBottom && nearLeft) return "sw";
-        if (nearBottom && nearRight) return "se";
+        /*
+         * =====================================
+         * HORIZONTAL
+         * My Computer
+         * =====================================
+         */
 
-        if (nearLeft) return "w";
-        if (nearRight) return "e";
-        if (nearTop) return "n";
-        if (nearBottom) return "s";
+        if (resizeType === "horizontal") {
+
+            if (nearLeft) {
+                return "w";
+            }
+
+            if (nearRight) {
+                return "e";
+            }
+
+            return "";
+        }
+
+
+        /*
+         * =====================================
+         * BOTH
+         * README
+         * =====================================
+         */
+
+        if (resizeType === "both") {
+
+            if (
+                nearTop &&
+                nearLeft
+            ) {
+                return "nw";
+            }
+
+            if (
+                nearTop &&
+                nearRight
+            ) {
+                return "ne";
+            }
+
+            if (
+                nearBottom &&
+                nearLeft
+            ) {
+                return "sw";
+            }
+
+            if (
+                nearBottom &&
+                nearRight
+            ) {
+                return "se";
+            }
+
+            if (nearLeft) {
+                return "w";
+            }
+
+            if (nearRight) {
+                return "e";
+            }
+
+            if (nearTop) {
+                return "n";
+            }
+
+            if (nearBottom) {
+                return "s";
+            }
+
+            return "";
+        }
+
+
+        /*
+         * =====================================
+         * BOTH-GROW
+         * =====================================
+         *
+         * Only right/bottom edges.
+         *
+         * This means these windows can grow,
+         * but cannot become smaller.
+         */
+
+        if (resizeType === "both-grow") {
+
+            if (
+                nearBottom &&
+                nearRight
+            ) {
+                return "se";
+            }
+
+            if (nearRight) {
+                return "e";
+            }
+
+            if (nearBottom) {
+                return "s";
+            }
+
+            return "";
+        }
+
+
+        /*
+         * =====================================
+         * PAINT
+         * =====================================
+         */
+
+        if (resizeType === "paint") {
+
+            if (
+                nearTop &&
+                nearLeft
+            ) {
+                return "nw";
+            }
+
+            if (
+                nearTop &&
+                nearRight
+            ) {
+                return "ne";
+            }
+
+            if (
+                nearBottom &&
+                nearLeft
+            ) {
+                return "sw";
+            }
+
+            if (
+                nearBottom &&
+                nearRight
+            ) {
+                return "se";
+            }
+
+            if (nearLeft) {
+                return "w";
+            }
+
+            if (nearRight) {
+                return "e";
+            }
+
+            if (nearTop) {
+                return "n";
+            }
+
+            if (nearBottom) {
+                return "s";
+            }
+
+            return "";
+        }
+
 
         return "";
     }
 
 
-    windowElement.addEventListener("mousemove", (event) => {
+    /*
+     * =====================================
+     * CURSOR
+     * =====================================
+     */
 
-        if (isResizing) return;
+    windowElement.addEventListener(
+        "mousemove",
+        event => {
 
-        const direction =
-            getResizeDirection(event);
-
-        windowElement.dataset.resizeDirection =
-            direction;
-
-    });
-
-
-    windowElement.addEventListener("mousedown", (event) => {
-
-        const direction =
-            getResizeDirection(event);
-
-        if (!direction) return;
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        isResizing = true;
-
-        resizeDirection = direction;
-
-        startX = event.clientX;
-        startY = event.clientY;
-
-        startWidth =
-            windowElement.offsetWidth;
-
-        startHeight =
-            windowElement.offsetHeight;
-
-        startLeft =
-            windowElement.offsetLeft;
-
-        startTop =
-            windowElement.offsetTop;
-
-        bringToFront(windowElement);
-
-    });
+            if (isResizing) {
+                return;
+            }
 
 
-    document.addEventListener("mousemove", (event) => {
-
-        if (!isResizing) return;
-
-
-        const deltaX =
-            event.clientX - startX;
-
-        const deltaY =
-            event.clientY - startY;
-
-        const minWidth = 250;
-        const minHeight = 150;
+            const direction =
+                getResizeDirection(event);
 
 
-        let newWidth = startWidth;
-        let newHeight = startHeight;
-        let newLeft = startLeft;
-        let newTop = startTop;
-
-
-        /* RIGHT */
-
-        if (
-            resizeDirection.includes("e")
-        ) {
-
-            newWidth =
-                Math.max(
-                    minWidth,
-                    startWidth + deltaX
-                );
+            windowElement.dataset.resizeDirection =
+                direction;
 
         }
+    );
 
 
-        /* LEFT */
+    /*
+     * =====================================
+     * START RESIZE
+     * =====================================
+     */
 
-        if (
-            resizeDirection.includes("w")
-        ) {
+    windowElement.addEventListener(
+        "mousedown",
+        event => {
 
-            newWidth =
-                Math.max(
-                    minWidth,
-                    startWidth - deltaX
-                );
+            const direction =
+                getResizeDirection(event);
 
-            if (newWidth > minWidth) {
 
-                newLeft =
-                    startLeft + deltaX;
+            if (!direction) {
+                return;
+            }
 
-            } else {
 
-                newLeft =
-                    startLeft +
-                    startWidth -
-                    minWidth;
+            event.preventDefault();
+            event.stopPropagation();
+
+
+            isResizing = true;
+
+            resizeDirection =
+                direction;
+
+
+            startX =
+                event.clientX;
+
+            startY =
+                event.clientY;
+
+
+            startWidth =
+                windowElement.offsetWidth;
+
+            startHeight =
+                windowElement.offsetHeight;
+
+
+            startLeft =
+                windowElement.offsetLeft;
+
+            startTop =
+                windowElement.offsetTop;
+
+
+            bringToFront(windowElement);
+
+        }
+    );
+
+
+    /*
+     * =====================================
+     * PERFORM RESIZE
+     * =====================================
+     */
+
+    document.addEventListener(
+        "mousemove",
+        event => {
+
+            if (!isResizing) {
+                return;
+            }
+
+
+            const resizeType =
+                windowElement.dataset.resize;
+
+
+            const deltaX =
+                event.clientX - startX;
+
+            const deltaY =
+                event.clientY - startY;
+
+
+            let newWidth =
+                startWidth;
+
+            let newHeight =
+                startHeight;
+
+            let newLeft =
+                startLeft;
+
+            let newTop =
+                startTop;
+
+
+            /* =================================
+               MY COMPUTER
+               Horizontal only
+               ================================= */
+
+            if (
+                resizeType === "horizontal"
+            ) {
+
+                if (
+                    resizeDirection === "e"
+                ) {
+
+                    newWidth =
+                        Math.max(
+                            defaults.width,
+                            startWidth + deltaX
+                        );
+
+                }
+
+
+                if (
+                    resizeDirection === "w"
+                ) {
+
+                    newWidth =
+                        Math.max(
+                            defaults.width,
+                            startWidth - deltaX
+                        );
+
+
+                    if (
+                        newWidth >
+                        defaults.width
+                    ) {
+
+                        newLeft =
+                            startLeft + deltaX;
+
+                    } else {
+
+                        newLeft =
+                            startLeft +
+                            startWidth -
+                            defaults.width;
+
+                    }
+
+                }
+
+
+                windowElement.style.width =
+                    `${newWidth}px`;
+
+                windowElement.style.left =
+                    `${newLeft}px`;
+
+
+                return;
+            }
+
+
+            /* =================================
+               BOTH-GROW
+               ================================= */
+
+            if (
+                resizeType === "both-grow"
+            ) {
+
+                if (
+                    resizeDirection === "e" ||
+                    resizeDirection === "se"
+                ) {
+
+                    newWidth =
+                        Math.max(
+                            defaults.width,
+                            startWidth + deltaX
+                        );
+
+                }
+
+
+                if (
+                    resizeDirection === "s" ||
+                    resizeDirection === "se"
+                ) {
+
+                    newHeight =
+                        Math.max(
+                            defaults.height,
+                            startHeight + deltaY
+                        );
+
+                }
+
+
+                windowElement.style.width =
+                    `${newWidth}px`;
+
+                windowElement.style.height =
+                    `${newHeight}px`;
+
+
+                return;
+            }
+
+
+            /* =================================
+               README / BOTH
+               ================================= */
+
+            if (
+                resizeType === "both"
+            ) {
+
+                /*
+                 * RIGHT
+                 */
+
+                if (
+                    resizeDirection.includes("e")
+                ) {
+
+                    newWidth =
+                        Math.max(
+                            250,
+                            startWidth + deltaX
+                        );
+
+                }
+
+
+                /*
+                 * LEFT
+                 */
+
+                if (
+                    resizeDirection.includes("w")
+                ) {
+
+                    newWidth =
+                        Math.max(
+                            250,
+                            startWidth - deltaX
+                        );
+
+
+                    if (
+                        newWidth > 250
+                    ) {
+
+                        newLeft =
+                            startLeft + deltaX;
+
+                    } else {
+
+                        newLeft =
+                            startLeft +
+                            startWidth -
+                            250;
+
+                    }
+
+                }
+
+
+                /*
+                 * BOTTOM
+                 */
+
+                if (
+                    resizeDirection.includes("s")
+                ) {
+
+                    newHeight =
+                        Math.max(
+                            150,
+                            startHeight + deltaY
+                        );
+
+                }
+
+
+                /*
+                 * TOP
+                 */
+
+                if (
+                    resizeDirection.includes("n")
+                ) {
+
+                    newHeight =
+                        Math.max(
+                            150,
+                            startHeight - deltaY
+                        );
+
+
+                    if (
+                        newHeight > 150
+                    ) {
+
+                        newTop =
+                            startTop + deltaY;
+
+                    } else {
+
+                        newTop =
+                            startTop +
+                            startHeight -
+                            150;
+
+                    }
+
+                }
+
+
+                windowElement.style.width =
+                    `${newWidth}px`;
+
+                windowElement.style.height =
+                    `${newHeight}px`;
+
+                windowElement.style.left =
+                    `${newLeft}px`;
+
+                windowElement.style.top =
+                    `${newTop}px`;
+
+
+                /*
+                 * Make sure the text editor retains
+                 * enough whitespace to remain usable.
+                 */
+
+                const textEditor =
+                    windowElement.querySelector(
+                        ".text-editor"
+                    );
+
+
+                if (textEditor) {
+
+                    textEditor.style.minHeight =
+                        "250px";
+
+                }
+
+
+                return;
+            }
+
+
+            /* =================================
+               MS PAINT
+               ================================= */
+
+            if (
+                resizeType === "paint"
+            ) {
+
+                /*
+                 * RIGHT
+                 */
+
+                if (
+                    resizeDirection.includes("e")
+                ) {
+
+                    newWidth =
+                        Math.max(
+                            defaults.width,
+                            startWidth + deltaX
+                        );
+
+                }
+
+
+                /*
+                 * LEFT
+                 */
+
+                if (
+                    resizeDirection.includes("w")
+                ) {
+
+                    newWidth =
+                        Math.max(
+                            defaults.width,
+                            startWidth - deltaX
+                        );
+
+
+                    if (
+                        newWidth >
+                        defaults.width
+                    ) {
+
+                        newLeft =
+                            startLeft + deltaX;
+
+                    } else {
+
+                        newLeft =
+                            startLeft +
+                            startWidth -
+                            defaults.width;
+
+                    }
+
+                }
+
+
+                /*
+                 * BOTTOM
+                 */
+
+                if (
+                    resizeDirection.includes("s")
+                ) {
+
+                    newHeight =
+                        Math.max(
+                            defaults.height,
+                            startHeight + deltaY
+                        );
+
+                }
+
+
+                /*
+                 * TOP
+                 */
+
+                if (
+                    resizeDirection.includes("n")
+                ) {
+
+                    newHeight =
+                        Math.max(
+                            defaults.height,
+                            startHeight - deltaY
+                        );
+
+
+                    if (
+                        newHeight >
+                        defaults.height
+                    ) {
+
+                        newTop =
+                            startTop + deltaY;
+
+                    } else {
+
+                        newTop =
+                            startTop +
+                            startHeight -
+                            defaults.height;
+
+                    }
+
+                }
+
+
+                windowElement.style.width =
+                    `${newWidth}px`;
+
+                windowElement.style.height =
+                    `${newHeight}px`;
+
+                windowElement.style.left =
+                    `${newLeft}px`;
+
+                windowElement.style.top =
+                    `${newTop}px`;
+
+
+                resizePaintCanvas();
 
             }
 
         }
+    );
 
 
-        /* BOTTOM */
+    /*
+     * =====================================
+     * STOP RESIZE
+     * =====================================
+     */
 
-        if (
-            resizeDirection.includes("s")
-        ) {
+    document.addEventListener(
+        "mouseup",
+        () => {
 
-            newHeight =
-                Math.max(
-                    minHeight,
-                    startHeight + deltaY
-                );
+            isResizing = false;
 
-        }
-
-
-        /* TOP */
-
-        if (
-            resizeDirection.includes("n")
-        ) {
-
-            newHeight =
-                Math.max(
-                    minHeight,
-                    startHeight - deltaY
-                );
-
-            if (newHeight > minHeight) {
-
-                newTop =
-                    startTop + deltaY;
-
-            } else {
-
-                newTop =
-                    startTop +
-                    startHeight -
-                    minHeight;
-
-            }
+            resizeDirection = "";
 
         }
-
-
-        windowElement.style.width =
-            `${newWidth}px`;
-
-        windowElement.style.height =
-            `${newHeight}px`;
-
-        windowElement.style.left =
-            `${newLeft}px`;
-
-        windowElement.style.top =
-            `${newTop}px`;
-
-    });
-
-
-    document.addEventListener("mouseup", () => {
-
-        isResizing = false;
-
-    });
+    );
 
 });
 
@@ -667,45 +1469,59 @@ const interestData = {
 
 
 const interestInfoWindow =
-    document.getElementById("interestInfoWindow");
+    document.getElementById(
+        "interestInfoWindow"
+    );
 
 const interestInfoTitle =
-    document.getElementById("interestInfoTitle");
+    document.getElementById(
+        "interestInfoTitle"
+    );
 
 const interestInfoHeading =
-    document.getElementById("interestInfoHeading");
+    document.getElementById(
+        "interestInfoHeading"
+    );
 
 const interestInfoContent =
-    document.getElementById("interestInfoContent");
+    document.getElementById(
+        "interestInfoContent"
+    );
 
 
-document.querySelectorAll(".folder[data-interest]")
-    .forEach(folder => {
+document.querySelectorAll(
+    ".folder[data-interest]"
+).forEach(folder => {
 
-        folder.addEventListener("click", () => {
+    folder.addEventListener("click", () => {
 
-            const interest =
-                folder.dataset.interest;
+        const interest =
+            folder.dataset.interest;
 
-            const data =
-                interestData[interest];
+        const data =
+            interestData[interest];
 
-            if (!data) return;
 
-            interestInfoTitle.innerText =
-                data.title;
+        if (!data) return;
 
-            interestInfoHeading.innerText =
-                data.title;
 
-            interestInfoContent.innerHTML =
-                data.content;
+        interestInfoTitle.innerText =
+            data.title;
 
-            openWindow("interestInfoWindow");
+        interestInfoHeading.innerText =
+            data.title;
 
-        });
+        interestInfoContent.innerHTML =
+            data.content;
+
+
+        openWindow(
+            "interestInfoWindow"
+        );
 
     });
+
+});
 
 
 /* =========================================
@@ -716,7 +1532,9 @@ const canvas =
     document.getElementById("paintCanvas");
 
 const paintContext =
-    canvas.getContext("2d");
+    canvas
+        ? canvas.getContext("2d")
+        : null;
 
 const pencilTool =
     document.getElementById("pencilTool");
@@ -741,223 +1559,11 @@ let currentColor = "#000000";
 let currentTool = "pencil";
 
 
-/* White drawing surface */
-
-paintContext.fillStyle = "#ffffff";
-
-paintContext.fillRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-);
-
-
-/* =========================================
-   PAINT CURSOR
-   ========================================= */
-
-canvas.style.cursor =
-    'url("/assets/cursors/handwriting.cur"), crosshair';
-
-
-/* =========================================
-   GET CANVAS POSITION
-   ========================================= */
-
-function getCanvasPosition(event) {
-
-    const rect =
-        canvas.getBoundingClientRect();
-
-    const scaleX =
-        canvas.width / rect.width;
-
-    const scaleY =
-        canvas.height / rect.height;
-
-
-    return {
-
-        x:
-            (event.clientX - rect.left) *
-            scaleX,
-
-        y:
-            (event.clientY - rect.top) *
-            scaleY
-
-    };
-
-}
-
-
-/* =========================================
-   START DRAWING
-   ========================================= */
-
-canvas.addEventListener("mousedown", event => {
-
-    isDrawing = true;
-
-    const position =
-        getCanvasPosition(event);
-
-    paintContext.beginPath();
-
-    paintContext.moveTo(
-        position.x,
-        position.y
-    );
-
-});
-
-
-/* =========================================
-   DRAW
-   ========================================= */
-
-canvas.addEventListener("mousemove", event => {
-
-    if (!isDrawing) return;
-
-    const position =
-        getCanvasPosition(event);
-
-
-    if (currentTool === "eraser") {
-
-        paintContext.strokeStyle =
-            "#ffffff";
-
-        paintContext.lineWidth =
-            15;
-
-    } else {
-
-        paintContext.strokeStyle =
-            currentColor;
-
-        paintContext.lineWidth =
-            2;
-
-    }
-
-
-    paintContext.lineCap = "round";
-
-    paintContext.lineJoin = "round";
-
-
-    paintContext.lineTo(
-        position.x,
-        position.y
-    );
-
-    paintContext.stroke();
-
-
-    paintStatus.innerText =
-        `${Math.round(position.x)}, ${Math.round(position.y)}`;
-
-});
-
-
-/* =========================================
-   STOP DRAWING
-   ========================================= */
-
-canvas.addEventListener("mouseup", () => {
-
-    isDrawing = false;
-
-    paintContext.closePath();
-
-});
-
-
-canvas.addEventListener("mouseleave", () => {
-
-    isDrawing = false;
-
-    paintContext.closePath();
-
-});
-
-
-/* =========================================
-   PENCIL TOOL
-   ========================================= */
-
-pencilTool.addEventListener("click", () => {
-
-    currentTool = "pencil";
-
-    pencilTool.classList.add("active");
-    eraserTool.classList.remove("active");
-
-    canvas.style.cursor =
-        'url("/assets/cursors/handwriting.cur"), crosshair';
-
-});
-
-
-/* =========================================
-   ERASER TOOL
-   ========================================= */
-
-eraserTool.addEventListener("click", () => {
-
-    currentTool = "eraser";
-
-    eraserTool.classList.add("active");
-    pencilTool.classList.remove("active");
-
-    canvas.style.cursor =
-        'url("/assets/cursors/handwriting.cur"), crosshair';
-
-});
-
-
-/* =========================================
-   COLORS
-   ========================================= */
-
-paintColors.forEach(colorButton => {
-
-    colorButton.addEventListener("click", () => {
-
-        currentColor =
-            colorButton.dataset.color;
-
-        currentTool = "pencil";
-
-        pencilTool.classList.add("active");
-        eraserTool.classList.remove("active");
-
-
-        paintColors.forEach(button => {
-
-            button.classList.remove("active");
-
-        });
-
-
-        colorButton.classList.add("active");
-
-        canvas.style.cursor =
-            'url("/assets/cursors/handwriting.cur"), crosshair';
-
-    });
-
-});
-
-
-/* =========================================
-   CLEAR CANVAS
-   ========================================= */
-
-clearCanvas.addEventListener("click", () => {
+if (canvas && paintContext) {
+
+    /*
+     * Initial white canvas.
+     */
 
     paintContext.fillStyle =
         "#ffffff";
@@ -969,73 +1575,554 @@ clearCanvas.addEventListener("click", () => {
         canvas.height
     );
 
-    paintStatus.innerText =
-        "Ready";
 
-});
-
-/* =========================================
-   MS PAINT FILE MENU
-   ========================================= */
-
-const paintFileMenu =
-    document.getElementById("paintFileMenu");
-
-const paintFileDropdown =
-    document.getElementById("paintFileDropdown");
-
-const savePainting =
-    document.getElementById("savePainting");
+    canvas.style.cursor =
+        'url("/assets/cursors/handwriting.cur"), crosshair';
 
 
-/* Open / close File menu */
+    /* =====================================
+       CANVAS POSITION
+       ===================================== */
 
-paintFileMenu.addEventListener("click", (event) => {
+    function getCanvasPosition(event) {
 
-    event.stopPropagation();
-
-    paintFileDropdown.classList.toggle("open");
-
-});
-
-
-/* Save painting as PNG */
-
-savePainting.addEventListener("click", () => {
-
-    const image =
-        canvas.toDataURL("image/png");
-
-    const downloadLink =
-        document.createElement("a");
-
-    downloadLink.download =
-        "my-painting.png";
-
-    downloadLink.href =
-        image;
-
-    downloadLink.click();
-
-    paintFileDropdown.classList.remove("open");
-
-});
+        const rect =
+            canvas.getBoundingClientRect();
 
 
-/* Close Paint File menu when clicking elsewhere */
+        const scaleX =
+            canvas.width / rect.width;
 
-document.addEventListener("click", (event) => {
+        const scaleY =
+            canvas.height / rect.height;
 
-    if (
-        !paintFileMenu.contains(event.target) &&
-        !paintFileDropdown.contains(event.target)
-    ) {
 
-        paintFileDropdown.classList.remove("open");
+        return {
+
+            x:
+                (event.clientX - rect.left) *
+                scaleX,
+
+            y:
+                (event.clientY - rect.top) *
+                scaleY
+
+        };
 
     }
 
-});
+
+    /* =====================================
+       START DRAWING
+       ===================================== */
+
+    canvas.addEventListener(
+        "mousedown",
+        event => {
+
+            isDrawing = true;
+
+
+            const position =
+                getCanvasPosition(event);
+
+
+            paintContext.beginPath();
+
+            paintContext.moveTo(
+                position.x,
+                position.y
+            );
+
+        }
+    );
+
+
+    /* =====================================
+       DRAW
+       ===================================== */
+
+    canvas.addEventListener(
+        "mousemove",
+        event => {
+
+            if (!isDrawing) return;
+
+
+            const position =
+                getCanvasPosition(event);
+
+
+            if (
+                currentTool === "eraser"
+            ) {
+
+                paintContext.strokeStyle =
+                    "#ffffff";
+
+                paintContext.lineWidth =
+                    15;
+
+            } else {
+
+                paintContext.strokeStyle =
+                    currentColor;
+
+                paintContext.lineWidth =
+                    2;
+
+            }
+
+
+            paintContext.lineCap =
+                "round";
+
+            paintContext.lineJoin =
+                "round";
+
+
+            paintContext.lineTo(
+                position.x,
+                position.y
+            );
+
+            paintContext.stroke();
+
+
+            if (paintStatus) {
+
+                paintStatus.innerText =
+                    `${Math.round(position.x)}, ${Math.round(position.y)}`;
+
+            }
+
+        }
+    );
+
+
+    /* =====================================
+       STOP DRAWING
+       ===================================== */
+
+    canvas.addEventListener(
+        "mouseup",
+        () => {
+
+            isDrawing = false;
+
+            paintContext.closePath();
+
+        }
+    );
+
+
+    canvas.addEventListener(
+        "mouseleave",
+        () => {
+
+            isDrawing = false;
+
+            paintContext.closePath();
+
+        }
+    );
+
+
+    /* =====================================
+       PENCIL
+       ===================================== */
+
+    if (pencilTool) {
+
+        pencilTool.addEventListener(
+            "click",
+            () => {
+
+                currentTool =
+                    "pencil";
+
+                pencilTool.classList.add(
+                    "active"
+                );
+
+                eraserTool.classList.remove(
+                    "active"
+                );
+
+                canvas.style.cursor =
+                    'url("/assets/cursors/handwriting.cur"), crosshair';
+
+            }
+        );
+
+    }
+
+
+    /* =====================================
+       ERASER
+       ===================================== */
+
+    if (eraserTool) {
+
+        eraserTool.addEventListener(
+            "click",
+            () => {
+
+                currentTool =
+                    "eraser";
+
+                eraserTool.classList.add(
+                    "active"
+                );
+
+                pencilTool.classList.remove(
+                    "active"
+                );
+
+                canvas.style.cursor =
+                    'url("/assets/cursors/handwriting.cur"), crosshair';
+
+            }
+        );
+
+    }
+
+
+    /* =====================================
+       COLORS
+       ===================================== */
+
+    paintColors.forEach(
+        colorButton => {
+
+            colorButton.addEventListener(
+                "click",
+                () => {
+
+                    currentColor =
+                        colorButton.dataset.color;
+
+                    currentTool =
+                        "pencil";
+
+
+                    pencilTool.classList.add(
+                        "active"
+                    );
+
+                    eraserTool.classList.remove(
+                        "active"
+                    );
+
+
+                    paintColors.forEach(
+                        button => {
+
+                            button.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                    colorButton.classList.add(
+                        "active"
+                    );
+
+
+                    canvas.style.cursor =
+                        'url("/assets/cursors/handwriting.cur"), crosshair';
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================
+       CLEAR CANVAS
+       ===================================== */
+
+    if (clearCanvas) {
+
+        clearCanvas.addEventListener(
+            "click",
+            () => {
+
+                paintContext.fillStyle =
+                    "#ffffff";
+
+                paintContext.fillRect(
+                    0,
+                    0,
+                    canvas.width,
+                    canvas.height
+                );
+
+
+                if (paintStatus) {
+
+                    paintStatus.innerText =
+                        "Ready";
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   PAINT FILE MENU
+   ========================================= */
+
+const paintFileMenu =
+    document.getElementById(
+        "paintFileMenu"
+    );
+
+const paintFileDropdown =
+    document.getElementById(
+        "paintFileDropdown"
+    );
+
+const savePainting =
+    document.getElementById(
+        "savePainting"
+    );
+
+
+if (
+    paintFileMenu &&
+    paintFileDropdown
+) {
+
+    paintFileMenu.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            paintFileDropdown.classList.toggle(
+                "open"
+            );
+
+        }
+    );
+
+}
+
+
+if (savePainting && canvas) {
+
+    savePainting.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+
+            const image =
+                canvas.toDataURL(
+                    "image/png"
+                );
+
+
+            const downloadLink =
+                document.createElement("a");
+
+
+            downloadLink.download =
+                "my-painting.png";
+
+            downloadLink.href =
+                image;
+
+
+            downloadLink.click();
+
+
+            paintFileDropdown.classList.remove(
+                "open"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   CLOSE PAINT FILE MENU
+   ========================================= */
+
+document.addEventListener(
+    "click",
+    event => {
+
+        if (
+            paintFileMenu &&
+            paintFileDropdown &&
+            !paintFileMenu.contains(
+                event.target
+            ) &&
+            !paintFileDropdown.contains(
+                event.target
+            )
+        ) {
+
+            paintFileDropdown.classList.remove(
+                "open"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   RESIZE PAINT CANVAS
+   ========================================= */
+
+function resizePaintCanvas() {
+
+    const paintWindow =
+        document.getElementById(
+            "paintWindow"
+        );
+
+
+    if (
+        !paintWindow ||
+        !canvas ||
+        !paintContext
+    ) {
+        return;
+    }
+
+
+    /*
+     * Don't attempt to measure a hidden window.
+     */
+
+    if (
+        !paintWindow.classList.contains(
+            "active"
+        )
+    ) {
+        return;
+    }
+
+
+    const paintContainer =
+        paintWindow.querySelector(
+            ".paint-canvas-container"
+        );
+
+
+    if (!paintContainer) {
+        return;
+    }
+
+
+    const containerWidth =
+        paintContainer.clientWidth - 10;
+
+    const containerHeight =
+        paintContainer.clientHeight - 10;
+
+
+    if (
+        containerWidth <= 0 ||
+        containerHeight <= 0
+    ) {
+        return;
+    }
+
+
+    /*
+     * Don't recreate the canvas if its dimensions
+     * haven't actually changed.
+     */
+
+    if (
+        canvas.width === containerWidth &&
+        canvas.height === containerHeight
+    ) {
+        return;
+    }
+
+
+    /*
+     * Preserve existing drawing.
+     */
+
+    const oldCanvas =
+        document.createElement("canvas");
+
+
+    oldCanvas.width =
+        canvas.width;
+
+    oldCanvas.height =
+        canvas.height;
+
+
+    const oldContext =
+        oldCanvas.getContext("2d");
+
+
+    oldContext.drawImage(
+        canvas,
+        0,
+        0
+    );
+
+
+    /*
+     * Resize the actual drawing surface.
+     */
+
+    canvas.width =
+        containerWidth;
+
+    canvas.height =
+        containerHeight;
+
+
+    /*
+     * Restore white background.
+     */
+
+    paintContext.fillStyle =
+        "#ffffff";
+
+    paintContext.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    /*
+     * Restore existing drawing without
+     * stretching it.
+     */
+
+    paintContext.drawImage(
+        oldCanvas,
+        0,
+        0
+    );
+
+}
 
 
 /* =========================================
@@ -1047,19 +2134,30 @@ function updateClock() {
     const clock =
         document.getElementById("clock");
 
+
+    if (!clock) return;
+
+
     const now =
         new Date();
 
+
     clock.innerText =
-        now.toLocaleTimeString([], {
-            hour: "numeric",
-            minute: "2-digit"
-        });
+        now.toLocaleTimeString(
+            [],
+            {
+                hour: "numeric",
+                minute: "2-digit"
+            }
+        );
 
 }
 
 
-setInterval(updateClock, 1000);
+setInterval(
+    updateClock,
+    1000
+);
 
 updateClock();
 
@@ -1068,4 +2166,34 @@ updateClock();
    INITIAL WINDOW
    ========================================= */
 
+/*
+ * Only My Computer is opened automatically.
+ *
+ * Paint, Favorites, Interests, README, etc.
+ * remain closed until the user opens them.
+ */
+
 openWindow("computerWindow");
+
+
+/* =========================================
+   PAINT RESIZE ON WINDOW RESIZE
+   ========================================= */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        if (
+            canvas &&
+            document
+                .getElementById("paintWindow")
+                ?.classList.contains("active")
+        ) {
+
+            resizePaintCanvas();
+
+        }
+
+    }
+);

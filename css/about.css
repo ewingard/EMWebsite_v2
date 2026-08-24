@@ -101,10 +101,10 @@ p, h1, h2, h3, h4, h5, h6 {
     position: absolute;
 
     width: 500px;
-    min-width: 250px;
+    /* min-width: 250px; */
 
     height: auto;
-    min-height: 250px;
+    /* min-height: 250px; */
 
     background: #c0c0c0;
 
@@ -144,24 +144,39 @@ p, h1, h2, h3, h4, h5, h6 {
    RESIZE CURSORS
    ========================================= */
 
-.window[data-resize-direction="e"],
-.window[data-resize-direction="w"] {
+
+/* =========================================
+   RESIZE CURSORS
+   ========================================= */
+
+    .window[data-resize-direction="e"],
+    .window[data-resize-direction="w"] {
     cursor: url("/assets/cursors/resize_horizontal.cur"), ew-resize;
 }
 
-.window[data-resize-direction="n"],
-.window[data-resize-direction="s"] {
+    .window[data-resize-direction="n"],
+    .window[data-resize-direction="s"] {
     cursor: url("/assets/cursors/resize_vertical.cur"), ns-resize;
 }
 
-.window[data-resize-direction="nw"],
-.window[data-resize-direction="se"] {
-    cursor: url("/assets/cursors/resize_diagonal_1.cur"), nwse-resize;
+
+/*
+ * size1_s.cur = /
+ */
+
+    .window[data-resize-direction="nw"],
+    .window[data-resize-direction="se"] {
+    cursor: url("/assets/cursors/size1_s.cur"), nwse-resize;
 }
 
-.window[data-resize-direction="ne"],
-.window[data-resize-direction="sw"] {
-    cursor: url("/assets/cursors/resize_diagonal_2.cur"), nesw-resize;
+
+/*
+ * size2_s.cur = \
+ */
+
+    .window[data-resize-direction="ne"],
+    .window[data-resize-direction="sw"] {
+    cursor: url("/assets/cursors/size2_s.cur"), nesw-resize;
 }
 
 
@@ -318,7 +333,132 @@ p, h1, h2, h3, h4, h5, h6 {
     overflow: auto;
 }
 
+/* =========================================
+   README / TEXT WINDOW
+   ========================================= */
 
+#readmeWindow {
+    display: none;
+    flex-direction: column;
+
+    width: 500px;
+    min-width: 500px;
+
+    height: 450px;
+    min-height: 450px;
+
+}
+
+#readmeWindow.active {
+    display: flex;
+}
+
+#readmeWindow .title-bar,
+#readmeWindow .window-menu {
+    flex-shrink: 0;
+}
+
+/* =========================================
+   WINDOWS 95 SCROLLBAR — ABOUTME.TXT
+   ========================================= */
+
+#readmeWindow .text-editor {
+    flex: 1;
+    min-height: 250px;
+    overflow: auto;
+    scrollbar-color: #c0c0c0 #c0c0c0;
+}
+
+/* Chrome / Edge / Safari */
+#readmeWindow .text-editor::-webkit-scrollbar {
+    width: 18px;
+    height: 18px;
+}
+
+#readmeWindow .text-editor::-webkit-scrollbar-track {
+    background: #c0c0c0;
+}
+
+#readmeWindow .text-editor::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    box-shadow:
+        inset 1px 1px 0 #dfdfdf,
+        inset -1px -1px 0 #808080;
+    
+        cursor: url("/assets/cursors/select.cur"), pointer;
+}
+
+/* =========================================
+   SCROLLBAR ARROWS
+   ========================================= */
+
+#readmeWindow .text-editor::-webkit-scrollbar-button {
+    display: block;
+
+    width: 18px;
+    height: 18px;
+
+    background-color: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+}
+
+/* UP */
+#readmeWindow .text-editor::-webkit-scrollbar-button:vertical:decrement {
+    background-image:
+        linear-gradient(135deg, transparent 50%, #000 50%),
+        linear-gradient(45deg, transparent 50%, #000 50%);
+    background-size: 5px 5px;
+    background-position:
+        calc(50% - 2px) 6px,
+        calc(50% + 2px) 6px;
+    background-repeat: no-repeat;
+}
+
+/* DOWN */
+#readmeWindow .text-editor::-webkit-scrollbar-button:vertical:increment {
+    background-image:
+        linear-gradient(45deg, transparent 50%, #000 50%),
+        linear-gradient(135deg, transparent 50%, #000 50%);
+    background-size: 5px 5px;
+    background-position:
+        calc(50% - 2px) 5px,
+        calc(50% + 2px) 5px;
+    background-repeat: no-repeat;
+}
+
+/* PRESSED */
+#readmeWindow .text-editor::-webkit-scrollbar-button:active {
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+/* =========================================
+   RECYCLE BIN
+   ========================================= */
+
+#recycleWindow {
+    flex-direction: column;
+
+    width: 200px;
+
+    height: 150px;
+
+}
 /* =========================================
    INFO TABLE
    ========================================= */
@@ -415,6 +555,15 @@ p, h1, h2, h3, h4, h5, h6 {
     border-bottom: 2px solid white;
 }
 
+/* =========================================
+   FAVORITES WINDOW
+   ========================================= */
+
+   #favoritesWindow {
+    height: 200px;
+    width: 250px;
+   }
+
 
 /* =========================================
    STATUS BAR
@@ -454,10 +603,20 @@ p, h1, h2, h3, h4, h5, h6 {
 /* =========================================
    PAINT WINDOW
    ========================================= */
-
 .paint-window {
     width: 500px;
+    min-width: 500px;
+
+    height: 400px;
     min-height: 400px;
+
+    display: none;
+
+    flex-direction: column;
+}
+
+.paint-window.active {
+    display: flex;
 }
 
 .paint-toolbar {
@@ -523,6 +682,20 @@ p, h1, h2, h3, h4, h5, h6 {
     outline-offset: 1px;
 }
 
+
+/* =========================================
+   PAINT TOOLBAR
+   ========================================= */
+
+.paint-toolbar {
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   PAINT CANVAS CONTAINER
+   ========================================= */
+
 .paint-canvas-container {
     margin: 8px;
 
@@ -536,18 +709,38 @@ p, h1, h2, h3, h4, h5, h6 {
     border-right: 2px solid white;
     border-bottom: 2px solid white;
 
-    overflow: auto;
+    flex: 1;
+
+    min-height: 0;
+
+    overflow: hidden;
 }
+
+
+/* =========================================
+   PAINT CANVAS
+   ========================================= */
 
 #paintCanvas {
     display: block;
 
     width: 100%;
-    height: auto;
+    height: 100%;
 
     background: white;
 
-    cursor: url("/assets/cursors/handwriting.cur"), crosshair;
+    cursor:
+        url("/assets/cursors/handwriting.cur"),
+        crosshair;
+}
+
+
+/* =========================================
+   PAINT STATUS BAR
+   ========================================= */
+
+.paint-window > .status-bar {
+    flex-shrink: 0;
 }
 
 /* =========================================

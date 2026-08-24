@@ -41,7 +41,7 @@
 
             <button class="desktop-icon" data-window="favoritesWindow">
                 <span class="icon">
-                    <img src="/assets/images/95_icons/Windows_95_Star.png"
+                    <img src="/assets/images/95_icons/Windows_95_Fav_Folder.png"
                          height="32px"
                          width="32px"
                          alt="star icon">
@@ -51,10 +51,7 @@
 
             <button class="desktop-icon" data-window="paintWindow">
                 <span class="icon">
-                    <img src="/assets/images/95_icons/Windows_95_NOTEPAD.png"
-                         height="30px"
-                         width="30px"
-                         alt="paint icon">
+                    <img src="/assets/images/95_icons/windows_paint.png" height="50px" width="50px" alt="paint icon">
                 </span>
                 <span>Paint</span>
             </button>
@@ -70,7 +67,7 @@
 
 
         <!-- MY COMPUTER WINDOW -->
-        <section class="window" id="computerWindow">
+        <section class="window" id="computerWindow" data-resize="horizontal">
 
             <div class="title-bar">
                 <div class="title">
@@ -141,7 +138,7 @@
 
 
         <!-- README WINDOW -->
-        <section class="window" id="readmeWindow">
+        <section class="window" id="readmeWindow" data-resize="both">
 
             <div class="title-bar">
                 <div class="title">
@@ -216,7 +213,7 @@
 
 
         <!-- INTERESTS WINDOW -->
-        <section class="window" id="interestsWindow">
+        <section class="window" id="interestsWindow" data-resize="both-grow">
 
             <div class="title-bar">
                 <div class="title">
@@ -297,7 +294,7 @@
 
 
         <!-- INTEREST INFORMATION WINDOW -->
-        <section class="window interest-info-window" id="interestInfoWindow">
+        <section class="window interest-info-window" id="interestInfoWindow" data-resize="both-grow">
 
             <div class="title-bar">
                 <div class="title">
@@ -325,17 +322,14 @@
 
 
         <!-- MS PAINT WINDOW -->
-        <section class="window paint-window" id="paintWindow">
+        <section class="window paint-window" id="paintWindow" data-resize="paint">
 
             <div class="title-bar">
                 <div class="title">
                     <span>
-                        <img src="/assets/images/95_icons/Windows_95_NOTEPAD.png"
-                             height="18px"
-                             width="18px"
-                             alt="paint icon">
+                        <img src="/assets/images/95_icons/windows_paint.png" height="18px" width="18px" alt="paint icon">
                     </span>
-                    Paint
+                    MS Paint
                 </div>
 
                 <div class="window-buttons">
@@ -348,7 +342,7 @@
             <div class="window-menu paint-menu">
                 <button id="paintFileMenu">File</button>
                 <div class="paint-file-dropdown" id="paintFileDropdown">
-                    <button id="savePainting">Save As...</button>
+                    <button id="savePainting">Save As PNG</button>
                 </div>
                 <span>Edit</span>
                 <span>View</span>
@@ -422,7 +416,7 @@
 
             <div class="title-bar">
                 <div class="title">
-                    <span>⭐</span>
+                    <span><img src=""</span>
                     Favorites
                 </div>
 
@@ -524,8 +518,8 @@
             <button class="start-button" id="startButton">
                 <span>
                     <img src="/assets/images/95_icons/Windows_95_FLYING_WINDOWS.png"
-                         width="50px"
-                         height="50px"
+                         width="20px"
+                         height="20px"
                          alt="windows icon">
                 </span>
                 <strong>Start</strong>
