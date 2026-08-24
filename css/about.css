@@ -18,12 +18,14 @@ body {
     font-family: "MS Sans Serif", "Microsoft Sans Serif", Arial, sans-serif;
     font-size: 13px;
     color: #000;
+
     cursor: url("/assets/cursors/arrow_s.cur"), default;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
-    cursor: /*url("/assets/cursors/beam_s.cur"),*/Added text;
+    cursor: /*url("/assets/cursors/beam_s.cur"),*/ text;
 }
+
 
 /* =========================================
    DESKTOP
@@ -31,9 +33,13 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .desktop {
     position: relative;
+
     width: 100vw;
     height: 100vh;
-    background-image: url("/assets/images/windows_bg.jpg");
+
+    background-image:
+        url("/assets/images/windows_bg.jpg");
+
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -45,11 +51,13 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .desktop-icons {
     position: absolute;
+
     top: 20px;
     left: 20px;
 
     display: flex;
     flex-direction: column;
+
     gap: 20px;
 }
 
@@ -93,6 +101,9 @@ p, h1, h2, h3, h4, h5, h6 {
     position: absolute;
 
     width: 500px;
+    min-width: 250px;
+
+    height: auto;
     min-height: 250px;
 
     background: #c0c0c0;
@@ -106,10 +117,16 @@ p, h1, h2, h3, h4, h5, h6 {
     box-shadow: 1px 1px 0 #000;
 
     display: none;
+
+    overflow: hidden;
 }
 
 .window.active {
     display: block;
+}
+
+.window.minimized {
+    display: none;
 }
 
 .window.maximized {
@@ -118,6 +135,33 @@ p, h1, h2, h3, h4, h5, h6 {
 
     top: 0 !important;
     left: 0 !important;
+
+    min-width: 0;
+}
+
+
+/* =========================================
+   RESIZE CURSORS
+   ========================================= */
+
+.window[data-resize-direction="e"],
+.window[data-resize-direction="w"] {
+    cursor: url("/assets/cursors/resize_horizontal.cur"), ew-resize;
+}
+
+.window[data-resize-direction="n"],
+.window[data-resize-direction="s"] {
+    cursor: url("/assets/cursors/resize_vertical.cur"), ns-resize;
+}
+
+.window[data-resize-direction="nw"],
+.window[data-resize-direction="se"] {
+    cursor: url("/assets/cursors/resize_diagonal_1.cur"), nwse-resize;
+}
+
+.window[data-resize-direction="ne"],
+.window[data-resize-direction="sw"] {
+    cursor: url("/assets/cursors/resize_diagonal_2.cur"), nesw-resize;
 }
 
 
@@ -149,7 +193,10 @@ p, h1, h2, h3, h4, h5, h6 {
 .title {
     display: flex;
     align-items: center;
+
     gap: 5px;
+
+    white-space: nowrap;
 }
 
 
@@ -174,6 +221,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
     border-top: 2px solid white;
     border-left: 2px solid white;
+
     border-right: 2px solid #404040;
     border-bottom: 2px solid #404040;
 
@@ -188,6 +236,7 @@ p, h1, h2, h3, h4, h5, h6 {
 .window-buttons button:active {
     border-top: 2px solid #404040;
     border-left: 2px solid #404040;
+
     border-right: 2px solid white;
     border-bottom: 2px solid white;
 }
@@ -313,15 +362,57 @@ p, h1, h2, h3, h4, h5, h6 {
     cursor: url("/assets/cursors/select.cur"), pointer;
 
     padding: 8px;
+
+    background: transparent;
+
+    border: none;
+
+    color: black;
+
+    font-family: inherit;
+
+    font-size: inherit;
 }
 
 .folder span {
     font-size: 38px;
 }
 
+.folder img {
+    width: 38px;
+    height: 38px;
+}
+
+.folder p {
+    margin: 5px 0 0;
+}
+
 .folder:hover {
     background: #000080;
     color: white;
+}
+
+
+/* =========================================
+   INTEREST INFORMATION WINDOW
+   ========================================= */
+
+.interest-info-window {
+    width: 400px;
+}
+
+#interestInfoContent {
+    background: white;
+
+    min-height: 120px;
+
+    padding: 10px;
+
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
 }
 
 
@@ -355,9 +446,262 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .center {
     text-align: center;
+
     padding: 30px;
 }
 
+
+/* =========================================
+   PAINT WINDOW
+   ========================================= */
+
+.paint-window {
+    width: 500px;
+    min-height: 400px;
+}
+
+.paint-toolbar {
+    min-height: 38px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+
+    padding: 4px;
+
+    border-bottom: 1px solid #808080;
+}
+
+.paint-tool {
+    height: 25px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    padding: 2px 7px;
+
+    font-family: inherit;
+
+    cursor: url("/assets/cursors/select.cur"), pointer;
+}
+
+.paint-tool.active {
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+.paint-colors {
+    display: flex;
+
+    gap: 3px;
+
+    margin-left: 5px;
+}
+
+.paint-color {
+    width: 20px;
+    height: 20px;
+
+    padding: 0;
+
+    border: 2px solid #808080;
+
+    cursor: url("/assets/cursors/select.cur"), pointer;
+}
+
+.paint-color.active {
+    outline: 1px dotted #000;
+    outline-offset: 1px;
+}
+
+.paint-canvas-container {
+    margin: 8px;
+
+    padding: 5px;
+
+    background: #808080;
+
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+
+    overflow: auto;
+}
+
+#paintCanvas {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    background: white;
+
+    cursor: url("/assets/cursors/handwriting.cur"), crosshair;
+}
+
+/* =========================================
+   PAINT FILE MENU
+   ========================================= */
+
+.paint-menu {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 0 8px;
+
+    height: 25px;
+}
+
+
+/* FILE MENU BUTTON */
+
+.paint-menu > #paintFileMenu {
+    position: relative;
+
+    height: 23px;
+
+    margin: 0;
+    padding: 0 4px;
+
+    background: transparent;
+
+    border: none;
+
+    color: #000;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    cursor: url("/assets/cursors/select.cur"), pointer;
+}
+
+
+/* Windows 95-style selected File menu */
+
+.paint-menu > #paintFileMenu:hover,
+.paint-menu > #paintFileMenu:focus {
+    background: #000080;
+    color: white;
+
+    outline: none;
+}
+
+
+/* =========================================
+   FILE DROPDOWN
+   ========================================= */
+
+.paint-file-dropdown {
+    position: absolute;
+
+    top: 24px;
+    left: 4px;
+
+    width: 130px;
+
+    padding: 2px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    display: none;
+
+    z-index: 10000;
+}
+
+
+/* Show dropdown */
+
+.paint-file-dropdown.open {
+    display: block;
+}
+
+
+/* =========================================
+   FILE DROPDOWN BUTTONS
+   ========================================= */
+
+.paint-file-dropdown button {
+    display: block;
+
+    width: 100%;
+    height: 24px;
+
+    padding: 2px 8px;
+
+    background: #c0c0c0;
+
+    border: none;
+
+    color: #000;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    text-align: left;
+
+    cursor: url("/assets/cursors/select.cur"), pointer;
+}
+
+
+/* Hover = classic Windows 95 blue selection */
+
+.paint-file-dropdown button:hover {
+    background: #000080;
+    color: white;
+}
+
+
+/* Pressed appearance */
+
+.paint-file-dropdown button:active {
+    background: #000080;
+    color: white;
+
+    padding-top: 3px;
+    padding-left: 9px;
+}
+
+
+/* =========================================
+   PAINT MENU ITEMS
+   ========================================= */
+
+.paint-menu > span {
+    height: 23px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 2px;
+
+    cursor: url("/assets/cursors/select.cur"), pointer;
+}
+
+.paint-menu > span:hover {
+    background: #000080;
+    color: white;
+}
 
 /* =========================================
    TASKBAR
@@ -431,9 +775,12 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .taskbar-items {
     display: flex;
+
     gap: 3px;
 
     flex: 1;
+
+    overflow: hidden;
 }
 
 .taskbar-item {
@@ -455,10 +802,22 @@ p, h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
 
     white-space: nowrap;
+
+    cursor: url("/assets/cursors/select.cur"), pointer;
+}
+
+.taskbar-item.taskbar-minimized {
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
 }
 
 
-/* SYSTEM TRAY */
+/* =========================================
+   SYSTEM TRAY
+   ========================================= */
 
 .system-tray {
     height: 25px;
@@ -524,6 +883,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .start-items {
     flex: 1;
+
     padding: 5px;
 }
 
@@ -597,6 +957,10 @@ p, h1, h2, h3, h4, h5, h6 {
 
     .system-tray {
         margin-left: auto;
+    }
+
+    .paint-window {
+        width: calc(100vw - 20px);
     }
 
 }
