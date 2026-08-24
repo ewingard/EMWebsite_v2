@@ -538,7 +538,7 @@ p, h1, h2, h3, h4, h5, h6 {
    ========================================= */
 
 .interest-info-window {
-    width: 400px;
+    min-width: 400px;
 }
 
 #interestInfoContent {
@@ -560,8 +560,8 @@ p, h1, h2, h3, h4, h5, h6 {
    ========================================= */
 
    #favoritesWindow {
-    height: 200px;
-    width: 250px;
+    min-height: 250px;
+    min-width: 300px;
    }
 
 

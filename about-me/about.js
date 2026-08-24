@@ -147,14 +147,28 @@ function openWindow(windowId) {
    CLOSE WINDOWS
    ========================================= */
 
+/* =========================================
+   CLOSE WINDOWS
+   ========================================= */
+
 function closeWindow(windowElement) {
 
     /*
-     * Closing only changes visibility.
-     *
-     * It does NOT change width, height,
-     * top, or left.
+     * If this is the interest information window,
+     * return all interest folder icons to their
+     * closed-folder image.
      */
+
+    if (
+        windowElement.id === "interestInfoWindow"
+    ) {
+
+        resetInterestFolderIcons();
+
+        delete windowElement.dataset.openFolder;
+
+    }
+
 
     windowElement.classList.remove("active");
     windowElement.classList.remove("minimized");
@@ -162,8 +176,6 @@ function closeWindow(windowElement) {
     updateTaskbar();
 
 }
-
-
 /* =========================================
    MINIMIZE WINDOWS
    ========================================= */
@@ -1394,6 +1406,46 @@ windows.forEach(windowElement => {
 
 });
 
+/* =========================================
+   INTEREST FOLDER ICONS
+   ========================================= */
+
+/* =========================================
+   INTEREST FOLDER ICONS
+   ========================================= */
+
+function setInterestFolderIcon(folder, isOpen) {
+
+    const image =
+        folder.querySelector("img");
+
+    if (!image) return;
+
+    image.src = isOpen
+        ? "/assets/images/95_icons/w95_5.ico"
+        : "/assets/images/95_icons/w95_4.ico";
+
+}
+
+
+/*
+ * Reset ALL interest folder icons to closed.
+ */
+
+function resetInterestFolderIcons() {
+
+    document.querySelectorAll(
+        ".folder[data-interest]"
+    ).forEach(folder => {
+
+        setInterestFolderIcon(
+            folder,
+            false
+        );
+
+    });
+
+}
 
 /* =========================================
    INTEREST INFORMATION
@@ -1505,6 +1557,93 @@ document.querySelectorAll(
         if (!data) return;
 
 
+        /*
+         * Reset every interest folder first.
+         *
+         * This guarantees that only the folder
+         * belonging to the currently displayed
+         * information window uses w95_5.
+         */
+
+        resetInterestFolderIcons();
+
+
+        /*
+         * If the interest information window is
+         * currently open, keep using that same
+         * window rather than allowing multiple
+         * interest windows to appear.
+         */
+
+        if (
+            interestInfoWindow.classList.contains(
+                "active"
+            )
+        ) {
+
+            /*
+             * The window is already visible.
+             * Just replace its contents.
+             */
+
+            interestInfoTitle.innerText =
+                data.title;
+
+            interestInfoHeading.innerText =
+                data.title;
+
+            interestInfoContent.innerHTML =
+                data.content;
+
+
+            /*
+             * This is now the ONLY folder that
+             * receives the open-folder icon.
+             */
+
+            setInterestFolderIcon(
+                folder,
+                true
+            );
+
+
+            interestInfoWindow.dataset.openFolder =
+                interest;
+
+
+            bringToFront(
+                interestInfoWindow
+            );
+
+            updateTaskbar();
+
+            return;
+
+        }
+
+
+        /*
+         * If it was minimized, restore it instead
+         * of creating another visible window.
+         */
+
+        if (
+            interestInfoWindow.classList.contains(
+                "minimized"
+            )
+        ) {
+
+            interestInfoWindow.classList.remove(
+                "minimized"
+            );
+
+        }
+
+
+        /*
+         * Update the information window.
+         */
+
         interestInfoTitle.innerText =
             data.title;
 
@@ -1514,6 +1653,30 @@ document.querySelectorAll(
         interestInfoContent.innerHTML =
             data.content;
 
+
+        /*
+         * Remember which folder owns the
+         * currently displayed information.
+         */
+
+        interestInfoWindow.dataset.openFolder =
+            interest;
+
+
+        /*
+         * Only this folder gets w95_5.
+         */
+
+        setInterestFolderIcon(
+            folder,
+            true
+        );
+
+
+        /*
+         * Open/activate the single information
+         * window.
+         */
 
         openWindow(
             "interestInfoWindow"

@@ -34,6 +34,8 @@
 ### About Me Page:
 - [Windows 95 UI Kit](https://github.com/themesberg/windows-95-ui-kit/blob/master/README.md)
 - [Windows 95 Cursors](https://lelegofrog.github.io/wincurscheme95.html)
+- [Windows95+ Icons](https://github.com/trapd00r/win95-winxp_icons)
+- [Wikimedia Commons Windows 95 Icons](https://commons.wikimedia.org/wiki/Category:Windows_95_icons#)
 
 ### Color Palettes:
 - [Coolors](coolors.co)
