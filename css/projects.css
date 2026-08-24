@@ -6,7 +6,7 @@
 
 /* =====================================================
    RESET
-========x============================================= */
+======================================================== */
 
 * {
     box-sizing: border-box;
@@ -40,6 +40,7 @@ body {
 
     overflow: hidden;
 }
+
 
 
 /* =====================================================
@@ -294,25 +295,17 @@ body {
 
 .book-title {
     position: relative;
-
     z-index: 5;
-
     color: white;
-
     font-size:
         var(--title-size);
-
     letter-spacing:
         .08em;
-
     text-align: center;
-
     writing-mode:
         vertical-rl;
-
     transform:
         rotate(180deg);
-
     text-shadow:
         1px 1px 2px
         rgba(0,0,0,.6);
@@ -739,10 +732,15 @@ body {
 
 
 .book-cover-title {
-    max-width: 90%;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
 
     font-size:
-        clamp(28px, 5vw, 44px);
+        clamp(28px, 5vw, 38px);
 
     line-height: 1.1;
 
@@ -822,14 +820,25 @@ body {
     color:
         #33271d;
 
-    background:
+    background-color: #f8f0df;
+
+    background-image:
         linear-gradient(
             90deg,
-            #eee2c8 0%,
-            #f8f0df 6%,
-            #f8f0df 94%,
-            #e8dcc2 100%
-        );
+            rgba(120, 90, 50, .07) 0%,
+            rgba(255, 255, 255, .02) 6%,
+            rgba(255, 255, 255, .02) 94%,
+            rgba(120, 90, 50, .06) 100%
+        ),
+        url("/assets/textures/beige-paper.png");
+
+    background-size:
+        100% 100%,
+        auto;
+
+    background-repeat:
+        no-repeat,
+        repeat;
 
     border: 1px solid
         rgba(102,77,47,.18);

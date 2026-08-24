@@ -1,0 +1,598 @@
+/* =========================================
+   WINDOWS 95 ABOUT PAGE
+   ========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: "MS Sans Serif", "Microsoft Sans Serif", Arial, sans-serif;
+    font-size: 13px;
+    color: #000;
+    cursor: url("/assets/cursors/arrow_s.cur"), default;
+}
+
+/* =========================================
+   DESKTOP
+   ========================================= */
+
+.desktop {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/assets/images/windows_bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+/* =========================================
+   DESKTOP ICONS
+   ========================================= */
+
+.desktop-icons {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.desktop-icon {
+    width: 90px;
+
+    background: transparent;
+    border: none;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 5px;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.desktop-icon .icon {
+    font-size: 32px;
+}
+
+.desktop-icon:hover {
+    background: rgba(0, 0, 128, 0.5);
+}
+
+.desktop-icon:focus {
+    outline: 1px dotted white;
+}
+
+
+/* =========================================
+   WINDOWS
+   ========================================= */
+
+.window {
+    position: absolute;
+
+    width: 500px;
+    min-height: 250px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+
+    box-shadow: 1px 1px 0 #000;
+
+    display: none;
+}
+
+.window.active {
+    display: block;
+}
+
+.window.maximized {
+    width: calc(100vw - 10px);
+    height: calc(100vh - 40px);
+
+    top: 0 !important;
+    left: 0 !important;
+}
+
+
+/* =========================================
+   TITLE BAR
+   ========================================= */
+
+.title-bar {
+    height: 22px;
+
+    background: #000080;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-left: 4px;
+
+    font-weight: bold;
+
+    cursor: grab;
+}
+
+.title-bar:active {
+    cursor: grabbing;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+/* =========================================
+   WINDOW BUTTONS
+   ========================================= */
+
+.window-buttons {
+    display: flex;
+    gap: 2px;
+
+    padding-right: 2px;
+}
+
+.window-buttons button {
+    width: 18px;
+    height: 18px;
+
+    padding: 0;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+
+    line-height: 12px;
+
+    cursor: pointer;
+}
+
+.window-buttons button:active {
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+
+/* =========================================
+   WINDOW MENU
+   ========================================= */
+
+.window-menu {
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 0 8px;
+
+    border-bottom: 1px solid #808080;
+}
+
+.window-menu span:first-letter {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   WINDOW CONTENT
+   ========================================= */
+
+.window-content {
+    padding: 15px;
+
+    background: #c0c0c0;
+}
+
+.window-content h1 {
+    font-size: 20px;
+}
+
+.window-content h2 {
+    font-size: 16px;
+}
+
+.window-content hr {
+    border: none;
+
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid white;
+
+    height: 2px;
+}
+
+
+/* =========================================
+   TEXT EDITOR
+   ========================================= */
+
+.text-editor {
+    margin: 8px;
+
+    min-height: 250px;
+
+    padding: 10px;
+
+    background: white;
+
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+
+    font-family: "Courier New", monospace;
+
+    line-height: 1.5;
+
+    overflow: auto;
+}
+
+
+/* =========================================
+   INFO TABLE
+   ========================================= */
+
+.info-table {
+    display: grid;
+
+    grid-template-columns: 140px 1fr;
+
+    gap: 8px;
+
+    background: white;
+
+    padding: 10px;
+
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+
+/* =========================================
+   FOLDERS
+   ========================================= */
+
+.folder-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    padding: 10px;
+}
+
+.folder {
+    text-align: center;
+
+    cursor: pointer;
+
+    padding: 8px;
+}
+
+.folder span {
+    font-size: 38px;
+}
+
+.folder:hover {
+    background: #000080;
+    color: white;
+}
+
+
+/* =========================================
+   STATUS BAR
+   ========================================= */
+
+.status-bar {
+    height: 22px;
+
+    display: flex;
+    justify-content: space-between;
+
+    padding: 2px 5px;
+
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+
+/* =========================================
+   SMALL WINDOW
+   ========================================= */
+
+.small-window {
+    width: 300px;
+}
+
+.center {
+    text-align: center;
+    padding: 30px;
+}
+
+
+/* =========================================
+   TASKBAR
+   ========================================= */
+
+.taskbar {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 32px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+
+    display: flex;
+    align-items: center;
+
+    padding: 2px;
+}
+
+
+/* START BUTTON */
+
+.start-button {
+    height: 26px;
+
+    min-width: 72px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    cursor: pointer;
+}
+
+.start-button:active {
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+
+/* =========================================
+   TASKBAR
+   ========================================= */
+
+.taskbar-divider {
+    height: 25px;
+
+    border-left: 2px solid #808080;
+    border-right: 1px solid white;
+
+    margin: 0 4px;
+}
+
+.taskbar-items {
+    display: flex;
+    gap: 3px;
+
+    flex: 1;
+}
+
+.taskbar-item {
+    min-width: 120px;
+    height: 25px;
+
+    text-align: left;
+
+    padding: 3px 8px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+}
+
+
+/* SYSTEM TRAY */
+
+.system-tray {
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 8px;
+
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+
+/* =========================================
+   START MENU
+   ========================================= */
+
+.start-menu {
+    position: absolute;
+
+    left: 2px;
+    bottom: 32px;
+
+    width: 240px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    display: none;
+
+    z-index: 9999;
+}
+
+.start-menu.open {
+    display: flex;
+}
+
+.start-banner {
+    width: 35px;
+
+    background: #808080;
+    color: white;
+
+    padding: 8px 4px;
+
+    writing-mode: vertical-rl;
+
+    transform: rotate(180deg);
+
+    font-size: 18px;
+}
+
+.start-items {
+    flex: 1;
+    padding: 5px;
+}
+
+.start-items button,
+.start-items a {
+    display: block;
+
+    width: 100%;
+
+    padding: 9px 8px;
+
+    background: transparent;
+
+    border: none;
+
+    color: black;
+
+    text-align: left;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    font-family: inherit;
+}
+
+.start-items button:hover,
+.start-items a:hover {
+    background: #000080;
+    color: white;
+}
+
+.start-items hr {
+    border: none;
+
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid white;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .desktop-icons {
+        left: 10px;
+        top: 10px;
+
+        gap: 12px;
+    }
+
+    .window {
+        width: calc(100vw - 20px);
+
+        left: 10px !important;
+
+        max-height: calc(100vh - 60px);
+
+        overflow: auto;
+    }
+
+    .folder-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .taskbar-items {
+        display: none;
+    }
+
+    .system-tray {
+        margin-left: auto;
+    }
+
+}

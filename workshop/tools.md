@@ -31,6 +31,9 @@
     - High quality CAD maps using OpenStreetMap data
 - [Pomelli Brand DNA](https://labs.google.com/u/0/pomelli/bdna)
 
+### About Me Page:
+- [Windows 95 UI Kit](https://github.com/themesberg/windows-95-ui-kit/blob/master/README.md)
+
 ### Color Palettes:
 - [Coolors](coolors.co)
 - [Adobe Color](https://color.adobe.com/)

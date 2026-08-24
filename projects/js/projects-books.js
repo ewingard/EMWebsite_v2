@@ -227,31 +227,7 @@ document.addEventListener(
            PROJECT DATA
         ================================================= */
 
-        /*
-         * Do NOT directly write:
-         *
-         *     projects.forEach(...)
-         *
-         * here.
-         *
-         * If projects-content.js failed to load, that
-         * produces a ReferenceError and stops the entire
-         * bookshelf from being built.
-         *
-         * Instead, safely look for the supported forms.
-         */
-
         let projectList = null;
-
-
-        /*
-         * Most likely/current format:
-         *
-         * const projects = [...]
-         *
-         * Because a top-level const is available to
-         * subsequent classic scripts, typeof is safe here.
-         */
 
         if (
             typeof projects !== "undefined" &&
@@ -421,9 +397,10 @@ document.addEventListener(
          * spreadIndex represents the first page
          * displayed in the current spread.
          * -1 = Cover
-         * 0 = 001 / 002
-         * 2 = 003 / 004
-         * 4 = 005 / 006
+         * 0 = 1 / 2
+         * 2 = 3 / 4
+         * 4 = 5 / 6
+         * ...
          */
 
         let spreadIndex =
@@ -702,7 +679,7 @@ document.addEventListener(
             shelfOne.innerHTML =
                 "";
 
-
+            /* Remove 2nd shelf for now */
             // shelfTwo.innerHTML =
             //     "";
 

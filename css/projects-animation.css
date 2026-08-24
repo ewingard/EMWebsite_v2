@@ -191,14 +191,6 @@
     transform-style: preserve-3d;
 
     backface-visibility: hidden;
-
-    /*
-     * Make the paper itself opaque.
-     *
-     * This is important: transparency should come from
-     * the 3D angle/shadow, never from opacity.
-     */
-
     background:
         var(--page-background, #f7f1e5);
 
@@ -472,7 +464,7 @@
 
 
 /*
- * Going BACK from page 001 returns to the cover.
+ * Going BACK from page 1 returns to the cover.
  */
 
 .book-viewer.returning-cover
@@ -590,6 +582,76 @@
     100% {
         opacity: 1;
     }
+
+}
+
+/* =====================================================
+   PRESERVE PAGE CONTENT STYLING DURING FLIP
+===================================================== */
+
+.page-flip-front,
+.page-flip-back {
+
+    color: var(--page-text-color, #2b241c);
+
+}
+
+
+/* Preserve normal text color */
+
+.page-flip-front *,
+.page-flip-back * {
+
+    color: inherit;
+
+}
+
+
+/* Preserve links */
+
+.page-flip-front a,
+.page-flip-back a {
+
+    color: var(--page-link-color, #8b3f3f);
+
+}
+
+
+/* Preserve visited links */
+
+.page-flip-front a:visited,
+.page-flip-back a:visited {
+
+    color: var(--page-link-color, #8b3f3f);
+
+}
+
+
+/* Preserve hover/focus styling */
+
+.page-flip-front a:hover,
+.page-flip-back a:hover,
+.page-flip-front a:focus,
+.page-flip-back a:focus {
+
+    color: var(--page-link-hover-color, #b85c5c);
+
+}
+
+.page-flip-front h1,
+.page-flip-front h2,
+.page-flip-front h3,
+.page-flip-front h4,
+.page-flip-front h5,
+.page-flip-front h6,
+.page-flip-back h1,
+.page-flip-back h2,
+.page-flip-back h3,
+.page-flip-back h4,
+.page-flip-back h5,
+.page-flip-back h6 {
+
+    color: var(--page-heading-color, #2b241c);
 
 }
 
