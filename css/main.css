@@ -17,6 +17,7 @@ body {
   max-width: 97vw;
   max-height: auto;
   background-color: #FFFFFD;
+  background-image: url("/assets/textures/beige-paper.png");
   padding: 2vw;
 }
 
