@@ -251,7 +251,7 @@ const projects = [
         pages: [
 
             {
-                number: "1",
+                number: 1,
 
                 type: "intro",
 
@@ -264,12 +264,55 @@ const projects = [
                         A collection of academic and
                         professional publications & presentations.
                     </p>
+                    <div class="chart-row">
+                        <div class="chart-block">
+                            <h3 class="chart-title">
+                                Publications by Type
+                            </h3>
+
+                            <div class="publication-chart-container">
+                                <canvas
+                                    id="publicationTypeChart"
+                                    class="project-chart"
+                                    data-chart="publications"
+                                    aria-label="Chart of publications by type and year">
+                                </canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-block">
+                            <h3 class="chart-title">
+                                Publications by Year
+                            </h3>
+
+                            <div class="publication-chart-container">
+                                <canvas
+                                    id="publicationYearChart"
+                                    class="project-chart"
+                                    data-chart="publications-year"
+                                    aria-label="Chart showing publication amounts by year">
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="publication-chart-container" id="publication-role-container">
+                        <h3 class="chart-title">
+                            Publication Roles by Year
+                        </h3>
+                            <canvas
+                                id="publicationRoleChart"
+                                class="project-chart"
+                                data-chart="publication-role"
+                                aria-label="Chart showing publication roles by year">
+                            </canvas>
+                    </div>
                 `
             },
 
 
             {
-                number: "2",
+                number: 2,
 
                 type: "text",
 
@@ -299,11 +342,11 @@ const projects = [
 
                 content: `<p> 
                 <strong>Wingard, E.M.,</strong> Nelson, C.M., Xia, M., & Hudac, C.M. (2025, April). Is Friendship in the Cards? How Adolescent Brains Make Quantity Decisions Involving Friendship. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/wingard_sans.pdf" target="_blank">Presented at the Social & Affective Neuroscience Society annual meeting, Chicago, IL.</a>
-                | <a href="/assets/media/experience/Wingard_SANS_Final.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
-                </p>
+                | <a href="/assets/media/experience/Wingard_SANS_Final.pdf" target="_blank"> PDF <i class="fa-solid fa-file-image" alt="image file icon"></i></a>
+                </p></br>
                 <p>
                 Arcement, J., Patel, M., <strong>Wingard, E.M.,</strong> Cheever, A., McFadden, J., Nelson, C.M., & Hudac, C.M. (2025, April). The Influence of Anxiety on Social Preferences in Adolescents: Exploring Group Size and Duration Choices. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-anxiety.pdf" target="_blank">Presented at DiscoverUSC, Columbia, SC.</a> 
-                | <a href="/assets/media/experience/SocialAnxiety_ArcementPatel.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
+                | <a href="/assets/media/experience/SocialAnxiety_ArcementPatel.pdf" target="_blank"> PDF <i class="fa-solid fa-file-image" alt="image file icon"></i></a>
                 </p>`
             },
 
@@ -318,11 +361,11 @@ const projects = [
 
                 content: `<p>
                 Johnson, M., <strong>Wingard, E.M.,</strong> Nelson, C.M., & Hudac, C.M. (2025, April). Do I know you? Influence of adolescent social interactions on brain responses to familiar and AI-generated faces. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/johnson_sans25.pdf" target="_blank">Presented at the Social & Affective Neuroscience Society annual meeting, Chicago, IL.</a> 
-                | <a href="/assets/media/experience/FacePerception_Johnson.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
-                </p>
+                | <a href="/assets/media/experience/FacePerception_Johnson.pdf" target="_blank"> PDF <i class="fa-solid fa-file-image" alt="image file icon"></i></a>
+                </p></br>
                 <p>
-                Arcement, J., Patel, M., <strong>Wingard, E.M.,</strong> Cheever, A., McFadden, J., Nelson, C.M., & Hudac, C.M. (2025, April). The Influence of Anxiety on Social Preferences in Adolescents: Exploring Group Size and Duration Choices. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-anxiety.pdf" target="_blank">Presented at DiscoverUSC, Columbia, SC.</a> 
-                | <a href="/assets/media/experience/SocialAnxiety_ArcementPatel.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
+                Hersey, J., Du Plessis, V., <strong>Wingard, E.M.,</strong> McFadden, J., Nelson, C.M., & Hudac, C.M. (2025, April). Social Quantity Preferences in Adolescence: Investigating the Correlation between the Need to Belong and Decisions in Social Quantity. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-ntbs.pdf" target="_blank">Poster at  DiscoverUSC, Columbia, SC.</a>
+                | <a href="/assets/media/experience/NTBS_HerseyPlessis.pdf" target="_blank"> PDF <i class="fa-solid fa-file-image" alt="image file icon"></i></a>
                 </p>`
             },
 
@@ -333,12 +376,19 @@ const projects = [
 
                 label: "Research",
 
-                title: "2025",
+                title: "2024",
                 
-                content: `<p>
-                    Hersey, J., Du Plessis, V., <strong>Wingard, E.M.,</strong> McFadden, J., Nelson, C.M., & Hudac, C.M. (2025, April). Social Quantity Preferences in Adolescence: Investigating the Correlation between the Need to Belong and Decisions in Social Quantity. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-ntbs.pdf" target="_blank">Poster at  DiscoverUSC, Columbia, SC.</a>
-                    | <a href="/assets/media/experience/NTBS_HerseyPlessis.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
-                    </p>`
+                content: `
+                <p> Nelson, C. M., Johnson, M., <strong>Wingard, E.M.,</strong> & Hudac, C. M. (2024, May). Characterizing friendships and other relationships in autistic adolescents. Talk at The Love Consortium, Chapel Hill, NC. 
+                    <a href="https://ewingard.xyz/projects/media/B-RAD/CharacterizingFriendships.pdf" target="_blank">PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
+                </p></br>
+                <p>
+                    McCune, M., Turner, B., Vidal, L., Nelson, C.M., <strong>Wingard, E.M.,</strong> & Hudac, C.M. (2024, April). The Adolescent Brain: Quantifying the Relationship Between Social Awareness and Perception of Upright and Inverted Faces. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/r15faces_discoversc_poster_finalversion.pdf" target="_blank">Presented at DiscoverUSC, Columbia, SC.</a> <a href="/assets/media/experience/SocialAwareness_McCune.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
+                </p></br>
+                <p>
+                    Khan, M., Patel, M., Tuppale, B., <strong>Wingard, E.M.,</strong> Nelson, C.M., & Hudac, C.M. (2024, April). The Effect of Sleep Quality as Measured by Couple’s Sleep Performance in Charades. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/lovebrain_charades_discoversc_poster_finalversion.pdf" target="_blank">Presented at DiscoverUSC.</a> <a href="/assets/media/experience/SleepQuality_Kha.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
+                </p>
+                `
             },
 
             {
@@ -350,11 +400,19 @@ const projects = [
 
                 title: "2024",
 
-                content: `<p>
-                Hersey, J., Morgan, A., Cheever, A., Nelson, C.M., Wingard, E.M., & Hudac, C.M. (2024, April).
+                content: `
+                <p>
+                <strong>Wingard, E.M.,</strong> Cheever, A. (2024). Importance of Inclusion in Science. <a href="https://www.b-radlab.com/happenings/importance-of-inclusion-in-science" target="_blank">B-RAD lab article. <i class="fa-regular fa-file"></i></a> 
+                </p></br>
+                <p>
+                Hersey, J., Morgan, A., Cheever, A., Nelson, C.M., <strong>Wingard, E.M.</strong>, & Hudac, C.M. (2024, April).
                 Exploring Nonverbal Communication Differences Among Individuals in Romantic Partnerships: A Neuroscientific Perspective.
-                <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/lovebrain_nv_discoverscposter_finalversion.pdf">Award winning section poster presented at DiscoverUSC, Columbia, SC.</a> 
-                | <a href="/assets/media/experience/LoveBrain_HerseyMorgan.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
+                <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/lovebrain_nv_discoverscposter_finalversion.pdf">Award winning poster presented at DiscoverUSC, Columbia, SC.</a> 
+                | <a href="/assets/media/experience/LoveBrain_HerseyMorgan.pdf" target="_blank"> PDF <i class="fa-solid fa-file-image" alt="image file icon"></i></a>
+                </p></br>
+                <p>
+                    Johnson, M., <strong>Wingard, E.M.,</strong> Nelson, C.M., & Hudac, C.M. (2024, April). Do I Know You? Brain Responses to Familiar and AI-Generated Faces. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/sans_size_ch.pdf" target="_blank">Presented at DiscoverUSC, Columbia, SC; Social & Affective Neuroscience Society annual meeting, Toronto, Canada.</a>
+                    <a href="/assets/media/experience/FamiliarAIFaces_Johnson.pdf" target="_blank"> PDF <i class="fa-solid fa-file-image" alt="image file icon"></i></a>
                 </p>
                 `
 
@@ -367,9 +425,18 @@ const projects = [
 
                 label: "Research",
 
-                title: "2024, Continued",
+                title: "2023",
 
-                content: ``
+                content: `
+                <p>Wingard, E.M. (2023, April). The Impact of Biases in Facial Recognition Artificial Neural Networks: Towards a More Ethical AI Past, Present, and Future. <a href="media/Thesis/QUEST-WebsiteCopy.pdf" target="_blank">Presentation <i class="fa-solid fa-file-powerpoint"></i></a>
+                </p></br>
+                <p>
+                Wingard, E.M. (2023, May). The Impact of Biases in Facial Recognition Artificial Neural Networks. <a href="https://www.illuminatenrhc.com/post/the-impact-of-biases-in-facial-recognition-artificial-neural-networks-by-ezra-wingard\" target="_blank">Illuminate NRHC, 5, 25-32.</a>
+                | <a href="/assets/media/experience/HonorsThesis_Publication_Website.pdf" target="_blank"> PDF <i class="fa-solid fa-file-lines" alt="document icon"></i></a> | <a href="media/Thesis/HonorsThesis-Poster-Graph.pdf" target="_blank">Poster <i class="fa-solid fa-file-image"></i></a> | <a href="https://github.com/ewingard/HonorsThesis" target="_blank">Code <i class="fa-solid fa-laptop-code"></i></a>
+                </p></br>
+                <p>Wingard, E.M. (2023, April). French Polynesia: Flora and Fauna. Presented at Quest Week, Oswego, NY. <a href="https://ewingard.xyz/projects/media/French/French-Polynesia.pdf" target="_blank">Presentation <i class="fa-solid fa-file-powerpoint"></i></a>
+                </p>
+                `
             },
 
             {
@@ -379,47 +446,14 @@ const projects = [
 
                 label: "Research",
 
-                title: "2023",
-
-                content: `<p>
-                <strong>Wingard, E.M.</strong> (2023, May). The Impact of Biases in Facial Recognition Artificial Neural Networks. <a href="https://www.illuminatenrhc.com/post/the-impact-of-biases-in-facial-recognition-artificial-neural-networks-by-ezra-wingard\" target="_blank">Illuminate NRHC, 5, 25-32.</a>
-                | <a href="/assets/media/experience/HonorsThesis_Publication_Website.pdf" target="_blank"> PDF <i class="fa-solid fa-file-lines" alt="document icon"></i></a> | <a href="media/Thesis/HonorsThesis-Poster-Graph.pdf" target="_blank"><i class="fa-solid fa-file-image"></i>Poster </a> | <a href="media/Thesis/QUEST-WebsiteCopy.pdf" target="_blank"><i class="fa-solid fa-file-powerpoint"></i> Presentation</a> | <a href="https://github.com/ewingard/HonorsThesis" target="_blank"><i class="fa-solid fa-laptop-code"></i> Code</a>
-                
-                </p>`
-            },
-
-            {
-                number: 9,
-
-                type: "text",
-
-                label: "Research",
-
                 title: "2021",
 
-                content: `<p>`
+                content:`
+                <p>
+                    Dykas, M.,<strong>Wingard, E.M.</strong> (2021, April). Does Making Narcissists ‘Feel Bad’ Make Them Want to Be Better People? Presented at Quest Week, Oswego, NY.
+                    <a href="https://ewingard.xyz/projects/media/Narcissism/Narcissism-DykasEMW.png" target="_blank">Poster <i class="fa-solid fa-file-image"></i></a>
+                </p>`
 
-            },
-
-
-            {
-                number: 10,
-
-                type: "chart",
-
-                label: "Research",
-
-                title: "Publication Overview",
-
-                content: `
-                    <p>
-                        Publications by year.
-                    </p>
-
-                    <canvas
-                        class="project-chart"
-                        data-chart="publication-years"></canvas>
-                `
             }
         ]
     },
@@ -516,11 +550,14 @@ const projects = [
 
                 label: "Introduction",
 
-                title: "AI Bias",
+                title: "AI Bias & Facial Recognition",
 
                 content: `
                     <p> In the field of artificial intelligence, the topic of neural network prejudice and bias is becoming more well-known by the day.
                     More instances of unethical AI practices have been documented by the <a href="https://www.aiaaic.org/aiaaic-repository" target="_blank">AIAAIC database</a>, with instances branching outside of the scope of this project.</a>
+                    </p>
+                    <p> Facial recognition software (commercial use or not) can be deeply flawed in accuracy and equity depending on gender and racial features.
+                    Some studies show that facial recognition and automatic gender recognition (AGR) technology’s accuracy rates are significantly worse on <a href="https://www.media.mit.edu/projects/gender-shades/overview/" target="_blank">Black women</a> and <a href="https://www.morgan-klaus.com/pdfs/pubs/Scheuerman-CSCW2019-HowComputersSeeGender.pdf" target="_blank"> transgender people.
                     </p>
                 `
             },
@@ -530,13 +567,25 @@ const projects = [
 
                 label: "Introduction",
 
-                title: "Facial Recognition",
+                title: "Terminology",
 
                 content: `
-                    <p> Facial recognition software (commercial use or not) can be deeply flawed in accuracy and equity depending on gender and racial features.
-                    Some studies show that facial recognition and automatic gender recognition (AGR) technology’s accuracy rates are significantly worse on <a href="https://www.media.mit.edu/projects/gender-shades/overview/" target="_blank">Black women</a> and <a href="https://www.morgan-klaus.com/pdfs/pubs/Scheuerman-CSCW2019-HowComputersSeeGender.pdf" target="_blank"> transgender people.
-                    </p>
-                `
+                <p><ul>
+                <li><i>Gender Modality</i>: Adherence (or not) between gender identity and sex assigned at birth. <strong>Terms used:</strong></li>
+                    <ul>
+                        <li>Transgender</li>
+                        <li>Cisgender</li>
+                    </ul>
+                <li><i>Gender Identity</i>: One's personal sense of gender. May or may not correspond with <i>gender modality</i>. <strong>Terms used:</strong>
+                    <ul>
+                        <li>Man</li>
+                        <li>Woman</li>
+                    </ul>
+                <li><i>Convolutional Neural Network</i>: a neural network using the mathematical process of <i>convolution</i> to process and predict data. Good for
+                <i>computer vision</i> data.</li>
+                <li><i>Computer Vision</i>: processing and extraction of digital images.</li>
+                </ul>
+                </p>`
             },
 
             {
@@ -586,31 +635,70 @@ const projects = [
 
                 label: "Results",
 
+                title: "Overall Accuracy per Model",
+
+                content: `
+                    <div class="project-chart-container">
+                        <canvas
+                            id="honors-thesis"
+                            class="project-chart"
+                            data-chart="honors-thesis"
+                            aria-label="Honors thesis accuracy results chart">
+                        </canvas>
+                    </div>
+                `
+            },
+
+                        {
+                number: "9",
+
+                label: "Results",
+
                 title: "FairFace Results",
 
                 content: `
-                <p>FairFace, the model trained on balanced data, did substantially better on accuracy
-                rates overall than the unbalanced model (IRNv1). Using a balanced dataset may help alleviate model bias.
-                </p>
+                    <p>
+                        FairFace, the model trained on balanced data, did substantially better on accuracy
+                        rates overall than the unbalanced model (IRNv1). Using a balanced dataset may help
+                        alleviate model bias.
+                    </p>
+
+                    <div class="project-chart-container" id="ff-chart">
+                        <canvas
+                            class="project-chart"
+                            data-chart="fairface-results"
+                            aria-label="FairFace accuracy results chart">
+                        </canvas>
+                    </div>
                 `
             },
 
             {
-                number: "9",
+                number: "10",
 
                 label: "Results",
 
                 title: "IRNv1 Results",
 
                 content: `
-                <p> The IRNv1 model performed worse overall, across all conditions. 
-                This model was also had the only accuracy rates that were worse than chance, on transgender men's faces (gender modality x gender identity).
-                </p>
+                    <p>
+                        The IRNv1 model performed worse overall, across all conditions.
+                        This model also had the only accuracy rates that were worse than chance,
+                        on transgender men's faces (gender modality x gender identity).
+                    </p>
+
+                    <div class="project-chart-container" id="irnv1-chart">
+                        <canvas
+                            class="project-chart"
+                            data-chart="irnv1-results"
+                            aria-label="IRNv1 accuracy results chart">
+                        </canvas>
+                    </div>
                 `
             },
 
             {
-                number: "10",
+                number: "11",
 
                 label: "Conclusion",
 
@@ -625,7 +713,7 @@ const projects = [
             },
 
             {
-                number: "11",
+                number: "12",
 
                 label: "Further Information",
 
@@ -635,11 +723,13 @@ const projects = [
                 <p> The datasets scraped during this project will not be shared due to privacy reasons. Transgender people are an at-risk group due to political persecution. There are ethical concerns about
                 datasets on transgender individuals being made public. The full methodology is available in my <a href="/assets/media/experience/HonorsThesis_Publication_Website.pdf">thesis</a> for dataset replication.
                 </p>
+                <p>Results from my thesis (<i>overall accuracy, model-specific results</i>) and R code are available on <a href="https://github.com/ewingard/HonorsThesis/tree/f4507b5205a19ccb8a717372d3aefb9ccb4a8f7f/RFiles">GitHub <i class="fa-solid fa-laptop-code"></i></a>
+                </p>
                 `
             },
 
             {
-                number: "12",
+                number: "13",
 
                 label: "Further Information",
 
@@ -876,3 +966,3326 @@ const projects = [
     }
 
 ];
+
+/*
+=====================================================
+CHARTS
+=====================================================
+*/
+
+/*
+    Prevents the same canvas from being initialized
+    more than once.
+*/
+function isChartInitialized(canvas) {
+
+    return canvas.dataset.chartInitialized === "true";
+
+}
+
+
+/*
+    Mark a canvas as initialized.
+*/
+function markChartInitialized(canvas) {
+
+    canvas.dataset.chartInitialized = "true";
+
+}
+
+
+/*
+=====================================================
+LOAD HONORS THESIS CSV
+=====================================================
+
+All three charts use the same CSV.
+
+Expected format:
+
+model,testSet,genderID,accuracy
+
+FF,cis,man,87.5
+FF,trans,man,65.2
+FF,cis,woman,91.4
+FF,trans,woman,82.1
+IRNv1,cis,man,72.3
+...
+=====================================================
+*/
+
+async function loadHonorsThesisData() {
+
+    let response;
+
+    try {
+
+        response = await fetch(
+            "/assets/media/accuracy.csv",
+            {
+                cache: "no-cache"
+            }
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Honors Thesis chart: failed to fetch accuracy.csv.",
+            error
+        );
+
+        return null;
+    }
+
+
+    if (!response.ok) {
+
+        console.error(
+            `Honors Thesis chart: accuracy.csv returned HTTP ${response.status}.`
+        );
+
+        return null;
+    }
+
+
+    const csv = await response.text();
+
+
+    const rows = csv
+        .trim()
+        .split(/\r?\n/)
+        .slice(1)
+        .map(row => {
+
+            const values =
+                row.split(",").map(
+                    value => value.trim()
+                );
+
+            const [
+                model,
+                testSet,
+                genderID,
+                accuracy
+            ] = values;
+
+            return {
+
+                model,
+
+                testSet,
+
+                genderID,
+
+                accuracy:
+                    Number(accuracy)
+
+            };
+
+        })
+        .filter(row =>
+            row.model &&
+            row.testSet &&
+            row.genderID &&
+            Number.isFinite(row.accuracy)
+        );
+
+
+    if (!rows.length) {
+
+        console.error(
+            "Honors Thesis chart: no valid rows were found in accuracy.csv."
+        );
+
+        return null;
+    }
+
+
+    return rows;
+
+}
+
+
+/*
+=====================================================
+DATA LOOKUP
+=====================================================
+*/
+
+function getAccuracy(
+    rows,
+    model,
+    testSet,
+    genderID
+) {
+
+    const row = rows.find(
+        row =>
+            row.model === model &&
+            row.testSet === testSet &&
+            row.genderID === genderID
+    );
+
+
+    return row
+        ? row.accuracy
+        : null;
+
+}
+
+
+/*
+=====================================================
+CHART PLUGINS
+=====================================================
+
+Shared plugins used by all three charts.
+=====================================================
+*/
+
+
+/*
+-----------------------------------------------------
+Chance line
+-----------------------------------------------------
+*/
+
+const honorsThesisChanceLine = {
+
+    id: "chanceLine",
+
+    afterDraw(chart) {
+
+        const {
+            ctx,
+            chartArea,
+            scales
+        } = chart;
+
+
+        if (
+            !chartArea ||
+            !scales.y
+        ) {
+            return;
+        }
+
+
+        const y =
+            scales.y.getPixelForValue(50);
+
+
+        ctx.save();
+
+
+        ctx.beginPath();
+
+
+        ctx.setLineDash(
+            [2, 3]
+        );
+
+
+        ctx.moveTo(
+            chartArea.left,
+            y
+        );
+
+
+        ctx.lineTo(
+            chartArea.right,
+            y
+        );
+
+
+        ctx.strokeStyle =
+            "#333";
+
+
+        ctx.lineWidth = 1;
+
+
+        ctx.stroke();
+
+
+        ctx.restore();
+
+    }
+
+};
+
+
+/*
+-----------------------------------------------------
+Bar value labels
+-----------------------------------------------------
+*/
+
+const honorsThesisBarLabels = {
+
+    id: "barLabels",
+
+    afterDatasetsDraw(chart) {
+
+        const {
+            ctx
+        } = chart;
+
+
+        chart.data.datasets.forEach(
+            (dataset, datasetIndex) => {
+
+                const meta =
+                    chart.getDatasetMeta(
+                        datasetIndex
+                    );
+
+
+                meta.data.forEach(
+                    (bar, index) => {
+
+                        const value =
+                            dataset.data[index];
+
+
+                        if (
+                            value == null ||
+                            !bar
+                        ) {
+                            return;
+                        }
+
+
+                        ctx.save();
+
+
+                        ctx.fillStyle =
+                            "black";
+
+
+                        ctx.font =
+                            "bold 9px Noto Sans";
+
+
+                        ctx.textAlign =
+                            "center";
+
+
+                        ctx.textBaseline =
+                            "middle";
+
+
+                        ctx.fillText(
+
+                            Number(value)
+                                .toFixed(1),
+
+                            bar.x,
+
+                            bar.y + 10
+
+                        );
+
+
+                        ctx.restore();
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+};
+
+// ============================================================
+// PUBLICATION CHARTS
+// ============================================================
+
+/*
+=====================================================
+LOAD PUBLICATIONS CSV
+=====================================================
+
+Expected CSV format:
+
+Year,Month,Type,AuthorLvl,Title,Journal,Conference,Location,Note
+
+Example:
+
+2026,4,Presentation,1,Beyond the Black Box,...,...
+2025,4,Presentation,2,Is Friendship in the Cards?,...
+2023,5,Publication,1,The Impact of Biases...,...
+=====================================================
+*/
+
+async function loadPublicationsData() {
+
+    let response;
+
+
+    try {
+
+        response = await fetch(
+            "/assets/media/publications.csv",
+            {
+                cache: "no-cache"
+            }
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Publications chart: failed to fetch publications.csv.",
+            error
+        );
+
+        return null;
+
+    }
+
+
+    if (!response.ok) {
+
+        console.error(
+            `Publications chart: publications.csv returned HTTP ${response.status}.`
+        );
+
+        return null;
+
+    }
+
+
+    const csv =
+        await response.text();
+
+
+    const rows =
+        csv
+            .trim()
+            .split(/\r?\n/)
+            .slice(1)
+            .map(row => {
+
+                const values =
+                    row.split(",").map(
+                        value => value.trim()
+                    );
+
+
+                const [
+                    year,
+                    month,
+                    type,
+                    authorLvl,
+                    role,
+                    title,
+                    journal,
+                    conference,
+                    location
+                ] = values;
+
+
+                return {
+
+                    year:
+                        Number(year),
+
+                    month:
+                        Number(month),
+
+                    type:
+                        type,
+
+                    authorLvl:
+                        Number(authorLvl),
+
+                    role:
+                        role,
+
+                    title:
+                        title,
+
+                    journal:
+                        journal,
+
+                    conference:
+                        conference,
+
+                    location:
+                        location
+
+                };
+
+            })
+            .filter(row =>
+
+                Number.isFinite(row.year) &&
+
+                Number.isFinite(row.month) &&
+
+                row.type &&
+
+                Number.isFinite(row.authorLvl) &&
+
+                row.role &&
+
+                row.title
+
+            );
+
+
+    if (!rows.length) {
+
+        console.error(
+            "Publications chart: no valid rows were found in publications.csv."
+        );
+
+        return null;
+
+    }
+
+
+    return rows;
+
+}
+
+
+/*
+=====================================================
+PUBLICATION TYPE CHART
+=====================================================
+
+Creates a stacked bar chart showing the number of
+research outputs by year and output type.
+
+HTML:
+
+data-chart="publications"
+id="publicationTypeChart"
+=====================================================
+*/
+
+async function createPublicationTypeChart(canvas) {
+
+    if (!canvas) {
+        console.warn(
+            "Publications chart: type chart canvas was not found."
+        );
+        return;
+    }
+
+    if (isChartInitialized(canvas)) {
+        return;
+    }
+
+    if (typeof Chart === "undefined") {
+        console.error(
+            "Publications chart: Chart.js is not loaded."
+        );
+        return;
+    }
+
+    markChartInitialized(canvas);
+
+    const publications =
+        await loadPublicationsData();
+
+    if (!publications) {
+        canvas.dataset.chartInitialized = "false";
+        return;
+    }
+
+    const existingChart =
+        Chart.getChart(canvas);
+
+    if (existingChart) {
+        existingChart.destroy();
+    }
+
+
+    /*
+    -------------------------------------------------
+    Count publications by type
+    -------------------------------------------------
+    */
+
+    const typeCounts = {};
+
+    publications.forEach(publication => {
+
+        const type = publication.type;
+
+        typeCounts[type] =
+            (typeCounts[type] || 0) + 1;
+
+    });
+
+
+    const types =
+        Object.keys(typeCounts);
+
+
+    /*
+    -------------------------------------------------
+    Colors
+    -------------------------------------------------
+    */
+
+    const colors = {
+
+        Publication:
+            "#cd5f66",
+
+        Presentation:
+            "#e2738c",
+
+        Poster:
+            "#ffa67c",
+
+        Blog:
+            "#f5e1a2"
+
+    };
+
+
+    const backgroundColors =
+        types.map(type =>
+            colors[type] || "#888888"
+        );
+
+
+    /*
+    -------------------------------------------------
+    Create donut chart
+    -------------------------------------------------
+    */
+
+    new Chart(canvas, {
+
+        type: "doughnut",
+
+        data: {
+
+            labels:
+                types,
+
+            datasets: [
+
+                {
+
+                    data:
+                        types.map(
+                            type =>
+                                typeCounts[type]
+                        ),
+
+                    backgroundColor:
+                        backgroundColors,
+
+                    borderColor:
+                        "#af474e",
+
+                    borderWidth:
+                        1
+
+                }
+
+            ]
+
+        },
+
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+
+            cutout: "60%",
+
+
+            layout: {
+
+                padding: 5
+
+            },
+
+
+            plugins: {
+
+                /*
+                -------------------------------------
+                Remove legend
+                -------------------------------------
+                */
+
+
+                legend: {
+
+                    display: false
+
+                },
+
+
+                /*
+                -------------------------------------
+                Tooltip
+                -------------------------------------
+                */
+
+                tooltip: {
+
+                    callbacks: {
+
+                        label(context) {
+
+                            return (
+                                `${context.label}: ` +
+                                `${context.raw}`
+                            );
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        },
+
+
+        plugins: [
+
+        //     /*
+        //     -----------------------------------------
+        //     Donut labels
+        //     -----------------------------------------
+        //     */
+
+        //     {
+
+        //         id: "publicationTypeLabels",
+
+        //         afterDraw(chart) {
+
+        //             const {
+        //                 ctx
+        //             } = chart;
+
+        //             const dataset =
+        //                 chart.data.datasets[0];
+
+        //             const meta =
+        //                 chart.getDatasetMeta(0);
+
+
+        //             ctx.save();
+
+
+        //             ctx.font =
+        //                 "bold 8px Noto Sans";
+
+        //             ctx.fillStyle =
+        //                 "#222";
+
+        //             ctx.textAlign =
+        //                 "center";
+
+        //             ctx.textBaseline =
+        //                 "middle";
+
+
+        //             meta.data.forEach(
+        //                 (arc, index) => {
+
+        //                     const value =
+        //                         dataset.data[index];
+
+        //                     if (
+        //                         value == null ||
+        //                         value === 0
+        //                     ) {
+        //                         return;
+        //                     }
+
+
+        //                     const position =
+        //                         arc.tooltipPosition();
+
+
+        //                     ctx.fillText(
+
+        //                         `${chart.data.labels[index]}: ${value}`,
+
+        //                         position.x,
+
+        //                         position.y
+
+        //                     );
+
+        //                 }
+        //             );
+
+
+        //             ctx.restore();
+
+        //         }
+
+        //     }
+
+            ]
+
+    });
+
+}
+
+/*
+=====================================================
+PUBLICATIONS BY YEAR CHART
+=====================================================
+
+Creates a line chart showing research outputs
+by year.
+
+=====================================================
+*/
+
+
+async function createPublicationsByYearChart(canvas) {
+
+    if (!canvas) {
+
+        console.warn(
+            "Publications chart: author/year chart canvas was not found."
+        );
+
+        return;
+    }
+
+
+    if (isChartInitialized(canvas)) {
+        return;
+    }
+
+
+    if (typeof Chart === "undefined") {
+
+        console.error(
+            "Publications chart: Chart.js is not loaded."
+        );
+
+        return;
+    }
+
+
+    markChartInitialized(canvas);
+
+
+    /*
+    -------------------------------------------------
+    Load publication data
+    -------------------------------------------------
+    */
+
+    const publications =
+        await loadPublicationsData();
+
+
+    if (!publications) {
+
+        canvas.dataset.chartInitialized =
+            "false";
+
+        return;
+    }
+
+
+    /*
+    -------------------------------------------------
+    Destroy existing chart
+    -------------------------------------------------
+    */
+
+    const existingChart =
+        Chart.getChart(canvas);
+
+
+    if (existingChart) {
+        existingChart.destroy();
+    }
+
+
+    /*
+    -------------------------------------------------
+    Count publications by year
+    -------------------------------------------------
+    */
+
+    const yearCounts = {};
+
+    publications.forEach(publication => {
+
+        const year =
+            publication.year;
+
+        yearCounts[year] =
+            (yearCounts[year] || 0) + 1;
+
+    });
+
+
+    /*
+    -------------------------------------------------
+    Get sorted years
+    -------------------------------------------------
+    */
+
+    const years =
+        Object.keys(yearCounts)
+            .map(Number)
+            .sort(
+                (a, b) => a - b
+            );
+
+
+    /*
+    -------------------------------------------------
+    Create line chart
+    -------------------------------------------------
+    */
+
+    new Chart(canvas, {
+
+        type: "line",
+
+
+        data: {
+
+            labels:
+                years,
+
+            datasets: [
+
+                {
+
+                    label:
+                        "Publications",
+
+                    data:
+                        years.map(
+                            year =>
+                                yearCounts[year]
+                        ),
+
+                    borderColor:
+                        "#a38b1f",
+
+                    backgroundColor:
+                        "#e2d69f",
+
+                    borderWidth:
+                        1,
+
+                    pointBackgroundColor:
+                        "#a38b1f",
+
+                    pointBorderColor:
+                        "#a38b1f",
+
+                    pointRadius:
+                        2,
+
+                    pointHoverRadius:
+                        4,
+
+                    tension:
+                        0.25,
+
+                    fill:
+                        true
+
+                }
+
+            ]
+
+        },
+
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+
+            layout: {
+
+                padding: {
+
+                    top: 8,
+
+                    right: 5,
+
+                    left: 5,
+
+                    bottom: 2
+
+                }
+
+            },
+
+
+            scales: {
+
+                x: {
+
+                    title: {
+
+                        display: false
+
+                    },
+
+                    grid: {
+
+                        display: false
+
+                    },
+
+                    ticks: {
+
+                        color:
+                            "#666",
+
+                        font: {
+
+                            size: 8
+
+                        }
+
+                    }
+
+                },
+
+
+                y: {
+
+                    beginAtZero:
+                        true,
+
+                    ticks: {
+
+                        stepSize:
+                            1,
+
+                        precision:
+                            0,
+
+                        color:
+                            "#666",
+
+                        font: {
+
+                            size: 8
+
+                        }
+
+                    },
+
+                    title: {
+
+                        display: false
+
+                    },
+
+                    grid: {
+
+                        color:
+                            "#dddddd"
+
+                    }
+
+                }
+
+            },
+
+
+            plugins: {
+
+                /*
+                -------------------------------------
+                No legend
+                -------------------------------------
+                */
+
+                legend: {
+
+                    display: false
+
+                },
+
+
+                tooltip: {
+
+                    callbacks: {
+
+                        label(context) {
+
+                            return (
+                                `Publications: ${context.raw}`
+                            );
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+/*
+=====================================================
+PUBLICATION ROLE CHART
+=====================================================
+
+Instead of author level, uses "role"
+
+Roles:
+
+    First Author
+    Co-Author
+    Mentor
+    Research Assistant
+
+The chart uses stacked bars so that:
+
+    - Total bar height = total outputs that year
+    - Bar segments = role in those outputs
+
+HTML:
+
+data-chart="publication-role"
+id="publicationRoleChart"
+=====================================================
+*/
+
+async function createPublicationRoleChart(canvas) {
+
+    if (!canvas) {
+
+        console.warn(
+            "Publications chart: role chart canvas was not found."
+        );
+
+        return;
+    }
+
+
+    if (isChartInitialized(canvas)) {
+        return;
+    }
+
+
+    if (typeof Chart === "undefined") {
+
+        console.error(
+            "Publications chart: Chart.js is not loaded."
+        );
+
+        return;
+    }
+
+
+    markChartInitialized(canvas);
+
+
+    /*
+    -------------------------------------------------
+    Load publication data
+    -------------------------------------------------
+    */
+
+    const publications =
+        await loadPublicationsData();
+
+
+    if (!publications) {
+
+        canvas.dataset.chartInitialized =
+            "false";
+
+        return;
+
+    }
+
+
+    /*
+    -------------------------------------------------
+    Destroy existing Chart.js instance
+    -------------------------------------------------
+    */
+
+    const existingChart =
+        Chart.getChart(canvas);
+
+    if (existingChart) {
+        existingChart.destroy();
+    }
+
+
+    /*
+    -------------------------------------------------
+    Get years
+    -------------------------------------------------
+    */
+
+    const years = [
+        ...new Set(
+            publications.map(
+                publication =>
+                    publication.year
+            )
+        )
+    ].sort(
+        (a, b) => a - b
+    );
+
+
+    /*
+    -------------------------------------------------
+    Roles
+    -------------------------------------------------
+
+    Explicit order keeps the chart meaningful:
+    most independent role first.
+    -------------------------------------------------
+    */
+
+    const roles = [
+
+        "First Author",
+
+        "Co-Author",
+
+        "Mentor",
+
+        "Research Assistant"
+
+    ];
+
+
+    /*
+    -------------------------------------------------
+    Role colors
+    -------------------------------------------------
+    */
+
+    const colors = {
+
+        "First Author":
+            "#2f8a58",
+
+        "Co-Author":
+            "#2d7388",
+
+        "Mentor":
+            "#323f8b",
+
+        "Research Assistant":
+            "#7a2e91"
+
+    };
+
+    /*
+    -------------------------------------------------
+    Build datasets
+    -------------------------------------------------
+    */
+
+    const datasets =
+        roles
+            .map(role => {
+
+                return {
+
+                    label:
+                        role,
+
+                    data:
+                        years.map(year =>
+
+                            publications.filter(
+                                publication =>
+
+                                    publication.year ===
+                                        year &&
+
+                                    publication.role ===
+                                        role
+
+                            ).length
+
+                        ),
+
+                    backgroundColor:
+                        colors[role],
+
+                    borderColor:
+                        "#0f0958",
+
+                    borderWidth:
+                        1,
+
+                    stack:
+                        "roles"
+
+                };
+
+            })
+            /*
+            Remove roles that never occur in the
+            dataset so the chart stays clean.
+            */
+            .filter(dataset =>
+
+                dataset.data.some(
+                    value => value > 0
+                )
+
+            );
+
+
+    /*
+    -------------------------------------------------
+    Create chart
+    -------------------------------------------------
+    */
+
+    new Chart(canvas, {
+
+        type:
+            "bar",
+
+
+        data: {
+
+            labels:
+                years,
+
+            datasets:
+                datasets
+
+        },
+
+
+        options: {
+
+            responsive:
+                true,
+
+            maintainAspectRatio:
+                false,
+
+
+            layout: {
+
+                padding: {
+
+                    top: 10,
+
+                    right: 5,
+
+                    left: 5,
+
+                    bottom: 5
+
+                }
+
+            },
+
+
+            scales: {
+
+                x: {
+
+                    stacked:
+                        true,
+
+                    grid: {
+
+                        display:
+                            false
+
+                    },
+
+                    ticks: {
+
+                        color:
+                            "#666",
+
+                        font: {
+
+                            size:
+                                9
+
+                        }
+
+                    },
+
+                    title: {
+
+                        display:
+                            false
+
+                    }
+
+                },
+
+
+                y: {
+
+                    stacked:
+                        true,
+
+                    beginAtZero:
+                        true,
+
+                    suggestedMax:
+                        5,
+
+                    ticks: {
+
+                        stepSize:
+                            1,
+
+                        precision:
+                            0,
+
+                        font: {
+
+                            size:
+                                9
+
+                        },
+
+                        color:
+                            "#666"
+
+                    },
+
+                    title: {
+
+                        display:
+                            false
+
+                    },
+
+                    grid: {
+
+                        color:
+                            "#dddddd"
+
+                    }
+
+                }
+
+            },
+
+
+            plugins: {
+
+                /*
+                No legend — labels are provided directly
+                inside the chart.
+                */
+
+                legend: {
+
+                    display:
+                        false
+
+                },
+
+
+                tooltip: {
+
+                    callbacks: {
+
+                        label(context) {
+
+                            return (
+                                `${context.dataset.label}: ` +
+                                `${context.raw}`
+                            );
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        },
+
+
+        plugins: [
+
+            /*
+            -------------------------------------------------
+            Direct role labels
+            -------------------------------------------------
+            */
+
+            {
+
+                id:
+                    "publicationRoleLabels",
+
+                afterDatasetsDraw(chart) {
+
+                    const {
+                        ctx
+                    } = chart;
+
+
+                    chart.data.datasets.forEach(
+                        (dataset, datasetIndex) => {
+
+                            const meta =
+                                chart.getDatasetMeta(
+                                    datasetIndex
+                                );
+
+
+                            meta.data.forEach(
+                                (bar, index) => {
+
+                                    const value =
+                                        dataset.data[index];
+
+
+                                    /*
+                                    Don't label zero
+                                    values or very small
+                                    segments.
+                                    */
+
+                                    if (
+                                        !value ||
+                                        value < 1
+                                    ) {
+                                        return;
+                                    }
+
+
+                                    const height =
+                                        Math.abs(
+                                            bar.base -
+                                            bar.y
+                                        );
+
+
+                                    /*
+                                    Only put text inside
+                                    segments large enough
+                                    to remain readable.
+                                    */
+
+                                    if (
+                                        height < 14
+                                    ) {
+                                        return;
+                                    }
+
+
+                                    ctx.save();
+
+
+                                    ctx.fillStyle =
+                                        "#ffffff";
+
+
+                                    ctx.font =
+                                        "bold 7px Noto Sans";
+
+
+                                    ctx.textAlign =
+                                        "center";
+
+
+                                    ctx.textBaseline =
+                                        "middle";
+
+
+                                    /*
+                                    Use short labels to
+                                    preserve space.
+                                    */
+
+                                    const shortRole = {
+
+                                        "First Author":
+                                            "First",
+
+                                        "Co-Author":
+                                            "Co",
+
+                                        "Mentor":
+                                            "Mentor",
+
+                                        "Research Assistant":
+                                            "RA"
+
+                                    }[
+                                        dataset.label
+                                    ];
+
+
+                                    ctx.fillText(
+
+                                        shortRole,
+
+                                        bar.x,
+
+                                        (
+                                            bar.y +
+                                            bar.base
+                                        ) / 2
+
+                                    );
+
+
+                                    ctx.restore();
+
+                                }
+
+                            );
+
+                        }
+
+                    );
+
+                }
+
+            },
+
+
+            /*
+            -------------------------------------------------
+            Total labels
+            -------------------------------------------------
+
+            Shows total number of outputs above each
+            year's bar.
+            -------------------------------------------------
+            */
+
+            {
+
+                id:
+                    "publicationRoleTotals",
+
+                afterDatasetsDraw(chart) {
+
+                    const {
+                        ctx,
+                        chartArea
+                    } = chart;
+
+
+                    if (!chartArea) {
+                        return;
+                    }
+
+
+                    chart.data.labels.forEach(
+                        (year, index) => {
+
+                            let total = 0;
+
+
+                            chart.data.datasets.forEach(
+                                dataset => {
+
+                                    total +=
+                                        Number(
+                                            dataset.data[index] ||
+                                            0
+                                        );
+
+                                }
+                            );
+
+
+                            if (!total) {
+                                return;
+                            }
+
+
+                            /*
+                            Find the highest bar
+                            segment.
+                            */
+
+                            const meta =
+                                chart.getDatasetMeta(
+                                    chart.data.datasets.length - 1
+                                );
+
+
+                            const bar =
+                                meta.data[index];
+
+
+                            if (!bar) {
+                                return;
+                            }
+
+
+                            ctx.save();
+
+
+                            ctx.fillStyle =
+                                "#222";
+
+
+                            ctx.font =
+                                "bold 8px Noto Sans";
+
+
+                            ctx.textAlign =
+                                "center";
+
+
+                            ctx.textBaseline =
+                                "bottom";
+
+
+                            ctx.fillText(
+
+                                total,
+
+                                bar.x,
+
+                                chart.getDatasetMeta(
+                                    chart.data.datasets.length - 1
+                                ).data[index].y - 3
+
+                            );
+
+
+                            ctx.restore();
+
+                        }
+
+                    );
+
+                }
+
+            }
+
+        ]
+
+    });
+
+}
+
+/*
+=====================================================
+PUBLICATION AUTHOR LEVEL CHART
+=====================================================
+
+Creates a stacked bar chart showing research outputs
+by year and author level.
+
+=====================================================
+*/
+
+// async function createPublicationAuthorLevelChart(canvas) {
+
+//     if (!canvas) {
+
+//         console.warn(
+//             "Publications chart: author level canvas was not found."
+//         );
+
+//         return;
+//     }
+
+
+//     if (isChartInitialized(canvas)) {
+//         return;
+//     }
+
+
+//     if (typeof Chart === "undefined") {
+
+//         console.error(
+//             "Publications chart: Chart.js is not loaded."
+//         );
+
+//         return;
+//     }
+
+
+//     markChartInitialized(canvas);
+
+
+//     const publications =
+//         await loadPublicationsData();
+
+
+//     if (!publications) {
+
+//         canvas.dataset.chartInitialized =
+//             "false";
+
+//         return;
+//     }
+
+
+//     const existingChart =
+//         Chart.getChart(canvas);
+
+
+//     if (existingChart) {
+//         existingChart.destroy();
+//     }
+
+
+//     /*
+//     -------------------------------------------------
+//     Get years
+//     -------------------------------------------------
+//     */
+
+//     const years = [
+//         ...new Set(
+//             publications.map(
+//                 publication =>
+//                     publication.year
+//             )
+//         )
+//     ].sort(
+//         (a, b) => a - b
+//     );
+
+
+//     /*
+//     -------------------------------------------------
+//     Get author levels
+//     -------------------------------------------------
+//     */
+
+//     const authorLevels = [
+//         ...new Set(
+//             publications.map(
+//                 publication =>
+//                     publication.authorLvl
+//             )
+//         )
+//     ]
+//         .filter(
+//             level =>
+//                 Number.isFinite(level)
+//         )
+//         .sort(
+//             (a, b) => a - b
+//         );
+
+
+//     /*
+//     -------------------------------------------------
+//     Colors
+//     -------------------------------------------------
+//     */
+
+//     const colors = [
+
+//         "#4e79a7",
+
+//         "#f28e2b",
+
+//         "#59a14f",
+
+//         "#e15759",
+
+//         "#b07aa1",
+
+//         "#76b7b2",
+
+//         "#edc949"
+
+//     ];
+
+
+//     /*
+//     -------------------------------------------------
+//     Build datasets
+//     -------------------------------------------------
+//     */
+
+//     const datasets =
+//         authorLevels.map(
+//             (level, index) => {
+
+//                 const color =
+//                     colors[
+//                         index %
+//                         colors.length
+//                     ];
+
+
+//                 return {
+
+//                     label:
+//                         `Level ${level}`,
+
+//                     data:
+//                         years.map(year =>
+
+//                             publications.filter(
+//                                 publication =>
+
+//                                     publication.year ===
+//                                         year &&
+
+//                                     publication.authorLvl ===
+//                                         level
+
+//                             ).length
+
+//                         ),
+
+//                     backgroundColor:
+//                         color,
+
+//                     borderColor:
+//                         color,
+
+//                     borderWidth:
+//                         1
+
+//                 };
+
+//             }
+//         );
+
+
+//     /*
+//     -------------------------------------------------
+//     Create compact chart
+//     -------------------------------------------------
+//     */
+
+//     new Chart(canvas, {
+
+//         type: "bar",
+
+
+//         data: {
+
+//             labels:
+//                 years,
+
+//             datasets:
+//                 datasets
+
+//         },
+
+
+//         options: {
+
+//             responsive: true,
+
+//             maintainAspectRatio: false,
+
+
+//             layout: {
+
+//                 padding: {
+
+//                     top: 8,
+
+//                     right: 5,
+
+//                     left: 5,
+
+//                     bottom: 2
+
+//                 }
+
+//             },
+
+
+//             scales: {
+
+//                 x: {
+
+//                     stacked: true,
+
+//                     grid: {
+
+//                         display: false
+
+//                     },
+
+//                     ticks: {
+
+//                         color: "#666",
+
+//                         font: {
+
+//                             size: 8
+
+//                         }
+
+//                     },
+
+//                     title: {
+
+//                         display: false
+
+//                     }
+
+//                 },
+
+
+//                 y: {
+
+//                     stacked: true,
+
+//                     beginAtZero: true,
+
+//                     grid: {
+
+//                         color: "#dddddd"
+
+//                     },
+
+//                     ticks: {
+
+//                         /*
+//                         No decimal points.
+//                         */
+
+//                         stepSize: 1,
+
+//                         precision: 0,
+
+//                         font: {
+
+//                             size: 8
+
+//                         },
+
+//                         color: "#666"
+
+//                     },
+
+//                     title: {
+
+//                         display: false
+
+//                     }
+
+//                 }
+
+//             },
+
+
+//             plugins: {
+
+//                 /*
+//                 -------------------------------------
+//                 Remove legend
+//                 -------------------------------------
+//                 */
+
+//                 legend: {
+
+//                     display: false
+
+//                 },
+
+
+//                 tooltip: {
+
+//                     callbacks: {
+
+//                         label(context) {
+
+//                             return (
+//                                 `${context.dataset.label}: ` +
+//                                 `${Math.round(context.raw)}`
+//                             );
+
+//                         }
+
+//                     }
+
+//                 }
+
+//             }
+
+//         }
+
+//     });
+
+// }
+
+/*
+=====================================================
+HONORS THESIS CHART
+=====================================================
+
+This is your ORIGINAL overall chart.
+
+It has intentionally been kept separate from the
+model-specific charts below.
+=====================================================
+*/
+
+async function createHonorsThesisChart(canvas) {
+
+    if (!canvas) {
+
+        console.warn(
+            "Honors Thesis chart: canvas was not found."
+        );
+
+        return;
+    }
+
+
+    if (isChartInitialized(canvas)) {
+        return;
+    }
+
+
+    if (typeof Chart === "undefined") {
+
+        console.error(
+            "Honors Thesis chart: Chart.js is not loaded."
+        );
+
+        return;
+    }
+
+
+    markChartInitialized(canvas);
+
+
+    const rows =
+        await loadHonorsThesisData();
+
+
+    if (!rows) {
+
+        canvas.dataset.chartInitialized =
+            "false";
+
+        return;
+    }
+
+
+    /*
+    -------------------------------------------------
+    Destroy an existing Chart.js instance
+    -------------------------------------------------
+    */
+
+    const existingChart =
+        Chart.getChart(canvas);
+
+    if (existingChart) {
+        existingChart.destroy();
+    }
+
+
+    /*
+    -------------------------------------------------
+    Create original overall chart
+    -------------------------------------------------
+    */
+
+    new Chart(canvas, {
+
+        type: "bar",
+
+        data: {
+
+            labels: [
+                "cis",
+                "trans",
+                "cis",
+                "trans"
+            ],
+
+            datasets: [
+
+                {
+                    label: "man",
+
+                    data: [
+
+                        getAccuracy(
+                            rows,
+                            "FF",
+                            "cis",
+                            "man"
+                        ),
+
+                        getAccuracy(
+                            rows,
+                            "FF",
+                            "trans",
+                            "man"
+                        ),
+
+                        getAccuracy(
+                            rows,
+                            "IRNv1",
+                            "cis",
+                            "man"
+                        ),
+
+                        getAccuracy(
+                            rows,
+                            "IRNv1",
+                            "trans",
+                            "man"
+                        )
+
+                    ],
+
+                    backgroundColor:
+                        "#4682B4",
+
+                    borderWidth: 0,
+
+                    categoryPercentage:
+                        0.85,
+
+                    barPercentage:
+                        0.9
+                },
+
+
+                {
+                    label: "woman",
+
+                    data: [
+
+                        getAccuracy(
+                            rows,
+                            "FF",
+                            "cis",
+                            "woman"
+                        ),
+
+                        getAccuracy(
+                            rows,
+                            "FF",
+                            "trans",
+                            "woman"
+                        ),
+
+                        getAccuracy(
+                            rows,
+                            "IRNv1",
+                            "cis",
+                            "woman"
+                        ),
+
+                        getAccuracy(
+                            rows,
+                            "IRNv1",
+                            "trans",
+                            "woman"
+                        )
+
+                    ],
+
+                    backgroundColor:
+                        "#F06B4F",
+
+                    borderWidth: 0,
+
+                    categoryPercentage:
+                        0.85,
+
+                    barPercentage:
+                        0.9
+                }
+
+            ]
+
+        },
+
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+
+            layout: {
+
+                padding: {
+
+                    top: 30,
+
+                    right: 10,
+
+                    left: 5,
+
+                    bottom: 5
+
+                }
+
+            },
+
+
+            scales: {
+
+                x: {
+
+                    title: {
+
+                        display: true,
+
+                        text:
+                            "Gender Modality"
+
+                    },
+
+                    grid: {
+
+                        display: false
+
+                    },
+
+                    ticks: {
+
+                        color: "#666"
+
+                    }
+
+                },
+
+
+                y: {
+
+                    min: 40,
+
+                    max: 100,
+
+                    title: {
+
+                        display: true,
+
+                        text:
+                            "Accuracy"
+
+                    },
+
+                    ticks: {
+
+                        stepSize: 40
+
+                    },
+
+                    grid: {
+
+                        color:
+                            "#dddddd"
+
+                    }
+
+                }
+
+            },
+
+
+            plugins: {
+
+                legend: {
+
+                    display: false
+
+                }
+
+            }
+
+        },
+
+
+        plugins: [
+
+            honorsThesisChanceLine,
+
+            honorsThesisBarLabels,
+
+
+            /*
+            -------------------------------------------------
+            Model labels
+            -------------------------------------------------
+            */
+
+            {
+
+                id: "modelLabels",
+
+                afterDraw(chart) {
+
+                    const {
+                        ctx,
+                        chartArea,
+                        scales
+                    } = chart;
+
+
+                    if (
+                        !chartArea ||
+                        !scales.x
+                    ) {
+                        return;
+                    }
+
+
+                    const x0 =
+                        scales.x.getPixelForValue(0);
+
+                    const x1 =
+                        scales.x.getPixelForValue(1);
+
+                    const x2 =
+                        scales.x.getPixelForValue(2);
+
+                    const x3 =
+                        scales.x.getPixelForValue(3);
+
+
+                    const ffCenter =
+                        (x0 + x1) / 2;
+
+                    const irnCenter =
+                        (x2 + x3) / 2;
+
+
+                    const boxWidth =
+                        Math.abs(x1 - x0) * 1.8;
+
+
+                    const top =
+                        chartArea.top - 20;
+
+
+                    ctx.save();
+
+
+                    ctx.strokeStyle =
+                        "#222";
+
+                    ctx.lineWidth = 1;
+
+                    ctx.fillStyle =
+                        "#222";
+
+                    ctx.font =
+                        "9px Noto Sans";
+
+                    ctx.textAlign =
+                        "center";
+
+                    ctx.textBaseline =
+                        "middle";
+
+
+                    /*
+                    ---------------------------------
+                    FF
+                    ---------------------------------
+                    */
+
+                    ctx.strokeRect(
+
+                        ffCenter -
+                            boxWidth / 2,
+
+                        top,
+
+                        boxWidth,
+
+                        20
+
+                    );
+
+
+                    ctx.fillText(
+
+                        "FF",
+
+                        ffCenter,
+
+                        top + 10
+
+                    );
+
+
+                    /*
+                    ---------------------------------
+                    IRNv1
+                    ---------------------------------
+                    */
+
+                    ctx.strokeRect(
+
+                        irnCenter -
+                            boxWidth / 2,
+
+                        top,
+
+                        boxWidth,
+
+                        20
+
+                    );
+
+
+                    ctx.fillText(
+
+                        "IRNv1",
+
+                        irnCenter,
+
+                        top + 10
+
+                    );
+
+
+                    /*
+                    ---------------------------------
+                    Divider
+                    ---------------------------------
+                    */
+
+                    const divider =
+                        (x1 + x2) / 2;
+
+
+                    ctx.beginPath();
+
+
+                    ctx.moveTo(
+
+                        divider,
+
+                        chartArea.bottom
+
+                    );
+
+
+                    ctx.lineTo(
+
+                        divider,
+
+                        chartArea.bottom + 5
+
+                    );
+
+
+                    ctx.stroke();
+
+
+                    ctx.restore();
+
+                }
+
+            }
+
+        ]
+
+    });
+
+}
+
+
+/*
+=====================================================
+MODEL-SPECIFIC CHART
+=====================================================
+
+Creates a chart containing ONLY one model.
+
+Examples:
+
+    model = "FF"
+
+or
+
+    model = "IRNv1"
+
+The original overall chart is not affected.
+=====================================================
+*/
+
+async function createModelResultsChart(
+    canvas,
+    model
+) {
+
+    if (!canvas) {
+
+        console.warn(
+            `${model} chart: canvas was not found.`
+        );
+
+        return;
+    }
+
+
+    if (isChartInitialized(canvas)) {
+        return;
+    }
+
+
+    if (typeof Chart === "undefined") {
+
+        console.error(
+            `${model} chart: Chart.js is not loaded.`
+        );
+
+        return;
+    }
+
+
+    markChartInitialized(canvas);
+
+
+    /*
+    -------------------------------------------------
+    Load the same CSV used by the original chart
+    -------------------------------------------------
+    */
+
+    const rows =
+        await loadHonorsThesisData();
+
+
+    if (!rows) {
+
+        canvas.dataset.chartInitialized =
+            "false";
+
+        return;
+    }
+
+
+    /*
+    -------------------------------------------------
+    Make sure the requested model exists
+    -------------------------------------------------
+    */
+
+    const modelRows =
+        rows.filter(
+            row => row.model === model
+        );
+
+
+    if (!modelRows.length) {
+
+        console.error(
+            `${model} chart: no rows found for model "${model}".`
+        );
+
+        canvas.dataset.chartInitialized =
+            "false";
+
+        return;
+    }
+
+
+    /*
+    -------------------------------------------------
+    Destroy existing chart
+    -------------------------------------------------
+    */
+
+    const existingChart =
+        Chart.getChart(canvas);
+
+    if (existingChart) {
+        existingChart.destroy();
+    }
+
+
+    /*
+    -------------------------------------------------
+    Create model-specific chart
+    -------------------------------------------------
+
+    Only two x-axis categories:
+
+        cis
+        trans
+
+    Each category has:
+
+        man
+        woman
+    -------------------------------------------------
+    */
+
+    new Chart(canvas, {
+
+        type: "bar",
+
+
+        data: {
+
+            labels: [
+
+                "cis",
+
+                "trans"
+
+            ],
+
+
+            datasets: [
+
+                {
+                    label: "man",
+
+                    data: [
+
+                        getAccuracy(
+                            rows,
+                            model,
+                            "cis",
+                            "man"
+                        ),
+
+                        getAccuracy(
+                            rows,
+                            model,
+                            "trans",
+                            "man"
+                        )
+
+                    ],
+
+                    backgroundColor:
+                        "#4682B4",
+
+                    borderWidth: 0,
+
+                    categoryPercentage:
+                        0.65,
+
+                    barPercentage:
+                        0.9
+                },
+
+
+                {
+                    label: "woman",
+
+                    data: [
+
+                        getAccuracy(
+                            rows,
+                            model,
+                            "cis",
+                            "woman"
+                        ),
+
+                        getAccuracy(
+                            rows,
+                            model,
+                            "trans",
+                            "woman"
+                        )
+
+                    ],
+
+                    backgroundColor:
+                        "#F06B4F",
+
+                    borderWidth: 0,
+
+                    categoryPercentage:
+                        0.65,
+
+                    barPercentage:
+                        0.9
+                }
+
+            ]
+
+        },
+
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+
+            layout: {
+
+                padding: {
+
+                    top: 30,
+
+                    right: 10,
+
+                    left: 5,
+
+                    bottom: 5
+
+                }
+
+            },
+
+
+            scales: {
+
+                x: {
+
+                    title: {
+
+                        display: true,
+
+                        text:
+                            "Gender Modality"
+
+                    },
+
+                    grid: {
+
+                        display: false
+
+                    },
+
+                    ticks: {
+
+                        color: "#666"
+
+                    }
+
+                },
+
+
+                y: {
+
+                    min: 40,
+
+                    max: model === "IRNv1" ? 80 : 100,
+
+                    title: {
+
+                        display: true,
+
+                        text:
+                            "Accuracy"
+
+                    },
+
+                    ticks: {
+
+                        stepSize: 20
+
+                    },
+
+                    grid: {
+
+                        color:
+                            "#dddddd"
+
+                    }
+
+                }
+
+            },
+
+
+            plugins: {
+
+                legend: {
+
+                    display: false,
+
+                    // position: "top"
+
+                }
+
+            }
+
+        },
+
+
+        plugins: [
+
+            honorsThesisChanceLine,
+
+            honorsThesisBarLabels,
+
+
+        //     /*
+        //     -------------------------------------------------
+        //     Model title
+        //     -------------------------------------------------
+        //     */
+
+        //     {
+
+        //         id: "singleModelLabel",
+
+        //         afterDraw(chart) {
+
+        //             const {
+        //                 ctx,
+        //                 chartArea
+        //             } = chart;
+
+
+        //             if (!chartArea) {
+        //                 return;
+        //             }
+
+
+        //             const center =
+        //                 (
+        //                     chartArea.left +
+        //                     chartArea.right
+        //                 ) / 2;
+
+
+        //             const boxWidth =
+        //                 chartArea.right -
+        //                 chartArea.left;
+
+
+        //             const top =
+        //                 chartArea.top - 25;
+
+
+        //             ctx.save();
+
+
+        //             ctx.strokeStyle =
+        //                 "#222";
+
+        //             ctx.lineWidth = 1;
+
+
+        //             ctx.fillStyle =
+        //                 "#222";
+
+
+        //             ctx.font =
+        //                 "9px Noto Sans";
+
+
+        //             ctx.textAlign =
+        //                 "center";
+
+
+        //             ctx.textBaseline =
+        //                 "middle";
+
+
+        //             ctx.strokeRect(
+
+        //                 center -
+        //                     boxWidth / 2,
+
+        //                 top,
+
+        //                 boxWidth,
+
+        //                 20
+
+        //             );
+
+
+        //             ctx.fillText(
+
+        //                 model,
+
+        //                 center,
+
+        //                 top + 10
+
+        //             );
+
+
+        //             ctx.restore();
+
+        //         }
+
+        //     }
+
+        ]
+
+    });
+
+}
+
+
+/*
+=====================================================
+FAIRFACE CHART
+=====================================================
+*/
+
+async function createFairFaceResultsChart(canvas) {
+
+    return createModelResultsChart(
+        canvas,
+        "FF"
+    );
+
+}
+
+
+/*
+=====================================================
+IRNV1 CHART
+=====================================================
+*/
+
+async function createIRNv1ResultsChart(canvas) {
+
+    return createModelResultsChart(
+        canvas,
+        "IRNv1"
+    );
+
+}
+
+
+/*
+=====================================================
+INITIALIZE PROJECT CHARTS
+=====================================================
+
+This function searches the supplied container rather
+than assuming that the canvas exists when this JS file
+loads.
+
+That is important because your book engine creates
+the page content dynamically.
+=====================================================
+*/
+
+async function initializeProjectCharts(
+    container = document
+) {
+
+    if (!container) {
+        return;
+    }
+
+    const canvases =
+        container.querySelectorAll(
+            "canvas[data-chart]"
+        );
+
+    if (!canvases.length) {
+        return;
+    }
+
+    for (const canvas of canvases) {
+
+        const chartType =
+            canvas.dataset.chart;
+
+        switch (chartType) {
+
+            /*
+            -----------------------------------------
+            Original overall Honors Thesis chart
+            -----------------------------------------
+            */
+
+            case "honors-thesis":
+
+                await createHonorsThesisChart(
+                    canvas
+                );
+
+                break;
+
+
+            /*
+            -----------------------------------------
+            FairFace-only chart
+            -----------------------------------------
+            */
+
+            case "fairface-results":
+
+                await createFairFaceResultsChart(
+                    canvas
+                );
+
+                break;
+
+
+            /*
+            -----------------------------------------
+            IRNv1-only chart
+            -----------------------------------------
+            */
+
+            case "irnv1-results":
+
+                await createIRNv1ResultsChart(
+                    canvas
+                );
+
+                break;
+
+
+            /*
+            -----------------------------------------
+            Publication type chart
+            -----------------------------------------
+            */
+
+            case "publications":
+
+                if (
+                    canvas.id ===
+                    "publicationTypeChart"
+                ) {
+
+                    await createPublicationTypeChart(
+                        canvas
+                    );
+
+                } else {
+
+                    console.warn(
+                        "Publications chart: unknown publication canvas.",
+                        canvas
+                    );
+
+                }
+
+                break;
+
+
+            /*
+            -----------------------------------------
+            Publication role chart
+            -----------------------------------------
+            */
+
+            case "publication-role":
+
+                await createPublicationRoleChart(
+                    canvas
+                );
+
+                break;
+
+
+            /*
+            -----------------------------------------
+            Publications by year chart
+            -----------------------------------------
+            */
+
+            case "publications-year":
+
+                await createPublicationsByYearChart(
+                    canvas
+                );
+
+                break;
+
+         }
+    }
+}
+
+
+/*
+=====================================================
+AUTOMATIC CHART DETECTION
+=====================================================
+
+The book engine appears to inject page.content
+dynamically.
+
+A MutationObserver allows this file to notice when
+a chart canvas is added to the page.
+=====================================================
+*/
+
+function observeProjectCharts() {
+
+    /*
+    ---------------------------------------------
+    Initial scan
+    ---------------------------------------------
+    */
+
+    initializeProjectCharts(document);
+
+
+    /*
+    ---------------------------------------------
+    Wait for dynamically-created page content
+    ---------------------------------------------
+    */
+
+    if (
+        typeof MutationObserver ===
+        "undefined"
+    ) {
+        return;
+    }
+
+
+    const observer =
+        new MutationObserver(
+            mutations => {
+
+                mutations.forEach(
+                    mutation => {
+
+                        mutation.addedNodes.forEach(
+                            node => {
+
+                                /*
+                                Ignore text nodes.
+                                */
+
+                                if (
+                                    node.nodeType !==
+                                    Node.ELEMENT_NODE
+                                ) {
+                                    return;
+                                }
+
+
+                                /*
+                                The added node itself
+                                might be a canvas.
+                                */
+
+                                if (
+                                    node.matches &&
+                                    node.matches(
+                                        "canvas[data-chart]"
+                                    )
+                                ) {
+
+                                    initializeProjectCharts(
+                                        node.parentElement ||
+                                        node
+                                    );
+
+                                }
+
+
+                                /*
+                                Or the canvas may be
+                                somewhere inside the
+                                newly-created page.
+                                */
+
+                                if (
+                                    node.querySelector
+                                ) {
+
+                                    const canvases =
+                                        node.querySelectorAll(
+                                            "canvas[data-chart]"
+                                        );
+
+
+                                    if (
+                                        canvases.length
+                                    ) {
+
+                                        initializeProjectCharts(
+                                            node
+                                        );
+
+                                    }
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    /*
+    ---------------------------------------------
+    Observe the page for dynamically-added content
+    ---------------------------------------------
+    */
+
+    observer.observe(
+
+        document.body,
+
+        {
+            childList: true,
+
+            subtree: true
+
+        }
+
+    );
+
+}
+
+
+/*
+=====================================================
+START CHART OBSERVER
+=====================================================
+*/
+
+if (
+    document.readyState ===
+    "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        observeProjectCharts
+    );
+
+} else {
+
+    observeProjectCharts();
+
+}
