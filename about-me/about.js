@@ -1740,7 +1740,7 @@ if (canvas && paintContext) {
 
 
     canvas.style.cursor =
-        'url("/assets/cursors/handwriting.cur"), crosshair';
+        'url("/assets/cursors/pen_s.cur"), crosshair';
 
 
     /* =====================================
@@ -1913,7 +1913,7 @@ if (canvas && paintContext) {
                 );
 
                 canvas.style.cursor =
-                    'url("/assets/cursors/handwriting.cur"), crosshair';
+                    'url("/assets/cursors/pen_s.cur"), crosshair';
 
             }
         );
@@ -1943,7 +1943,7 @@ if (canvas && paintContext) {
                 );
 
                 canvas.style.cursor =
-                    'url("/assets/cursors/handwriting.cur"), crosshair';
+                    'url("/assets/cursors/pen_s.cur"), crosshair';
 
             }
         );
@@ -1995,7 +1995,7 @@ if (canvas && paintContext) {
 
 
                     canvas.style.cursor =
-                        'url("/assets/cursors/handwriting.cur"), crosshair';
+                        'url("/assets/cursors/pen_s.cur"), crosshair';
 
                 }
             );

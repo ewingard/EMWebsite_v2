@@ -479,8 +479,100 @@ const projects = [
 
         pages: [
             {
+                number: 1,
 
+                label: "Background",
+
+                title: "Aphantasia",
+
+                content: `<p>
+                Aphantasia, or the inability to visualize experiences in the mind. Ranging from Aphantasia to Hyperphantasia, 'visual' imagery affected includes the major senses:
+                visual, tactile, olfactory, gustatory, and auditory.
+                </p>`
+            },
+
+            {
+                number: 2,
+
+                label: "Background",
+
+                title: "Aphantasia",
+
+                content: `<p>
+                Aphantasia is a relatively <a href="https://pubmed.ncbi.nlm.nih.gov/26115582/" target="_blank">newly named</a> condition which describes the lack of mental imagery in the mind.
+                It exists on a scale from no mental imagery (aphantasia) to extremely vivid mental imagery (hyperphantasia), which for visual imagery can be quantified through a test called the <a href="VVIQ">VVIQ</a>, or Vividness of Visual Imagery Questionnaire.
+                There is also the <a href="https://pubmed.ncbi.nlm.nih.gov/6082130/" target="_blank">QMI</a>, or Questionnaire of Visual Imagery, which encompasses all mental imagery, not just visual imagery.
+                </p></br>
+                <p> Within aphantasic individuals (people with aphantasia), there are levels of inability to evoke mental imagery. This spectrum is typically demonstrated as a scale of 1-5, with 1-2 being varying degrees of aphantasia, 3 being "normal", and 4-5 including degrees of hyperphantasia.
+                </p>`
+            },
+
+            {
+                number: 3,
+
+                label: "Background",
+
+                title: "Embodied Cognition",
+
+                content: `<p>
+                Embodied Cognition is broadly defined as how the body and capacities of an organism (ex. human) shapes cognition. Embodiment can encompass the motor system, perceptual/sensory systems, how the body
+                interacts with the environment, and assumptions about the world shaping the organism's function.
+                </p></br>
+                <p>
+                    One example of embodied cognition is cell-phone use: If you have ever considered your phone an extension of yourself 
+                    (like how we use our calendar, tasks/notes app, and other apps to offload cognition), this demonstrates a core principle of your phone being a
+                    mechanism for <i>embodied cognition</i>.
+                </p>`
+            },
+
+            {
+                number: 4,
+
+                label: "Capstone",
+
+                title: "The Relationship Between Embodied Cognition and Aphantasia",
+
+                content: `<p>
+                Embodied Cognition is broadly defined as how the body and capacities of an organism (ex. human) shapes cognition. Embodiment can encompass the motor system, perceptual/sensory systems, how the body
+                interacts with the environment, and assumptions about the world shaping the organism's function.
+                </p></br>
+                <p>
+                    One example of embodied cognition is cell-phone use: If you have ever considered your phone an extension of yourself 
+                    (like how we use our calendar, tasks/notes app, and other apps to offload cognition), this demonstrates a core principle of your phone being a
+                    mechanism for <i>embodied cognition</i>.
+                    <a href="media/Aphantasia/Aphantasia-EC-CapstoneSlides.pdf" target="_blank">Presentation <i class="fa-solid fa-file-powerpoint"></i></a> | <a href="media/Aphantasia/RelationshipBtwnAphantasia+EC-CapstonePaper.pdf" target="_blank">Paper 
+                        <i class="fa-solid fa-file-lines"></i></a>
+                </p>`
+            },
+
+            {
+                number: 5,
+
+                label: "Volunteer Research",
+
+                title: "Mental Rotation",
+
+                content: `<p>
+                    The study that I worked on with Dr. Theo Rhodes and Dr. Sien Hu at SUNY Oswego sought to answer the questions:
+                    <ol>
+                        <li>Is there a difference on a mental rotation task in those with aphantasia versus those without aphantasia?</li>
+                        <li>How can we use the differences on a mental rotation task in the aphantasic versus non aphantasic population in order to learn more about the mental processes and behaviors associated with the condition?</li>
+                    </p>`
+            },
+
+            {
+                number: 6,
+
+                label: "Volunteer Research",
+
+                title: "Mental Rotation",
+
+                content: `<p>In order to test this, we conducted a preliminary study during 2021 using the <a href="https://www.urmc.rochester.edu/del-monte-neuroscience/ur-cabin/mri.aspx" target="_blank">CABIN 3-T fMRI</a> at the University of Rochester.
+                        We sought to understand the neuroanatomical differences between aphantasic and non-aphantasic individuals, as well as cognitive processing for the brains during the mental rotation task.
+                        A manuscript for publication is currently in preparation containing the results. Four adults with self-reported aphantasia and six adults without aphantasia participated in this study.
+                </p>`
             }
+
         ]
 
     },
@@ -762,7 +854,37 @@ const projects = [
 
         rotation: "-0.3deg",
 
-        decoration: "ornament"
+        decoration: "ornament",
+
+        pages: [
+            {
+                number: 1,
+
+                label: "Background",
+
+                title: "General Overview",
+
+                content: `<p>As of July 2023, I have been volunteering with Dr. <a href="https://sc.edu/study/colleges_schools/artsandsciences/psychology/our_people/directory/brown_michelle.php" target="_blank">Michelle Brown</a>, the (PI of <a href="https://starr-lab.com/" target="_blank">STARR Lab</a>) at the University of South Carolina.
+                I am assisting with the publication process from manuscript preparation, results refining, and miscellaneous processes to speed along the publication process.
+                These two papers (in prep., 2024) focus on childhood maltreatment using two prospective longitudinal studies, known as the Female Adolescent Developmental Survey (FADS) and the Longitudinal Studies of Childhood Adolescent Neglect (LONGSCAN).
+                </p>
+                <p> Friendships and social connections are a major part of adolescence. In this project, Dr. Michelle Brown and co-authors sought to look at potential effects of how friendships may moderate the impact of childhood maltreatment in adolescent populations. 
+                </p>`
+            },
+
+            {
+                number: 2,
+
+                label: "Updates",
+
+                title: "Publications",
+
+                content: `<p>As of November, 2024 there are two papers in preparation to look at two major datasets from prospective longitudinal studies (<a href="https://publications.aap.org/pediatrics/article-abstract/131/2/e510/31865/Association-of-Maltreatment-With-High-Risk?redirectedFrom=fulltext" target="_blank">FADS</a> and <a href="https://www.sciencedirect.com/science/article/abs/pii/S0145213420304518" target="_blank">LONGSCAN</a>).
+                </p>
+                <p> In February 2026, the first manuscript on the FADS dataset was submitted for publication at the <i>Journal of Research on Adolescence</i>. The submission was rejected in June 2026.
+                </p>`
+            }
+        ]
 
     },
 
@@ -780,6 +902,75 @@ const projects = [
         width: 50,
 
         height: 290,
+
+        pages: [
+            {
+                number: 1,
+
+                label: "Background",
+
+                title: "What is EEG?",
+
+                content: `<p>Electroencephalography (EEG) is a neuroimaging method to record the electrical activity (signals) coming from the brain.<br>
+                    The B-RAD Lab uses a special type of <a href="https://www.b-radlab.com/what-is-eeg.html" target="_blank">EEG</a> Net that is more flexible than a Gel net. This specific EEG Net is used to better accomodate our participants.
+                    This includes participants such as:
+                        <ul>
+                            <li>People with various hair types and textures, including <a href="https://www.sciencenews.org/article/electrodes-brain-waves-eeg-black-african-american-natural-hair" target="_blank">Afro-Textured hair</a>, <a href="https://www.youtube.com/watch?v=vG3y0mwA3_g" target="_blank">Protective Styles</a>, and <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1111/psyp.14499" target="_blank">Curly/Coily Hair Types</a></li>
+                            <li>People who are historically <a href="https://www.nature.com/articles/s41593-022-01046-0" target="_blank">underrepresented</a> in <a href="https://www.nature.com/articles/s41539-024-00240-y" target="_blank">STEM</a> and <a href="https://link.springer.com/article/10.1007/s42761-021-00050-0" target="_blank">research</a></li>
+                            <li>Autistic participants and individuals with sensory sensitivities</li>    
+                </ul></p>`
+            },
+
+            {
+                number: 2,
+
+                label: "Research Project",
+
+                title: "Social Connection and Well-Being Study (SCWB)",
+
+                content: `<p>
+                This study is an NIH R01-funded research project (PI: Caitlin Hudac, <a href="https://www.b-radlab.com/" target="_blank">B-RAD Lab</a>) focusing on adolescents.
+                The main research questions:
+                <ol>
+                    <li>How does the reciprocity social connection and well-being change in the short-term (daily)?</li>
+                    <li>How does the reciprocity of social connection and well-being change in the longer-term (months - 1 year)</li>
+                    <li>How do behaviors and neurobiological markers link the associations between social connection and well-being?</li>
+                </ol>
+                </p>`
+            },
+
+            {
+                number: 3,
+
+                label: "SCWB",
+
+                title: "Presentations",
+
+                content: `
+                <p>In April 2025, I was able to attend the international <a href="https://socialaffectiveneuro.org/" target="_blank">Social Affective Neuroscience Society</a> conference and present on preliminary results from the <a href="/projects/media/B-RAD/SCWB/Wingard_SANS_Final.pdf" target="_blank"> FortuneTeller Task</a> for the Social Connection and Well-Being Study. You can find a quiz that I created modeled after said task <a href="/projects/fortuneteller-quiz/" target="_blank">here</a> to see what your fortune may be!
+                </p>
+                <p>Our undergraduate interns also completed two posters in April using preliminary data from this task, relating to <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-ntbs.pdf" target="_blank">Social Motivation</a> and <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-anxiety.pdf" target="_blank">Anxiety</a>.
+                </p>`
+            },
+
+            {
+                number: 5,
+
+                label: "B-RAD Lab",
+
+                title: "Lab Role",
+
+                content: `<p>I joined the Brain Research Across Development (<a href="https://www.b-radlab.com/">B-RAD</a>) Lab in February of 2024. Since then, I have taken on the lead role as Research Assistant for the SCWB Study, as well as minor roles including (but not limited to):
+                <ul>
+                    <li>Lending assistance with the <a href="https://www.b-radlab.com/bbad-study.html" target="_blank">BBAD</a>, <a href="https://www.b-radlab.com/autfriends.html" target="_blank">Autistic Friendships</a>, <a href="https://www.b-radlab.com/tbd-study.html" target="_blank">Teen Brain Decision</a> and <a href="https://www.b-radlab.com/mind-matters.html" target="_blank">Mind Matters</a> Studies</li>
+                    <li>Collaborations with the <a href="https://starr-lab.com/summer-camp" target="_blank">STARR Lab</a> to host a psychology research summer camp</li>
+                    <li>Standing in as co-lab manager and mentoring 6-12 interns per semester</li>
+                    <li>Co-Author on <a href="https://www.b-radlab.com/posters.html" target="_blank">9</a> posters across 2 years</li>
+                    <li>Co-Authored an article on inclusive neuroscience practices for gender diversity.</li>
+                    <!--<li>Co-Author and first author in XX <a href="https://www.b-radlab.com/publications.html">publications</a></li>-->
+                </ul></p>`
+            }
+        ]
     },
 
 
@@ -861,39 +1052,44 @@ const projects = [
             { 
                 number: 1,
 
-                label: "Creative Writing and Art Camp",
+                label: "Background",
 
-                title: "",
+                title: "Lesson Planning",
 
                 content: ` <p>
                     The Creative Writing and Art Camp hosted by the <a href="http://www.newbethelfoundation.org/board-members/">New Bethel Foundation</a> was held from July 22 to July 25th, 2024
                     and focused on providing an enriching art education and outlet for local youth during the summer.
-                </p> `
+                </p></br>
+                <p>
+                    Educational topics covered included:</br>
+                     <ol>
+                            <li><a href="/projects/media/ArtCamp/Shading-Values.pdf" target="_blank">Shading and Values</a></li>
+                            <li><a href="/projects/media/ArtCamp/Textures-Patterns.pdf" target="_blank">Textures and Patterns</a></li>
+                            <li><a href="/projects/media/ArtCamp/ColorTheory.pdf" target="_blank">Color Theory</a></li>
+                            <li>Composition and Project Drafting</li>
+                    </ol>
+                </p>
+                <p>
+                The art camp lasted for one week and students completed worksheets on shading and values, textures and patterns,
+                color theory, and composition.</p>`
             },
 
             {
                 number: 2,
 
-                label: "Lesson Planning",
+                label: "Output",
 
-                title: "",
+                title: "Art Gallery",
 
-                content: ` <p>
-                    Educational topics covered included:</br>
-                        1. Shading and Values</br>
-                        2. Textures and Patterns</br>
-                        3. Color Theory</br>
-                        4. Composition and Project Drafting</br>
-                    </p> `
-            },
-            {
-                number: 3,
-
-                label: "",
-
-                content: `<p>
-                    
-                </p>`
+                content: `
+                <p>Students created multiple paintings on their worksheets and
+                also completed 2 structured assignments with paints on color theory and composition. Throughout the camp,
+                they were also allowed to complete various mini art projects as they wanted, to provide a creative outlet with
+                the ability to ask questions to me and my co-instructor.</p>
+                </br>
+                <p>I have around 50 works of art on display in an art gallery, where you can scroll through and view samples of artwork
+                created either through assignments or personal creativity.</p></br>
+                <p><a href="/projects/art-camp/">View the Art Gallery <i class="fa-solid fa-file-lines"></i></a></p>`
 
             }
         ]
@@ -921,7 +1117,7 @@ const projects = [
 
         pages: [
             {
-
+                
             }
         ]
     },
@@ -929,7 +1125,7 @@ const projects = [
     {
         id: "",
 
-        title: "Researcher \u00A0 Mentorship",
+        title: "Researcher Mentorship",
 
         shelf: 1,
 
@@ -948,7 +1144,7 @@ const projects = [
     },
 
     {
-        id: " ",
+        id: "",
 
         title: "HiTOP",
 
@@ -962,7 +1158,23 @@ const projects = [
 
         width: 30,
 
-        height: 200
+        height: 200,
+
+        pages: [
+            {
+                number: 1,
+
+                label: "Background",
+
+                title: "What is HiTOP?",
+
+                content: `<p>
+                The Hierarchical Taxonomy of Psychopathology, or, <a href="https://renaissance.stonybrookmedicine.edu/HITOP" target="_blank">HiTOP</a> is an alternative classification system for psychopathology and mental health conditions.
+                Thought of as somewhat of an alternative to the DSM (due to organizational differences), HiTOP has restructured some of the ways that psychopathology is organized in Western medicine.
+                HiTOP uses and builds upon pre-existing data and literature about psychopatology and mental health, and seeks to bring greater clarity and organization to the classification systems already in place.
+                </p>`
+            }
+        ]
     }
 
 ];

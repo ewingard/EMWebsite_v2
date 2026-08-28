@@ -167,7 +167,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
     .window[data-resize-direction="nw"],
     .window[data-resize-direction="se"] {
-    cursor: url("/assets/cursors/size1_s.cur"), nwse-resize;
+    cursor: url("/assets/cursors/size2_s.cur"), nwse-resize;
 }
 
 
@@ -177,7 +177,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
     .window[data-resize-direction="ne"],
     .window[data-resize-direction="sw"] {
-    cursor: url("/assets/cursors/size2_s.cur"), nesw-resize;
+    cursor: url("/assets/cursors/size1_s.cur"), nesw-resize;
 }
 
 
@@ -745,7 +745,7 @@ p, h1, h2, h3, h4, h5, h6 {
     background: white;
 
     cursor:
-        url("/assets/cursors/handwriting.cur"),
+        url("/assets/cursors/pen_s.cur"),
         crosshair;
 }
 
