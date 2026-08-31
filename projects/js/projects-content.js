@@ -510,6 +510,8 @@ const projects = [
             {
                 number: 3,
 
+                id: "ec",
+
                 label: "Background",
 
                 title: "Embodied Cognition",
@@ -1117,7 +1119,42 @@ const projects = [
 
         pages: [
             {
-                
+                number: 1,
+
+                label: "French Polynesia: Flora and Fauna",
+
+                title: "La Polynesie Francaise: La Faune et la Flore",
+
+                content: `<p>
+                    <a href="/projects/media/French/Polynesie-Francaise.pdf" target="_blank">French Version <i class="fa-solid fa-file-image"></i></a>
+                    <a href="/projects/media/French/French-Polynesia.pdf" target="_blank">English Version <i class="fa-solid fa-file-image"></i></a>
+                    </p>`
+                    
+            },
+
+            {
+                number: 2,
+
+                label: "The AIDS Crisis",
+
+                title: "Le Crise du Sida",
+
+                content: `<p><a href="/projects/media/French/Crise-SIDA-80s.pdf" target="_blank">French Version <i class="fa-solid fa-file-image"></i></a>
+                </p>`
+            },
+
+            {
+                number: 3,
+
+                label: "The Middle Ages",
+
+                title: "Les Femmes du Moyen Âge",
+
+                content: `<p><a href="/projects/media/French/FemmesDuMoyenAge-EzraWingard.pdf" target="_blank">
+                        <button class="btn"><i class="fa-solid fa-file-image"></i>French Blurb</button></a>
+                    <a href="projects/media/French/FdMoyenAge-Expose-EW.pdf" target="_blank">
+                        <button class="btn"><i class="fa-solid fa-file-powerpoint"></i>French Presentation</button></a><br>
+                </p>`
             }
         ]
     },

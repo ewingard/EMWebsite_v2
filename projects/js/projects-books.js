@@ -38,7 +38,6 @@
            window.projectsData
 ===================================================== */
 
-
 document.addEventListener(
     "DOMContentLoaded",
     () => {
@@ -753,6 +752,181 @@ document.addEventListener(
             );
 
         }
+
+        /* =================================================
+        HASH / DEEP LINKING
+        ================================================= */
+
+        function openProjectFromHash(hash) {
+
+            const value =
+                hash.replace(/^#/, "");
+
+            if (!value) {
+                return;
+            }
+
+            const [projectId, pageId] =
+                value.split("/");
+
+            const project =
+                projectLibrary.find(
+                    project =>
+                        String(project.id) ===
+                        String(projectId)
+                );
+
+            if (!project) {
+
+                console.warn(
+                    `Project "${projectId}" not found.`
+                );
+
+                return;
+
+            }
+
+            /*
+            * Find the actual shelf book so that openProject()
+            * receives the required bookElement argument.
+            */
+
+            const books =
+                shelfOne.querySelectorAll(
+                    ".book-wrapper"
+                );
+
+            let bookElement = null;
+
+            books.forEach(
+                book => {
+
+                    const label =
+                        book.getAttribute(
+                            "aria-label"
+                        );
+
+                    if (
+                        label ===
+                        `Open ${getProjectValue(
+                            project,
+                            "title",
+                            "Untitled Project"
+                        )}`
+                    ) {
+
+                        bookElement = book;
+
+                    }
+
+                }
+            );
+
+
+            if (!bookElement) {
+
+                console.warn(
+                    `Shelf book for "${project.title}" not found.`
+                );
+
+                return;
+
+            }
+
+
+            openProject(
+                project,
+                bookElement
+            );
+
+
+            /*
+            * If a page was supplied in the hash,
+            * navigate to it after opening the book.
+            */
+
+            if (pageId) {
+
+                const pages =
+                    getProjectPages.call({
+                        activeProject: project
+                    });
+
+                const pageIndex =
+                project.pages?.findIndex(
+                    page =>
+                        String(page.id).toLowerCase() ===
+                        String(pageId).toLowerCase()
+                );
+
+                if (
+                    pageIndex === undefined ||
+                    pageIndex < 0
+                ) {
+
+                    console.warn(
+                        `Page "${pageId}" not found in ${project.title}.`
+                    );
+
+                    return;
+
+                }
+
+                /*
+                * Pages are displayed two at a time.
+                * Convert the page index to the appropriate spread.
+                */
+
+                spreadIndex =
+                    pageIndex % 2 === 0
+                        ? pageIndex
+                        : pageIndex - 1;
+
+                /*
+                * Wait until the book has opened before rendering
+                * the requested spread.
+                */
+
+                renderSpread(false);
+
+            }
+
+        }
+
+
+        window.addEventListener(
+            "hashchange",
+            () => {
+
+                openProjectFromHash(
+                    window.location.hash
+                );
+
+            }
+        );
+
+
+        /*
+        * Build the shelves first.
+        */
+
+        buildShelves();
+
+
+        /*
+        * Then process any existing deep link.
+        */
+
+        openProjectFromHash(
+            window.location.hash
+        );
+
+
+        console.log(
+            "Project book library initialized:",
+            projectLibrary.length,
+            "projects"
+        );
 
 
         /* =================================================
