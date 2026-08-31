@@ -1,0 +1,99 @@
+name: Update Issue Number
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update-issue:
+    # Don't run again when this workflow pushes issue.json.
+    if: "!contains(github.event.head_commit.message, '[skip issue]')"
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Calculate issue information
+        env:
+          PUSH_DATE: ${{ github.event.head_commit.timestamp }}
+        run: |
+          YEAR=$(date -u -d "$PUSH_DATE" +%Y)
+
+          # 2026 = Volume 1
+          # 2027 = Volume 2
+          # 2028 = Volume 3
+          VOLUME=$((YEAR - 2026 + 1))
+
+          # Count previous pushes recorded for this year.
+          if [ -f issue-history.json ]; then
+            ISSUE=$(python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+
+          with open("issue-history.json", "r") as f:
+              history = json.load(f)
+
+          current_year = datetime.now(timezone.utc).year
+
+          print(history.get(str(current_year), 0) + 1)
+          PY
+          )
+          else
+            ISSUE=1
+          fi
+
+          # Update the push counter.
+          python3 - <<PY
+          import json
+          from pathlib import Path
+
+          path = Path("issue-history.json")
+
+          if path.exists():
+              history = json.loads(path.read_text())
+          else:
+              history = {}
+
+          year = "$YEAR"
+          issue = int("$ISSUE")
+
+          history[year] = issue
+
+          path.write_text(
+              json.dumps(history, indent=2) + "\n"
+          )
+          PY
+
+          # Generate the information used by the website.
+          cat > issue.json << EOF
+          {
+            "year": $YEAR,
+            "volume": $VOLUME,
+            "issue": $ISSUE,
+            "date": "$(date -u -d "$PUSH_DATE" +%Y-%m-%d)"
+          }
+          EOF
+
+          echo "Published: $YEAR, Vol. $VOLUME Issue #$ISSUE"
+
+      - name: Commit issue information
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add issue.json issue-history.json
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update issue information [skip issue]"
+            git push
+          fi
