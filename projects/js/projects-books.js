@@ -753,6 +753,7 @@ document.addEventListener(
 
         }
 
+
         /* =================================================
         HASH / DEEP LINKING
         ================================================= */
@@ -847,10 +848,7 @@ document.addEventListener(
 
             if (pageId) {
 
-                const pages =
-                    getProjectPages.call({
-                        activeProject: project
-                    });
+                const pages = getProjectPages();
 
                 const pageIndex =
                 project.pages?.findIndex(
@@ -927,6 +925,17 @@ document.addEventListener(
             projectLibrary.length,
             "projects"
         );
+
+         function clearProjectHash() {
+            if (window.location.hash) {
+                history.replaceState(
+                    null,
+                    "",
+                    window.location.pathname +
+                    window.location.search
+                );
+            }
+        }
 
 
         /* =================================================
@@ -2154,6 +2163,14 @@ document.addEventListener(
                         -1;
 
 
+                    /*
+                    * Remove the project/page hash from the URL
+                    * without reloading the page or firing hashchange.
+                    */
+
+                    clearProjectHash();
+
+
                     isAnimating =
                         false;
 
@@ -2161,6 +2178,7 @@ document.addEventListener(
                 TIMING.close +
                 350
             );
+
 
         }
 
