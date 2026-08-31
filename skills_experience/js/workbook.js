@@ -161,7 +161,7 @@ const workbook = {
                         "Bachelor of Arts",
 
                     Organization:
-                        "State University of New York at Oswego (SUNY Oswego",
+                        "State University of New York at Oswego (SUNY Oswego)",
 
                     Location:
                         "Oswego, NY",
@@ -2403,7 +2403,6 @@ function getSkillMetrics() {
     const categories =
         {};
 
-
     skills.forEach(
         skill => {
 
@@ -2412,18 +2411,19 @@ function getSkillMetrics() {
                 "Other";
 
 
-            if (
-                !categories[
-                    category
-                ]
-            ) {
-        
-        categories[skill.Category] = 0;
+            if (!categories[category]) {
+
+                categories[category] =
+                    0;
+
             }
 
-            categories[skill.Category]++;
 
-        });
+            categories[category]++;
+
+        }
+    );
+
 
 
     /*
@@ -2512,8 +2512,7 @@ function getSkillMetrics() {
 
         ...experienceYears,
 
-        totalYearsExperience, projectsCompleted: dashboardData.projectsCompleted,
-    publications: dashboardData.publications
+        totalYearsExperience
 
     };
 

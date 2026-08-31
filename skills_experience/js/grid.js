@@ -41,7 +41,7 @@ function generateGrid() {
         console.error(
             "Spreadsheet container missing."
         );
-
+        renderSheet();
         return;
 
     }
@@ -79,7 +79,8 @@ spreadsheet.innerHTML = "";
 // ==========================================
 function getColumnWidth(sheet, columnName) {
 
-    let longest = String(columnName).length;
+    let longest =
+        String(columnName).length;
 
     sheet.rows.forEach(row => {
 
@@ -92,13 +93,75 @@ function getColumnWidth(sheet, columnName) {
             longest,
             String(value ?? "").length
         );
+
     });
 
+    const isMobile =
+        window.matchMedia(
+            "(max-width: 700px)"
+        ).matches;
+
+
+    /*
+    ======================================
+    MOBILE
+    ======================================
+    */
+
+    if (isMobile) {
+
+        if (sheet.name === "Skills") {
+
+            const mobileWidths = {
+
+                Skill: 150,
+                Category: 120,
+                Type: 100,
+                Years: 65,
+                Level: 90
+
+            };
+
+            return mobileWidths[columnName] ?? 120;
+
+        }
+
+
+        if (sheet.name === "Background") {
+
+            const mobileWidths = {
+
+                Type: 90,
+                Title: 180,
+                Organization: 220,
+                Location: 130,
+                Field: 120,
+                Description: 220,
+                Achievements: 280,
+                Dates: 160
+
+            };
+
+            return mobileWidths[columnName] ?? 150;
+
+        }
+
+    }
+
+
+    /*
+    ======================================
+    DESKTOP
+    ======================================
+    */
+
     return Math.min(
-        Math.max(longest * 8 + 8, 80),
+        Math.max(longest * 8 + 16, 80),
         560
     );
 }
+
+
 
 function renderTable(sheet) {
      document.body.classList.remove(
@@ -487,16 +550,14 @@ function createCell(
     row = null
 ) {
 
-    const cell =
-        document.createElement("div");
+    const cell = document.createElement("div");
 
-    cell.className =
-        "cell";
+    cell.className = "cell";
 
 
-    // ==========================================
-    // GET COMMENT
-    // ==========================================
+    // ======================================================
+    // COMMENT
+    // ======================================================
 
     const comment =
         !header
@@ -504,35 +565,25 @@ function createCell(
             : null;
 
 
-    // ==========================================
+    // ======================================================
     // HEADER
-    // ==========================================
+    // ======================================================
 
     if (header) {
 
-        cell.classList.add(
-            "header-cell"
-        );
+        cell.classList.add("header-cell");
 
     }
 
 
-    // ==========================================
+    // ======================================================
     // CELL VALUE
-    // ==========================================
+    // ======================================================
 
     if (
-
-        Workbook.state.activeSheet === "Skills"
-
-        &&
-
-        column === "Level"
-
-        &&
-
+        Workbook.state.activeSheet === "Skills" &&
+        column === "Level" &&
         typeof value === "number"
-
     ) {
 
         cell.textContent =
@@ -593,439 +644,402 @@ function createCell(
     }
 
 
-// ==========================================
-// COMMENT
-// ==========================================
+    // ======================================================
+    // CELL SELECTION
+    //
+    // Every cell gets exactly one selection listener.
+    // Comments are handled independently.
+    // ======================================================
 
-if (comment) {
+    cell.addEventListener(
+        "click",
+        event => {
 
-    cell.classList.add("has-comment");
+            event.stopPropagation();
 
+            selectCell(cell);
 
-    // ==========================================
-    // RED EARMARK
-    // ==========================================
-
-    const earmark =
-        document.createElement("span");
-
-    earmark.className =
-        "comment-earmark";
-
-    earmark.setAttribute(
-        "aria-label",
-        "Show comment"
-    );
-
-    cell.appendChild(earmark);
-
-
-    // ==========================================
-    // COMMENT BOX
-    // ==========================================
-
-    const commentBox =
-        document.createElement("div");
-
-    commentBox.className =
-        "cell-comment";
-
-
-    // ==========================================
-    // COMMENT TITLE
-    // ==========================================
-
-    if (comment.title) {
-
-        const title =
-            document.createElement("div");
-
-        title.className =
-            "cell-comment-title";
-
-        title.textContent =
-            comment.title;
-
-        commentBox.appendChild(title);
-
-    }
-
-
-    // ==========================================
-    // COMMENT TEXT
-    // ==========================================
-
-    if (comment.text) {
-
-        const text =
-            document.createElement("div");
-
-        text.className =
-            "cell-comment-text";
-
-        text.textContent =
-            comment.text;
-
-        commentBox.appendChild(text);
-
-    }
-
-
-    // ==========================================
-    // COMMENT LINKS
-    // ==========================================
-
-    if (
-        Array.isArray(comment.links) &&
-        comment.links.length
-    ) {
-
-        const links =
-            document.createElement("div");
-
-        links.className =
-            "cell-comment-links";
-
-
-        comment.links.forEach(link => {
-
-            const anchor =
-                document.createElement("a");
-
-            anchor.href =
-                link.url;
-
-            anchor.textContent =
-                link.label;
-
-            anchor.target =
-                "_blank";
-
-            anchor.rel =
-                "noopener noreferrer";
-
-            links.appendChild(anchor);
-
-        });
-
-
-        commentBox.appendChild(links);
-
-    }
-
-
-    // ==========================================
-    // PUT COMMENT ON BODY
-    // ==========================================
-
-    document.body.appendChild(
-        commentBox
+        }
     );
 
 
-    commentBox.style.position =
-        "fixed";
+    // ======================================================
+    // COMMENT
+    // ======================================================
 
-    commentBox.style.display =
-        "none";
+    if (comment) {
 
-    commentBox.style.zIndex =
-        "99999";
-
-
-    // Store reference
-    cell._commentBox =
-        commentBox;
+        cell.classList.add("has-comment");
 
 
-    // ==========================================
-    // OPEN COMMENT
-    // ==========================================
+        // --------------------------------------------------
+        // RED EARMARK
+        // --------------------------------------------------
 
-    function openComment() {
+        const earmark =
+            document.createElement("span");
 
-        /*
-        Close every other comment first.
-        */
+        earmark.className =
+            "comment-earmark";
 
-        document
-            .querySelectorAll(
-                ".cell-comment.comment-open"
-            )
-            .forEach(other => {
+        earmark.setAttribute(
+            "aria-label",
+            "Show comment"
+        );
 
-                other.style.display =
-                    "none";
+        cell.appendChild(earmark);
 
-                other.classList.remove(
-                    "comment-open"
-                );
+
+        // --------------------------------------------------
+        // COMMENT BOX
+        // --------------------------------------------------
+
+        const commentBox =
+            document.createElement("div");
+
+        commentBox.className =
+            "cell-comment";
+
+
+        // --------------------------------------------------
+        // COMMENT TITLE
+        // --------------------------------------------------
+
+        if (comment.title) {
+
+            const title =
+                document.createElement("div");
+
+            title.className =
+                "cell-comment-title";
+
+            title.textContent =
+                comment.title;
+
+            commentBox.appendChild(title);
+
+        }
+
+
+        // --------------------------------------------------
+        // COMMENT TEXT
+        // --------------------------------------------------
+
+        if (comment.text) {
+
+            const text =
+                document.createElement("div");
+
+            text.className =
+                "cell-comment-text";
+
+            text.textContent =
+                comment.text;
+
+            commentBox.appendChild(text);
+
+        }
+
+
+        // --------------------------------------------------
+        // COMMENT LINKS
+        // --------------------------------------------------
+
+        if (
+            Array.isArray(comment.links) &&
+            comment.links.length
+        ) {
+
+            const links =
+                document.createElement("div");
+
+            links.className =
+                "cell-comment-links";
+
+
+            comment.links.forEach(link => {
+
+                const anchor =
+                    document.createElement("a");
+
+                anchor.href =
+                    link.url;
+
+                anchor.textContent =
+                    link.label;
+
+                anchor.target =
+                    "_blank";
+
+                anchor.rel =
+                    "noopener noreferrer";
+
+                links.appendChild(anchor);
 
             });
 
 
-        /*
-        Get the position of the cell.
-        */
-
-        const rect =
-            cell.getBoundingClientRect();
-
-
-        /*
-        Show the box before measuring it.
-        */
-
-        commentBox.style.display =
-            "block";
-
-
-        /*
-        Get actual rendered dimensions.
-        */
-
-        const popupWidth =
-            commentBox.offsetWidth;
-
-        const popupHeight =
-            commentBox.offsetHeight;
-
-
-        const gap = 4;
-
-        const padding = 10;
-
-
-        // --------------------------------------
-        // DEFAULT: RIGHT OF CELL
-        // --------------------------------------
-
-        let left =
-            rect.right + gap;
-
-        let top =
-            rect.top;
-
-
-        // --------------------------------------
-        // NOT ENOUGH ROOM ON RIGHT
-        // --------------------------------------
-
-        if (
-            left + popupWidth >
-            window.innerWidth - padding
-        ) {
-
-            left =
-                rect.left -
-                popupWidth -
-                gap;
+            commentBox.appendChild(links);
 
         }
 
 
-        // --------------------------------------
-        // KEEP INSIDE LEFT EDGE
-        // --------------------------------------
+        // --------------------------------------------------
+        // PUT COMMENT ON BODY
+        // --------------------------------------------------
 
-        if (left < padding) {
-
-            left =
-                padding;
-
-        }
-
-
-        // --------------------------------------
-        // KEEP INSIDE BOTTOM EDGE
-        // --------------------------------------
-
-        if (
-            top + popupHeight >
-            window.innerHeight - padding
-        ) {
-
-            top =
-                window.innerHeight -
-                popupHeight -
-                padding;
-
-        }
-
-
-        // --------------------------------------
-        // KEEP INSIDE TOP EDGE
-        // --------------------------------------
-
-        if (top < padding) {
-
-            top =
-                padding;
-
-        }
-
-
-        // --------------------------------------
-        // POSITION
-        // --------------------------------------
-
-        commentBox.style.left =
-            `${left}px`;
-
-        commentBox.style.top =
-            `${top}px`;
-
-
-        // --------------------------------------
-        // OPEN
-        // --------------------------------------
-
-        commentBox.classList.add(
-            "comment-open"
+        document.body.appendChild(
+            commentBox
         );
 
-    }
-
-
-    // ==========================================
-    // CLOSE COMMENT
-    // ==========================================
-
-    function closeComment() {
+        commentBox.style.position =
+            "fixed";
 
         commentBox.style.display =
             "none";
 
-        commentBox.classList.remove(
-            "comment-open"
+        commentBox.style.zIndex =
+            "99999";
+
+
+        cell._commentBox =
+            commentBox;
+
+
+        // ==================================================
+        // OPEN COMMENT
+        // ==================================================
+
+        function openComment() {
+
+            // Close other comments
+            document
+                .querySelectorAll(
+                    ".cell-comment.comment-open"
+                )
+                .forEach(other => {
+
+                    other.style.display =
+                        "none";
+
+                    other.classList.remove(
+                        "comment-open"
+                    );
+
+                });
+
+
+            const rect =
+                cell.getBoundingClientRect();
+
+
+            commentBox.style.display =
+                "block";
+
+
+            const popupWidth =
+                commentBox.offsetWidth;
+
+            const popupHeight =
+                commentBox.offsetHeight;
+
+
+            const gap = 4;
+            const padding = 10;
+
+
+            const isMobile =
+                window.matchMedia(
+                    "(max-width: 700px)"
+                ).matches;
+
+
+            // ------------------------------------------
+            // MOBILE
+            // ------------------------------------------
+
+            if (isMobile) {
+
+                commentBox.style.left =
+                    "10px";
+
+                commentBox.style.right =
+                    "10px";
+
+                commentBox.style.bottom =
+                    "10px";
+
+                commentBox.style.top =
+                    "auto";
+
+                commentBox.style.width =
+                    "calc(100vw - 20px)";
+
+                commentBox.style.maxWidth =
+                    "none";
+
+                commentBox.classList.add(
+                    "mobile-comment"
+                );
+
+                commentBox.classList.add(
+                    "comment-open"
+                );
+
+                return;
+
+            }
+
+
+            // ------------------------------------------
+            // DESKTOP
+            // ------------------------------------------
+
+            let left =
+                rect.right + gap;
+
+            let top =
+                rect.top;
+
+
+            // Not enough room on right
+            if (
+                left + popupWidth >
+                window.innerWidth - padding
+            ) {
+
+                left =
+                    rect.left -
+                    popupWidth -
+                    gap;
+
+            }
+
+
+            // Keep inside left edge
+            if (left < padding) {
+
+                left =
+                    padding;
+
+            }
+
+
+            // Keep inside bottom edge
+            if (
+                top + popupHeight >
+                window.innerHeight - padding
+            ) {
+
+                top =
+                    window.innerHeight -
+                    popupHeight -
+                    padding;
+
+            }
+
+
+            // Keep inside top edge
+            if (top < padding) {
+
+                top =
+                    padding;
+
+            }
+
+
+            commentBox.style.left =
+                `${left}px`;
+
+            commentBox.style.top =
+                `${top}px`;
+
+
+            commentBox.classList.add(
+                "comment-open"
+            );
+
+        }
+
+
+        // ==================================================
+        // CLOSE COMMENT
+        // ==================================================
+
+        function closeComment() {
+
+            commentBox.style.display =
+                "none";
+
+            commentBox.classList.remove(
+                "comment-open"
+            );
+
+            commentBox.classList.remove(
+                "mobile-comment"
+            );
+
+        }
+
+
+        // ==================================================
+        // TOGGLE COMMENT
+        // ==================================================
+
+        function toggleComment(event) {
+
+            event.stopPropagation();
+
+
+            const isOpen =
+                commentBox.classList.contains(
+                    "comment-open"
+                );
+
+
+            if (isOpen) {
+
+                closeComment();
+
+            }
+
+            else {
+
+                openComment();
+
+            }
+
+        }
+
+
+        // ==================================================
+        // RED EARMARK CLICK
+        // ==================================================
+
+        earmark.addEventListener(
+            "click",
+            toggleComment
+        );
+
+
+        // ==================================================
+        // CLICK INSIDE COMMENT
+        // ==================================================
+
+        commentBox.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+            }
         );
 
     }
 
 
-    // ==========================================
-    // TOGGLE COMMENT
-    // ==========================================
+    return cell;
 
-    function toggleComment(event) {
-
-        /*
-        IMPORTANT:
-        Prevent the document click handler from
-        immediately closing the popup.
-        */
-
-        event.stopPropagation();
-
-
-        const isOpen =
-            commentBox.classList.contains(
-                "comment-open"
-            );
-
-
-        if (isOpen) {
-
-            closeComment();
-
-        }
-
-        else {
-
-            openComment();
-
-        }
-
-    }
-
-
-    // ==========================================
-    // CLICK CELL
-    // ==========================================
-
-    cell.addEventListener(
-        "click",
-        event => {
-
-            /*
-            Select the cell.
-            */
-
-            selectCell(cell);
-
-
-            /*
-            Open/close its comment.
-            */
-
-            toggleComment(event);
-
-        }
-    );
-
-
-    // ==========================================
-    // CLICK RED EARMARK
-    // ==========================================
-
-    earmark.addEventListener(
-        "click",
-        event => {
-
-            /*
-            DO NOT use cell.click() here.
-
-            Directly toggle the comment.
-            */
-
-            toggleComment(event);
-
-        }
-    );
-
-
-    // ==========================================
-    // CLICK INSIDE COMMENT
-    // ==========================================
-
-    commentBox.addEventListener(
-        "click",
-        event => {
-
-            /*
-            Keep the comment open when clicking
-            inside the sticky note.
-
-            Links still work normally.
-            */
-
-            event.stopPropagation();
-
-        }
-    );
-
-}
-
-
-// ==========================================
-// NORMAL CELL
-// ==========================================
-
-else {
-
-    cell.addEventListener(
-        "click",
-        event => {
-
-            event.stopPropagation();
-
-            selectCell(cell);
-
-        }
-    );
-
-}
-return cell;
 }
 
 // ==========================================
@@ -1220,26 +1234,20 @@ function createChart(
 
 function selectCell(cell) {
 
-
     if (!cell) return;
 
 
-
     if (selectedCell) {
-
 
         selectedCell.classList.remove(
             "selected"
         );
 
-
     }
-
 
 
     selectedCell =
         cell;
-
 
 
     selectedCell.classList.add(
@@ -1247,17 +1255,12 @@ function selectCell(cell) {
     );
 
 
-
     if (formulaBar) {
 
-
         formulaBar.value =
-            formulaBar.value = cell.textContent.trim();
-
+            cell.textContent.trim();
 
     }
-
-
 
 }
 
@@ -1266,14 +1269,13 @@ function selectCell(cell) {
 // ==========================================
 // SHEET RENDER HOOK
 // ==========================================
-function renderSheet(){
-
+function renderSheet() {
 
     const sheet =
         Workbook.getActiveSheet();
 
 
-    if(!sheet){
+    if (!sheet) {
 
         console.error(
             "No active sheet"
@@ -1284,7 +1286,36 @@ function renderSheet(){
     }
 
 
-    if(sheet.type !== "dashboard"){
+    // Remove old comment popups
+    document
+        .querySelectorAll(".cell-comment")
+        .forEach(
+            comment => comment.remove()
+        );
+
+
+    // Clear selection from previous sheet
+    selectedCell = null;
+
+
+    // Reset spreadsheet
+    spreadsheet.innerHTML = "";
+
+
+    // Dashboard styling
+    if (sheet.type === "dashboard") {
+
+        document.body.classList.add(
+            "dashboard-active"
+        );
+
+        spreadsheet.classList.add(
+            "dashboard-mode"
+        );
+
+    }
+
+    else {
 
         document.body.classList.remove(
             "dashboard-active"
@@ -1296,18 +1327,8 @@ function renderSheet(){
 
     }
 
-    document
-    .querySelectorAll(".cell-comment")
-    .forEach(
-        comment => comment.remove()
-    );
 
-
-    spreadsheet.innerHTML = "";
-
-
-    switch(sheet.type){
-
+    switch (sheet.type) {
 
         case "table":
 
@@ -1332,7 +1353,13 @@ function renderSheet(){
 
     }
 
+
+    updateSheetTitle(
+        sheet.name
+    );
+
 }
+
 
 // ==========================================
 // INITIALIZE
