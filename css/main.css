@@ -19,6 +19,7 @@ body {
   background-color: #FFFFFD;
   background-image: url("/assets/textures/beige-paper.png");
   padding: 2vw;
+  box-sizing: border-box;
 }
 
 h1,
@@ -74,6 +75,10 @@ header div:last-child {
 header div {
   padding: 12px;
   border: 2px solid;
+}
+
+#typewriter {
+  border: none;
 }
 
 nav {
@@ -188,3 +193,369 @@ article {
 .text-type__cursor--hidden {
   display: none;
 }
+
+/* =========================================
+   MOBILE NEWSPAPER
+   ========================================= */
+
+@media screen and (max-width: 768px) {
+
+  /* Prevent the viewport from creating horizontal overflow */
+  html,
+  body {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: #FFFFFD;
+    background-image: none;
+    overflow-x: hidden;
+  }
+
+  /* =========================================
+     NEWSPAPER
+     ========================================= */
+
+  .newspaper {
+    display: block;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 1rem;
+
+    box-sizing: border-box;
+
+    background-color: #FFFFFD;
+    background-image: url("/assets/textures/beige-paper.png");
+  }
+
+
+  /* =========================================
+     HEADER / MASTHEAD
+     ========================================= */
+
+  header {
+    width: 100%;
+    margin: 1rem 0;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.75rem;
+
+    box-sizing: border-box;
+  }
+
+  header .typewriter {
+    display: block;
+    width: 100%;
+    order: 1;
+
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  header h1 {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+
+    margin: 0;
+
+    font-family: Chomsky, cursive !important;
+
+    /*
+      vw makes the title scale with the phone.
+      min() prevents it from becoming enormous.
+    */
+    font-size: min(17vw, 5rem);
+
+    line-height: 0.9;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  header div:first-child,
+  header div:last-child {
+    margin: 0;
+    padding: 0.4rem 0.75rem;
+
+    box-sizing: border-box;
+
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  header div:first-child {
+    order: 2;
+  }
+
+  header div:last-child {
+    order: 3;
+  }
+
+  header h4 {
+    font-size: 1rem;
+  }
+
+
+  /* =========================================
+     NEWSPAPER INFO BAR
+     ========================================= */
+
+  nav {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.25rem;
+
+    padding: 0.75rem 0;
+
+    box-sizing: border-box;
+
+    text-align: center;
+  }
+
+  nav h5 {
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+
+  /* =========================================
+     MAIN CONTENT
+     ========================================= */
+
+  section {
+    display: flex !important;
+    flex-direction: column !important;
+
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+    overflow: visible !important;
+  }
+
+
+  /* =========================================
+     PORTRAIT
+     ========================================= */
+
+  #main-article {
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center;
+    justify-content: center;
+
+    order: -1;
+
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+
+    margin: 1.5rem 0 0;
+    padding: 0 0 1.5rem;
+
+    box-sizing: border-box;
+
+    border-bottom: 1px solid black;
+  }
+
+  #ez {
+    display: block;
+
+    width: min(70vw, 280px);
+    max-width: 280px;
+
+    height: auto;
+    max-height: none;
+
+    margin: 1rem auto;
+
+    box-sizing: border-box;
+  }
+
+
+  /* =========================================
+     SOCIAL MEDIA
+     ========================================= */
+
+  #social-media {
+    display: flex;
+
+    width: 100%;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 0.5rem;
+
+    box-sizing: border-box;
+  }
+
+  .btn {
+    font-size: 1.75rem;
+    padding: 0.25rem;
+
+    background: transparent;
+    border: none;
+  }
+
+
+  /* =========================================
+     ARTICLE
+     ========================================= */
+
+  #side-article {
+    display: block !important;
+
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+
+    margin: 1.5rem 0 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+    /*
+      THIS IS THE IMPORTANT PART.
+
+      Explicitly destroy the desktop newspaper
+      columns rather than merely changing
+      column-count.
+    */
+    column-count: auto !important;
+    column-width: auto !important;
+    column-fill: auto !important;
+    column-gap: 0 !important;
+    columns: auto !important;
+
+    /*
+      Prevent the article from inheriting any
+      multi-column layout.
+    */
+    display: block !important;
+  }
+
+  #side-article h3 {
+    display: block;
+
+    width: 100%;
+
+    margin: 2rem 0 0.75rem;
+    padding: 1rem 0 0;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    font-size: 1.35rem;
+    line-height: 1.1;
+
+    border-top: 1px solid black;
+  }
+
+  #side-article h3:first-child {
+    margin-top: 0;
+    border-top: none;
+  }
+
+  #side-article p {
+    display: block;
+
+    width: 100%;
+
+    margin: 0 0 1.5rem;
+    padding: 0 0.25rem;
+
+    box-sizing: border-box;
+
+    font-family: serif;
+    font-size: 1rem;
+    line-height: 1.5;
+
+    text-align: left;
+
+    /*
+      Prevent words from forcing the page
+      wider than the phone.
+    */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+
+  /*
+    Reset anything inside the article that might
+    have inherited desktop sizing.
+  */
+
+  #side-article > *,
+  #side-article h3,
+  #side-article p {
+    max-width: 100%;
+  }
+
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+   ========================================= */
+
+@media screen and (max-width: 400px) {
+
+  .newspaper {
+    padding: 0.75rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  header h4 {
+    font-size: 0.9rem;
+  }
+
+  #side-article h3 {
+    font-size: 1.2rem;
+  }
+
+  #side-article p {
+    font-size: 0.95rem;
+  }
+
+  #ez {
+    width: 65vw;
+    max-width: 250px;
+  }
+
+}
+

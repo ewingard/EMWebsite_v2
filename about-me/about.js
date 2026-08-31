@@ -120,7 +120,12 @@ function openWindow(windowId) {
     windowElement.classList.add("active");
     windowElement.classList.remove("minimized");
 
+    if (window.innerWidth <= 600) {
+        windowElement.classList.add("maximized");
+    }
+
     bringToFront(windowElement);
+
 
     updateTaskbar();
 
@@ -236,25 +241,6 @@ desktopIcons.forEach(icon => {
         openWindow(windowId);
 
     });
-
-
-    /*
-     * Single click on mobile.
-     */
-
-    icon.addEventListener("click", () => {
-
-        if (window.innerWidth <= 600) {
-
-            const windowId =
-                icon.dataset.window;
-
-            openWindow(windowId);
-
-        }
-
-    });
-
 });
 
 
@@ -302,28 +288,47 @@ windows.forEach(windowElement => {
 
     if (maximizeButton) {
 
-        maximizeButton.addEventListener("click", event => {
+        maximizeButton.addEventListener(
+            "click",
+            event => {
 
-            event.stopPropagation();
-
-            windowElement.classList.toggle("maximized");
-
-            bringToFront(windowElement);
+                event.stopPropagation();
 
 
-            if (
-                windowElement.id === "paintWindow"
-            ) {
+                if (window.innerWidth <= 600) {
 
-                requestAnimationFrame(() => {
+                    windowElement.classList.add(
+                        "maximized"
+                    );
 
-                    resizePaintCanvas();
+                    return;
 
-                });
+                }
+
+
+                windowElement.classList.toggle(
+                    "maximized"
+                );
+
+                bringToFront(
+                    windowElement
+                );
+
+
+                if (
+                    windowElement.id === "paintWindow"
+                ) {
+
+                    requestAnimationFrame(() => {
+
+                        resizePaintCanvas();
+
+                    });
+
+                }
 
             }
-
-        });
+        );
 
     }
 
@@ -1780,115 +1785,130 @@ if (canvas && paintContext) {
        ===================================== */
 
     canvas.addEventListener(
-        "mousedown",
-        event => {
+    "pointerdown",
+    event => {
 
-            isDrawing = true;
+        event.preventDefault();
+
+        isDrawing = true;
+
+        canvas.setPointerCapture(event.pointerId);
 
 
-            const position =
-                getCanvasPosition(event);
+        const position =
+            getCanvasPosition(event);
 
 
-            paintContext.beginPath();
+        paintContext.beginPath();
 
-            paintContext.moveTo(
-                position.x,
-                position.y
-            );
+        paintContext.moveTo(
+            position.x,
+            position.y
+        );
+
+    }
+);
+
+
+canvas.addEventListener(
+    "pointermove",
+    event => {
+
+        if (!isDrawing) return;
+
+        event.preventDefault();
+
+
+        const position =
+            getCanvasPosition(event);
+
+
+        if (
+            currentTool === "eraser"
+        ) {
+
+            paintContext.strokeStyle =
+                "#ffffff";
+
+            paintContext.lineWidth =
+                15;
+
+        } else {
+
+            paintContext.strokeStyle =
+                currentColor;
+
+            paintContext.lineWidth =
+                2;
+
+        }
+
+
+        paintContext.lineCap =
+            "round";
+
+        paintContext.lineJoin =
+            "round";
+
+
+        paintContext.lineTo(
+            position.x,
+            position.y
+        );
+
+        paintContext.stroke();
+
+
+        if (paintStatus) {
+
+            paintStatus.innerText =
+                `${Math.round(position.x)}, ${Math.round(position.y)}`;
+
+        }
 
         }
     );
 
 
-    /* =====================================
-       DRAW
-       ===================================== */
-
     canvas.addEventListener(
-        "mousemove",
+        "pointerup",
         event => {
-
-            if (!isDrawing) return;
-
-
-            const position =
-                getCanvasPosition(event);
-
-
-            if (
-                currentTool === "eraser"
-            ) {
-
-                paintContext.strokeStyle =
-                    "#ffffff";
-
-                paintContext.lineWidth =
-                    15;
-
-            } else {
-
-                paintContext.strokeStyle =
-                    currentColor;
-
-                paintContext.lineWidth =
-                    2;
-
-            }
-
-
-            paintContext.lineCap =
-                "round";
-
-            paintContext.lineJoin =
-                "round";
-
-
-            paintContext.lineTo(
-                position.x,
-                position.y
-            );
-
-            paintContext.stroke();
-
-
-            if (paintStatus) {
-
-                paintStatus.innerText =
-                    `${Math.round(position.x)}, ${Math.round(position.y)}`;
-
-            }
-
-        }
-    );
-
-
-    /* =====================================
-       STOP DRAWING
-       ===================================== */
-
-    canvas.addEventListener(
-        "mouseup",
-        () => {
 
             isDrawing = false;
 
             paintContext.closePath();
 
+            if (canvas.hasPointerCapture(event.pointerId)) {
+
+                canvas.releasePointerCapture(
+                    event.pointerId
+                );
+
+            }
+
         }
     );
 
 
     canvas.addEventListener(
-        "mouseleave",
-        () => {
+        "pointercancel",
+        event => {
 
             isDrawing = false;
 
             paintContext.closePath();
 
+            if (canvas.hasPointerCapture(event.pointerId)) {
+
+                canvas.releasePointerCapture(
+                    event.pointerId
+                );
+
+            }
+
         }
     );
+
 
 
     /* =====================================
@@ -2083,40 +2103,50 @@ if (
 
 if (savePainting && canvas) {
 
-    savePainting.addEventListener(
-        "click",
-        event => {
+    savePainting.addEventListener("click", event => {
 
-            event.stopPropagation();
+        event.stopPropagation();
 
 
-            const image =
-                canvas.toDataURL(
-                    "image/png"
-                );
+        canvas.toBlob(blob => {
+
+            if (!blob) return;
+
+
+            const url =
+                URL.createObjectURL(blob);
 
 
             const downloadLink =
                 document.createElement("a");
 
-
             downloadLink.download =
                 "my-painting.png";
 
             downloadLink.href =
-                image;
+                url;
 
+
+            document.body.appendChild(
+                downloadLink
+            );
 
             downloadLink.click();
+
+            downloadLink.remove();
+
+
+            URL.revokeObjectURL(url);
 
 
             paintFileDropdown.classList.remove(
                 "open"
             );
 
-        }
-    );
+        }, "image/png");
 
+    }
+    );
 }
 
 
@@ -2194,11 +2224,10 @@ function resizePaintCanvas() {
     }
 
 
-    const containerWidth =
-        paintContainer.clientWidth - 10;
+    const containerWidth = Math.max(1, paintContainer.clientWidth - 10);
 
-    const containerHeight =
-        paintContainer.clientHeight - 10;
+    const containerHeight = Math.max(1, paintContainer.clientHeight - 10);
+
 
 
     if (
@@ -2359,4 +2388,62 @@ window.addEventListener(
         }
 
     }
+);
+
+/* ==========================================
+    MOBILE
+    ========================================= */
+
+function updateMobileWindowState() {
+
+    const isMobile =
+        window.innerWidth <= 600;
+
+
+    windows.forEach(windowElement => {
+
+        if (isMobile) {
+
+            if (
+                windowElement.classList.contains("active")
+            ) {
+
+                windowElement.classList.add(
+                    "maximized"
+                );
+
+            }
+
+        } else {
+
+            windowElement.classList.remove(
+                "maximized"
+            );
+
+        }
+
+    });
+
+
+    if (
+        canvas &&
+        document
+            .getElementById("paintWindow")
+            ?.classList.contains("active")
+    ) {
+
+        requestAnimationFrame(() => {
+
+            resizePaintCanvas();
+
+        });
+
+    }
+
+}
+
+
+window.addEventListener(
+    "resize",
+    () => {updateMobileWindowState();}
 );
