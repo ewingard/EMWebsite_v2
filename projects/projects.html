@@ -16,23 +16,64 @@
 </head>
 <body>
 <main class="page">
+    <nav class="library-nav" aria-label="Main navigation">
+        <button class="nav-label" type="button" aria-expanded="false" aria-controls="mobile-nav-drawers">
+        <span>
+            <span class="nav-label-small">EZRA'S</span>
+            <span class="nav-label-title">CATALOG</span>
+        </span>
+        <span class="catalog-toggle" aria-hidden="true">☰</span>
+    </button>
+    <div class="nav-drawers" id="mobile-nav-drawers">
+        <a href="/index.html" class="nav-card nav-home">
+            <span class="nav-icon">⌂</span>
+            <span>
+                <small>FRONT PAGE</small>
+                Home
+            </span>
+        </a>
+        <a href="/about-me/about.html" class="nav-card nav-about">
+            <span class="nav-icon">▣</span>
+            <span>
+                <small>PERSONAL FILE</small>
+                About Me
+            </span>
+        </a>
+        <a href="/skills_experience/experience.html" class="nav-card nav-skills">
+            <span class="nav-icon">▤</span>
+            <span>
+                <small>LEDGER</small>
+                Skills &amp; Experience
+            </span>
+        </a>
+        <a href="/projects.html"
+           class="nav-card nav-projects"
+           aria-current="page">
+            <span class="nav-icon">▥</span>
+            <span>
+                <small>CATALOG</small>
+                Projects
+            </span>
+        </a>
+    </div>
+</nav>
+
+
     <header class="page-header">
-        <p class="eyebrow"> A collection of projects</p>
-        <h1>
-            Projects and Works
-        </h1>
-        <p class="intro"> Choose a book below to peruse my research, publications, or projects.</p>
+        <p class="eyebrow">A collection of projects</p>
+        <h1>Projects and Works</h1>
+        <p class="intro">
+            Choose a book below to peruse my research, publications, or projects.
+        </p>
     </header>
+
     <section class="library" aria-label="Project library">
         <div class="shelf-unit">
             <div class="books" id="shelf-one"></div>
             <div class="shelf"></div>
         </div>
-        <!-- <div class="shelf-unit">
-         <div class="books" id="shelf-two"></div>
-         <div class="shelf"></div>
-         </div> -->
     </section>
+
 </main>
 
 <!-- =====================================================
@@ -95,6 +136,23 @@
 <script src="js/projects-content.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/projects-books.js"></script>
+<script>
+    const catalog = document.querySelector(".library-nav");
+    const catalogButton = catalog.querySelector(".nav-label");
+
+    catalogButton.addEventListener("click", () => {
+        const isOpen = catalog.classList.toggle("is-open");
+
+        catalogButton.setAttribute(
+            "aria-expanded",
+            isOpen
+        );
+
+        catalogButton
+            .querySelector(".catalog-toggle")
+            .textContent = isOpen ? "×" : "☰";
+    });
+</script>
 
 </body>
 </html>
