@@ -1097,6 +1097,12 @@ p, h1, h2, h3, h4, h5, h6 {
     font-size: 18px;
 }
 
+.start-banner .windows-number {
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+}
+
+
 .start-items {
     flex: 1;
 
