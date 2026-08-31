@@ -479,24 +479,90 @@ button{
 
 }
 
-/* ==========================================
-   RESPONSIVE
-========================================== */
+@media (max-width: 700px) {
 
-@media (max-width:900px){
+    /* ========================================
+       TITLE BAR
+    ======================================== */
 
-    .ribbon-toolbar{
-
-        overflow-x:auto;
-
+    .title-bar {
+        height: 40px;
     }
 
-    .spreadsheet{
-
-        grid-template-columns:
-            45px
-            repeat(15,100px);
-
+    .window-left {
+        gap: 2px;
     }
 
+    .quick-btn {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+    }
+
+    .window-title {
+        font-size: 13px;
+    }
+
+
+    /* ========================================
+       RIBBON
+    ======================================== */
+
+    .ribbon {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .ribbon-tabs {
+        flex-shrink: 0;
+    }
+
+    .ribbon-tab {
+        white-space: nowrap;
+        padding: 0 10px;
+        font-size: 12px;
+    }
+
+    .ribbon-toolbar {
+        flex-shrink: 0;
+    }
+
+    .ribbon-toolbar .tool-group:first-child {
+        display: none;
+    }
+
+    #search-btn {
+        width: 42px;
+        height: 36px;
+    }
+
+
+    /* ========================================
+       FORMULA BAR
+    ======================================== */
+
+    .formula-container {
+        height: 34px;
+    }
+
+    .name-box {
+        width: 42px;
+        min-width: 42px;
+        font-size: 11px;
+    }
+
+    .formula-btn {
+        width: 28px;
+        min-width: 28px;
+    }
+
+    .fx {
+        width: 24px;
+        min-width: 24px;
+        font-size: 12px;
+    }
+
+    #formula-bar {
+        font-size: 12px;
+    }
 }

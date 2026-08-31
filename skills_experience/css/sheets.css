@@ -473,14 +473,16 @@ Used for Achievements / Easter eggs
 
 @media(max-width:700px){
 
+    .sheet-tabs {
+        height: 46px;
+        padding-left: 6px;
+    }
+
     .sheet-tab {
-
-        min-width:80px;
-
-        padding:0 12px;
-
-        font-size:12px;
-
+        height: 36px;
+        min-width: 90px;
+        padding: 0 14px;
+        font-size: 12px;
     }
 
 
