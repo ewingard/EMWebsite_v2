@@ -324,7 +324,7 @@ const projects = [
                     <p>Wingard, E.M. (2026, April). Beyond the Black Box: Digital Library Workflows Behind the Lowcountry Digital Library. Presented at the LibLearning Rretreat, Charleston, SC.</p>
 
                     <p>
-                        <a href="LibLearning2026 _DigitalLib.pdf">
+                        <a href="/assets/media/experience/LibLearning2026 _DigitalLib.pdf">
                             Presentation <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i>
                         </a>
                     </p>
@@ -380,7 +380,7 @@ const projects = [
                 
                 content: `
                 <p> Nelson, C. M., Johnson, M., <strong>Wingard, E.M.,</strong> & Hudac, C. M. (2024, May). Characterizing friendships and other relationships in autistic adolescents. Talk at The Love Consortium, Chapel Hill, NC. 
-                    <a href="https://ewingard.xyz/projects/media/B-RAD/CharacterizingFriendships.pdf" target="_blank">PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
+                    <a href="/assets/media/experience/CharacterizingFriendships.pdf" target="_blank">PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
                 </p></br>
                 <p>
                     McCune, M., Turner, B., Vidal, L., Nelson, C.M., <strong>Wingard, E.M.,</strong> & Hudac, C.M. (2024, April). The Adolescent Brain: Quantifying the Relationship Between Social Awareness and Perception of Upright and Inverted Faces. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/r15faces_discoversc_poster_finalversion.pdf" target="_blank">Presented at DiscoverUSC, Columbia, SC.</a> <a href="/assets/media/experience/SocialAwareness_McCune.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
@@ -434,7 +434,7 @@ const projects = [
                 Wingard, E.M. (2023, May). The Impact of Biases in Facial Recognition Artificial Neural Networks. <a href="https://www.illuminatenrhc.com/post/the-impact-of-biases-in-facial-recognition-artificial-neural-networks-by-ezra-wingard\" target="_blank">Illuminate NRHC, 5, 25-32.</a>
                 | <a href="/assets/media/experience/HonorsThesis_Publication_Website.pdf" target="_blank"> PDF <i class="fa-solid fa-file-lines" alt="document icon"></i></a> | <a href="media/Thesis/HonorsThesis-Poster-Graph.pdf" target="_blank">Poster <i class="fa-solid fa-file-image"></i></a> | <a href="https://github.com/ewingard/HonorsThesis" target="_blank">Code <i class="fa-solid fa-laptop-code"></i></a>
                 </p></br>
-                <p>Wingard, E.M. (2023, April). French Polynesia: Flora and Fauna. Presented at Quest Week, Oswego, NY. <a href="https://ewingard.xyz/projects/media/French/French-Polynesia.pdf" target="_blank">Presentation <i class="fa-solid fa-file-powerpoint"></i></a>
+                <p>Wingard, E.M. (2023, April). French Polynesia: Flora and Fauna. Presented at Quest Week, Oswego, NY. <a href="/assets/media/experience/French-Polynesia.pdf" target="_blank">Presentation <i class="fa-solid fa-file-powerpoint"></i></a>
                 </p>
                 `
             },
@@ -451,7 +451,7 @@ const projects = [
                 content:`
                 <p>
                     Dykas, M.,<strong>Wingard, E.M.</strong> (2021, April). Does Making Narcissists ‘Feel Bad’ Make Them Want to Be Better People? Presented at Quest Week, Oswego, NY.
-                    <a href="https://ewingard.xyz/projects/media/Narcissism/Narcissism-DykasEMW.png" target="_blank">Poster <i class="fa-solid fa-file-image"></i></a>
+                    <a href="/assets/media/experience/Narcissism-DykasEMW.png" target="_blank">Poster <i class="fa-solid fa-file-image"></i></a>
                 </p>`
 
             }
@@ -481,13 +481,15 @@ const projects = [
             {
                 number: 1,
 
-                label: "Background",
+                label: "Front Matter",
 
-                title: "Aphantasia",
+                title: "Table of Contents",
 
                 content: `<p>
-                Aphantasia, or the inability to visualize experiences in the mind. Ranging from Aphantasia to Hyperphantasia, 'visual' imagery affected includes the major senses:
-                visual, tactile, olfactory, gustatory, and auditory.
+                <ul>
+                    <li><a href="#aphantasia/ec">Embodied Cognition Capstone Project</a></li>
+                    <li><a href="#aphantasia/mr">Mental Rotation fMRI Volunteer Research Project</a></li>
+                </ul>
                 </p>`
             },
 
@@ -499,8 +501,21 @@ const projects = [
                 title: "Aphantasia",
 
                 content: `<p>
+                Aphantasia, or the inability to visualize experiences in the mind. Ranging from Aphantasia to Hyperphantasia, 'visual' imagery affected includes the major senses:
+                visual, tactile, olfactory, gustatory, and auditory.
+                </p>`
+            },
+
+            {
+                number: 3,
+
+                label: "Background",
+
+                title: "Aphantasia",
+
+                content: `<p>
                 Aphantasia is a relatively <a href="https://pubmed.ncbi.nlm.nih.gov/26115582/" target="_blank">newly named</a> condition which describes the lack of mental imagery in the mind.
-                It exists on a scale from no mental imagery (aphantasia) to extremely vivid mental imagery (hyperphantasia), which for visual imagery can be quantified through a test called the <a href="VVIQ">VVIQ</a>, or Vividness of Visual Imagery Questionnaire.
+                It exists on a scale from no mental imagery (aphantasia) to extremely vivid mental imagery (hyperphantasia), which for visual imagery can be quantified through a test called the <a href="https://aphantasia.com/study/vviq">VVIQ</a>, or Vividness of Visual Imagery Questionnaire.
                 There is also the <a href="https://pubmed.ncbi.nlm.nih.gov/6082130/" target="_blank">QMI</a>, or Questionnaire of Visual Imagery, which encompasses all mental imagery, not just visual imagery.
                 </p></br>
                 <p> Within aphantasic individuals (people with aphantasia), there are levels of inability to evoke mental imagery. This spectrum is typically demonstrated as a scale of 1-5, with 1-2 being varying degrees of aphantasia, 3 being "normal", and 4-5 including degrees of hyperphantasia.
@@ -508,7 +523,7 @@ const projects = [
             },
 
             {
-                number: 3,
+                number: 4,
 
                 id: "ec",
 
@@ -528,7 +543,7 @@ const projects = [
             },
 
             {
-                number: 4,
+                number: 5,
 
                 label: "Capstone",
 
@@ -542,13 +557,15 @@ const projects = [
                     One example of embodied cognition is cell-phone use: If you have ever considered your phone an extension of yourself 
                     (like how we use our calendar, tasks/notes app, and other apps to offload cognition), this demonstrates a core principle of your phone being a
                     mechanism for <i>embodied cognition</i>.
-                    <a href="media/Aphantasia/Aphantasia-EC-CapstoneSlides.pdf" target="_blank">Presentation <i class="fa-solid fa-file-powerpoint"></i></a> | <a href="media/Aphantasia/RelationshipBtwnAphantasia+EC-CapstonePaper.pdf" target="_blank">Paper 
+                    <a href="/assets/media/experience/Aphantasia-EC-CapstoneSlides.pdf" target="_blank">Presentation <i class="fa-solid fa-file-powerpoint"></i></a> | <a href="/assets/media/experience/RelationshipBtwnAphantasia+EC-CapstonePaper.pdf" target="_blank">Paper 
                         <i class="fa-solid fa-file-lines"></i></a>
                 </p>`
             },
 
             {
-                number: 5,
+                number: 6,
+
+                id: "mr",
 
                 label: "Volunteer Research",
 
@@ -563,7 +580,7 @@ const projects = [
             },
 
             {
-                number: 6,
+                number: 7,
 
                 label: "Volunteer Research",
 
@@ -1091,7 +1108,7 @@ const projects = [
                 </br>
                 <p>I have around 50 works of art on display in an art gallery, where you can scroll through and view samples of artwork
                 created either through assignments or personal creativity.</p></br>
-                <p><a href="/projects/art-camp/">View the Art Gallery <i class="fa-solid fa-file-lines"></i></a></p>`
+                <p><a href="art-camp/artcamp.html">View the Art Gallery <i class="fa-solid fa-file-lines"></i></a></p>`
 
             }
         ]
@@ -1126,8 +1143,8 @@ const projects = [
                 title: "La Polynesie Francaise: La Faune et la Flore",
 
                 content: `<p>
-                    <a href="/projects/media/French/Polynesie-Francaise.pdf" target="_blank">French Version <i class="fa-solid fa-file-image"></i></a>
-                    <a href="/projects/media/French/French-Polynesia.pdf" target="_blank">English Version <i class="fa-solid fa-file-image"></i></a>
+                    <a href="/assets/media/experience/Polynesie-Francaise.pdf" target="_blank">French Version <i class="fa-solid fa-file-image"></i></a>
+                    <a href="/assets/media/experience/French-Polynesia.pdf" target="_blank">English Version <i class="fa-solid fa-file-image"></i></a>
                     </p>`
                     
             },
@@ -1139,7 +1156,7 @@ const projects = [
 
                 title: "Le Crise du Sida",
 
-                content: `<p><a href="/projects/media/French/Crise-SIDA-80s.pdf" target="_blank">French Version <i class="fa-solid fa-file-image"></i></a>
+                content: `<p><a href="/assets/media/experience/Crise-SIDA-80s.pdf" target="_blank">French Version <i class="fa-solid fa-file-image"></i></a>
                 </p>`
             },
 
@@ -1150,9 +1167,9 @@ const projects = [
 
                 title: "Les Femmes du Moyen Âge",
 
-                content: `<p><a href="/projects/media/French/FemmesDuMoyenAge-EzraWingard.pdf" target="_blank">
+                content: `<p><a href="/assets/media/experience/FemmesDuMoyenAge-EzraWingard.pdf" target="_blank">
                         <button class="btn"><i class="fa-solid fa-file-image"></i>French Blurb</button></a>
-                    <a href="projects/media/French/FdMoyenAge-Expose-EW.pdf" target="_blank">
+                    <a href="/assets/media/experience/FdMoyenAge-Expose-EW.pdf" target="_blank">
                         <button class="btn"><i class="fa-solid fa-file-powerpoint"></i>French Presentation</button></a><br>
                 </p>`
             }
