@@ -85,6 +85,7 @@ const workbook = {
 
     */
 
+
     formulas: {},
 
 
@@ -120,6 +121,20 @@ const workbook = {
                 "Dates"
 
             ],
+
+            mobileView: {
+                columns: [
+                    "Dates",
+                    "Title",
+                    "Organization"
+                ],
+
+                widths: [
+                    "24%",
+                    "31%",
+                    "45%"
+                ]
+            },
 
             rows: [
 
@@ -1322,6 +1337,19 @@ const workbook = {
 
             color: "yellow",
 
+            mobileView: {
+    
+                columns: [
+                    "Skill",
+                    "Years"
+                ],
+
+                widths: [
+                    "75%",
+                    "25%"
+                ]
+            },
+
             columns: [
 
                 "Skill",
@@ -1331,7 +1359,6 @@ const workbook = {
                 "Level"
 
             ],
-
             rows: [
 
                 {
@@ -1726,6 +1753,19 @@ const workbook = {
                 "Link"
 
             ],
+
+            mobileView: {
+            mobileColumns: [
+                "Certificates",
+                "Link"
+            ],
+
+            widths: [
+                "85%",
+                "15%"
+            ]
+
+        },
 
             rows: [
 
@@ -2547,6 +2587,15 @@ function updateSheetTitle(
 // TABLE HELPERS
 // ==========================================
 
+    function getCellValue(row, column) {
+
+    if (column === "Dates") {
+        return formatDates(row);
+    }
+
+    return row[column] ?? "";
+}
+
 
 function getSheetRows(sheetName) {
 
@@ -2605,31 +2654,14 @@ function updateSheetTitle(sheetName) {
 
 window.Workbook = {
 
-    state:
-        workbook,
-
-
-    // Sheet management
+    state: workbook,
 
     getActiveSheet,
-
     getSheets,
-
     switchSheet,
-
-
-    // Data
-
     getSheetRows,
-
     getSheetColumns,
-
-    // Dates
-
+    getCellValue,
     formatDates,
-
-
-    // Dashboard
-
     getSkillMetrics
 };

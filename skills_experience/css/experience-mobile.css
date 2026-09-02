@@ -1,5 +1,4 @@
 @media (max-width: 700px) {
-
 *,
 *::before,
 *::after {
@@ -40,19 +39,213 @@ a,
    EXCEL WINDOW
 ===================================================== */
 
-.excel-window {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    margin: 0;
-    border-radius: 0;
-}
+    .excel-window {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0;
+        border-radius: 0;
+    }
 
-.workbook {
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-}
+    .workbook {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+    .mobile-sheet {
+        display: none;
+    }
+    .desktop-sheet {
+        display: none;
+    }
+
+    .mobile-sheet {
+        display: block;
+        width: 100%;
+    }
+
+    .mobile-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    .mobile-sheet-container {
+        width: 100%;
+        background: #fff;
+    }
+
+    .mobile-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+
+        font-family:
+            "Aptos",
+            "Segoe UI",
+            Arial,
+            sans-serif;
+
+        font-size: 13px;
+    }
+
+    .mobile-table th,
+    .mobile-table td {
+        border: 1px solid #d0d0d0;
+
+        padding: 8px;
+
+        text-align: left;
+        vertical-align: top;
+
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+
+    .mobile-table th {
+        background: #e2f0d9;
+
+        font-weight: 600;
+    }
+
+    .mobile-table tr:nth-child(even) td {
+        background: #fafafa;
+    }
+
+
+    .mobile-sheet {
+        display: none;
+    }
+
+    .desktop-sheet {
+        display: none;
+    }
+
+    .mobile-sheet {
+        display: block;
+        width: 100%;
+    }
+
+
+    .mobile-table th {
+        background: #e2f0d9;
+        color: #1f1f1f;
+
+        border: 1px solid #a6a6a6;
+
+        font-weight: 600;
+    }
+
+    .mobile-table td {
+        border: 1px solid #d9d9d9;
+    }
+
+    .mobile-table tr:nth-child(even) td {
+        background: #fafafa;
+    }
+
+    .workbook-name {
+        flex: 0 0 auto;
+    }
+
+    .title-separator {
+        flex: 0 0 auto;
+        margin: 0 4px;
+    }
+
+    .sheet-name {
+        min-width: 0;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .mobile-background th:nth-child(1),
+    .mobile-background td:nth-child(1) {
+        width: 24%;
+    }
+
+    .mobile-background th:nth-child(2),
+    .mobile-background td:nth-child(2) {
+        width: 31%;
+    }
+
+    .mobile-background th:nth-child(3),
+    .mobile-background td:nth-child(3) {
+        width: 45%;
+    }
+
+    .mobile-skills th:first-child,
+    .mobile-skills td:first-child {
+        width: 78%;
+    }
+
+    .mobile-skills th:last-child,
+    .mobile-skills td:last-child {
+        width: 22%;
+        text-align: center;
+    }
+
+    .mobile-table tbody tr {
+        cursor: pointer;
+    }
+
+    .mobile-table tbody tr:active {
+        background: #d9ead3;
+    }
+
+    .mobile-table tbody tr.selected {
+        outline: 2px solid #217346;
+        outline-offset: -2px;
+    }
+
+    .workbook-name {
+        flex: 0 0 auto;
+    }
+
+    .title-separator {
+        flex: 0 0 auto;
+        margin: 0 4px;
+    }
+
+    .sheet-name {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .window-title {
+        display: flex;
+        align-items: center;
+        max-width: calc(100vw - 90px);
+        max-width: 100%;
+        overflow: hidden;
+        font-size: 13px;
+        min-width: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .workbook-name {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+
+    .title-separator {
+        flex: 0 0 auto;
+        margin: 0 5px;
+    }
+
+    .sheet-name {
+        flex: 1 1 auto;
+        min-width: 0;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 
 
 /* =====================================================
@@ -74,17 +267,6 @@ a,
 .window-left {
     min-width: 0;
     gap: 3px;
-}
-
-.window-title {
-    min-width: 0;
-    max-width: calc(100vw - 90px);
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    font-size: 12px;
 }
 
 .quick-btn {
@@ -397,47 +579,26 @@ Keep stars from becoming gigantic.
 ===================================================== */
 
 .cell-comment {
-    position: fixed !important;
-
-    left: 10px !important;
-    right: 10px !important;
-
-    bottom:
-        calc(
-            10px +
+        position: fixed;
+        inset:
+            auto
+            0
             env(safe-area-inset-bottom)
-        ) !important;
+            0;
 
-    top: auto !important;
+        width: 100%;
+        max-height: 70vh;
 
-    width: auto !important;
-    max-width: none !important;
+        padding:
+            20px
+            20px
+            calc(20px + env(safe-area-inset-bottom));
 
-    max-height: min(55vh, 500px);
+        border-radius: 16px 16px 0 0;
 
-    padding: 16px;
-
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    border-radius: 10px;
-
-    font-size: 14px;
-    line-height: 1.45;
-
-    z-index: 99999;
-
-    /*
-    Better mobile shadow.
-    */
-    box-shadow:
-        0 12px 40px rgba(0, 0, 0, .30);
-
-    /*
-    Make links easy to tap.
-    */
-    -webkit-overflow-scrolling: touch;
-}
+        box-shadow:
+            0 -8px 30px rgba(0, 0, 0, .2);
+    }
 
 .mobile-comment {
     width: auto !important;
@@ -595,8 +756,6 @@ Comment indicator should be easy to tap.
 .spreadsheet-viewport {
     padding-bottom:
         env(safe-area-inset-bottom);
-}
-
 }
 
 /* =========================================================
@@ -814,13 +973,13 @@ REDUCE MOTION
 
 @media (prefers-reduced-motion: reduce) {
 
-*,
-*::before,
-*::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
 }
-
 }

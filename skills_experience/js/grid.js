@@ -382,6 +382,72 @@ function renderTable(sheet) {
 
 }
 
+function renderMobileTable(sheet) {
+
+    const mobileView = sheet.mobileView;
+
+    if (!mobileView) {
+        return;
+    }
+
+    const table = document.createElement("table");
+
+    table.className =
+        `mobile-table mobile-${sheet.name.toLowerCase()}`;
+
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+
+    mobileView.columns.forEach(column => {
+
+        const th = document.createElement("th");
+
+        th.textContent =
+            column.label;
+
+        headerRow.appendChild(th);
+
+    });
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+
+    const tbody = document.createElement("tbody");
+
+    sheet.rows.forEach((row, rowIndex) => {
+
+        const tr =
+            document.createElement("tr");
+
+        mobileView.columns.forEach(column => {
+
+            const td =
+                document.createElement("td");
+
+            const value =
+                Workbook.getCellValue(
+                    row,
+                    column.key
+                );
+
+            td.textContent =
+                value;
+
+            tr.appendChild(td);
+
+        });
+
+        tbody.appendChild(tr);
+
+    });
+
+    table.appendChild(tbody);
+
+    return table;
+}
+
+
 function getCellComment(row, column) {
      return row?.cellComments?.[column] || null;
 
@@ -1271,9 +1337,16 @@ function selectCell(cell) {
 // ==========================================
 function renderSheet() {
 
-    const sheet =
-        Workbook.getActiveSheet();
+    const sheet = Workbook.getActiveSheet();
 
+    if (sheet.type === "table") {
+        renderDesktopTable(sheet);
+        renderMobileTable(sheet);
+    }
+
+    if (sheet.type === "dashboard") {
+        renderDashboard(sheet);
+    }
 
     if (!sheet) {
 
