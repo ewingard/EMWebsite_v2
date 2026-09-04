@@ -71,14 +71,10 @@ function generateGrid() {
 // COLUMN WIDTH
 // ==========================================
 
-function getColumnWidth(
-    sheet,
-    columnName
-) {
+function getColumnWidth(sheet, columnName) {
 
     let longest =
         String(columnName).length;
-
 
     sheet.rows.forEach(row => {
 
@@ -94,64 +90,6 @@ function getColumnWidth(
 
     });
 
-
-    const mobile =
-        isMobileView();
-
-
-    // ======================================
-    // MOBILE WIDTHS
-    // ======================================
-
-    if (mobile) {
-
-        if (sheet.name === "Skills") {
-
-            const mobileWidths = {
-
-                Skill: 150,
-                Category: 120,
-                Type: 100,
-                Years: 65,
-                Level: 90
-
-            };
-
-            return mobileWidths[
-                columnName
-            ] ?? 120;
-
-        }
-
-
-        if (sheet.name === "Background") {
-
-            const mobileWidths = {
-
-                Type: 90,
-                Title: 180,
-                Organization: 220,
-                Location: 130,
-                Field: 120,
-                Description: 220,
-                Achievements: 280,
-                Dates: 160
-
-            };
-
-            return mobileWidths[
-                columnName
-            ] ?? 150;
-
-        }
-
-    }
-
-
-    // ======================================
-    // DESKTOP WIDTHS
-    // ======================================
-
     return Math.min(
         Math.max(
             longest * 8 + 16,
@@ -159,8 +97,8 @@ function getColumnWidth(
         ),
         560
     );
-
 }
+
 
 
 // ==========================================
@@ -371,37 +309,57 @@ function renderMobileTable(sheet) {
 
     if (
         !sheet.mobileView ||
-        !Array.isArray(
-            sheet.mobileView.columns
-        )
+        !Array.isArray(sheet.mobileView.columns)
     ) {
-
         console.warn(
             `No mobileView defined for ${sheet.name}.`
         );
-
-        return;
-
+        return null;
     }
 
+    const mobileView = sheet.mobileView;
 
-    const mobileView =
-        sheet.mobileView;
-
-
-    const table =
-        document.createElement("table");
-
+    const table = document.createElement("table");
 
     table.className =
         `mobile-table mobile-${sheet.name.toLowerCase()}`;
 
+    table.style.width = "100%";
+    table.style.borderCollapse = "collapse";
+    table.style.borderSpacing = "0";
 
-    /*
-    ------------------------------------------
-    HEADER
-    ------------------------------------------
-    */
+
+    // ==========================================
+    // COLUMN WIDTHS
+    // ==========================================
+
+    const colgroup =
+        document.createElement("colgroup");
+
+    mobileView.columns.forEach(
+        (column, index) => {
+
+            const col =
+                document.createElement("col");
+
+            if (
+                mobileView.widths &&
+                mobileView.widths[index]
+            ) {
+                col.style.width =
+                    mobileView.widths[index];
+            }
+
+            colgroup.appendChild(col);
+        }
+    );
+
+    table.appendChild(colgroup);
+
+
+    // ==========================================
+    // HEADER
+    // ==========================================
 
     const thead =
         document.createElement("thead");
@@ -409,76 +367,39 @@ function renderMobileTable(sheet) {
     const headerRow =
         document.createElement("tr");
 
-
     mobileView.columns.forEach(
         column => {
-
-            const th =
-                document.createElement("th");
-
-            /*
-            mobileView currently stores
-            column names directly as strings.
-            */
 
             const key =
                 typeof column === "string"
                     ? column
                     : column.key;
 
-
             const label =
                 typeof column === "string"
                     ? column
                     : column.label ?? column.key;
 
+            const th =
+                document.createElement("th");
 
-            th.textContent =
-                label;
+            th.textContent = label;
 
-
-            if (
-                mobileView.widths &&
-                mobileView.columns.indexOf(column)
-                    < mobileView.widths.length
-            ) {
-
-                th.style.width =
-                    mobileView.widths[
-                        mobileView.columns.indexOf(
-                            column
-                        )
-                    ];
-
-            }
-
-
-            headerRow.appendChild(
-                th
-            );
-
+            headerRow.appendChild(th);
         }
     );
 
+    thead.appendChild(headerRow);
 
-    thead.appendChild(
-        headerRow
-    );
-
-    table.appendChild(
-        thead
-    );
+    table.appendChild(thead);
 
 
-    /*
-    ------------------------------------------
-    BODY
-    ------------------------------------------
-    */
+    // ==========================================
+    // BODY
+    // ==========================================
 
     const tbody =
         document.createElement("tbody");
-
 
     sheet.rows.forEach(
         (row, rowIndex) => {
@@ -486,19 +407,16 @@ function renderMobileTable(sheet) {
             const tr =
                 document.createElement("tr");
 
-
             mobileView.columns.forEach(
                 column => {
-
-                    const td =
-                        document.createElement("td");
-
 
                     const key =
                         typeof column === "string"
                             ? column
                             : column.key;
 
+                    const td =
+                        document.createElement("td");
 
                     const value =
                         Workbook.getCellValue(
@@ -507,10 +425,9 @@ function renderMobileTable(sheet) {
                         );
 
 
-                    /*
-                    Links need to remain
-                    clickable on mobile.
-                    */
+                    // ------------------------------
+                    // PDF LINK
+                    // ------------------------------
 
                     if (
                         key === "Link" &&
@@ -520,12 +437,8 @@ function renderMobileTable(sheet) {
                         const anchor =
                             document.createElement("a");
 
-                        anchor.href =
-                            value;
-
-                        anchor.target =
-                            "_blank";
-
+                        anchor.href = value;
+                        anchor.target = "_blank";
                         anchor.rel =
                             "noopener noreferrer";
 
@@ -535,9 +448,7 @@ function renderMobileTable(sheet) {
                         anchor.textContent =
                             "View PDF";
 
-                        td.appendChild(
-                            anchor
-                        );
+                        td.appendChild(anchor);
 
                     }
 
@@ -551,11 +462,9 @@ function renderMobileTable(sheet) {
                     }
 
 
-                    /*
-                    --------------------------------
-                    MOBILE ROW SELECTION
-                    --------------------------------
-                    */
+                    // ------------------------------
+                    // SELECTION
+                    // ------------------------------
 
                     td.addEventListener(
                         "click",
@@ -563,30 +472,21 @@ function renderMobileTable(sheet) {
 
                             event.stopPropagation();
 
-                            /*
-                            Remove previous
-                            mobile selection.
-                            */
-
                             document
                                 .querySelectorAll(
                                     ".mobile-table tr.selected"
                                 )
-                                .forEach(
-                                    selected => {
+                                .forEach(selected => {
 
-                                        selected.classList.remove(
-                                            "selected"
-                                        );
+                                    selected.classList.remove(
+                                        "selected"
+                                    );
 
-                                    }
-                                );
-
+                                });
 
                             tr.classList.add(
                                 "selected"
                             );
-
 
                             if (formulaBar) {
 
@@ -600,38 +500,20 @@ function renderMobileTable(sheet) {
                         }
                     );
 
-
-                    tr.appendChild(
-                        td
-                    );
+                    tr.appendChild(td);
 
                 }
             );
 
-
-            tbody.appendChild(
-                tr
-            );
+            tbody.appendChild(tr);
 
         }
     );
 
-
-    table.appendChild(
-        tbody
-    );
-
-
-    /*
-    ------------------------------------------
-    RETURN MOBILE TABLE
-    ------------------------------------------
-    */
+    table.appendChild(tbody);
 
     return table;
-
 }
-
 
 // ==========================================
 // CELL COMMENTS
@@ -1616,9 +1498,26 @@ function renderSheet() {
     ------------------------------------------
     */
 
-    spreadsheet.style.gridTemplateColumns = "";
-    spreadsheet.style.gridAutoRows = "";
-    spreadsheet.style.display = "";
+    spreadsheet.style.removeProperty(
+    "grid-template-columns"
+    );
+
+    spreadsheet.style.removeProperty(
+        "grid-template-rows"
+    );
+
+    spreadsheet.style.removeProperty(
+        "grid-auto-columns"
+    );
+
+    spreadsheet.style.removeProperty(
+        "grid-auto-rows"
+    );
+
+    spreadsheet.style.removeProperty(
+        "display"
+    );
+
 
     /*
     ------------------------------------------
