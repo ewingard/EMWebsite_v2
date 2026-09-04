@@ -5,9 +5,11 @@ Portfolio.xlsx Spreadsheet Website
 
 Handles:
 - Table rendering
+- Mobile table rendering
 - Dashboard rendering
 - Cell selection
 - Spreadsheet styling
+- Cell comments
 - Chart.js visualization
 ==========================================
 */
@@ -28,11 +30,25 @@ const nameBox =
 
 let selectedCell = null;
 
+
 // ==========================================
 // GRID INITIALIZATION
 // ==========================================
 
 const ROW_HEIGHT = 25;
+
+function isMobileView() {
+
+    return window.matchMedia(
+        "(max-width: 700px)"
+    ).matches;
+
+}
+
+
+// ==========================================
+// GENERATE GRID
+// ==========================================
 
 function generateGrid() {
 
@@ -41,46 +57,28 @@ function generateGrid() {
         console.error(
             "Spreadsheet container missing."
         );
-        renderSheet();
+
         return;
 
     }
 
-spreadsheet.innerHTML = "";
+    renderSheet();
+
+}
 
 
-    const sheet =
-        Workbook.getActiveSheet();
-
-
-
-    if (!sheet) return;
-
-    if (sheet.type === "dashboard") {
-
-
-        renderDashboard(sheet);
-
-
-        return;
-    }
-
-        if (sheet.type === "table") {
-
-
-        renderTable(sheet);
-
-
-        return;
-        }
-    }
-    // ==========================================
-// TABLE RENDERER
 // ==========================================
-function getColumnWidth(sheet, columnName) {
+// COLUMN WIDTH
+// ==========================================
+
+function getColumnWidth(
+    sheet,
+    columnName
+) {
 
     let longest =
         String(columnName).length;
+
 
     sheet.rows.forEach(row => {
 
@@ -96,19 +94,16 @@ function getColumnWidth(sheet, columnName) {
 
     });
 
-    const isMobile =
-        window.matchMedia(
-            "(max-width: 700px)"
-        ).matches;
+
+    const mobile =
+        isMobileView();
 
 
-    /*
-    ======================================
-    MOBILE
-    ======================================
-    */
+    // ======================================
+    // MOBILE WIDTHS
+    // ======================================
 
-    if (isMobile) {
+    if (mobile) {
 
         if (sheet.name === "Skills") {
 
@@ -122,7 +117,9 @@ function getColumnWidth(sheet, columnName) {
 
             };
 
-            return mobileWidths[columnName] ?? 120;
+            return mobileWidths[
+                columnName
+            ] ?? 120;
 
         }
 
@@ -142,29 +139,37 @@ function getColumnWidth(sheet, columnName) {
 
             };
 
-            return mobileWidths[columnName] ?? 150;
+            return mobileWidths[
+                columnName
+            ] ?? 150;
 
         }
 
     }
 
 
-    /*
-    ======================================
-    DESKTOP
-    ======================================
-    */
+    // ======================================
+    // DESKTOP WIDTHS
+    // ======================================
 
     return Math.min(
-        Math.max(longest * 8 + 16, 80),
+        Math.max(
+            longest * 8 + 16,
+            80
+        ),
         560
     );
+
 }
 
 
+// ==========================================
+// TABLE RENDERER
+// ==========================================
 
 function renderTable(sheet) {
-     document.body.classList.remove(
+
+    document.body.classList.remove(
         "dashboard-active"
     );
 
@@ -173,15 +178,21 @@ function renderTable(sheet) {
     );
 
 
-    if(sheet.type !== "dashboard"){
-        document.body.classList.remove(
-        "dashboard-active"
-        );
-        }
+    /*
+    ------------------------------------------
+    DESKTOP SPREADSHEET
+    ------------------------------------------
+    */
 
-    const widths = sheet.columns.map(col =>
-    `${getColumnWidth(sheet, col)}px`
-);
+    const widths =
+        sheet.columns.map(
+            column =>
+                `${getColumnWidth(
+                    sheet,
+                    column
+                )}px`
+        );
+
 
     spreadsheet.style.gridTemplateColumns =
         `50px ${widths.join(" ")}`;
@@ -192,54 +203,46 @@ function renderTable(sheet) {
 
 
     /*
-    --------------------------
+    ------------------------------------------
     CORNER CELL
-    --------------------------
+    ------------------------------------------
     */
-
 
     const corner =
         document.createElement("div");
 
-
     corner.className =
         "corner-cell";
 
-        spreadsheet.appendChild(corner);
-
+    spreadsheet.appendChild(
+        corner
+    );
 
 
     /*
-    --------------------------
-    COLUMN HEADERS
-    --------------------------
+    ------------------------------------------
+    COLUMN LETTERS
+    ------------------------------------------
     */
 
     function getColumnLetter(index) {
 
+        let letter = "";
 
-    let letter = "";
+        while (index >= 0) {
 
+            letter =
+                String.fromCharCode(
+                    (index % 26) + 65
+                ) +
+                letter;
 
-    while(index >= 0){
+            index =
+                Math.floor(index / 26) - 1;
 
+        }
 
-        letter =
-            String.fromCharCode(
-                (index % 26) + 65
-            )
-            +
-            letter;
-
-
-        index =
-            Math.floor(index / 26) - 1;
-
-
-    }
-
-
-    return letter;
+        return letter;
 
     }
 
@@ -247,113 +250,94 @@ function renderTable(sheet) {
     sheet.columns.forEach(
         (column, index) => {
 
-
             const header =
                 document.createElement("div");
-
 
             header.className =
                 "column-header";
 
-
             header.textContent =
                 getColumnLetter(index);
 
-
-            spreadsheet.appendChild(header);
-
-
+            spreadsheet.appendChild(
+                header
+            );
 
         }
     );
 
 
-
     /*
-    --------------------------
+    ------------------------------------------
     TABLE HEADER ROW
-    --------------------------
+    ------------------------------------------
     */
-
 
     const headerRow =
         document.createElement("div");
 
-
     headerRow.className =
         "row-header";
-
 
     headerRow.textContent =
         "1";
 
-
-    spreadsheet.appendChild(headerRow);
-
+    spreadsheet.appendChild(
+        headerRow
+    );
 
 
     sheet.columns.forEach(
         column => {
 
-
             const cell =
                 createCell(
                     column,
                     true
-                    );
-
+                );
 
             cell.classList.add(
                 "table-header"
             );
 
-
-            spreadsheet.appendChild(cell);
-
+            spreadsheet.appendChild(
+                cell
+            );
 
         }
     );
 
 
-
     /*
-    --------------------------
+    ------------------------------------------
     DATA ROWS
-    --------------------------
+    ------------------------------------------
     */
-
 
     sheet.rows.forEach(
         (row, rowIndex) => {
 
-
             const rowHeader =
                 document.createElement("div");
-
 
             rowHeader.className =
                 "row-header";
 
-
             rowHeader.textContent =
                 rowIndex + 2;
-
 
             spreadsheet.appendChild(
                 rowHeader
             );
 
 
-
             sheet.columns.forEach(
                 column => {
 
-
                     const value =
-                    column === "Dates"
-                        ? Workbook.formatDates(row)
-                        : row[column];
-
+                        column === "Dates"
+                            ? Workbook.formatDates(row)
+                            : row[column];
 
 
                     const cell =
@@ -366,101 +350,317 @@ function renderTable(sheet) {
                         );
 
 
-
                     spreadsheet.appendChild(
                         cell
                     );
 
-
                 }
             );
 
+        }
+    );
+
+}
+
+
+// ==========================================
+// MOBILE TABLE RENDERER
+// ==========================================
+
+function renderMobileTable(sheet) {
+
+    if (
+        !sheet.mobileView ||
+        !Array.isArray(
+            sheet.mobileView.columns
+        )
+    ) {
+
+        console.warn(
+            `No mobileView defined for ${sheet.name}.`
+        );
+
+        return;
+
+    }
+
+
+    const mobileView =
+        sheet.mobileView;
+
+
+    const table =
+        document.createElement("table");
+
+
+    table.className =
+        `mobile-table mobile-${sheet.name.toLowerCase()}`;
+
+
+    /*
+    ------------------------------------------
+    HEADER
+    ------------------------------------------
+    */
+
+    const thead =
+        document.createElement("thead");
+
+    const headerRow =
+        document.createElement("tr");
+
+
+    mobileView.columns.forEach(
+        column => {
+
+            const th =
+                document.createElement("th");
+
+            /*
+            mobileView currently stores
+            column names directly as strings.
+            */
+
+            const key =
+                typeof column === "string"
+                    ? column
+                    : column.key;
+
+
+            const label =
+                typeof column === "string"
+                    ? column
+                    : column.label ?? column.key;
+
+
+            th.textContent =
+                label;
+
+
+            if (
+                mobileView.widths &&
+                mobileView.columns.indexOf(column)
+                    < mobileView.widths.length
+            ) {
+
+                th.style.width =
+                    mobileView.widths[
+                        mobileView.columns.indexOf(
+                            column
+                        )
+                    ];
+
+            }
+
+
+            headerRow.appendChild(
+                th
+            );
 
         }
     );
 
 
-}
+    thead.appendChild(
+        headerRow
+    );
 
-function renderMobileTable(sheet) {
-
-    const mobileView = sheet.mobileView;
-
-    if (!mobileView) {
-        return;
-    }
-
-    const table = document.createElement("table");
-
-    table.className =
-        `mobile-table mobile-${sheet.name.toLowerCase()}`;
-
-    const thead = document.createElement("thead");
-    const headerRow = document.createElement("tr");
-
-    mobileView.columns.forEach(column => {
-
-        const th = document.createElement("th");
-
-        th.textContent =
-            column.label;
-
-        headerRow.appendChild(th);
-
-    });
-
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
+    table.appendChild(
+        thead
+    );
 
 
-    const tbody = document.createElement("tbody");
+    /*
+    ------------------------------------------
+    BODY
+    ------------------------------------------
+    */
 
-    sheet.rows.forEach((row, rowIndex) => {
+    const tbody =
+        document.createElement("tbody");
 
-        const tr =
-            document.createElement("tr");
 
-        mobileView.columns.forEach(column => {
+    sheet.rows.forEach(
+        (row, rowIndex) => {
 
-            const td =
-                document.createElement("td");
+            const tr =
+                document.createElement("tr");
 
-            const value =
-                Workbook.getCellValue(
-                    row,
-                    column.key
-                );
 
-            td.textContent =
-                value;
+            mobileView.columns.forEach(
+                column => {
 
-            tr.appendChild(td);
+                    const td =
+                        document.createElement("td");
 
-        });
 
-        tbody.appendChild(tr);
+                    const key =
+                        typeof column === "string"
+                            ? column
+                            : column.key;
 
-    });
 
-    table.appendChild(tbody);
+                    const value =
+                        Workbook.getCellValue(
+                            row,
+                            key
+                        );
+
+
+                    /*
+                    Links need to remain
+                    clickable on mobile.
+                    */
+
+                    if (
+                        key === "Link" &&
+                        value
+                    ) {
+
+                        const anchor =
+                            document.createElement("a");
+
+                        anchor.href =
+                            value;
+
+                        anchor.target =
+                            "_blank";
+
+                        anchor.rel =
+                            "noopener noreferrer";
+
+                        anchor.className =
+                            "pdf-link";
+
+                        anchor.textContent =
+                            "View PDF";
+
+                        td.appendChild(
+                            anchor
+                        );
+
+                    }
+
+                    else {
+
+                        td.textContent =
+                            typeof value === "string"
+                                ? value.trim()
+                                : value ?? "";
+
+                    }
+
+
+                    /*
+                    --------------------------------
+                    MOBILE ROW SELECTION
+                    --------------------------------
+                    */
+
+                    td.addEventListener(
+                        "click",
+                        event => {
+
+                            event.stopPropagation();
+
+                            /*
+                            Remove previous
+                            mobile selection.
+                            */
+
+                            document
+                                .querySelectorAll(
+                                    ".mobile-table tr.selected"
+                                )
+                                .forEach(
+                                    selected => {
+
+                                        selected.classList.remove(
+                                            "selected"
+                                        );
+
+                                    }
+                                );
+
+
+                            tr.classList.add(
+                                "selected"
+                            );
+
+
+                            if (formulaBar) {
+
+                                formulaBar.value =
+                                    String(
+                                        value ?? ""
+                                    ).trim();
+
+                            }
+
+                        }
+                    );
+
+
+                    tr.appendChild(
+                        td
+                    );
+
+                }
+            );
+
+
+            tbody.appendChild(
+                tr
+            );
+
+        }
+    );
+
+
+    table.appendChild(
+        tbody
+    );
+
+
+    /*
+    ------------------------------------------
+    RETURN MOBILE TABLE
+    ------------------------------------------
+    */
 
     return table;
-}
-
-
-function getCellComment(row, column) {
-     return row?.cellComments?.[column] || null;
 
 }
 
-function renderDashboard(sheet){
-document.body.classList.add(
+
+// ==========================================
+// CELL COMMENTS
+// ==========================================
+
+function getCellComment(
+    row,
+    column
+) {
+
+    return row?.cellComments?.[column] || null;
+
+}
+
+
+// ==========================================
+// DASHBOARD
+// ==========================================
+
+function renderDashboard(sheet) {
+
+    document.body.classList.add(
         "dashboard-active"
     );
 
     spreadsheet.classList.add(
         "dashboard-mode"
     );
+
 
     const dashboard =
         document.createElement("div");
@@ -470,59 +670,54 @@ document.body.classList.add(
         "dashboard-container";
 
 
-
     const metrics =
         Workbook.getSkillMetrics();
 
 
-
-    /*==========================
+    /*
+    ------------------------------------------
     KPI CARDS
-    ==========================
+    ------------------------------------------
     */
 
     const metricSection =
         document.createElement("div");
 
-metricSection.className =
+
+    metricSection.className =
         "metric-grid";
 
 
+    sheet.metrics.forEach(
+        metric => {
 
-    sheet.metrics.forEach(metric=>{
-
-
-        const card =
-            document.createElement("div");
-
-
-        card.className =
-            "dashboard-card";
+            const card =
+                document.createElement("div");
 
 
-        card.innerHTML = `
-
-            <div class="dashboard-title">
-
-                ${metric.title}
-
-            </div>
+            card.className =
+                "dashboard-card";
 
 
-            <div class="dashboard-value">
+            card.innerHTML = `
 
-                ${metrics[metric.value]}
+                <div class="dashboard-title">
+                    ${metric.title}
+                </div>
 
-            </div>
+                <div class="dashboard-value">
+                    ${metrics[metric.value]}
+                </div>
 
-        `;
+            `;
 
 
-        metricSection.appendChild(card);
+            metricSection.appendChild(
+                card
+            );
 
-
-    });
-
+        }
+    );
 
 
     dashboard.appendChild(
@@ -530,13 +725,11 @@ metricSection.className =
     );
 
 
-
     /*
-    ==========================
+    ------------------------------------------
     CHARTS
-    ==========================
+    ------------------------------------------
     */
-
 
     const chartSection =
         document.createElement("div");
@@ -546,48 +739,47 @@ metricSection.className =
         "chart-grid";
 
 
+    sheet.charts.forEach(
+        chart => {
 
-    sheet.charts.forEach(chart=>{
-
-
-        const chartCard =
-            document.createElement("div");
-
-
-        chartCard.className =
-            "chart-card";
+            const chartCard =
+                document.createElement("div");
 
 
-
-        chartCard.innerHTML = `
-
-            <h3>
-                ${chart.title}
-            </h3>
-
-            <canvas></canvas>
-
-        `;
+            chartCard.className =
+                "chart-card";
 
 
+            chartCard.innerHTML = `
 
-        const canvas =
-            chartCard.querySelector(
-                "canvas"
+                <h3>
+                    ${chart.title}
+                </h3>
+
+                <canvas></canvas>
+
+            `;
+
+
+            const canvas =
+                chartCard.querySelector(
+                    "canvas"
+                );
+
+
+            chartSection.appendChild(
+                chartCard
             );
 
 
-        chartSection.appendChild(
-            chartCard
-        );
+            createChart(
+                canvas,
+                chart,
+                metrics
+            );
 
-        createChart(
-            canvas,
-            chart,
-            metrics
-        );
-    });
-
+        }
+    );
 
 
     dashboard.appendChild(
@@ -595,11 +787,9 @@ metricSection.className =
     );
 
 
-
     spreadsheet.appendChild(
         dashboard
     );
-
 
 }
 
@@ -616,35 +806,49 @@ function createCell(
     row = null
 ) {
 
-    const cell = document.createElement("div");
+    const cell =
+        document.createElement("div");
 
-    cell.className = "cell";
+
+    cell.className =
+        "cell";
 
 
-    // ======================================================
-    // COMMENT
-    // ======================================================
+    /*
+    ------------------------------------------
+    COMMENT
+    ------------------------------------------
+    */
 
     const comment =
         !header
-            ? getCellComment(row, column)
+            ? getCellComment(
+                row,
+                column
+            )
             : null;
 
 
-    // ======================================================
-    // HEADER
-    // ======================================================
+    /*
+    ------------------------------------------
+    HEADER
+    ------------------------------------------
+    */
 
     if (header) {
 
-        cell.classList.add("header-cell");
+        cell.classList.add(
+            "header-cell"
+        );
 
     }
 
 
-    // ======================================================
-    // CELL VALUE
-    // ======================================================
+    /*
+    ------------------------------------------
+    CELL VALUE
+    ------------------------------------------
+    */
 
     if (
         Workbook.state.activeSheet === "Skills" &&
@@ -710,12 +914,11 @@ function createCell(
     }
 
 
-    // ======================================================
-    // CELL SELECTION
-    //
-    // Every cell gets exactly one selection listener.
-    // Comments are handled independently.
-    // ======================================================
+    /*
+    ------------------------------------------
+    CELL SELECTION
+    ------------------------------------------
+    */
 
     cell.addEventListener(
         "click",
@@ -729,47 +932,51 @@ function createCell(
     );
 
 
-    // ======================================================
-    // COMMENT
-    // ======================================================
+    /*
+    ------------------------------------------
+    COMMENTS
+    ------------------------------------------
+    */
 
     if (comment) {
 
-        cell.classList.add("has-comment");
+        cell.classList.add(
+            "has-comment"
+        );
 
-
-        // --------------------------------------------------
-        // RED EARMARK
-        // --------------------------------------------------
 
         const earmark =
             document.createElement("span");
 
+
         earmark.className =
             "comment-earmark";
+
 
         earmark.setAttribute(
             "aria-label",
             "Show comment"
         );
 
-        cell.appendChild(earmark);
 
+        cell.appendChild(
+            earmark
+        );
 
-        // --------------------------------------------------
-        // COMMENT BOX
-        // --------------------------------------------------
 
         const commentBox =
             document.createElement("div");
+
 
         commentBox.className =
             "cell-comment";
 
 
-        // --------------------------------------------------
-        // COMMENT TITLE
-        // --------------------------------------------------
+        /*
+        --------------------------------------
+        COMMENT TITLE
+        --------------------------------------
+        */
 
         if (comment.title) {
 
@@ -782,14 +989,18 @@ function createCell(
             title.textContent =
                 comment.title;
 
-            commentBox.appendChild(title);
+            commentBox.appendChild(
+                title
+            );
 
         }
 
 
-        // --------------------------------------------------
-        // COMMENT TEXT
-        // --------------------------------------------------
+        /*
+        --------------------------------------
+        COMMENT TEXT
+        --------------------------------------
+        */
 
         if (comment.text) {
 
@@ -802,14 +1013,18 @@ function createCell(
             text.textContent =
                 comment.text;
 
-            commentBox.appendChild(text);
+            commentBox.appendChild(
+                text
+            );
 
         }
 
 
-        // --------------------------------------------------
-        // COMMENT LINKS
-        // --------------------------------------------------
+        /*
+        --------------------------------------
+        COMMENT LINKS
+        --------------------------------------
+        */
 
         if (
             Array.isArray(comment.links) &&
@@ -819,50 +1034,67 @@ function createCell(
             const links =
                 document.createElement("div");
 
+
             links.className =
                 "cell-comment-links";
 
 
-            comment.links.forEach(link => {
+            comment.links.forEach(
+                link => {
 
-                const anchor =
-                    document.createElement("a");
-
-                anchor.href =
-                    link.url;
-
-                anchor.textContent =
-                    link.label;
-
-                anchor.target =
-                    "_blank";
-
-                anchor.rel =
-                    "noopener noreferrer";
-
-                links.appendChild(anchor);
-
-            });
+                    const anchor =
+                        document.createElement("a");
 
 
-            commentBox.appendChild(links);
+                    anchor.href =
+                        link.url;
+
+
+                    anchor.textContent =
+                        link.label;
+
+
+                    anchor.target =
+                        "_blank";
+
+
+                    anchor.rel =
+                        "noopener noreferrer";
+
+
+                    links.appendChild(
+                        anchor
+                    );
+
+                }
+            );
+
+
+            commentBox.appendChild(
+                links
+            );
 
         }
 
 
-        // --------------------------------------------------
-        // PUT COMMENT ON BODY
-        // --------------------------------------------------
+        /*
+        --------------------------------------
+        PUT COMMENT ON BODY
+        --------------------------------------
+        */
 
         document.body.appendChild(
             commentBox
         );
 
+
         commentBox.style.position =
             "fixed";
 
+
         commentBox.style.display =
             "none";
+
 
         commentBox.style.zIndex =
             "99999";
@@ -872,27 +1104,30 @@ function createCell(
             commentBox;
 
 
-        // ==================================================
-        // OPEN COMMENT
-        // ==================================================
+        /*
+        --------------------------------------
+        OPEN COMMENT
+        --------------------------------------
+        */
 
         function openComment() {
 
-            // Close other comments
             document
                 .querySelectorAll(
                     ".cell-comment.comment-open"
                 )
-                .forEach(other => {
+                .forEach(
+                    other => {
 
-                    other.style.display =
-                        "none";
+                        other.style.display =
+                            "none";
 
-                    other.classList.remove(
-                        "comment-open"
-                    );
+                        other.classList.remove(
+                            "comment-open"
+                        );
 
-                });
+                    }
+                );
 
 
             const rect =
@@ -906,25 +1141,30 @@ function createCell(
             const popupWidth =
                 commentBox.offsetWidth;
 
+
             const popupHeight =
                 commentBox.offsetHeight;
 
 
-            const gap = 4;
-            const padding = 10;
+            const gap =
+                4;
 
 
-            const isMobile =
-                window.matchMedia(
-                    "(max-width: 700px)"
-                ).matches;
+            const padding =
+                10;
 
 
-            // ------------------------------------------
-            // MOBILE
-            // ------------------------------------------
+            const mobile =
+                isMobileView();
 
-            if (isMobile) {
+
+            /*
+            ----------------------------------
+            MOBILE
+            ----------------------------------
+            */
+
+            if (mobile) {
 
                 commentBox.style.left =
                     "10px";
@@ -944,31 +1184,36 @@ function createCell(
                 commentBox.style.maxWidth =
                     "none";
 
+
                 commentBox.classList.add(
                     "mobile-comment"
                 );
 
+
                 commentBox.classList.add(
                     "comment-open"
                 );
+
 
                 return;
 
             }
 
 
-            // ------------------------------------------
-            // DESKTOP
-            // ------------------------------------------
+            /*
+            ----------------------------------
+            DESKTOP
+            ----------------------------------
+            */
 
             let left =
                 rect.right + gap;
+
 
             let top =
                 rect.top;
 
 
-            // Not enough room on right
             if (
                 left + popupWidth >
                 window.innerWidth - padding
@@ -982,7 +1227,6 @@ function createCell(
             }
 
 
-            // Keep inside left edge
             if (left < padding) {
 
                 left =
@@ -991,7 +1235,6 @@ function createCell(
             }
 
 
-            // Keep inside bottom edge
             if (
                 top + popupHeight >
                 window.innerHeight - padding
@@ -1005,7 +1248,6 @@ function createCell(
             }
 
 
-            // Keep inside top edge
             if (top < padding) {
 
                 top =
@@ -1016,6 +1258,7 @@ function createCell(
 
             commentBox.style.left =
                 `${left}px`;
+
 
             commentBox.style.top =
                 `${top}px`;
@@ -1028,18 +1271,22 @@ function createCell(
         }
 
 
-        // ==================================================
-        // CLOSE COMMENT
-        // ==================================================
+        /*
+        --------------------------------------
+        CLOSE COMMENT
+        --------------------------------------
+        */
 
         function closeComment() {
 
             commentBox.style.display =
                 "none";
 
+
             commentBox.classList.remove(
                 "comment-open"
             );
+
 
             commentBox.classList.remove(
                 "mobile-comment"
@@ -1048,9 +1295,11 @@ function createCell(
         }
 
 
-        // ==================================================
-        // TOGGLE COMMENT
-        // ==================================================
+        /*
+        --------------------------------------
+        TOGGLE COMMENT
+        --------------------------------------
+        */
 
         function toggleComment(event) {
 
@@ -1078,9 +1327,11 @@ function createCell(
         }
 
 
-        // ==================================================
-        // RED EARMARK CLICK
-        // ==================================================
+        /*
+        --------------------------------------
+        EARMARK CLICK
+        --------------------------------------
+        */
 
         earmark.addEventListener(
             "click",
@@ -1088,9 +1339,11 @@ function createCell(
         );
 
 
-        // ==================================================
-        // CLICK INSIDE COMMENT
-        // ==================================================
+        /*
+        --------------------------------------
+        CLICK INSIDE COMMENT
+        --------------------------------------
+        */
 
         commentBox.addEventListener(
             "click",
@@ -1108,18 +1361,14 @@ function createCell(
 
 }
 
+
 // ==========================================
-// CLOSE COMMENTS WHEN CLICKING OUTSIDE
+// CLOSE COMMENTS OUTSIDE
 // ==========================================
 
 document.addEventListener(
     "click",
     event => {
-
-        /*
-        If the click occurred inside a comment,
-        leave the comment open.
-        */
 
         if (
             event.target.closest(
@@ -1132,38 +1381,36 @@ document.addEventListener(
         }
 
 
-        /*
-        Otherwise close every open comment.
-        */
-
         document
             .querySelectorAll(
                 ".cell-comment.comment-open"
             )
-            .forEach(comment => {
+            .forEach(
+                comment => {
 
-                comment.style.display =
-                    "none";
+                    comment.style.display =
+                        "none";
 
-                comment.classList.remove(
-                    "comment-open"
-                );
+                    comment.classList.remove(
+                        "comment-open"
+                    );
 
-            });
+                }
+            );
 
     }
 );
 
+
 // ==========================================
-// CHART.JS RENDERER
+// CHART.JS
 // ==========================================
 
 function createChart(
     canvas,
     chart,
     metrics
-){
-
+) {
 
     const data =
         metrics[chart.source];
@@ -1181,48 +1428,42 @@ function createChart(
     }
 
 
-
     new Chart(
         canvas,
         {
 
-
             type:
                 chart.type,
 
-
-            data:{
-
+            data: {
 
                 labels:
                     Object.keys(data),
 
-
-                datasets:[
+                datasets: [
 
                     {
 
                         label:
                             chart.title,
 
-
                         data:
                             Object.values(data),
 
+                        backgroundColor: [
 
-                        backgroundColor:[
                             "#217346",
                             "#3f8077",
                             "#2e3e64",
                             "#5e4c83",
-                            "#947394",                        
+                            "#947394",
                             "#e2738c",
                             "#cd5f66",
                             "#ffa67c",
                             "#f5e1a2",
-                            "#61bb46",
-                        ],
+                            "#61bb46"
 
+                        ],
 
                         borderColor:
                             "#2e3e64",
@@ -1236,63 +1477,51 @@ function createChart(
 
             },
 
+            options: {
 
-            options:{
+                responsive: true,
 
-
-                responsive:true,
-
-
-                maintainAspectRatio:false,
-
+                maintainAspectRatio: false,
 
                 scales:
 
                     chart.type === "radar"
 
-                    ?
+                        ? {
 
-                    {
+                            r: {
 
-                        r:{
+                                beginAtZero: true,
 
-                            beginAtZero:true,
+                                min: 0,
 
-                            min:0,
+                                max: 5
 
-                            max:5
+                            }
 
                         }
 
-                    }
+                        : {},
 
-                    :
+                plugins: {
 
-                    {},
+                    legend: {
 
-
-
-                plugins:{
-
-
-                    legend:{
                         display:
-                            chart.type !== "bar" && chart.type !== "radar"
-                    }
+                            chart.type !== "bar" &&
+                            chart.type !== "radar"
 
+                    }
 
                 }
 
-
             }
 
-
         }
-
     );
 
-
 }
+
 
 // ==========================================
 // CELL SELECTION
@@ -1331,27 +1560,26 @@ function selectCell(cell) {
 }
 
 
-
 // ==========================================
 // SHEET RENDER HOOK
 // ==========================================
+
 function renderSheet() {
 
-    const sheet = Workbook.getActiveSheet();
+    const sheet =
+        Workbook.getActiveSheet();
 
-    if (sheet.type === "table") {
-        renderDesktopTable(sheet);
-        renderMobileTable(sheet);
-    }
 
-    if (sheet.type === "dashboard") {
-        renderDashboard(sheet);
-    }
+    /*
+    ------------------------------------------
+    SAFETY CHECK
+    ------------------------------------------
+    */
 
     if (!sheet) {
 
         console.error(
-            "No active sheet"
+            "No active sheet."
         );
 
         return;
@@ -1359,24 +1587,56 @@ function renderSheet() {
     }
 
 
-    // Remove old comment popups
+    /*
+    ------------------------------------------
+    REMOVE OLD COMMENT POPUPS
+    ------------------------------------------
+    */
+
     document
-        .querySelectorAll(".cell-comment")
+        .querySelectorAll(
+            ".cell-comment"
+        )
         .forEach(
             comment => comment.remove()
         );
 
 
-    // Clear selection from previous sheet
-    selectedCell = null;
+    /*
+    ------------------------------------------
+    CLEAR PREVIOUS SHEET
+    ------------------------------------------
+    */
 
-
-    // Reset spreadsheet
     spreadsheet.innerHTML = "";
 
+    /*
+    ------------------------------------------
+    CLEAR DESKTOP GRID STYLES
+    ------------------------------------------
+    */
 
-    // Dashboard styling
-    if (sheet.type === "dashboard") {
+    spreadsheet.style.gridTemplateColumns = "";
+    spreadsheet.style.gridAutoRows = "";
+    spreadsheet.style.display = "";
+
+    /*
+    ------------------------------------------
+    CLEAR PREVIOUS SELECTION
+    ------------------------------------------
+    */
+
+    selectedCell = null;
+
+    /*
+    ------------------------------------------
+    DASHBOARD
+    ------------------------------------------
+    */
+
+    if (
+        sheet.type === "dashboard"
+    ) {
 
         document.body.classList.add(
             "dashboard-active"
@@ -1386,9 +1646,31 @@ function renderSheet() {
             "dashboard-mode"
         );
 
+
+        renderDashboard(
+            sheet
+        );
+
+
+        updateSheetTitle(
+            sheet.name
+        );
+
+
+        return;
+
     }
 
-    else {
+
+    /*
+    ------------------------------------------
+    TABLE
+    ------------------------------------------
+    */
+
+    if (
+        sheet.type === "table"
+    ) {
 
         document.body.classList.remove(
             "dashboard-active"
@@ -1398,40 +1680,101 @@ function renderSheet() {
             "dashboard-mode"
         );
 
-    }
+
+        /*
+        MOBILE:
+        Show ONLY mobileView.
+        */
+
+        if (
+            isMobileView()
+        ) {
+
+            const mobileTable =
+                renderMobileTable(
+                    sheet
+                );
 
 
-    switch (sheet.type) {
+            if (mobileTable) {
 
-        case "table":
+                spreadsheet.appendChild(
+                    mobileTable
+                );
 
-            renderTable(sheet);
+            }
 
-            break;
+        }
 
+        /*
+        DESKTOP:
+        Show ONLY normal Excel grid.
+        */
 
-        case "dashboard":
+        else {
 
-            renderDashboard(sheet);
-
-            break;
-
-
-        default:
-
-            console.warn(
-                "Unknown sheet type:",
-                sheet.type
+            renderTable(
+                sheet
             );
 
+        }
+
+
+        updateSheetTitle(
+            sheet.name
+        );
+
+
+        return;
+
     }
 
 
-    updateSheetTitle(
-        sheet.name
+    /*
+    ------------------------------------------
+    UNKNOWN SHEET
+    ------------------------------------------
+    */
+
+    console.warn(
+        "Unknown sheet type:",
+        sheet.type
     );
 
 }
+
+
+// ==========================================
+// HANDLE MOBILE/DESKTOP RESIZE
+// ==========================================
+
+let previousMobileState =
+    isMobileView();
+
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        const currentMobileState =
+            isMobileView();
+
+
+        if (
+            currentMobileState !==
+            previousMobileState
+        ) {
+
+            previousMobileState =
+                currentMobileState;
+
+
+            renderSheet();
+
+        }
+
+    }
+);
 
 
 // ==========================================
@@ -1442,13 +1785,10 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-
         generateGrid();
-
 
     }
 );
-
 
 
 // ==========================================
@@ -1457,10 +1797,8 @@ document.addEventListener(
 
 window.Grid = {
 
-
     generateGrid,
 
     renderSheet
-
 
 };

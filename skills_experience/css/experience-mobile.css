@@ -63,19 +63,13 @@ a,
     }
 
     .mobile-table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
+        display: table !important;
 
-    .mobile-sheet-container {
-        width: 100%;
-        background: #fff;
-        overflow-y: auto;
-    }
+        width: 100% !important;
+        max-width: 100%;
 
-    .mobile-table {
-        width: 100%;
+        margin: 0;
+
         border-collapse: collapse;
         table-layout: fixed;
 
@@ -126,32 +120,6 @@ a,
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-    }
-
-    .mobile-background th:nth-child(1),
-    .mobile-background td:nth-child(1) {
-        width: 24%;
-    }
-
-    .mobile-background th:nth-child(2),
-    .mobile-background td:nth-child(2) {
-        width: 31%;
-    }
-
-    .mobile-background th:nth-child(3),
-    .mobile-background td:nth-child(3) {
-        width: 45%;
-    }
-
-    .mobile-skills th:first-child,
-    .mobile-skills td:first-child {
-        width: 78%;
-    }
-
-    .mobile-skills th:last-child,
-    .mobile-skills td:last-child {
-        width: 22%;
-        text-align: center;
     }
 
     .mobile-table tbody tr {
@@ -252,8 +220,56 @@ a,
 /* =====================================================
    RIBBON
 ===================================================== */
+
+.ribbon {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+
+/* Hide toolbar completely */
 .ribbon .ribbon-toolbar {
-    display: hidden;
+    display: none !important;
+
+    width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+}
+
+.ribbon-tabs {
+    width: 100%;
+    min-width: 0;
+
+    height: 36px;
+    min-height: 36px;
+
+    display: flex;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+}
+
+.ribbon-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.ribbon-tab {
+    flex: 0 0 auto;
+    height: 36px;
+    min-height: 36px;
 }
 
 /* =====================================================
@@ -323,44 +339,26 @@ a,
 ===================================================== */
 
 .spreadsheet-viewport {
-    position: relative;
-
     width: 100%;
     max-width: 100%;
     min-width: 0;
-
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: auto;
-
     -webkit-overflow-scrolling: touch;
-
-    overscroll-behavior-x: contain;
-    overscroll-behavior-y: contain;
-
-    touch-action: pan-x pan-y;
-
+    touch-action: pan-y;
     scrollbar-width: thin;
-
-    /*
-    Prevent the viewport itself from becoming
-    impossibly small on phones.
-    */
-    min-height: 300px;
+    min-height: 0;
 }
 
 .spreadsheet {
-    /*
-    IMPORTANT:
-
-    The grid is allowed to be wider than the phone.
-    The viewport handles the horizontal scroll.
-    */
-    width: max-content;
-    min-width: 100%;
-
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    display: block !important;
     overflow: visible;
-
-    position: relative;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    grid-auto-rows: auto !important;
 }
 
 
@@ -692,6 +690,7 @@ VERY SMALL PHONES
     font-size: 11px;
 }
 
+
 .formula-container {
     height: 40px;
     min-height: 40px;
@@ -900,4 +899,179 @@ REDUCE MOTION
         animation-iteration-count: 1 !important;
     }
 }
+}
+
+/* =========================================================
+   PLS GOD GET RID OF THE MOBILE RIBBON BLANK SPACE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    /* -----------------------------------------
+       TITLE BAR
+    ----------------------------------------- */
+
+    .title-bar {
+        width: 100% !important;
+        height: 40px !important;
+        min-height: 40px !important;
+
+        display: flex !important;
+        align-items: center !important;
+
+        overflow: hidden !important;
+    }
+
+    .window-left {
+        flex: 0 0 auto !important;
+        min-width: 0 !important;
+    }
+
+    .window-title {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+
+        width: auto !important;
+        max-width: none !important;
+
+        display: block !important;
+
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+
+        text-align: center !important;
+
+        font-size: 12px !important;
+        line-height: 40px !important;
+
+        padding: 0 6px !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+
+    /* -----------------------------------------
+       RIBBON ITSELF
+       
+       IMPORTANT:
+       The ribbon is now ONLY the tab row.
+       ----------------------------------------- */
+
+    .ribbon {
+        display: block !important;
+
+        width: 100% !important;
+
+        height: 36px !important;
+        min-height: 36px !important;
+        max-height: 36px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        overflow: hidden !important;
+    }
+
+
+    /* -----------------------------------------
+       KILL DESKTOP TOOLBAR COMPLETELY
+       ----------------------------------------- */
+
+    .ribbon .ribbon-toolbar,
+    .ribbon-toolbar {
+        display: none !important;
+
+        width: 0 !important;
+        height: 0 !important;
+
+        min-width: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        border: 0 !important;
+
+        overflow: hidden !important;
+
+        visibility: hidden !important;
+    }
+
+
+    /* -----------------------------------------
+       MOBILE NAVIGATION
+       ----------------------------------------- */
+
+    .ribbon-tabs {
+        display: flex !important;
+
+        width: 100% !important;
+        height: 36px !important;
+        min-height: 36px !important;
+        max-height: 36px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+
+        flex-wrap: nowrap !important;
+
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .ribbon-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .ribbon-tab {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        flex: 0 0 auto !important;
+
+        height: 36px !important;
+        min-height: 36px !important;
+        max-height: 36px !important;
+
+        margin: 0 !important;
+    }
+
+
+    .ribbon-tab a {
+        display: flex !important;
+        align-items: center !important;
+
+        height: 100% !important;
+
+        white-space: nowrap !important;
+    }
+
+
+    /* -----------------------------------------
+       FORMULA BAR
+       
+       It should immediately follow the tabs.
+       ----------------------------------------- */
+
+    .formula-container {
+        width: 100% !important;
+
+        height: 42px !important;
+        min-height: 42px !important;
+        max-height: 42px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        display: flex !important;
+    }
+
 }

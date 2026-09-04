@@ -1755,17 +1755,17 @@ const workbook = {
             ],
 
             mobileView: {
-            mobileColumns: [
-                "Certificates",
-                "Link"
-            ],
+                columns: [
+                    "Certificates",
+                    "Link"
+                ],
 
-            widths: [
-                "85%",
-                "15%"
-            ]
+                widths: [
+                    "85%",
+                    "15%"
+                ]
+            },
 
-        },
 
             rows: [
 
