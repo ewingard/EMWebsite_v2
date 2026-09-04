@@ -8,8 +8,75 @@
    It simply receives project/page objects and renders them.
 ===================================================== */
 
-
 const projects = [
+    {
+
+        id: "",
+
+        title: "Interpretive Exhibits",
+
+        shelf: 1,
+
+        color: "#747373",
+
+        accent: "#d6ad57",
+
+        width: 30,
+
+        height: 275,
+
+        decoration: "ornament",
+
+        rotation: "1.1deg",
+
+        pages: [
+            {
+                number: 1,
+
+                label: "Background",
+
+                title: "Heritage Interpretation Exhibits",
+
+                content: `<p>
+                <strong> THIS PROJECT IS CURRENTLY UNDERWAY</strong></br>
+                </br>
+                During the Fall 2026 semester for my Master's degree in History, 
+                I took a course on Heritage Interpretation taught by Erica Veal
+                at the <a href="https://avery.charleston.edu/">Avery Research Center</a>. In this course, we completed the 
+                <a href="https://www.nai-us.org/">National Association for Interpretation</a>
+                Certified Interpretive Guide (CIG) course, as well as completing two
+                exhibits that will be physically available at the Avery Research Center come Spring 2027.
+                In groups, we created a physical and digital interpretive exhibits for topics
+                relating to the Avery Research Center. My group focused on African American burial grounds
+                in Downtown Charleston, with both exhibits using archival material to inform us on the topic. 
+                </p>`
+            },
+            {
+                number: 2,
+
+                label: "Exhibits",
+
+                title: "Physical Exhibit",
+
+                content: `<p>
+                    
+                </p>`
+            },
+
+            {
+                number: 2,
+
+                label: "Exhibits",
+
+                title: "Digital Exhibit",
+
+                content: `<p>
+
+                </p>`
+            }
+        ]
+
+    },
 
     {
         id: "",
@@ -18,7 +85,7 @@ const projects = [
 
         shelf: 1,
 
-        color: "#575757",
+        color: "#3b3838",
 
         accent: "#d6ad57",
 
@@ -94,6 +161,57 @@ const projects = [
                 </p>`
             }
         ]
+    },
+
+    {
+    id: "",
+
+        title: "Archival Deterioration",
+
+        shelf: 1,
+
+        color: "#502a0c",
+
+        accent: "#d6ad57",
+
+        width: 30,
+
+        height: 250,
+
+        decoration: "ornament",
+
+        rotation: "-.2deg",
+
+        pages: [
+            {
+                number: 1,
+
+                label: "Background",
+
+                title: "Archival Deterioration",
+
+                content: `<p>
+                <strong> THIS PROJECT IS UPCOMING</strong></br>
+                </br>
+                </p>`
+            },
+
+            {
+                number: 2,
+
+                label: "Background",
+
+                title: "Resource",
+
+                content: `<p>
+                Later, we collaborated with the Harriet Hancock Center to provide an online/social media-based resource that provided guidance and information
+                on navigating legal, social, and transitioning support in South Carolina.</br>
+                </br>
+                <a href="https://github.com/ewingard/tadv_scmap">Code Mockup <i class="fa-solid fa-laptop-code"></i></a>
+                </p>`
+            }
+        ]
+
     },
 
     {
