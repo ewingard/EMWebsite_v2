@@ -46,8 +46,8 @@
         display: block;
         color: transparent;
         position: fixed;
-        top: 20px; /* Adjust as needed */
-        right: 20px; /* Adjust for testing */
+        top: 20px; 
+        right: 20px;
         z-index: 100; 
         font-family: 'LeagueSpartan-SemiBold', sans-serif;
         color: white;
@@ -61,13 +61,13 @@
       
       .menu-visible li {
         display: inline;
-        margin-left: 1.46vw; /* Space between links */
+        margin-left: 1.46vw;
       }
       
       .menu-visible a {
         text-decoration: none;
-        color: white; /* Adjust color to fit your design */
-        font-size: 1.5rem; /* Adjust size as needed */
+        color: white; 
+        font-size: 1.5rem;
       }
 
                  /* Mobile Nav Section! */

@@ -4,23 +4,370 @@ body, html {
     flex-direction: column;
     min-height: 100vh;
     overflow: hidden;
+    font-family:
+        "Noto Sans",
+        sans-serif;
+}
+
+@font-face {
+    font-family: Trickster-Reg;
+    src: url('/assets/fonts/Trickster-Reg.otf');
 }
 
 .name {
-    padding: 0.5vw;
-    margin-top: 2vw; 
-    top: .5vw;
-    left: 40vw;
+    padding: 1vw;
+    color: black;
+    margin-top: 1vw; 
+    top: 1.5vw;
+    align-self: center;
     font-size: 3em;
+    font-family:
+        'Trickster-Reg';
+
 }
+
+.footer {
+   position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 900;
+    box-sizing: border-box;
+    padding: 5px 15px;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 10px;
+    line-height: 1.3;
+    text-align: center;
+    color: black;
+    background: rgba(242, 230, 246, 0.75);
+    backdrop-filter: blur(4px);
+    border-bottom: 2px solid black;
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.footer a {
+    color: black;
+    text-decoration: none;
+}
+/* Nav adapted from CodeFronts, see workshop for affiliated link */
+
+/* =========================================================
+   NAV TOGGLE
+========================================================= */
+
+.mn-04 #mn-04-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.mn-04__topbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 20px;
+
+    box-sizing: border-box;
+
+    background: #8a6b99;
+
+    border-bottom: 1px solid black;
+
+    z-index: 1000;
+}
+
+
+/* =========================================================
+   HAMBURGER BUTTON
+========================================================= */
+
+.mn-04__btn {
+
+    position: relative;
+
+    width: 36px;
+    height: 36px;
+
+    flex: 0 0 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 1002;
+}
+
+
+.mn-04__btn-bar {
+
+    position: absolute;
+
+    width: 24px;
+    height: 2px;
+
+    background: black;
+
+    border-radius: 2px;
+
+    transform-origin: center;
+
+    transition:
+        transform 0.35s ease,
+        opacity 0.25s ease,
+        width 0.35s ease;
+}
+
+
+.mn-04__btn-bar:nth-child(1) {
+    transform: translateY(-7px);
+    width: 20px;
+}
+
+
+.mn-04__btn-bar:nth-child(2) {
+    transform: translateY(0);
+}
+
+
+.mn-04__btn-bar:nth-child(3) {
+    transform: translateY(7px);
+    width: 20px;
+}
+
+
+/* =========================================================
+   HAMBURGER → X
+========================================================= */
+
+.mn-04 #mn-04-toggle:checked
+~ .mn-04__topbar
+.mn-04__btn-bar:nth-child(1) {
+
+    transform: translateY(0) rotate(45deg);
+
+    width: 24px;
+}
+
+
+.mn-04 #mn-04-toggle:checked
+~ .mn-04__topbar
+.mn-04__btn-bar:nth-child(2) {
+
+    opacity: 0;
+
+    transform: scaleX(0);
+}
+
+
+.mn-04 #mn-04-toggle:checked
+~ .mn-04__topbar
+.mn-04__btn-bar:nth-child(3) {
+
+    transform: translateY(0) rotate(-45deg);
+
+    width: 24px;
+}
+
+
+/* =========================================================
+   MENU
+   The menu lives INSIDE the topbar.
+========================================================= */
+
+.mn-04__menu {
+
+    flex: 1;
+
+    min-width: 0;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MENU ITEMS
+========================================================= */
+
+.mn-04__menu-inner {
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    gap: 4px;
+
+    padding-left: 20px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   MENU ITEMS — HIDDEN BY DEFAULT
+========================================================= */
+
+.mn-04__menu-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 12px;
+
+    color: black;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform: translateX(-8px);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+/* =========================================================
+   MENU ITEMS — VISIBLE WHEN TOGGLED
+========================================================= */
+
+.mn-04 #mn-04-toggle:checked
+~ .mn-04__topbar
+.mn-04__menu-item {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: translateX(0);
+}
+
+
+/* =========================================================
+   STAGGERED APPEARANCE
+========================================================= */
+
+.mn-04 #mn-04-toggle:checked
+~ .mn-04__topbar
+.mn-04__menu-item:nth-child(1) {
+    transition-delay: 0.03s;
+}
+
+.mn-04 #mn-04-toggle:checked
+~ .mn-04__topbar
+.mn-04__menu-item:nth-child(2) {
+    transition-delay: 0.06s;
+}
+
+.mn-04 #mn-04-toggle:checked
+~ .mn-04__topbar
+.mn-04__menu-item:nth-child(3) {
+    transition-delay: 0.09s;
+}
+
+.mn-04 #mn-04-toggle:checked
+~ .mn-04__topbar
+.mn-04__menu-item:nth-child(4) {
+    transition-delay: 0.12s;
+}
+
+.mn-04 #mn-04-toggle:checked
+~ .mn-04__topbar
+.mn-04__menu-item:nth-child(5) {
+    transition-delay: 0.15s;
+}
+
+.mn-04 #mn-04-toggle:checked
+~ .mn-04__topbar
+.mn-04__menu-item:nth-child(6) {
+    transition-delay: 0.18s;
+}
+
+
+/* =========================================================
+   MENU ICONS
+========================================================= */
+
+.mn-04__menu-item-icon {
+
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+
+.mn-04__menu-item-icon img {
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+}
+
+
+/* =========================================================
+   HOVER / ACTIVE
+========================================================= */
+
+.mn-04__menu-item:hover {
+
+    background: rgba(255,255,255,0.15);
+
+    border-radius: 5px;
+}
+
+
+.mn-04__menu-item.is-active {
+
+    background: rgba(255,255,255,0.12);
+
+    border-radius: 5px;
+}
+
 
 .gallery-container {
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:2rem;
 
-    height:100vh;
-    width:95vw;
+    height:65vh;
+    width:90vw;
     margin:auto;
 }
 
@@ -71,7 +418,7 @@ body, html {
     inset:0;
     width:100%;
     height:100%;
-    object-fit:contain;
+    object-fit:fill;
     opacity:0;
     transition:opacity .4s ease;
     z-index: 0;
@@ -107,8 +454,582 @@ body, html {
     display:none;
 }
 
-/* Mobile Optimization */
-@media (max-width: 1000px) {
+/* =========================================================
+   FULL SCREEN LOADER
+========================================================= */
+
+.gallery-loader {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    z-index: 999999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            #f2e6f6,
+            #8a6b99
+        );
+
+    color: black;
+
+    opacity: 1;
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transition:
+        opacity 0.7s ease,
+        visibility 0.7s ease;
+
+}
+
+
+/* Loader disappears */
+
+.gallery-loader.loaded {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   LOADER CONTENT
+========================================================= */
+
+.loader-content {
+
+    width: 90vw;
+    max-width: 500px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+}
+
+
+/* =========================================================
+   DESKTOP LOADER
+========================================================= */
+
+.desktop-loader {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+
+.desktop-loader h1,
+.mobile-loader h1 {
+
+    margin:
+        1rem 0 0.5rem;
+
+    font-family:
+        'Trickster-Reg';
+
+    font-size:
+        clamp(2rem, 5vw, 3.5rem);
+
+    font-weight: normal;
+
+}
+
+
+.desktop-loader p,
+.mobile-loader p {
+
+    margin: 0;
+
+    font-family:
+        "Noto Sans",
+        sans-serif;
+
+    font-size:
+        clamp(1rem, 2vw, 1.25rem);
+
+}
+
+
+/* =========================================================
+   MOBILE LOADER IS OFF BY DEFAULT
+========================================================= */
+
+.mobile-loader {
+
+    display: none;
+
+}
+
+
+/* =========================================================
+   DESKTOP MOUSE
+========================================================= */
+
+.mouse {
+
+    position: relative;
+
+    width: 48px;
+    height: 76px;
+
+    border:
+        3px solid
+        black;
+
+    border-radius: 24px;
+
+}
+
+
+.mouse-wheel {
+
+    position: absolute;
+
+    top: 12px;
+    left: 50%;
+
+    width: 7px;
+    height: 14px;
+
+    border-radius: 5px;
+
+    background: black;
+
+    transform:
+        translateX(-50%);
+
+    animation:
+        mouseScroll
+        1.5s
+        infinite
+        ease-in-out;
+
+}
+
+
+@keyframes mouseScroll {
+
+    0% {
+
+        transform:
+            translateX(-50%)
+            translateY(0);
+
+        opacity: 0;
+
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    70% {
+
+        transform:
+            translateX(-50%)
+            translateY(22px);
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translateX(-50%)
+            translateY(28px);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   DESKTOP ARROWS
+========================================================= */
+
+.scroll-arrows {
+
+    display: flex;
+
+    gap: 0.5rem;
+
+    margin-top: 0.75rem;
+
+    font-size: 1.4rem;
+
+}
+
+
+.scroll-arrows span {
+
+    animation:
+        arrowBounce
+        1.5s
+        infinite
+        ease-in-out;
+
+}
+
+
+.scroll-arrows span:nth-child(2) {
+
+    animation-delay:
+        0.25s;
+
+}
+
+
+@keyframes arrowBounce {
+
+    0%,
+    100% {
+
+        opacity: 0.25;
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            translateY(5px);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE PHONE
+========================================================= */
+
+.phone-frame {
+
+    position: relative;
+
+    width: 55px;
+    height: 85px;
+
+    border:
+        3px solid
+        black(255,255,255,0.9);
+
+    border-radius: 10px;
+
+}
+
+
+.finger {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: black;
+
+    transform:
+        translate(-50%, -50%);
+
+    animation:
+        fingerSwipe
+        1.6s
+        infinite
+        ease-in-out;
+
+}
+
+
+@keyframes fingerSwipe {
+
+    0% {
+
+        transform:
+            translate(-50%, -50%)
+            translateX(20px);
+
+        opacity: 0.2;
+
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    50% {
+
+        transform:
+            translate(-50%, -50%)
+            translateX(-20px);
+
+        opacity: 1;
+
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            translateX(20px);
+
+        opacity: 0.2;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE ARROWS
+========================================================= */
+
+.swipe-arrows {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    width: 140px;
+
+    margin-top: 0.75rem;
+
+    font-size: 1.4rem;
+
+}
+
+
+.swipe-arrows span {
+
+    animation:
+        swipeArrow
+        1.6s
+        infinite
+        ease-in-out;
+
+}
+
+
+.swipe-arrows span:last-child {
+
+    animation-delay:
+        0.4s;
+
+}
+
+
+@keyframes swipeArrow {
+
+    0%,
+    100% {
+
+        opacity: 0.25;
+
+        transform:
+            translateX(0);
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            translateX(6px);
+
+    }
+
+}
+
+
+/* =========================================================
+   LOADING STATUS
+========================================================= */
+
+.loader-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+    margin-top: 1.5rem;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 0.85rem;
+
+    opacity: 0.8;
+
+}
+
+
+.loading-dot {
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: black;
+
+    animation:
+        loadingPulse
+        1.2s
+        infinite;
+
+}
+
+
+@keyframes loadingPulse {
+
+    0%,
+    100% {
+
+        opacity: 0.25;
+
+        transform: scale(0.8);
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   PERSISTENT INSTRUCTIONS
+========================================================= */
+
+.gallery-instructions {
+
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    z-index: 1000;
+
+    transform:
+        translateX(-50%);
+
+    padding:
+        0.65rem 1rem;
+
+    color: white;
+
+    font-family:
+        "Noto Sans",
+        sans-serif;
+    background:
+        rgba(40,25,45,0.75);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.25);
+
+    border-radius: 999px;
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+
+    font-size: 0.95rem;
+
+    white-space: nowrap;
+
+    opacity: 1;
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+
+}
+
+
+.gallery-instructions.dismissed {
+
+    opacity: 0;
+
+    transform:
+        translateX(-50%)
+        translateY(-10px);
+
+}
+
+
+/* Desktop instruction visible */
+
+.desktop-instruction {
+
+    display: inline !important;
+
+}
+
+
+/* Mobile instruction hidden */
+
+.mobile-instruction {
+
+    display: none !important;
+
+}
+
+
+/* =========================================================
+   MOBILE OVERRIDE
+========================================================= */
+
+@media screen and (max-width: 1000px) {
+
     body, html {
     overflow:hidden;
     height:100vh;
@@ -120,13 +1041,14 @@ body, html {
 
 
     .mobile-gallery-frame {
-        display:block;
-        position:absolute;
-        top:50%;
-        left:50%;
-        transform:translate(-50%, -50%);
-        width:90vw;
-        aspect-ratio:4/5;
+        display: block;
+        position: fixed;
+        top: calc(50% + 25px);
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 88vw;
+        max-height: calc(100dvh - 100px);
+        aspect-ratio: 4 / 5;
     }
 
 
@@ -162,7 +1084,7 @@ body, html {
         inset:0;
         width:100%;
         height:100%;
-        object-fit:contain;
+        object-fit:fill;
         transition:
             opacity .4s ease,
             transform .4s ease;
@@ -173,4 +1095,179 @@ body, html {
     .mobile-art-strip img.active {
         transform:scale(1);
     }
+
+    /* -----------------------------------------
+       LOADER
+    ----------------------------------------- */
+
+    .desktop-loader {
+
+        display: none !important;
+
+    }
+
+
+    .mobile-loader {
+
+        display: flex !important;
+
+        flex-direction: column;
+
+        align-items: center;
+
+    }
+
+
+    /* -----------------------------------------
+       PERSISTENT INSTRUCTION
+    ----------------------------------------- */
+
+    .name {
+        top: 20vw;
+    }
+
+    .desktop-instruction {
+
+        display: none !important;
+
+    }
+
+
+    .mobile-instruction {
+
+        display: inline !important;
+    }
+
+
+    .gallery-instructions {
+        left: 50%;
+        top: 50%;
+        /* top: */
+            /* max(
+                1rem,
+                env(safe-area-inset-top)
+            ); */
+
+        font-size: 0.9rem;
+
+    }
+
+/* Closed mobile topbar */
+    .mn-04__topbar {
+        height: 15vw;
+        padding: 0 12px;
+
+        align-items: flex-start;
+
+        transition: height 0.35s ease;
+    }
+
+
+    /* Keep hamburger vertically centered */
+    .mn-04__btn {
+        margin-top: 12px;
+
+        flex-shrink: 0;
+    }
+
+
+    /* Menu area */
+    .mn-04__menu {
+        overflow: hidden;
+
+        padding-top: 6px;
+    }
+
+
+    /* Menu items stay hidden until toggle */
+    .mn-04__menu-inner {
+
+        display: flex;
+
+        flex-direction: row;
+
+        flex-wrap: wrap;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 4px;
+
+        padding: 0 5px;
+    }
+
+
+    /* Smaller mobile menu buttons */
+    .mn-04__menu-item {
+
+        flex: 0 0 auto;
+
+        padding: 7px 9px;
+
+        font-size: 0.8rem;
+
+        gap: 5px;
+    }
+
+
+    /* Smaller icons */
+    .mn-04__menu-item-icon,
+    .mn-04__menu-item-icon img {
+
+        width: 28px;
+        height: 28px;
+    }
+
+    /* =====================================================
+       SMALLER PHONES
+    ===================================================== */
+
+    @media (max-width: 600px) {
+
+        .mn-04 #mn-04-toggle:checked
+        ~ .mn-04__topbar {
+
+            height: 30vw;
+        }
+
+        .mn-04__menu-item {
+
+            padding: 6px 8px;
+
+            font-size: 0.75rem;
+        }
+
+        .mn-04__menu-item-icon,
+        .mn-04__menu-item-icon img {
+
+            width: 24px;
+            height: 24px;
+        }
+    }
+} 
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .gallery-loader,
+    .gallery-instructions {
+
+        transition: none;
+
+    }
+
+    .mouse-wheel,
+    .scroll-arrows span,
+    .finger,
+    .swipe-arrows span,
+    .loading-dot {
+
+        animation: none;
+
+    }
+
 }

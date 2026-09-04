@@ -7,41 +7,167 @@
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/artcamp.css">
     <script src="https://kit.fontawesome.com/ea87ee6546.js" crossorigin="anonymous"></script>
+    <link rel="preload" as="image" href="/assets/images/frame1_AC.png" />
+    <link rel="preload" as="image" href="/assets/images/frame2_AC.png" />
+    <link rel="preload" as="image" href="/assets/images/frame3_AC.png" />
 </head>
 <body>
-    <div id="menuToggle" class="menuButton" onclick="myFunction(this)" aria-label="Menu" aria-expanded="false">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-    </div>
-    <div id="textMenu" class="menu-hidden">
-        <ul>
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/aboutme/">About Me</a></li>
-            <li><a href="/projects/">Projects</a></li>
-            <li><a href="/experience/">Experience</a></li>
-            <li><a href="/skills/">Skills</a></li>
-            <li><a href="https://github.com/ewingard" target="_blank">Github</a></li>
-            <li><a href="/interests/">Interests</a></li>
-            <li><a href="/publications/">Publications</a></li>
-          </ul>
-      </div>
-      <div class="mobileMenu">
-        <a href="/index.html" class="active-menu">Home</a>
-        <div id="myLinks">
-          <a href="/aboutme/">About Me</a>
-          <a href="/projects/">Projects</a>
-          <a href="/experience/">Experience</a>
-          <a href="/skills/">Skills</a>
-          <a href="https://github.com/ewingard" target="_blank">Visit my Github Page</a>
-          <a href="/interests/">Interests</a>
-          <a href="/publications/">Publications</a>
+
+<!-- =========================================================
+     FULL-SCREEN GALLERY LOADER
+========================================================= -->
+
+<div id="galleryLoader" class="gallery-loader">
+
+    <div class="loader-content">
+
+        <!-- DESKTOP LOADER -->
+        <div class="desktop-loader">
+
+            <div class="mouse">
+                <div class="mouse-wheel"></div>
+            </div>
+
+            <div class="scroll-arrows">
+                <span>↑</span>
+                <span>↓</span>
+            </div>
+
+            <h1>Art Camp Gallery</h1>
+
+            <p>Scroll to explore the artwork</p>
+
         </div>
-        <a href="javascript:void(0);" class="icon" onclick="mobileNavToggle()">
-          <i class="fa fa-bars"></i>
-        </a>
+
+
+        <!-- MOBILE LOADER -->
+        <div class="mobile-loader">
+
+            <div class="phone-frame">
+                <div class="finger"></div>
+            </div>
+
+            <div class="swipe-arrows">
+                <span>←</span>
+                <span>→</span>
+            </div>
+
+            <h1>Art Camp Gallery</h1>
+
+            <p>Swipe to explore the artwork</p>
+
+        </div>
+
+
+        <div class="loader-status">
+
+            <span class="loading-dot"></span>
+
+            <span id="loadingText">
+                Loading artwork...
+            </span>
+
+        </div>
+
     </div>
-    <div class="name">Art Camp</div>
+
+</div>
+
+
+<!-- =========================================================
+     PERSISTENT NAVIGATION INSTRUCTION
+========================================================= -->
+
+<div id="galleryInstructions"
+     class="gallery-instructions">
+
+    <span class="desktop-instruction">
+        ↕&nbsp; Scroll to browse
+    </span>
+
+    <span class="mobile-instruction">
+        ↔&nbsp; Swipe to browse
+    </span>
+
+</div>
+
+
+<!-- =========================================================
+     YOUR EXISTING MENU
+========================================================= -->
+<div class="mn-04">
+
+    <input type="checkbox" id="mn-04-toggle">
+
+    <div class="mn-04__topbar">
+
+        <label for="mn-04-toggle" class="mn-04__btn">
+            <span class="mn-04__btn-bar"></span>
+            <span class="mn-04__btn-bar"></span>
+            <span class="mn-04__btn-bar"></span>
+        </label>
+
+        <nav class="mn-04__menu">
+
+            <div class="mn-04__menu-inner">
+
+                <a href="/index.html" class="mn-04__menu-item is-active">
+                    <span class="mn-04__menu-item-icon">
+                        <img src="/assets/images/art-gallery/art_icons/noun_PearlEarring.svg"
+                             height="50" width="50">
+                    </span>
+                    Home
+                </a>
+
+                <a href="/about-me/about.html" class="mn-04__menu-item">
+                    <span class="mn-04__menu-item-icon">
+                        <img src="/assets/images/art-gallery/art_icons/noun_Mona.svg"
+                             height="50" width="50">
+                    </span>
+                    About Me
+                </a>
+
+                <a href="/skills_experience/experience.html" class="mn-04__menu-item">
+                    <span class="mn-04__menu-item-icon">
+                        <img src="/assets/images/art-gallery/art_icons/noun_Dream.svg"
+                             height="50" width="50">
+                    </span>
+                    Skills and Experience
+                </a>
+
+                <a href="/projects/projects.html#publications" class="mn-04__menu-item">
+                    <span class="mn-04__menu-item-icon">
+                        <img src="/assets/images/art-gallery/art_icons/noun_Venus.svg"
+                             height="50" width="50">
+                    </span>
+                    Publications
+                </a>
+
+                <a href="/projects/projects.html" class="mn-04__menu-item">
+                    <span class="mn-04__menu-item-icon">
+                        <img src="/assets/images/art-gallery/art_icons/noun_SonOfMan.svg"
+                             height="50" width="50">
+                    </span>
+                    Projects
+                </a>
+
+                <a href="https://github.com/ewingard" target="_blank" class="mn-04__menu-item">
+                    <span class="mn-04__menu-item-icon">
+                        <img src="/assets/images/art-gallery/art_icons/noun_Modern.svg"
+                             height="50" width="50">
+                    </span>
+                    Github
+                </a>
+
+            </div>
+
+        </nav>
+
+    </div>
+
+</div>
+
+<div class="name">Art Camp</div>
 <div class="gallery-container">
     <div class="gallery-column" data-frame="1">
         <div class="museum-frame">
@@ -133,5 +259,14 @@
 </div>
     <div class="scroll-space"></div>
     <script src="artcamp.js"></script>
+<footer class="footer">
+    Icons by Studio Fibonacci on Noun Project: <a href="https://thenounproject.com/browse/icons/term/the-birth-of-venus/" target="_blank" title="The Birth of Venus Icon">The Birth of Venus</a>,
+    <a href="https://thenounproject.com/browse/icons/term/the-son-of-man/" target="_blank" title="The Son of Man Icons">The Son of Man</a>,
+    <a href="https://thenounproject.com/browse/icons/term/the-dream/" target="_blank" title="The Dream Icon">The Dream</a>,
+    <a href="https://thenounproject.com/browse/icons/term/girl-with-a-pearl-earring/" target="_blank" title="Girl with a Pearl Earring Icon">Girl with a Pearl Earring</a>,
+    <a href="https://thenounproject.com/icon/modern-art-84085/" target="_blank" title="Modern Art Icon">Modern Art</a>,
+    <a href="https://thenounproject.com/browse/icons/term/mona-lisa/" target="_blank" title="mona lisa Icon">Mona Lisa</a> (CC BY 3.0)
+    Trickster by Jean-Baptiste Morizot. Distributed by velvetyne.fr.
+</footer>
 </body>
 </html>

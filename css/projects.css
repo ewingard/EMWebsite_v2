@@ -99,6 +99,9 @@ body {
 .nav-label {
     display: flex;
     flex-direction: column;
+    min-width: 75%;
+    width: 98%;
+
 
     padding: .65rem .8rem;
 
@@ -2339,6 +2342,7 @@ body {
 
     .catalog-toggle {
         display: inline;
+        margin: 0vw;
     }
 
     /* =================================================
