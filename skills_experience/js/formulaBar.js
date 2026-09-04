@@ -4,10 +4,14 @@ FORMULABAR.JS
 Portfolio.xlsx Spreadsheet Website
 
 Handles:
-- Excel-style formula bar
-- Cell value editing
-- Formula display
-- Commit/cancel edits
+- Excel-style formula bar display
+- Selected cell reference
+- Selected cell value
+- Formula bar UI state
+
+NOTE:
+The formula bar is currently READ-ONLY.
+Cell selection is controlled by grid.js.
 ==========================================
 */
 
@@ -17,456 +21,209 @@ Handles:
 // ==========================================
 
 const formulaInput =
-    document.getElementById(
-        "formula-bar"
-    );
-
+    document.getElementById("formula-bar");
 
 const cellReferenceBox =
-    document.querySelector(
-        ".name-box"
-    );
-
+    document.querySelector(".name-box");
 
 
 // ==========================================
-// STATE
+// FORMULA BAR OBJECT
 // ==========================================
 
 const FormulaBar = {
 
-    editing: false,
+    activeCell: null,
 
     originalValue: "",
 
-    activeCell: null
+    editing: false
 
 };
 
 
-
 // ==========================================
-// CONNECT TO GRID SELECTION
-// ==========================================
-
-function updateFormulaBar(cell) {
-
-
-    if (!cell) return;
-
-
-    FormulaBar.activeCell =
-        cell;
-
-
-
-    const reference =
-        cell.dataset.cell;
-
-
-
-    const value =
-        Workbook.getCellValue(
-
-            Workbook.state.activeSheet,
-
-            reference
-
-        );
-
-
-
-    FormulaBar.originalValue =
-        value;
-
-
-
-    if (cellReferenceBox) {
-
-        cellReferenceBox.textContent =
-            reference;
-
-    }
-
-
-
-    if (formulaInput) {
-
-        formulaInput.value =
-            value;
-
-    }
-
-
-}
-
-
-
-// ==========================================
-// BEGIN EDITING
+// SET NAME BOX
 // ==========================================
 
-function startFormulaEdit() {
+function setFormulaBarReference(reference) {
 
-
-    if (!formulaInput) return;
-
-
-
-    FormulaBar.editing =
-        true;
-
-
-
-    formulaInput.focus();
-
-
-
-    formulaInput.select();
-
-
-
-    formulaInput.classList.add(
-        "editing"
-    );
-
-
-}
-
-
-
-// ==========================================
-// SAVE VALUE
-// ==========================================
-
-function commitFormulaEdit() {
-
-
-    if (
-        !FormulaBar.activeCell
-    ) {
+    if (!cellReferenceBox) {
 
         return;
 
     }
 
 
+    if ("value" in cellReferenceBox) {
 
-    const reference =
-        FormulaBar.activeCell.dataset.cell;
+        cellReferenceBox.value =
+            reference ?? "";
 
+    }
 
+    else {
 
-    const value =
-        formulaInput.value;
+        cellReferenceBox.textContent =
+            reference ?? "";
 
-
-
-    Workbook.updateCell(
-
-        Workbook.state.activeSheet,
-
-        reference,
-
-        value
-
-    );
-
-
-
-    FormulaBar.activeCell.textContent =
-        value;
-
-
-
-    FormulaBar.originalValue =
-        value;
-
-
-
-    FormulaBar.editing =
-        false;
-
-
-
-    formulaInput.classList.remove(
-        "editing"
-    );
-
+    }
 
 }
 
 
-
 // ==========================================
-// CANCEL EDIT
-// ==========================================
-
-function cancelFormulaEdit() {
-
-
-    if (!formulaInput) return;
-
-
-
-    formulaInput.value =
-        FormulaBar.originalValue;
-
-
-
-    FormulaBar.editing =
-        false;
-
-
-
-    formulaInput.classList.remove(
-        "editing"
-    );
-
-
-}
-
-
-
-// ==========================================
-// FORMULA PARSER FOUNDATION
+// SET FORMULA BAR VALUE
 // ==========================================
 
-function evaluateFormula(value) {
+function setFormulaBarValue(value) {
+
+    if (!formulaInput) {
+
+        return;
+
+    }
 
 
     /*
-    Future formulas:
+    Convert everything to a string.
 
-    =PROJECTCOUNT()
-    =SKILLS()
-    =YEAR()
-
-    For now:
-    return text values.
+    null / undefined become an empty
+    formula bar.
     */
 
-
     if (
-        typeof value !== "string"
+        value === null ||
+        value === undefined
     ) {
 
-        return value;
+        formulaInput.value = "";
+
+        return;
 
     }
 
+
+    formulaInput.value =
+        String(value);
+
+}
+
+
+// ==========================================
+// UPDATE FORMULA BAR
+// ==========================================
+
+function updateFormulaBar(
+    cell,
+    value = undefined
+) {
+
+    if (!cell) {
+
+        resetFormulaBar();
+
+        return;
+
+    }
+
+
+    FormulaBar.activeCell =
+        cell;
+
+
+    /*
+    ------------------------------------------
+    CELL REFERENCE
+    ------------------------------------------
+
+    grid.js stores:
+
+    data-cell-address="C4"
+
+    JavaScript accesses this as:
+
+    cell.dataset.cellAddress
+    */
+
+    const reference =
+        cell.dataset.cellAddress || "";
+
+
+    /*
+    ------------------------------------------
+    CELL VALUE
+    ------------------------------------------
+
+    grid.js stores the original value in:
+
+    data-raw-value
+
+    This is preferable to textContent because
+    textContent may contain:
+
+    - icons
+    - comments
+    - links
+    - star ratings
+    */
+
+    let displayValue;
 
 
     if (
-        !value.startsWith("=")
+        value !== undefined
     ) {
 
-        return value;
+        displayValue =
+            value;
+
+    }
+
+    else if (
+        cell.dataset.rawValue !== undefined
+    ) {
+
+        displayValue =
+            cell.dataset.rawValue;
+
+    }
+
+    else {
+
+        displayValue =
+            cell.textContent.trim();
 
     }
 
 
-
-    const formula =
-        value.substring(1);
-
+    FormulaBar.originalValue =
+        displayValue ?? "";
 
 
-    switch(formula) {
+    /*
+    ------------------------------------------
+    UPDATE UI
+    ------------------------------------------
+    */
 
-
-        case "PROJECTCOUNT()":
-
-            return countProjects();
-
-
-
-        case "SKILLS()":
-
-            return countSkills();
-
-
-
-        default:
-
-            return value;
-
-
-    }
-
-}
-
-
-
-// ==========================================
-// EXAMPLE FUNCTIONS
-// ==========================================
-
-function countProjects() {
-
-
-    const projects =
-        Workbook.state.sheets.Projects;
-
-
-
-    if (!projects)
-        return 0;
-
-
-
-    return Object.keys(
-        projects.cells
-    )
-    .length;
-
-}
-
-
-
-function countSkills() {
-
-
-    const skills =
-        Workbook.state.sheets.Skills;
-
-
-
-    if (!skills)
-        return 0;
-
-
-
-    return Object.keys(
-        skills.cells
-    )
-    .length;
-
-
-}
-
-
-
-// ==========================================
-// KEYBOARD EVENTS
-// ==========================================
-
-if (formulaInput) {
-
-
-    formulaInput.addEventListener(
-        "focus",
-        startFormulaEdit
+    setFormulaBarReference(
+        reference
     );
 
 
-
-    formulaInput.addEventListener(
-        "keydown",
-        event => {
-
-
-            if (
-                event.key === "Enter"
-            ) {
-
-
-                event.preventDefault();
-
-
-                commitFormulaEdit();
-
-
-
-                FormulaBar.activeCell.blur();
-
-
-            }
-
-
-
-            if (
-                event.key === "Escape"
-            ) {
-
-
-                event.preventDefault();
-
-
-                cancelFormulaEdit();
-
-
-            }
-
-
-        }
+    setFormulaBarValue(
+        displayValue
     );
-
-
-
-    formulaInput.addEventListener(
-        "blur",
-        () => {
-
-
-            if (
-                FormulaBar.editing
-            ) {
-
-                commitFormulaEdit();
-
-            }
-
-
-        }
-    );
-
 
 }
 
 
-
 // ==========================================
-// CONNECT WITH GRID
-// ==========================================
-
-function attachFormulaBar() {
-
-
-    const originalSelect =
-        window.selectCell;
-
-
-
-    window.selectCell =
-        function(cell) {
-
-
-            if (
-                originalSelect
-            ) {
-
-                originalSelect(cell);
-
-            }
-
-
-            updateFormulaBar(cell);
-
-
-        };
-
-
-}
-
-
-
-// ==========================================
-// SHEET CHANGE RESET
+// RESET FORMULA BAR
 // ==========================================
 
 function resetFormulaBar() {
-
 
     FormulaBar.activeCell =
         null;
@@ -476,17 +233,38 @@ function resetFormulaBar() {
         "";
 
 
+    FormulaBar.editing =
+        false;
 
-    if (formulaInput) {
 
-        formulaInput.value =
-            "";
+    setFormulaBarReference(
+        "A1"
+    );
 
-    }
 
+    setFormulaBarValue(
+        ""
+    );
 
 }
 
+
+// ==========================================
+// FORMULA EVALUATION FOUNDATION
+// ==========================================
+
+function evaluateFormula(value) {
+
+    /*
+    Formula support can be added later.
+
+    For now, simply return the supplied
+    value unchanged.
+    */
+
+    return value;
+
+}
 
 
 // ==========================================
@@ -497,13 +275,29 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
+        /*
+        Do not overwrite the grid's initial
+        A1 state if the elements exist.
+        */
 
-        attachFormulaBar();
+        if (cellReferenceBox) {
 
+            setFormulaBarReference(
+                "A1"
+            );
+
+        }
+
+        if (formulaInput) {
+
+            setFormulaBarValue(
+                ""
+            );
+
+        }
 
     }
 );
-
 
 
 // ==========================================
@@ -513,10 +307,6 @@ document.addEventListener(
 window.FormulaBar = {
 
     updateFormulaBar,
-
-    commitFormulaEdit,
-
-    cancelFormulaEdit,
 
     resetFormulaBar,
 

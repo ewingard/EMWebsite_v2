@@ -449,9 +449,11 @@
 
     .mobile-table th {
 
-        background: #e2f0d9;
+        font-weight: 700;
 
-        font-weight: 600;
+        background: #e8f2eb;
+
+        color: #1d5d38;
 
     }
 

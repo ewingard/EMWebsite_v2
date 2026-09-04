@@ -8,6 +8,8 @@ Handles:
 - Mobile table rendering
 - Dashboard rendering
 - Cell selection
+- Excel-style name box
+- Formula bar
 - Spreadsheet styling
 - Cell comments
 - Chart.js visualization
@@ -28,20 +30,236 @@ const formulaBar =
 const nameBox =
     document.querySelector(".name-box");
 
+
 let selectedCell = null;
 
 
 // ==========================================
-// GRID INITIALIZATION
+// CONSTANTS
 // ==========================================
 
 const ROW_HEIGHT = 25;
+
+
+// ==========================================
+// MOBILE CHECK
+// ==========================================
 
 function isMobileView() {
 
     return window.matchMedia(
         "(max-width: 700px)"
     ).matches;
+
+}
+
+
+// ==========================================
+// EXCEL COLUMN LETTER
+// ==========================================
+
+function getColumnLetter(index) {
+
+    let letter = "";
+
+    while (index >= 0) {
+
+        letter =
+            String.fromCharCode(
+                (index % 26) + 65
+            ) +
+            letter;
+
+        index =
+            Math.floor(index / 26) - 1;
+
+    }
+
+    return letter;
+
+}
+
+
+// ==========================================
+// EXCEL CELL ADDRESS
+// ==========================================
+
+function getCellAddress(
+    columnIndex,
+    rowNumber
+) {
+
+    return (
+        getColumnLetter(columnIndex) +
+        rowNumber
+    );
+
+}
+
+
+// ==========================================
+// SET NAME BOX
+// ==========================================
+
+function setNameBox(address) {
+
+    if (!nameBox) {
+
+        return;
+
+    }
+
+
+    const value =
+        address ?? "";
+
+
+    /*
+    Supports either:
+
+    <input class="name-box">
+
+    or:
+
+    <div class="name-box">
+    */
+
+    if (
+        "value" in nameBox
+    ) {
+
+        nameBox.value =
+            value;
+
+    }
+
+    else {
+
+        nameBox.textContent =
+            value;
+
+    }
+
+}
+
+
+// ==========================================
+// SET FORMULA BAR
+// ==========================================
+
+function setFormulaBar(value) {
+
+    if (!formulaBar) {
+
+        return;
+
+    }
+
+
+    let displayValue = "";
+
+
+    if (
+        value !== null &&
+        value !== undefined
+    ) {
+
+        displayValue =
+            String(value);
+
+    }
+
+
+    /*
+    Supports input / textarea and
+    normal elements.
+    */
+
+    if (
+        "value" in formulaBar
+    ) {
+
+        formulaBar.value =
+            displayValue;
+
+    }
+
+    else {
+
+        formulaBar.textContent =
+            displayValue;
+
+    }
+
+}
+
+
+// ==========================================
+// UPDATE SELECTION UI
+// ==========================================
+
+function updateSelectionUI(
+    cell,
+    value
+) {
+
+    if (!cell) {
+
+        return;
+
+    }
+
+
+    const address =
+        cell.dataset.cellAddress || "";
+
+
+    /*
+    Name box
+    */
+
+    if (address) {
+
+        setNameBox(
+            address
+        );
+
+    }
+
+
+    /*
+    Formula bar
+
+    Use the explicitly supplied value.
+    This is the original cell value and
+    not the rendered HTML.
+    */
+
+    setFormulaBar(
+        value
+    );
+
+
+    /*
+    Notify FormulaBar.js if it exists.
+
+    This is optional and does not control
+    selection. It simply keeps the separate
+    FormulaBar object synchronized.
+    */
+
+    if (
+        window.FormulaBar &&
+        typeof window.FormulaBar.updateFormulaBar ===
+        "function"
+    ) {
+
+        window.FormulaBar.updateFormulaBar(
+            cell,
+            value
+        );
+
+    }
 
 }
 
@@ -62,6 +280,7 @@ function generateGrid() {
 
     }
 
+
     renderSheet();
 
 }
@@ -71,24 +290,40 @@ function generateGrid() {
 // COLUMN WIDTH
 // ==========================================
 
-function getColumnWidth(sheet, columnName) {
+function getColumnWidth(
+    sheet,
+    columnName
+) {
 
     let longest =
         String(columnName).length;
 
-    sheet.rows.forEach(row => {
 
-        const value =
-            columnName === "Dates"
-                ? Workbook.formatDates(row)
-                : row[columnName];
+    if (!Array.isArray(sheet.rows)) {
 
-        longest = Math.max(
-            longest,
-            String(value ?? "").length
-        );
+        return 80;
 
-    });
+    }
+
+
+    sheet.rows.forEach(
+        row => {
+
+            const value =
+                columnName === "Dates"
+                    ? Workbook.formatDates(row)
+                    : row[columnName];
+
+
+            longest =
+                Math.max(
+                    longest,
+                    String(value ?? "").length
+                );
+
+        }
+    );
+
 
     return Math.min(
         Math.max(
@@ -97,8 +332,8 @@ function getColumnWidth(sheet, columnName) {
         ),
         560
     );
-}
 
+}
 
 
 // ==========================================
@@ -111,6 +346,7 @@ function renderTable(sheet) {
         "dashboard-active"
     );
 
+
     spreadsheet.classList.remove(
         "dashboard-mode"
     );
@@ -118,7 +354,7 @@ function renderTable(sheet) {
 
     /*
     ------------------------------------------
-    DESKTOP SPREADSHEET
+    DESKTOP GRID COLUMNS
     ------------------------------------------
     */
 
@@ -149,8 +385,10 @@ function renderTable(sheet) {
     const corner =
         document.createElement("div");
 
+
     corner.className =
         "corner-cell";
+
 
     spreadsheet.appendChild(
         corner
@@ -163,39 +401,22 @@ function renderTable(sheet) {
     ------------------------------------------
     */
 
-    function getColumnLetter(index) {
-
-        let letter = "";
-
-        while (index >= 0) {
-
-            letter =
-                String.fromCharCode(
-                    (index % 26) + 65
-                ) +
-                letter;
-
-            index =
-                Math.floor(index / 26) - 1;
-
-        }
-
-        return letter;
-
-    }
-
-
     sheet.columns.forEach(
-        (column, index) => {
+        (column, columnIndex) => {
 
             const header =
                 document.createElement("div");
 
+
             header.className =
                 "column-header";
 
+
             header.textContent =
-                getColumnLetter(index);
+                getColumnLetter(
+                    columnIndex
+                );
+
 
             spreadsheet.appendChild(
                 header
@@ -207,18 +428,24 @@ function renderTable(sheet) {
 
     /*
     ------------------------------------------
-    TABLE HEADER ROW
+    TABLE HEADER
+    ------------------------------------------
+
+    Row 1 contains the actual column names.
     ------------------------------------------
     */
 
     const headerRow =
         document.createElement("div");
 
+
     headerRow.className =
         "row-header";
 
+
     headerRow.textContent =
         "1";
+
 
     spreadsheet.appendChild(
         headerRow
@@ -226,17 +453,30 @@ function renderTable(sheet) {
 
 
     sheet.columns.forEach(
-        column => {
+        (column, columnIndex) => {
+
+            const address =
+                getCellAddress(
+                    columnIndex,
+                    1
+                );
+
 
             const cell =
                 createCell(
                     column,
-                    true
+                    true,
+                    column,
+                    0,
+                    null,
+                    address
                 );
+
 
             cell.classList.add(
                 "table-header"
             );
+
 
             spreadsheet.appendChild(
                 cell
@@ -255,27 +495,80 @@ function renderTable(sheet) {
     sheet.rows.forEach(
         (row, rowIndex) => {
 
+            /*
+            Spreadsheet row numbers start
+            at 2 because row 1 is the header.
+            */
+
+            const spreadsheetRow =
+                rowIndex + 2;
+
+
+            /*
+            ----------------------------------
+            ROW HEADER
+            ----------------------------------
+            */
+
             const rowHeader =
                 document.createElement("div");
+
 
             rowHeader.className =
                 "row-header";
 
+
             rowHeader.textContent =
-                rowIndex + 2;
+                spreadsheetRow;
+
 
             spreadsheet.appendChild(
                 rowHeader
             );
 
 
-            sheet.columns.forEach(
-                column => {
+            /*
+            ----------------------------------
+            CELLS
+            ----------------------------------
+            */
 
-                    const value =
+            sheet.columns.forEach(
+                (column, columnIndex) => {
+
+                    let value;
+
+
+                    /*
+                    Dates are a calculated/display
+                    value rather than a direct row
+                    property.
+                    */
+
+                    if (
                         column === "Dates"
-                            ? Workbook.formatDates(row)
-                            : row[column];
+                    ) {
+
+                        value =
+                            Workbook.formatDates(
+                                row
+                            );
+
+                    }
+
+                    else {
+
+                        value =
+                            row[column];
+
+                    }
+
+
+                    const address =
+                        getCellAddress(
+                            columnIndex,
+                            spreadsheetRow
+                        );
 
 
                     const cell =
@@ -284,7 +577,8 @@ function renderTable(sheet) {
                             false,
                             column,
                             rowIndex,
-                            row
+                            row,
+                            address
                         );
 
 
@@ -309,32 +603,53 @@ function renderMobileTable(sheet) {
 
     if (
         !sheet.mobileView ||
-        !Array.isArray(sheet.mobileView.columns)
+        !Array.isArray(
+            sheet.mobileView.columns
+        )
     ) {
+
         console.warn(
             `No mobileView defined for ${sheet.name}.`
         );
+
         return null;
+
     }
 
-    const mobileView = sheet.mobileView;
 
-    const table = document.createElement("table");
+    const mobileView =
+        sheet.mobileView;
+
+
+    const table =
+        document.createElement("table");
+
 
     table.className =
         `mobile-table mobile-${sheet.name.toLowerCase()}`;
 
-    table.style.width = "100%";
-    table.style.borderCollapse = "collapse";
-    table.style.borderSpacing = "0";
+
+    table.style.width =
+        "100%";
 
 
-    // ==========================================
-    // COLUMN WIDTHS
-    // ==========================================
+    table.style.borderCollapse =
+        "collapse";
+
+
+    table.style.borderSpacing =
+        "0";
+
+
+    /*
+    ------------------------------------------
+    COLUMN WIDTHS
+    ------------------------------------------
+    */
 
     const colgroup =
         document.createElement("colgroup");
+
 
     mobileView.columns.forEach(
         (column, index) => {
@@ -342,64 +657,90 @@ function renderMobileTable(sheet) {
             const col =
                 document.createElement("col");
 
+
             if (
                 mobileView.widths &&
                 mobileView.widths[index]
             ) {
+
                 col.style.width =
                     mobileView.widths[index];
+
             }
 
-            colgroup.appendChild(col);
+
+            colgroup.appendChild(
+                col
+            );
+
         }
     );
 
-    table.appendChild(colgroup);
+
+    table.appendChild(
+        colgroup
+    );
 
 
-    // ==========================================
-    // HEADER
-    // ==========================================
+    /*
+    ------------------------------------------
+    HEADER
+    ------------------------------------------
+    */
 
     const thead =
         document.createElement("thead");
 
+
     const headerRow =
         document.createElement("tr");
+
 
     mobileView.columns.forEach(
         column => {
 
-            const key =
-                typeof column === "string"
-                    ? column
-                    : column.key;
-
             const label =
                 typeof column === "string"
                     ? column
-                    : column.label ?? column.key;
+                    : column.label ??
+                      column.key;
+
 
             const th =
                 document.createElement("th");
 
-            th.textContent = label;
 
-            headerRow.appendChild(th);
+            th.textContent =
+                label;
+
+
+            headerRow.appendChild(
+                th
+            );
+
         }
     );
 
-    thead.appendChild(headerRow);
 
-    table.appendChild(thead);
+    thead.appendChild(
+        headerRow
+    );
 
 
-    // ==========================================
-    // BODY
-    // ==========================================
+    table.appendChild(
+        thead
+    );
+
+
+    /*
+    ------------------------------------------
+    BODY
+    ------------------------------------------
+    */
 
     const tbody =
         document.createElement("tbody");
+
 
     sheet.rows.forEach(
         (row, rowIndex) => {
@@ -407,16 +748,19 @@ function renderMobileTable(sheet) {
             const tr =
                 document.createElement("tr");
 
+
             mobileView.columns.forEach(
-                column => {
+                (column, columnIndex) => {
 
                     const key =
                         typeof column === "string"
                             ? column
                             : column.key;
 
+
                     const td =
                         document.createElement("td");
+
 
                     const value =
                         Workbook.getCellValue(
@@ -425,9 +769,36 @@ function renderMobileTable(sheet) {
                         );
 
 
-                    // ------------------------------
-                    // PDF LINK
-                    // ------------------------------
+                    /*
+                    --------------------------------
+                    MOBILE CELL ADDRESS
+                    --------------------------------
+
+                    Mobile does not currently use
+                    the desktop name box, but we
+                    still store the address.
+                    */
+
+                    const address =
+                        getCellAddress(
+                            columnIndex,
+                            rowIndex + 2
+                        );
+
+
+                    td.dataset.cellAddress =
+                        address;
+
+
+                    td.dataset.rawValue =
+                        value ?? "";
+
+
+                    /*
+                    --------------------------------
+                    PDF LINK
+                    --------------------------------
+                    */
 
                     if (
                         key === "Link" &&
@@ -437,18 +808,30 @@ function renderMobileTable(sheet) {
                         const anchor =
                             document.createElement("a");
 
-                        anchor.href = value;
-                        anchor.target = "_blank";
+
+                        anchor.href =
+                            value;
+
+
+                        anchor.target =
+                            "_blank";
+
+
                         anchor.rel =
                             "noopener noreferrer";
+
 
                         anchor.className =
                             "pdf-link";
 
+
                         anchor.textContent =
                             "View PDF";
 
-                        td.appendChild(anchor);
+
+                        td.appendChild(
+                            anchor
+                        );
 
                     }
 
@@ -462,9 +845,11 @@ function renderMobileTable(sheet) {
                     }
 
 
-                    // ------------------------------
-                    // SELECTION
-                    // ------------------------------
+                    /*
+                    --------------------------------
+                    MOBILE SELECTION
+                    --------------------------------
+                    */
 
                     td.addEventListener(
                         "click",
@@ -472,48 +857,66 @@ function renderMobileTable(sheet) {
 
                             event.stopPropagation();
 
+
                             document
                                 .querySelectorAll(
                                     ".mobile-table tr.selected"
                                 )
-                                .forEach(selected => {
+                                .forEach(
+                                    selected => {
 
-                                    selected.classList.remove(
-                                        "selected"
-                                    );
+                                        selected.classList.remove(
+                                            "selected"
+                                        );
 
-                                });
+                                    }
+                                );
+
 
                             tr.classList.add(
                                 "selected"
                             );
 
-                            if (formulaBar) {
 
-                                formulaBar.value =
-                                    String(
-                                        value ?? ""
-                                    ).trim();
+                            /*
+                            Mobile intentionally
+                            does not update the
+                            desktop name box.
+                            */
 
-                            }
+                            setFormulaBar(
+                                value
+                            );
 
                         }
                     );
 
-                    tr.appendChild(td);
+
+                    tr.appendChild(
+                        td
+                    );
 
                 }
             );
 
-            tbody.appendChild(tr);
+
+            tbody.appendChild(
+                tr
+            );
 
         }
     );
 
-    table.appendChild(tbody);
+
+    table.appendChild(
+        tbody
+    );
+
 
     return table;
+
 }
+
 
 // ==========================================
 // CELL COMMENTS
@@ -538,6 +941,7 @@ function renderDashboard(sheet) {
     document.body.classList.add(
         "dashboard-active"
     );
+
 
     spreadsheet.classList.add(
         "dashboard-mode"
@@ -684,8 +1088,9 @@ function createCell(
     value,
     header = false,
     column = "",
-    rowIndex,
-    row = null
+    rowIndex = 0,
+    row = null,
+    cellAddress = ""
 ) {
 
     const cell =
@@ -694,6 +1099,54 @@ function createCell(
 
     cell.className =
         "cell";
+
+
+    /*
+    ------------------------------------------
+    STORE CELL ADDRESS
+    ------------------------------------------
+
+    Example:
+
+    data-cell-address="C2"
+
+    JavaScript:
+
+    cell.dataset.cellAddress
+    */
+
+    if (cellAddress) {
+
+        cell.dataset.cellAddress =
+            cellAddress;
+
+    }
+
+
+    /*
+    ------------------------------------------
+    STORE RAW CELL VALUE
+    ------------------------------------------
+
+    IMPORTANT:
+
+    This is what the formula bar uses.
+
+    It is intentionally stored separately
+    from rendered HTML/text.
+
+    That prevents:
+
+    - PDF icons
+    - comment markers
+    - star ratings
+    - link text
+
+    from corrupting the formula bar.
+    */
+
+    cell.dataset.rawValue =
+        value ?? "";
 
 
     /*
@@ -738,8 +1191,16 @@ function createCell(
         typeof value === "number"
     ) {
 
+        /*
+        Display stars in the grid.
+
+        Formula bar still receives the raw
+        numeric value because of data-raw-value.
+        */
+
         cell.textContent =
             "★".repeat(value);
+
 
         cell.classList.add(
             `level-${value}`
@@ -748,21 +1209,56 @@ function createCell(
     }
 
     else if (
-        column === "Link" &&
-        value
+    !header &&
+    column === "Link" &&
+    value
     ) {
 
-        cell.innerHTML = `
-            <a
-                class="pdf-link"
-                href="${value}"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                View PDF
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-        `;
+        const anchor =
+            document.createElement("a");
+
+
+        anchor.className =
+            "pdf-link";
+
+
+        anchor.href =
+            value;
+
+
+        anchor.target =
+            "_blank";
+
+
+        anchor.rel =
+            "noopener noreferrer";
+
+
+        anchor.textContent =
+            "View PDF";
+
+
+        const icon =
+            document.createElement("i");
+
+
+        icon.className =
+            "fa-solid fa-arrow-up-right-from-square";
+
+
+        anchor.appendChild(
+            document.createTextNode(" ")
+        );
+
+
+        anchor.appendChild(
+            icon
+        );
+
+
+        cell.appendChild(
+            anchor
+        );
 
     }
 
@@ -772,17 +1268,51 @@ function createCell(
         row?.Link
     ) {
 
-        cell.innerHTML = `
-            <a
-                class="project-link"
-                href="${row.Link}"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                ${value}
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-        `;
+        const anchor =
+            document.createElement("a");
+
+
+        anchor.className =
+            "project-link";
+
+
+        anchor.href =
+            row.Link;
+
+
+        anchor.target =
+            "_blank";
+
+
+        anchor.rel =
+            "noopener noreferrer";
+
+
+        anchor.textContent =
+            value;
+
+
+        const icon =
+            document.createElement("i");
+
+
+        icon.className =
+            "fa-solid fa-arrow-up-right-from-square";
+
+
+        anchor.appendChild(
+            document.createTextNode(" ")
+        );
+
+
+        anchor.appendChild(
+            icon
+        );
+
+
+        cell.appendChild(
+            anchor
+        );
 
     }
 
@@ -800,6 +1330,9 @@ function createCell(
     ------------------------------------------
     CELL SELECTION
     ------------------------------------------
+
+    This is the ONLY place where normal
+    desktop cell selection happens.
     */
 
     cell.addEventListener(
@@ -808,7 +1341,11 @@ function createCell(
 
             event.stopPropagation();
 
-            selectCell(cell);
+
+            selectCell(
+                cell,
+                value
+            );
 
         }
     );
@@ -854,6 +1391,18 @@ function createCell(
             "cell-comment";
 
 
+        commentBox.style.position =
+            "fixed";
+
+
+        commentBox.style.display =
+            "none";
+
+
+        commentBox.style.zIndex =
+            "99999";
+
+
         /*
         --------------------------------------
         COMMENT TITLE
@@ -865,11 +1414,14 @@ function createCell(
             const title =
                 document.createElement("div");
 
+
             title.className =
                 "cell-comment-title";
 
+
             title.textContent =
                 comment.title;
+
 
             commentBox.appendChild(
                 title
@@ -889,11 +1441,14 @@ function createCell(
             const text =
                 document.createElement("div");
 
+
             text.className =
                 "cell-comment-text";
 
+
             text.textContent =
                 comment.text;
+
 
             commentBox.appendChild(
                 text
@@ -961,25 +1516,13 @@ function createCell(
 
         /*
         --------------------------------------
-        PUT COMMENT ON BODY
+        ADD COMMENT TO BODY
         --------------------------------------
         */
 
         document.body.appendChild(
             commentBox
         );
-
-
-        commentBox.style.position =
-            "fixed";
-
-
-        commentBox.style.display =
-            "none";
-
-
-        commentBox.style.zIndex =
-            "99999";
 
 
         cell._commentBox =
@@ -1003,6 +1546,7 @@ function createCell(
 
                         other.style.display =
                             "none";
+
 
                         other.classList.remove(
                             "comment-open"
@@ -1051,17 +1595,22 @@ function createCell(
                 commentBox.style.left =
                     "10px";
 
+
                 commentBox.style.right =
                     "10px";
+
 
                 commentBox.style.bottom =
                     "10px";
 
+
                 commentBox.style.top =
                     "auto";
 
+
                 commentBox.style.width =
                     "calc(100vw - 20px)";
+
 
                 commentBox.style.maxWidth =
                     "none";
@@ -1273,6 +1822,7 @@ document.addEventListener(
                     comment.style.display =
                         "none";
 
+
                     comment.classList.remove(
                         "comment-open"
                     );
@@ -1361,9 +1911,11 @@ function createChart(
 
             options: {
 
-                responsive: true,
+                responsive:
+                    true,
 
-                maintainAspectRatio: false,
+                maintainAspectRatio:
+                    false,
 
                 scales:
 
@@ -1373,11 +1925,14 @@ function createChart(
 
                             r: {
 
-                                beginAtZero: true,
+                                beginAtZero:
+                                    true,
 
-                                min: 0,
+                                min:
+                                    0,
 
-                                max: 5
+                                max:
+                                    5
 
                             }
 
@@ -1409,12 +1964,28 @@ function createChart(
 // CELL SELECTION
 // ==========================================
 
-function selectCell(cell) {
+function selectCell(
+    cell,
+    value = undefined
+) {
 
-    if (!cell) return;
+    if (!cell) {
+
+        return;
+
+    }
 
 
-    if (selectedCell) {
+    /*
+    ------------------------------------------
+    REMOVE PREVIOUS SELECTION
+    ------------------------------------------
+    */
+
+    if (
+        selectedCell &&
+        selectedCell !== cell
+    ) {
 
         selectedCell.classList.remove(
             "selected"
@@ -1422,6 +1993,12 @@ function selectCell(cell) {
 
     }
 
+
+    /*
+    ------------------------------------------
+    SET NEW SELECTED CELL
+    ------------------------------------------
+    */
 
     selectedCell =
         cell;
@@ -1432,12 +2009,84 @@ function selectCell(cell) {
     );
 
 
-    if (formulaBar) {
+    /*
+    ------------------------------------------
+    GET RAW VALUE
+    ------------------------------------------
+    */
 
-        formulaBar.value =
+    let cellValue;
+
+
+    if (
+        value !== undefined
+    ) {
+
+        cellValue =
+            value;
+
+    }
+
+    else if (
+        cell.dataset.rawValue !== undefined
+    ) {
+
+        cellValue =
+            cell.dataset.rawValue;
+
+    }
+
+    else {
+
+        cellValue =
             cell.textContent.trim();
 
     }
+
+
+    /*
+    ------------------------------------------
+    DESKTOP SELECTION
+    ------------------------------------------
+    */
+
+    if (
+        !isMobileView()
+    ) {
+
+        updateSelectionUI(
+            cell,
+            cellValue
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// SHEET TITLE
+// ==========================================
+
+function updateSheetTitle(
+    sheetName
+) {
+
+    const title =
+        document.querySelector(
+            ".window-title"
+        );
+
+
+    if (!title) {
+
+        return;
+
+    }
+
+
+    title.textContent =
+        `Portfolio.xlsx - ${sheetName}`;
 
 }
 
@@ -1490,7 +2139,9 @@ function renderSheet() {
     ------------------------------------------
     */
 
-    spreadsheet.innerHTML = "";
+    spreadsheet.innerHTML =
+        "";
+
 
     /*
     ------------------------------------------
@@ -1499,20 +2150,24 @@ function renderSheet() {
     */
 
     spreadsheet.style.removeProperty(
-    "grid-template-columns"
+        "grid-template-columns"
     );
+
 
     spreadsheet.style.removeProperty(
         "grid-template-rows"
     );
 
+
     spreadsheet.style.removeProperty(
         "grid-auto-columns"
     );
 
+
     spreadsheet.style.removeProperty(
         "grid-auto-rows"
     );
+
 
     spreadsheet.style.removeProperty(
         "display"
@@ -1521,11 +2176,40 @@ function renderSheet() {
 
     /*
     ------------------------------------------
-    CLEAR PREVIOUS SELECTION
+    CLEAR SELECTION
     ------------------------------------------
     */
 
-    selectedCell = null;
+    selectedCell =
+        null;
+
+
+    /*
+    ------------------------------------------
+    RESET NAME BOX
+    ------------------------------------------
+
+    Desktop starts at A1.
+
+    The formula bar starts blank because
+    no actual cell has been selected yet.
+    */
+
+    if (
+        !isMobileView()
+    ) {
+
+        setNameBox(
+            "A1"
+        );
+
+
+        setFormulaBar(
+            ""
+        );
+
+    }
+
 
     /*
     ------------------------------------------
@@ -1540,6 +2224,7 @@ function renderSheet() {
         document.body.classList.add(
             "dashboard-active"
         );
+
 
         spreadsheet.classList.add(
             "dashboard-mode"
@@ -1575,14 +2260,16 @@ function renderSheet() {
             "dashboard-active"
         );
 
+
         spreadsheet.classList.remove(
             "dashboard-mode"
         );
 
 
         /*
-        MOBILE:
-        Show ONLY mobileView.
+        --------------------------------------
+        MOBILE
+        --------------------------------------
         */
 
         if (
@@ -1605,9 +2292,11 @@ function renderSheet() {
 
         }
 
+
         /*
-        DESKTOP:
-        Show ONLY normal Excel grid.
+        --------------------------------------
+        DESKTOP
+        --------------------------------------
         */
 
         else {
@@ -1644,7 +2333,7 @@ function renderSheet() {
 
 
 // ==========================================
-// HANDLE MOBILE/DESKTOP RESIZE
+// MOBILE/DESKTOP RESIZE
 // ==========================================
 
 let previousMobileState =
@@ -1684,6 +2373,31 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
+        /*
+        --------------------------------------
+        DESKTOP
+        --------------------------------------
+
+        Name box starts at A1.
+        Formula bar starts blank.
+        */
+
+        if (
+            !isMobileView()
+        ) {
+
+            setNameBox(
+                "A1"
+            );
+
+
+            setFormulaBar(
+                ""
+            );
+
+        }
+
+
         generateGrid();
 
     }
@@ -1698,6 +2412,8 @@ window.Grid = {
 
     generateGrid,
 
-    renderSheet
+    renderSheet,
+
+    selectCell
 
 };
