@@ -85,7 +85,7 @@
     </section>
     <script>
         function loadIssue() {
-            fetch("/issue.json")
+            fetch("/issue.json", { cache: "no-store" })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("Could not load issue information.");
@@ -97,10 +97,10 @@
                     document.getElementById("issueNumber").textContent =
                         `${data.year}, Vol. ${data.volume} Issue #${data.issue}`;
 
-                    const pushDate = new Date(data.push_date);
+                    const publicationDate = new Date(`${data.date}T00:00:00`);
 
                     document.getElementById("lastUpdate").textContent =
-                        pushDate.toLocaleDateString("en-US", {
+                        publicationDate.toLocaleDateString("en-US", {
                             month: "long",
                             day: "numeric",
                             year: "numeric"
@@ -108,10 +108,15 @@
                 })
                 .catch(error => {
                     console.error("Unable to load issue information:", error);
+
                     document.getElementById("issueNumber").textContent =
                         "Issue information unavailable";
+
+                    document.getElementById("lastUpdate").textContent =
+                        "";
                 });
         }
+
         loadIssue();
     </script>
 </div>
