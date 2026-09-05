@@ -9,25 +9,57 @@
 ===================================================== */
 
 const projects = [
-    {
+    // {
+    //     id: "",
 
+    //     title: "",
+
+    //     shelf: 1,
+
+    //     color: "#747373",
+
+    //     accent: "#d6ad57",
+
+    //     width: "",
+
+    //     height: "",
+
+    //     decoration: "",
+
+    //     rotation: "0deg",
+
+    //     pags: [
+    //         {
+    //             number: 1,
+
+    //             label: "",
+
+    //             title: "",
+
+    //             content: `<p>
+    //             </p>`
+    //         }
+    //     ]
+    // },
+
+    {
         id: "",
 
         title: "Interpretive Exhibits",
 
         shelf: 1,
 
-        color: "#747373",
+        color: "#3b3838",
 
         accent: "#d6ad57",
 
         width: 30,
 
-        height: 275,
+        height: 295,
 
         decoration: "ornament",
 
-        rotation: "1.1deg",
+        rotation: ".1deg",
 
         pages: [
             {
@@ -38,12 +70,12 @@ const projects = [
                 title: "Heritage Interpretation Exhibits",
 
                 content: `<p>
-                <strong> THIS PROJECT IS CURRENTLY UNDERWAY</strong></br>
-                </br>
+                <strong> THIS PROJECT IS CURRENTLY UNDERWAY</strong><br>
+                <br>
                 During the Fall 2026 semester for my Master's degree in History, 
                 I took a course on Heritage Interpretation taught by Erica Veal
-                at the <a href="https://avery.charleston.edu/">Avery Research Center</a>. In this course, we completed the 
-                <a href="https://www.nai-us.org/">National Association for Interpretation</a>
+                at the <a href="https://avery.charleston.edu/" target="_blank">Avery Research Center</a>. In this course, we completed the 
+                <a href="https://www.nai-us.org/" target="_blank">National Association for Interpretation</a>
                 Certified Interpretive Guide (CIG) course, as well as completing two
                 exhibits that will be physically available at the Avery Research Center come Spring 2027.
                 In groups, we created a physical and digital interpretive exhibits for topics
@@ -79,55 +111,6 @@ const projects = [
     },
 
     {
-        id: "",
-
-        title: "Trans Advisory Board",
-
-        shelf: 1,
-
-        color: "#3b3838",
-
-        accent: "#d6ad57",
-
-        width: 30,
-
-        height: 250,
-
-        decoration: "ornament",
-
-        pages: [
-            {
-                number: 1,
-
-                label: "Background",
-
-                title: "Transgender Advisory Board",
-
-                content: `<p>
-                    In collaboration with a Ph.D. Candidate at the University of South Carolina and other advisory board members, I
-                    attended meetings to review interview questions and promote a more ethical, descriptive methodology used for their research.
-                </p>`
-            },
-
-            {
-                number: 2,
-
-                label: "Background",
-
-                title: "Resource",
-
-                content: `<p>
-                Later, we collaborated with the Harriet Hancock Center to provide an online/social media-based resource that provided guidance and information
-                on navigating legal, social, and transitioning support in South Carolina.</br>
-                </br>
-                <a href="https://github.com/ewingard/tadv_scmap">Code Mockup <i class="fa-solid fa-laptop-code"></i></a>
-                </p>`
-            }
-        ]
-
-    },
-
-    {
         id: "masters",
 
         title: "Master's Thesis",
@@ -155,6 +138,7 @@ const projects = [
                 title: "Topic",
 
                 content: `<p>
+                <strong>THIS PROJECT IS CURRENTLY UNDERWAY</strong><br>
                 My thesis topic for the Master's in History program will be titled "Bad Brains: An Investigation of Phrenology 
                 and Physiognomy within Enslaved Populations in the Antebellum South." I hope to investigate resilience in Black 
                 populations and the medical and sociocultural history of phrenology and physiognomy.
@@ -180,7 +164,7 @@ const projects = [
 
         decoration: "ornament",
 
-        rotation: "-.2deg",
+        rotation: "1.2deg",
 
         pages: [
             {
@@ -191,8 +175,11 @@ const projects = [
                 title: "Archival Deterioration",
 
                 content: `<p>
-                <strong> THIS PROJECT IS UPCOMING</strong></br>
-                </br>
+                <strong> THIS PROJECT IS UPCOMING</strong><br>
+                <br>
+                Soon, I will be completing a project to assess degredation of our archival audiovisual (A/V) materials
+                located in <a href="https://speccoll.charleston.edu/" target="_blank">Special Collections.</a> I will be using a rubric
+                to determine degredations using smell, touch, and sight. 
                 </p>`
             },
 
@@ -201,13 +188,10 @@ const projects = [
 
                 label: "Background",
 
-                title: "Resource",
+                title: "",
 
                 content: `<p>
-                Later, we collaborated with the Harriet Hancock Center to provide an online/social media-based resource that provided guidance and information
-                on navigating legal, social, and transitioning support in South Carolina.</br>
-                </br>
-                <a href="https://github.com/ewingard/tadv_scmap">Code Mockup <i class="fa-solid fa-laptop-code"></i></a>
+
                 </p>`
             }
         ]
@@ -236,10 +220,10 @@ const projects = [
                 title: "By The People – Library of Congress",
 
                 content: `<p>
-                I have completed 8 campaigns, 93 pages, and 131 total actions (saves, submits, and reviews) for the By The People transcription campaigns.</br>
-                </br>
-                <a href="https://crowd.loc.gov/">By The People <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
-                <a href="/assets/media/experience/ServiceLetter_LOC_082226.pdf">Download my Service Letter <i class="fa-solid fa-file-lines"></i></a>
+                I have completed 8 campaigns, 93 pages, and 131 total actions (saves, submits, and reviews) for the By The People transcription campaigns.<br>
+                <br>
+                <a href="https://crowd.loc.gov/" target="_blank">By The People <i class="fa-solid fa-arrow-up-right-from-square"></i></a><br>
+                <a href="/assets/media/experience/ServiceLetter_LOC_082226.pdf" target="_blank">Download my Service Letter <i class="fa-solid fa-file-lines"></i></a>
                 </p>`
             },
 
@@ -251,9 +235,9 @@ const projects = [
                 title: "Citizen Archivist Missions - National Archives",
 
                 content: `<p>
-                I have transcribed 5 pages from the <a href="https://catalog.archives.gov/id/598">Records of the President's Commission on the Assassination of President Kennedy <i class="fa-solid fa-arrow-up-right-from-square"></i></a> campaign.</br>
-                </br>
-                <a href="https://www.archives.gov/citizen-archivist/missions">Citizen Archives Missions <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
+                I have transcribed 5 pages from the <a href="https://catalog.archives.gov/id/598" target="_blank">Records of the President's Commission on the Assassination of President Kennedy <i class="fa-solid fa-arrow-up-right-from-square"></i></a> campaign.<br>
+                <br>
+                <a href="https://www.archives.gov/citizen-archivist/missions" target="_blank">Citizen Archives Missions <i class="fa-solid fa-arrow-up-right-from-square"></i></a><br>
                 </p>`
             },
 
@@ -265,9 +249,9 @@ const projects = [
                 title: "Colored Conventions Project - University of Delaware",
 
                 content: `<p>
-                I have transcribed 3 pages for the Colored Conventions Project (transcribing E.W. Harper's documents).</br>
-                </br>
-                <a href="https://coloredconventions.org/">Colored Conventions Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
+                I have transcribed 3 pages for the Colored Conventions Project (transcribing E.W. Harper's documents).<br>
+                <br>
+                <a href="https://coloredconventions.org/" target="_blank">Colored Conventions Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a><br>
                 </p>`
             },
 
@@ -279,9 +263,9 @@ const projects = [
                 title: "Volunpeer - Digital Volunteer for the Smithsonian",
 
                 content: `<p>
-                I have reviewed 1 page for the Smithsonian Volunpeer Program.</br>
-                </br>
-                <a href="https://transcription.si.edu/">Smithsonian Transcriptions <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
+                I have reviewed 1 page for the Smithsonian Volunpeer Program.<br>
+                <br>
+                <a href="https://transcription.si.edu/" target="_blank">Smithsonian Transcriptions <i class="fa-solid fa-arrow-up-right-from-square"></i></a><br>
                 </p>`
             },
 
@@ -293,10 +277,10 @@ const projects = [
                 title: "WikiSource",
 
                 content: `<p>
-                I have reviewed 18 page for the 1933 North Dakota Session Laws project, 2 pages for the Tutira-Guthrie-Smith monthly project, and 1 page for the "A Dark Night's Work and Other Tales" monthly project.</br>
-                </br>
-                <a href="https://en.wikisource.org/wiki/Main_Page">WikiSource <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
-                <a href="https://en.wikisource.org/wiki/Special:Contributions/Ezardwizard">My Contributions <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
+                I have reviewed 18 page for the 1933 North Dakota Session Laws project, 2 pages for the Tutira-Guthrie-Smith monthly project, and 1 page for the "A Dark Night's Work and Other Tales" monthly project.<br>
+                <br>
+                <a href="https://en.wikisource.org/wiki/Main_Page" target="_blank">WikiSource <i class="fa-solid fa-arrow-up-right-from-square"></i></a><br>
+                <a href="https://en.wikisource.org/wiki/Special:Contributions/Ezardwizard" target="_blank">My Contributions <i class="fa-solid fa-arrow-up-right-from-square"></i></a><br>
                 </p>`
             },
 
@@ -308,9 +292,10 @@ const projects = [
                 title: "Zooniverse",
 
                 content: `<p>
-                I have reviewed/classified 4 pages across 2 projects, including the E.W. Harper papers for the Colored Conventions Project at the University of Delaware.</br>
-                </br>
-                <a href="https://www.zooniverse.org/">Zooniverse <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                I have reviewed/classified 8 pages across 3 projects, including the E.W. Harper papers for the Colored Conventions Project at the University of Delaware 
+                and the USC Transcribes Together project at the University of South Carolina.<br>
+                <br>
+                <a href="https://www.zooniverse.org/" target="_blank">Zooniverse <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </p>`
             },
 
@@ -322,10 +307,10 @@ const projects = [
                 title: "Distributed Proofreaders",
 
                 content: `<p>
-                I am planning to volunteer with Project Gutenberg in the future, with their Distributed Proofreaders program.</br>
-                </br>
-                <a href="https://www.pgdp.net/c/">Distributed Proofreaders <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                <a href="https://www.gutenberg.org/">Project Gutenberg <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                I am planning to volunteer with Project Gutenberg in the future, with their Distributed Proofreaders program.<br>
+                <br>
+                <a href="https://www.pgdp.net/c/" target="_blank">Distributed Proofreaders <i class="fa-solid fa-arrow-up-right-from-square"></i></a><br>
+                <a href="https://www.gutenberg.org/" target="_blank">Project Gutenberg <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </p>`
             },
             {
@@ -337,10 +322,10 @@ const projects = [
 
                 content:
                 `<p>
-                I have completed transcriptions and translations for materials in French for the Lowcountry Digital Library and the South Carolina Historical Society.</br>
-                </br>
-                <a href="https://lcdl.library.cofc.edu/">LCDL <i class="fa-solid fa-arrow-up-right-from-square"></i></a></br>
-                <a href="https://schistory.org/archives/start-research/">South Carolina Historical Society (SCHS) <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                I have completed transcriptions and translations for materials in French for the Lowcountry Digital Library and the South Carolina Historical Society.<br>
+                <br>
+                <a href="https://lcdl.library.cofc.edu/" target="_blank">LCDL <i class="fa-solid fa-arrow-up-right-from-square"></i></a><br>
+                <a href="https://schistory.org/archives/start-research/" target="_blank">South Carolina Historical Society (SCHS) <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </p>`
             }
         ],
@@ -380,7 +365,7 @@ const projects = [
                 content: `
                     <p>
                         A collection of academic and
-                        professional publications & presentations.
+                        professional publications & presentations. Hover/tap for details.
                     </p>
                     <div class="chart-row">
                         <div class="chart-block">
@@ -442,7 +427,7 @@ const projects = [
                     <p>Wingard, E.M. (2026, April). Beyond the Black Box: Digital Library Workflows Behind the Lowcountry Digital Library. Presented at the LibLearning Rretreat, Charleston, SC.</p>
 
                     <p>
-                        <a href="/assets/media/experience/LibLearning2026 _DigitalLib.pdf">
+                        <a href="/assets/media/experience/LibLearning2026 _DigitalLib.pdf" target="_blank">
                             Presentation <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i>
                         </a>
                     </p>
@@ -461,7 +446,7 @@ const projects = [
                 content: `<p> 
                 <strong>Wingard, E.M.,</strong> Nelson, C.M., Xia, M., & Hudac, C.M. (2025, April). Is Friendship in the Cards? How Adolescent Brains Make Quantity Decisions Involving Friendship. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/wingard_sans.pdf" target="_blank">Presented at the Social & Affective Neuroscience Society annual meeting, Chicago, IL.</a>
                 | <a href="/assets/media/experience/Wingard_SANS_Final.pdf" target="_blank"> PDF <i class="fa-solid fa-file-image" alt="image file icon"></i></a>
-                </p></br>
+                </p><br>
                 <p>
                 Arcement, J., Patel, M., <strong>Wingard, E.M.,</strong> Cheever, A., McFadden, J., Nelson, C.M., & Hudac, C.M. (2025, April). The Influence of Anxiety on Social Preferences in Adolescents: Exploring Group Size and Duration Choices. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-anxiety.pdf" target="_blank">Presented at DiscoverUSC, Columbia, SC.</a> 
                 | <a href="/assets/media/experience/SocialAnxiety_ArcementPatel.pdf" target="_blank"> PDF <i class="fa-solid fa-file-image" alt="image file icon"></i></a>
@@ -480,7 +465,7 @@ const projects = [
                 content: `<p>
                 Johnson, M., <strong>Wingard, E.M.,</strong> Nelson, C.M., & Hudac, C.M. (2025, April). Do I know you? Influence of adolescent social interactions on brain responses to familiar and AI-generated faces. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/johnson_sans25.pdf" target="_blank">Presented at the Social & Affective Neuroscience Society annual meeting, Chicago, IL.</a> 
                 | <a href="/assets/media/experience/FacePerception_Johnson.pdf" target="_blank"> PDF <i class="fa-solid fa-file-image" alt="image file icon"></i></a>
-                </p></br>
+                </p><br>
                 <p>
                 Hersey, J., Du Plessis, V., <strong>Wingard, E.M.,</strong> McFadden, J., Nelson, C.M., & Hudac, C.M. (2025, April). Social Quantity Preferences in Adolescence: Investigating the Correlation between the Need to Belong and Decisions in Social Quantity. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-ntbs.pdf" target="_blank">Poster at  DiscoverUSC, Columbia, SC.</a>
                 | <a href="/assets/media/experience/NTBS_HerseyPlessis.pdf" target="_blank"> PDF <i class="fa-solid fa-file-image" alt="image file icon"></i></a>
@@ -499,12 +484,12 @@ const projects = [
                 content: `
                 <p> Nelson, C. M., Johnson, M., <strong>Wingard, E.M.,</strong> & Hudac, C. M. (2024, May). Characterizing friendships and other relationships in autistic adolescents. Talk at The Love Consortium, Chapel Hill, NC. 
                     <a href="/assets/media/experience/CharacterizingFriendships.pdf" target="_blank">PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
-                </p></br>
+                </p><br>
                 <p>
                     McCune, M., Turner, B., Vidal, L., Nelson, C.M., <strong>Wingard, E.M.,</strong> & Hudac, C.M. (2024, April). The Adolescent Brain: Quantifying the Relationship Between Social Awareness and Perception of Upright and Inverted Faces. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/r15faces_discoversc_poster_finalversion.pdf" target="_blank">Presented at DiscoverUSC, Columbia, SC.</a> <a href="/assets/media/experience/SocialAwareness_McCune.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
-                </p></br>
+                </p><br>
                 <p>
-                    Khan, M., Patel, M., Tuppale, B., <strong>Wingard, E.M.,</strong> Nelson, C.M., & Hudac, C.M. (2024, April). The Effect of Sleep Quality as Measured by Couple’s Sleep Performance in Charades. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/lovebrain_charades_discoversc_poster_finalversion.pdf" target="_blank">Presented at DiscoverUSC.</a> <a href="/assets/media/experience/SleepQuality_Kha.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
+                    Khan, M., Patel, M., Tuppale, B., <strong>Wingard, E.M.,</strong> Nelson, C.M., & Hudac, C.M. (2024, April). The Effect of Sleep Quality as Measured by Couple’s Sleep Performance in Charades. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/lovebrain_charades_discoversc_poster_finalversion.pdf" target="_blank">Presented at DiscoverUSC.</a> <a href="/assets/media/experience/SleepQuality_Khan.pdf" target="_blank"> PDF <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i></a>
                 </p>
                 `
             },
@@ -521,13 +506,13 @@ const projects = [
                 content: `
                 <p>
                 <strong>Wingard, E.M.,</strong> Cheever, A. (2024). Importance of Inclusion in Science. <a href="https://www.b-radlab.com/happenings/importance-of-inclusion-in-science" target="_blank">B-RAD lab article. <i class="fa-regular fa-file"></i></a> 
-                </p></br>
+                </p><br>
                 <p>
                 Hersey, J., Morgan, A., Cheever, A., Nelson, C.M., <strong>Wingard, E.M.</strong>, & Hudac, C.M. (2024, April).
                 Exploring Nonverbal Communication Differences Among Individuals in Romantic Partnerships: A Neuroscientific Perspective.
-                <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/lovebrain_nv_discoverscposter_finalversion.pdf">Award winning poster presented at DiscoverUSC, Columbia, SC.</a> 
+                <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/lovebrain_nv_discoverscposter_finalversion.pdf" target="_blank">Award winning poster presented at DiscoverUSC, Columbia, SC.</a> 
                 | <a href="/assets/media/experience/LoveBrain_HerseyMorgan.pdf" target="_blank"> PDF <i class="fa-solid fa-file-image" alt="image file icon"></i></a>
-                </p></br>
+                </p><br>
                 <p>
                     Johnson, M., <strong>Wingard, E.M.,</strong> Nelson, C.M., & Hudac, C.M. (2024, April). Do I Know You? Brain Responses to Familiar and AI-Generated Faces. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/sans_size_ch.pdf" target="_blank">Presented at DiscoverUSC, Columbia, SC; Social & Affective Neuroscience Society annual meeting, Toronto, Canada.</a>
                     <a href="/assets/media/experience/FamiliarAIFaces_Johnson.pdf" target="_blank"> PDF <i class="fa-solid fa-file-image" alt="image file icon"></i></a>
@@ -546,12 +531,12 @@ const projects = [
                 title: "2023",
 
                 content: `
-                <p>Wingard, E.M. (2023, April). The Impact of Biases in Facial Recognition Artificial Neural Networks: Towards a More Ethical AI Past, Present, and Future. <a href="media/Thesis/QUEST-WebsiteCopy.pdf" target="_blank">Presentation <i class="fa-solid fa-file-powerpoint"></i></a>
-                </p></br>
+                <p>Wingard, E.M. (2023, April). The Impact of Biases in Facial Recognition Artificial Neural Networks: Towards a More Ethical AI Past, Present, and Future. <a href="/assets/media/experience/QUEST-WebsiteCopy.pdf" target="_blank">Presentation <i class="fa-solid fa-file-powerpoint"></i></a>
+                </p><br>
                 <p>
-                Wingard, E.M. (2023, May). The Impact of Biases in Facial Recognition Artificial Neural Networks. <a href="https://www.illuminatenrhc.com/post/the-impact-of-biases-in-facial-recognition-artificial-neural-networks-by-ezra-wingard\" target="_blank">Illuminate NRHC, 5, 25-32.</a>
-                | <a href="/assets/media/experience/HonorsThesis_Publication_Website.pdf" target="_blank"> PDF <i class="fa-solid fa-file-lines" alt="document icon"></i></a> | <a href="media/Thesis/HonorsThesis-Poster-Graph.pdf" target="_blank">Poster <i class="fa-solid fa-file-image"></i></a> | <a href="https://github.com/ewingard/HonorsThesis" target="_blank">Code <i class="fa-solid fa-laptop-code"></i></a>
-                </p></br>
+                Wingard, E.M. (2023, May). The Impact of Biases in Facial Recognition Artificial Neural Networks. <a href="https://www.illuminatenrhc.com/post/the-impact-of-biases-in-facial-recognition-artificial-neural-networks-by-ezra-wingard" target="_blank">Illuminate NRHC, 5, 25-32.</a>
+                | <a href="/assets/media/experience/HonorsThesis_Publication_Website.pdf" target="_blank"> PDF <i class="fa-solid fa-file-lines" alt="document icon"></i></a> | <a href="/assets/media/experience/HonorsThesis-Poster-Graph.pdf" target="_blank">Poster <i class="fa-solid fa-file-image"></i></a> | <a href="https://github.com/ewingard/HonorsThesis" target="_blank">Code <i class="fa-solid fa-laptop-code"></i></a>
+                </p><br>
                 <p>Wingard, E.M. (2023, April). French Polynesia: Flora and Fauna. Presented at Quest Week, Oswego, NY. <a href="/assets/media/experience/French-Polynesia.pdf" target="_blank">Presentation <i class="fa-solid fa-file-powerpoint"></i></a>
                 </p>
                 `
@@ -633,9 +618,9 @@ const projects = [
 
                 content: `<p>
                 Aphantasia is a relatively <a href="https://pubmed.ncbi.nlm.nih.gov/26115582/" target="_blank">newly named</a> condition which describes the lack of mental imagery in the mind.
-                It exists on a scale from no mental imagery (aphantasia) to extremely vivid mental imagery (hyperphantasia), which for visual imagery can be quantified through a test called the <a href="https://aphantasia.com/study/vviq">VVIQ</a>, or Vividness of Visual Imagery Questionnaire.
+                It exists on a scale from no mental imagery (aphantasia) to extremely vivid mental imagery (hyperphantasia), which for visual imagery can be quantified through a test called the <a href="https://aphantasia.com/study/vviq" target="_blank">VVIQ</a>, or Vividness of Visual Imagery Questionnaire.
                 There is also the <a href="https://pubmed.ncbi.nlm.nih.gov/6082130/" target="_blank">QMI</a>, or Questionnaire of Visual Imagery, which encompasses all mental imagery, not just visual imagery.
-                </p></br>
+                </p><br>
                 <p> Within aphantasic individuals (people with aphantasia), there are levels of inability to evoke mental imagery. This spectrum is typically demonstrated as a scale of 1-5, with 1-2 being varying degrees of aphantasia, 3 being "normal", and 4-5 including degrees of hyperphantasia.
                 </p>`
             },
@@ -652,7 +637,7 @@ const projects = [
                 content: `<p>
                 Embodied Cognition is broadly defined as how the body and capacities of an organism (ex. human) shapes cognition. Embodiment can encompass the motor system, perceptual/sensory systems, how the body
                 interacts with the environment, and assumptions about the world shaping the organism's function.
-                </p></br>
+                </p><br>
                 <p>
                     One example of embodied cognition is cell-phone use: If you have ever considered your phone an extension of yourself 
                     (like how we use our calendar, tasks/notes app, and other apps to offload cognition), this demonstrates a core principle of your phone being a
@@ -670,7 +655,7 @@ const projects = [
                 content: `<p>
                 Embodied Cognition is broadly defined as how the body and capacities of an organism (ex. human) shapes cognition. Embodiment can encompass the motor system, perceptual/sensory systems, how the body
                 interacts with the environment, and assumptions about the world shaping the organism's function.
-                </p></br>
+                </p><br>
                 <p>
                     One example of embodied cognition is cell-phone use: If you have ever considered your phone an extension of yourself 
                     (like how we use our calendar, tasks/notes app, and other apps to offload cognition), this demonstrates a core principle of your phone being a
@@ -726,9 +711,9 @@ const projects = [
 
         accent: "#493306",
 
-        width: 62,
+        width: 80,
 
-        height: 285,
+        height: 305,
 
         rotation: "0.5deg",
 
@@ -763,11 +748,11 @@ const projects = [
                     <p>
                         My thesis work conducted at SUNY Oswego sought to probe how computer vision algorithms
                         may be impacted by diversity of gender modality in the datasets based on training.
-                    </br>
-                    </br>
-                        <a href="/assets/media/experience/HonorsThesis_Publication_Website.pdf">Thesis PDF <i class="fa-solid fa-file-lines"></i></a> | 
-                        <a href="assets/media/Thesis/HonorsThesis-Poster-Graph.pdf">Poster <i class="fa-solid fa-file-image"></i></a></br>
-                        <a href="media/Thesis/QUEST-WebsiteCopy.pdf" target="_blank">Presentation <i class="fa-solid fa-file-powerpoint"></i></a> |
+                    <br>
+                    <br>
+                        <a href="/assets/media/experience/HonorsThesis_Publication_Website.pdf" target="_blank">Thesis PDF <i class="fa-solid fa-file-lines"></i></a> | 
+                        <a href="/assets/media/experience/HonorsThesis-Poster-Graph.pdf" target="_blank">Poster <i class="fa-solid fa-file-image"></i></a><br>
+                        <a href="/assets/media/experience/QUEST-WebsiteCopy.pdf" target="_blank">Presentation <i class="fa-solid fa-file-powerpoint"></i></a> |
                         <a href="https://github.com/ewingard/HonorsThesis" target="_blank">Code <i class="fa-solid fa-laptop-code"></i></a>
                     </p>
                 `
@@ -950,9 +935,9 @@ const projects = [
 
                 content: `
                 <p> The datasets scraped during this project will not be shared due to privacy reasons. Transgender people are an at-risk group due to political persecution. There are ethical concerns about
-                datasets on transgender individuals being made public. The full methodology is available in my <a href="/assets/media/experience/HonorsThesis_Publication_Website.pdf">thesis</a> for dataset replication.
+                datasets on transgender individuals being made public. The full methodology is available in my <a href="/assets/media/experience/HonorsThesis_Publication_Website.pdf" target="_blank">thesis</a> for dataset replication.
                 </p>
-                <p>Results from my thesis (<i>overall accuracy, model-specific results</i>) and R code are available on <a href="https://github.com/ewingard/HonorsThesis/tree/f4507b5205a19ccb8a717372d3aefb9ccb4a8f7f/RFiles">GitHub <i class="fa-solid fa-laptop-code"></i></a>
+                <p>Results from my thesis (<i>overall accuracy, model-specific results</i>) and R code are available on <a href="https://github.com/ewingard/HonorsThesis/tree/f4507b5205a19ccb8a717372d3aefb9ccb4a8f7f/RFiles" target="_blank">GitHub <i class="fa-solid fa-laptop-code"></i></a>
                 </p>
                 `
             },
@@ -966,64 +951,64 @@ const projects = [
 
                 content: `
                 <p><ul>
-                <li><a href="https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/hrt-transgender-dataset">HRT Transgender Dataset <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
-                <li><a href="https://cmci.colorado.edu/idlab/assets/bibliography/pdf/Scheuerman2021-bigdata-autoessentalization.pdf">Auto-essentialization: Gender in automated facial analysis as extended colonial project <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                <li><a href="https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/hrt-transgender-dataset" target="_blank">HRT Transgender Dataset <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                <li><a href="https://cmci.colorado.edu/idlab/assets/bibliography/pdf/Scheuerman2021-bigdata-autoessentalization.pdf" target="_blank">Auto-essentialization: Gender in automated facial analysis as extended colonial project <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
                 </ul></p>
                 `
             }
         ]
     },
 
-    {
-        id: "clinpsych",
+    // {
+    //     id: "clinpsych",
 
-        title: "Childhood Maltreatment",
+    //     title: "Childhood Maltreatment",
 
-        shelf: 1,
+    //     shelf: 1,
 
-        color: "#134225",
+    //     color: "#134225",
         
-        accent: "#d4b86a",
+    //     accent: "#d4b86a",
 
-        width: 30,
+    //     width: 30,
 
-        height: 230,
+    //     height: 230,
 
-        rotation: "-0.3deg",
+    //     rotation: "-0.3deg",
 
-        decoration: "ornament",
+    //     decoration: "ornament",
 
-        pages: [
-            {
-                number: 1,
+    //     pages: [
+    //         {
+    //             number: 1,
 
-                label: "Background",
+    //             label: "Background",
 
-                title: "General Overview",
+    //             title: "General Overview",
 
-                content: `<p>As of July 2023, I have been volunteering with Dr. <a href="https://sc.edu/study/colleges_schools/artsandsciences/psychology/our_people/directory/brown_michelle.php" target="_blank">Michelle Brown</a>, the (PI of <a href="https://starr-lab.com/" target="_blank">STARR Lab</a>) at the University of South Carolina.
-                I am assisting with the publication process from manuscript preparation, results refining, and miscellaneous processes to speed along the publication process.
-                These two papers (in prep., 2024) focus on childhood maltreatment using two prospective longitudinal studies, known as the Female Adolescent Developmental Survey (FADS) and the Longitudinal Studies of Childhood Adolescent Neglect (LONGSCAN).
-                </p>
-                <p> Friendships and social connections are a major part of adolescence. In this project, Dr. Michelle Brown and co-authors sought to look at potential effects of how friendships may moderate the impact of childhood maltreatment in adolescent populations. 
-                </p>`
-            },
+    //             content: `<p>As of July 2023, I have been volunteering with Dr. <a href="https://sc.edu/study/colleges_schools/artsandsciences/psychology/our_people/directory/brown_michelle.php" target="_blank">Michelle Brown</a>, the (PI of <a href="https://starr-lab.com/" target="_blank">STARR Lab</a>) at the University of South Carolina.
+    //             I am assisting with the publication process from manuscript preparation, results refining, and miscellaneous processes to speed along the publication process.
+    //             These two papers (in prep., 2024) focus on childhood maltreatment using two prospective longitudinal studies, known as the Female Adolescent Developmental Survey (FADS) and the Longitudinal Studies of Childhood Adolescent Neglect (LONGSCAN).
+    //             </p>
+    //             <p> Friendships and social connections are a major part of adolescence. In this project, Dr. Michelle Brown and co-authors sought to look at potential effects of how friendships may moderate the impact of childhood maltreatment in adolescent populations. 
+    //             </p>`
+    //         },
 
-            {
-                number: 2,
+    //         {
+    //             number: 2,
 
-                label: "Updates",
+    //             label: "Updates",
 
-                title: "Publications",
+    //             title: "Publications",
 
-                content: `<p>As of November, 2024 there are two papers in preparation to look at two major datasets from prospective longitudinal studies (<a href="https://publications.aap.org/pediatrics/article-abstract/131/2/e510/31865/Association-of-Maltreatment-With-High-Risk?redirectedFrom=fulltext" target="_blank">FADS</a> and <a href="https://www.sciencedirect.com/science/article/abs/pii/S0145213420304518" target="_blank">LONGSCAN</a>).
-                </p>
-                <p> In February 2026, the first manuscript on the FADS dataset was submitted for publication at the <i>Journal of Research on Adolescence</i>. The submission was rejected in June 2026.
-                </p>`
-            }
-        ]
+    //             content: `<p>As of November, 2024 there are two papers in preparation to look at two major datasets from prospective longitudinal studies (<a href="https://publications.aap.org/pediatrics/article-abstract/131/2/e510/31865/Association-of-Maltreatment-With-High-Risk?redirectedFrom=fulltext" target="_blank">FADS</a> and <a href="https://www.sciencedirect.com/science/article/abs/pii/S0145213420304518" target="_blank">LONGSCAN</a>).
+    //             </p>
+    //             <p> In February 2026, the first manuscript on the FADS dataset was submitted for publication at the <i>Journal of Research on Adolescence</i>. The submission was rejected in June 2026.
+    //             </p>`
+    //         }
+    //     ]
 
-    },
+    // },
 
     {
         id: "eeg",
@@ -1032,13 +1017,15 @@ const projects = [
 
         shelf: 1,
 
-        color: "#195762",
+        color: "#134225",
 
         accent: "#d4b86a",
 
         width: 50,
 
         height: 290,
+
+        decoration: "lines",
 
         pages: [
             {
@@ -1084,7 +1071,7 @@ const projects = [
                 title: "Presentations",
 
                 content: `
-                <p>In April 2025, I was able to attend the international <a href="https://socialaffectiveneuro.org/" target="_blank">Social Affective Neuroscience Society</a> conference and present on preliminary results from the <a href="/projects/media/B-RAD/SCWB/Wingard_SANS_Final.pdf" target="_blank"> FortuneTeller Task</a> for the Social Connection and Well-Being Study. You can find a quiz that I created modeled after said task <a href="/projects/fortuneteller-quiz/" target="_blank">here</a> to see what your fortune may be!
+                <p>In April 2025, I was able to attend the international <a href="https://socialaffectiveneuro.org/" target="_blank">Social Affective Neuroscience Society</a> conference and present on preliminary results from the <a href="/assets/media/experience/Wingard_SANS_Final.pdf" target="_blank"> FortuneTeller Task</a> for the Social Connection and Well-Being Study. You can find a quiz that I created modeled after said task <a href="/projects/fortune-teller/fortuneteller.html" target="_blank">here</a> to see what your fortune may be!
                 </p>
                 <p>Our undergraduate interns also completed two posters in April using preliminary data from this task, relating to <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-ntbs.pdf" target="_blank">Social Motivation</a> and <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-anxiety.pdf" target="_blank">Anxiety</a>.
                 </p>`
@@ -1097,14 +1084,14 @@ const projects = [
 
                 title: "Lab Role",
 
-                content: `<p>I joined the Brain Research Across Development (<a href="https://www.b-radlab.com/">B-RAD</a>) Lab in February of 2024. Since then, I have taken on the lead role as Research Assistant for the SCWB Study, as well as minor roles including (but not limited to):
+                content: `<p>I joined the Brain Research Across Development (<a href="https://www.b-radlab.com/" target="_blank">B-RAD</a>) Lab in February of 2024. Since then, I have taken on the lead role as Research Assistant for the SCWB Study, as well as minor roles including (but not limited to):
                 <ul>
                     <li>Lending assistance with the <a href="https://www.b-radlab.com/bbad-study.html" target="_blank">BBAD</a>, <a href="https://www.b-radlab.com/autfriends.html" target="_blank">Autistic Friendships</a>, <a href="https://www.b-radlab.com/tbd-study.html" target="_blank">Teen Brain Decision</a> and <a href="https://www.b-radlab.com/mind-matters.html" target="_blank">Mind Matters</a> Studies</li>
                     <li>Collaborations with the <a href="https://starr-lab.com/summer-camp" target="_blank">STARR Lab</a> to host a psychology research summer camp</li>
                     <li>Standing in as co-lab manager and mentoring 6-12 interns per semester</li>
                     <li>Co-Author on <a href="https://www.b-radlab.com/posters.html" target="_blank">9</a> posters across 2 years</li>
                     <li>Co-Authored an article on inclusive neuroscience practices for gender diversity.</li>
-                    <!--<li>Co-Author and first author in XX <a href="https://www.b-radlab.com/publications.html">publications</a></li>-->
+                    <!--<li>Co-Author and first author in XX <a href="https://www.b-radlab.com/publications.html" target="_blank">publications</a></li>-->
                 </ul></p>`
             }
         ]
@@ -1118,11 +1105,11 @@ const projects = [
 
         shelf: 1,
 
-        color: "#133458",
+        color: "#195762",
 
         accent: "#d4b86a",
 
-        width: 85,
+        width: 80,
 
         height: 330,
 
@@ -1134,33 +1121,271 @@ const projects = [
         pages: [
 
             {
-                number: "1",
+                number: 1,
 
-                label: "Research",
+                label: "Interests",
 
-                title: "Research",
+                title: "Previous Research Interests",
 
                 content: `
                     <p>
-                        An overview of my research interests
-                        and current projects.
+                        My previous research interests included:
+                        <ul>
+                            <li>Dopamine's role in the mesolimbic pathway</li>
+                            <li>Visual, auditory, and sensory representations in the mind (aphantasia)</li>
+                            <li>Representations of gender in the mind, especially in transgender and non-binary individuals</li>
+                            <li>Motor movements and procedural memory in dementia/Alzheimer's</li>
+                            <li>Artificial neural networks, gender identity, and gender modality (topic researched for my <a href="#AI" target="_blank">Bachelor's thesis</a></li>
+                            <li>The impacts of Capitalist society on mental health</li>
+                            <li>Mental correlates of cult mentality and conspiracy theories</li>
+                        </ul>
                     </p>
                 `
             },
 
-
             {
-                number: "2",
+                number: 2,
 
-                label: "Current Work",
+                label: "Interests",
 
-                title: "Research Projects",
+                title: "Current Research Interests",
 
                 content: `
                     <p>
-                        Research project description.
+                       Since shifting towards a cultural heritage/Public History career, 
+                       my research interests have since shifted away from psychology:
+                        <ul>
+                            <li>Phrenology, physiognomy, and quackery in the Antebellum era</li>
+                            <ul>
+                                <li><a href="#masters" target="_blank">Master's thesis</a>: Physiognomy/phrenology in the Antebellum south on enslaved and freed people</li>
+                            </ul>
+                            <li>Knowledge and safety in queer internet spaces in the 1990s</li>
+                            <li>The color blue in West African and Gullah Geechee spirituality</li>
+                            <li>Parallels between Jewish and West African folk medicine</li>
+                            <ul>
+                                <li>Changes in traditional Jewish folk medicine after immigration to the Lowcountry</li>
+                            </ul>
+                     </p>
+                `
+            },
+
+            {
+                number: 3,
+
+                label: "Current Work",
+
+                title: "Master's Thesis",
+
+                content: `<p>
+                <strong>THIS PROJECT IS CURRENTLY UNDERWAY</strong></p><br>
+                <p>As a Master's candidate in Public History at 
+                the <a href="https://charleston.edu/academics/programs/graduate-studies/history.php" target="_blank">College of Charleston</a>,
+                I will be completing a thesis and an exhibit.</p><br>
+                <p>
+                My thesis topic is on phrenology and physiognomy, two outdated medical practices that used measurements of bumps on the skull
+                or physical features (respectively) to predict mental traits. In my thesis, I will investigate the use of these practices on enslaved populations
+                and freedpeople in the Antebellum South, specifically the Lowcountry.
+                </p><br>
+                <p><a href="#masters" target="_blank">More information on my master's thesis.</a>
+                </p>`
+
+            },
+
+            {
+                number: 4,
+
+                label: "Previous Work",
+
+                title: "Electroencephalography (EEG) Research",
+                
+                content: `<p>From 2024-2025, I worked under Caitlin Hudac at the Brain Research Across Development Laboratory
+                at the University of South Carolina. There, I worked on a neuroscience research project called the
+                Social Connection and Well-Being (SCWB) Study.</p><br>
+                <p>For SCWB, I recuited 56 adolescents to complete a longitudinal study where they completed tasks wearing an
+                EEG net, filled out psychological measures in-person, and completed online surveys. I built 2 tasks from scratch,
+                and updated/redesigned 3 tasks for the EEG battery in E-Prime using E-Basic script. 
+                </p>
+                <br>
+                <p><a href="#eeg" target="_blank">More information on SCWB and other projects from B-RAD.</a>
+                `
+            },
+
+            {
+                number: 5,
+
+                label: "Previous Work",
+
+                title: "Research Summer Camps",
+
+                content:`<p>
+                    At the B-RAD Lab, we also ran two summer camps to collect data.</p>
+                    <p><strong>ROOSTER TALES</strong><br>
+                    Young autistic adolescents ages 10-14 were invited to take part in a one-week theater-based 
+                    summer camp tailored to autistic children. On the first and last days of camp, participants and their parents
+                    completed survey measures to determine feelings of belonging, mental health symptomology, and creativity.
+                    Measures were completed again in a follow-up, online.</p>
+                <p><strong>B-RAD AND STARR LAB SUMMER CAMPS</strong><br>
+                    In partnership with the STARR Lab, we completed 6 weeks of summer camps to boost study enrollment
+                    and provide information on psychology careers. Participants completed the first in-person visit for the SCWB visit at camp.
+                </p>`
+            },
+
+            {
+                number: 6,
+
+                label: "Research Adjacent",
+
+                title: "Research Advising",
+
+                content: `<p>
+                <strong>TRANSGENDER ADVISORY BOARD</strong><br>
+                    While working at the University of South Carolina, I was able to serve on an Advisory Board for Rhys
+                    Dreeszen-Bowman, a Ph.D. Candidate in Library and Information Sciences. As an advisory board member, I reviewed
+                    interview questions, assisted with topic directions, created a community resource, and helped recruit participants.
+                    <a href="#tadvb" target="_blank">More on the trans advisory board.</a>
+                </p>
+                <p>
+                <strong>THESIS ADVISEE</strong><br>
+                    While attending the 2024 Carolina Autism and Neurodevelopment Center Annual Retreat, I met Miranda Foster,
+                    a Ph.D. Candidate in Clinical-Community Psychology at the University of South Carolina. We discussed the importance
+                    of using inclusive language for transgender and gender diverse participants. I later advised her on specific language
+                    and reviewing her thesis measures.
+                </p>`
+            },
+
+            {
+
+                number: 7,
+
+                label: "Research Adjacent",
+
+                title: "Research Judging",
+
+                content: `<p>
+                    I have served as a volunteer judge for elementary, middle school, high school, and undergraduate student researchers.</p><br>
+                    <p><strong>COLUMBIA, SOUTH CAROLINA</strong><br>
+                    While working at the University of South Carolina, I was able to judge poster presentations and talks from middle school and
+                    high school students for SC Junior Science and Humanities Symposium (JSHS), University of South Carolina Region II Science and Engineering Fair.
+                    </p><br>
+                    <p>I also served as a volunteer judge at DiscoverUSC in 2024 for college students.
+                </p>`
+
+            },
+
+            {
+
+            number: 8,
+
+            label: "Research Adjacent",
+
+            title: "Research Mentorship",
+
+            content: `<p>
+                <strong>CHARLESTON, SOUTH CAROLINA</strong><br>
+                In 2026, I served as a Digital Research Mentor for the Buist Scholars school through the LOCAL initiative, a project
+                that matches local universities and schools to benefit Charleston school education. There, I mentored 5th graders on their
+                research projects and judged poster presentations at a symposium.
+                </p>`
+            },
+
+            {
+                number: 9,
+
+                label: "Previous Work",
+
+                title: "Clinical Research Volunteering",
+
+                content: `<p>
+                    Before I started working for the Brain research Across Development Lab, I first started volunteering 
+                    with Michelle Brown on a research project. I assisted with manuscript preparation for her K99
+                    research on the moderating effects of friendship in adolescents who have experienced childhood maltreatment.
+                    We collaborated to prepare a manuscript for the Female Adolescent Development Survey (FADS),
+                    with plans to prepare another manuscript on the Longitudinal Studies of of Childhood Neglect (LONGSCAN Dataset).</p>
+                    <br><p> We submitted the first manuscript on the FADS dataset in February 2026, and it was rejected in June 2026.
+                </p>`
+
+            },
+
+            {
+                number: 10,
+
+                label: "Previous Work",
+
+                title: "Honors Thesis",
+
+                content: `
+                    <p>
+                        To fulfill requirements for the honors college, I completed my bachelor's thesis on
+                        facial recognition software and how it can impact people based on automatic gender recognition.</p>
+                    <p>
+                        For this project, I created two novel datasets on cisgender and transgender faces,
+                        using them to compare two neural network algorithms' accuracy. Accuracy rates were calculated from people's
+                        self-identified gender labels.
+                    </p>
+                    <p>
+                        I presented my findings at two conferences, the Northeast Regional Honors Conference (NRHC) in Pittsburgh, PA,
+                        and Quest Week at SUNY Oswego. I also published my findings in the Northeast Regional Honors Conference (NRHC) journal.
+
+                    </p>
+                    <p><a href="#AI" target="_blank">More information on my bachelor's thesis.</a>
                     </p>
                 `
+            },
+
+            {
+                number: 11,
+
+                label: "Previous Work",
+
+                title: "Data Collection – JKLab",
+
+                content: `
+                <p>
+                    As a member of John K. Lindstedt's Lab (JKLab) at SUNY Oswego, I assisted with a Master's student project on
+                    spatial audio in digital environments.
+                </p>
+                <p>
+                    For this project, me, Lindstedt, and the graduate student recorded 10 stimuli each using Audacity.
+                    These audio files were then manipulated in a JavaScript-based program to mimic 3D spatial audio.
+                    I also assisted with participant recruitment through SONA Systems and running sessions for data collection.
+                </p>`
+            },
+
+            {
+                number: 12,
+
+                label: "Previous Work",
+
+                title: "Cognitive Neuroscience Lab",
+
+                content: `<p>
+                        At SUNY Oswego, I was also a member of the Cognitive Neuroscience Lab, co-led by Sien Hu and Theo Rhodes.
+                        The main project of the Cognitive Neuroscience Lab at the time was using a mental rotation task for participants
+                        with or without aphantasia in an fMRI machine located at the University of Rochester.
+                    </p><br>
+                    <p>
+                        I completed a training on fMRI safety and earned a certification to use UofR's fMRI machine
+                        for data collection. I also worked with other lab members to create a MATLAB-based script to analyze behavioral
+                        fMRI data on reaction time dynamics between and within groups.</p><br>
+                    <p><a href="#aphantasia" target="_blank">More information on my aphantasia research.</a>
+                </p>`
+            },
+
+            {
+                number: 13,
+
+                label: "Previous Work",
+
+                title: "Relationships Across Development Lab",
+
+                content: `<p>
+                    The first research lab that I joined was the Relationships Across Development Lab led by Matthew
+                    Dykas. The project I assisted with used deception methods so that we could gauge the real reactions
+                    of college-aged students on how they felt about and remembered a hurtful situation from their past.</p>
+                    <p>In 2020, I presented on a subsample of the data to avoid contamination of the broader study, relating
+                    narcissistic traits with defensive feedback seeking reactions.</p><br>
+                    <p><a href="/assets/media/experience/Narcissism-DykasEMW.png" target="_blank">Poster <i class="fa-solid fa-file-image"></i></a>
+                </p>`
             }
 
         ]
@@ -1173,11 +1398,11 @@ const projects = [
 
         shelf: 1,
 
-        color: "#2a1244",
+        color: "#133458",
 
         accent: "#d0b56d",
 
-        width: 62,
+        width: 32,
 
         height: 285,
 
@@ -1194,11 +1419,11 @@ const projects = [
                 title: "Lesson Planning",
 
                 content: ` <p>
-                    The Creative Writing and Art Camp hosted by the <a href="http://www.newbethelfoundation.org/board-members/">New Bethel Foundation</a> was held from July 22 to July 25th, 2024
+                    The Creative Writing and Art Camp hosted by the <a href="http://www.newbethelfoundation.org/board-members/" target="_blank">New Bethel Foundation</a> was held from July 22 to July 25th, 2024
                     and focused on providing an enriching art education and outlet for local youth during the summer.
-                </p></br>
+                </p><br>
                 <p>
-                    Educational topics covered included:</br>
+                    Educational topics covered included:<br>
                      <ol>
                             <li><a href="/projects/media/ArtCamp/Shading-Values.pdf" target="_blank">Shading and Values</a></li>
                             <li><a href="/projects/media/ArtCamp/Textures-Patterns.pdf" target="_blank">Textures and Patterns</a></li>
@@ -1223,9 +1448,9 @@ const projects = [
                 also completed 2 structured assignments with paints on color theory and composition. Throughout the camp,
                 they were also allowed to complete various mini art projects as they wanted, to provide a creative outlet with
                 the ability to ask questions to me and my co-instructor.</p>
-                </br>
+                <br>
                 <p>I have around 50 works of art on display in an art gallery, where you can scroll through and view samples of artwork
-                created either through assignments or personal creativity.</p></br>
+                created either through assignments or personal creativity.</p><br>
                 <p><a href="art-camp/artcamp.html">View the Art Gallery <i class="fa-solid fa-file-lines"></i></a></p>`
 
             }
@@ -1240,7 +1465,7 @@ const projects = [
 
         shelf: 1,
 
-        color: "#612D53",
+        color: "#2a1244",
 
         accent: "#d0b56d",
 
@@ -1261,7 +1486,13 @@ const projects = [
                 title: "La Polynesie Francaise: La Faune et la Flore",
 
                 content: `<p>
-                    <a href="/assets/media/experience/Polynesie-Francaise.pdf" target="_blank">French Version <i class="fa-solid fa-file-image"></i></a>
+                    For my Advanced French course, we reviewed different places that were colonized by France across the globe.
+                    Each person in class presented on a different area, with others including Haiti and Senegal. My presentation was on French Polynesia,
+                    an island close to Australia. I chose to present on the flora and fauna native to the islands. These presentations
+                    were later shared at the French Forum, part of Quest Week, a symposium held by SUNY Oswego to showcase student works.
+                </p><br>
+                <p>
+                    <a href="/assets/media/experience/Polynesie-Francaise.pdf" target="_blank">French Version <i class="fa-solid fa-file-image"></i></a><br><br>
                     <a href="/assets/media/experience/French-Polynesia.pdf" target="_blank">English Version <i class="fa-solid fa-file-image"></i></a>
                     </p>`
                     
@@ -1274,7 +1505,14 @@ const projects = [
 
                 title: "Le Crise du Sida",
 
-                content: `<p><a href="/assets/media/experience/Crise-SIDA-80s.pdf" target="_blank">French Version <i class="fa-solid fa-file-image"></i></a>
+                content: `<p>
+                    Another presentation that was completed for my Advanced French course was on the AIDS Crisis. I used
+                    previous knowledge of the AIDS Crisis from my time as a Peer Specialist at Oswego County Opportunities
+                    to create a presentation completely in French on the Crisis, a background on the virus, and impacts
+                    that the Crisis had on communities in the 80s.
+                </p>
+                <p>
+                <a href="/assets/media/experience/Crise-SIDA-80s.pdf" target="_blank">French Version <i class="fa-solid fa-file-image"></i></a>
                 </p>`
             },
 
@@ -1285,35 +1523,95 @@ const projects = [
 
                 title: "Les Femmes du Moyen Âge",
 
-                content: `<p><a href="/assets/media/experience/FemmesDuMoyenAge-EzraWingard.pdf" target="_blank">
-                        <button class="btn"><i class="fa-solid fa-file-image"></i>French Blurb</button></a>
-                    <a href="/assets/media/experience/FdMoyenAge-Expose-EW.pdf" target="_blank">
-                        <button class="btn"><i class="fa-solid fa-file-powerpoint"></i>French Presentation</button></a><br>
+                content:`
+                <p> For my French class on the Middle Ages to the 18th Century, we discussed important historical figures. I created various presentations
+                and materials on French historical figures, including Christine of Pizan, Catherine of the Seine, and Hildegard of Bingen.
+                </p><br>
+                <p><a href="/assets/media/experience/FemmesDuMoyenAge-EzraWingard.pdf" target="_blank">French Blurb <i class="fa-solid fa-file-image"></i></a><br><br>
+                   <a href="/assets/media/experience/FdMoyenAge-Expose-EW.pdf" target="_blank">French Presentation <i class="fa-solid fa-file-powerpoint"></i></a>
                 </p>`
             }
         ]
     },
 
     {
-        id: "",
+        id: "tadvb",
 
-        title: "Researcher Mentorship",
+        title: "Trans Advisory Board",
 
         shelf: 1,
 
-        color: "#853953",
+        color: "#612D53",
 
-        accent: "#d0b56d",
+        accent: "#d6ad57",
+
+        width: 30,
+
+        height: 250,
 
         decoration: "ornament",
 
-        rotation: "1deg",
+        pages: [
+            {
+                number: 1,
 
-        width: 35,
+                label: "Background",
 
-        height: 273,
+                title: "Transgender Advisory Board",
+
+                content: `<p>
+                    In collaboration with a Ph.D. Candidate at the University of South Carolina and other advisory board members, I
+                    attended meetings to review interview questions and promote a more ethical, descriptive methodology used for their research.
+                </p>`
+            },
+
+            {
+                number: 2,
+
+                label: "Background",
+
+                title: "Resource",
+
+                content: `<p>
+                Later, we collaborated with the Harriet Hancock Center to provide an online/social media-based resource that provided guidance and information
+                on navigating legal, social, and transitioning support in South Carolina.<br>
+                <br>
+                <a href="https://github.com/ewingard/tadv_scmap" target="_blank">Code Mockup <i class="fa-solid fa-laptop-code"></i></a>
+                </p>`
+            }
+        ]
 
     },
+    // {
+    //     id: "",
+
+    //     title: "Researcher Mentorship",
+
+    //     shelf: 1,
+
+    //     color: "#853953",
+
+    //     accent: "#d0b56d",
+
+    //     decoration: "ornament",
+
+    //     rotation: "1deg",
+
+    //     width: 35,
+
+    //     height: 273,
+
+    //     decoration: "lines",
+
+    //      pages: [
+
+    //        {
+
+    //        }
+
+    //      ]
+
+    // },
 
     {
         id: "",
@@ -1328,7 +1626,7 @@ const projects = [
 
         rotation: "-.5deg",
 
-        width: 30,
+        width: 25,
 
         height: 200,
 
@@ -1341,10 +1639,11 @@ const projects = [
                 title: "What is HiTOP?",
 
                 content: `<p>
-                The Hierarchical Taxonomy of Psychopathology, or, <a href="https://renaissance.stonybrookmedicine.edu/HITOP" target="_blank">HiTOP</a> is an alternative classification system for psychopathology and mental health conditions.
+                The Hierarchical Taxonomy of Psychopathology, or, <a href="https://www.hitop-system.org/" target="_blank">HiTOP</a> is an alternative classification system for psychopathology and mental health conditions.
                 Thought of as somewhat of an alternative to the DSM (due to organizational differences), HiTOP has restructured some of the ways that psychopathology is organized in Western medicine.
                 HiTOP uses and builds upon pre-existing data and literature about psychopatology and mental health, and seeks to bring greater clarity and organization to the classification systems already in place.
-                </p>`
+                </p>
+                <p><a href="/assets/media/HiTOP_APA.pdf" target="_blank">Learn more about HiTOP <i class="fa-solid fa-file-lines"></i></p>`
             }
         ]
     }
