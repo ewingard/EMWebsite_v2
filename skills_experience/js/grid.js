@@ -1932,13 +1932,19 @@ function createChart(
                                     0,
 
                                 max:
-                                    5
-
+                                    5,
+                                
+                                pointLabels: {
+                                    display:
+                                        false // Hides the labels around the radar chart
+                                },
+                                ticks: {
+                                    display: false // Hides the labels in the middel (numbers)
+                                }
                             }
-
                         }
 
-                        : {},
+                    : {},
 
                 plugins: {
 
