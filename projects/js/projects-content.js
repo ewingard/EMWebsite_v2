@@ -430,8 +430,11 @@ const projects = [
                         <a href="/assets/media/experience/LibLearning2026 _DigitalLib.pdf" target="_blank">
                             Presentation <i class="fa-solid fa-file-powerpoint" alt="powerpoint icon"></i>
                         </a>
-                    </p>
-                `
+                    </p><br>
+                    <p>
+                        Nelson, K., R., Nelson, C. M., Johnson, M., <strong>Wingard, E. M.</strong>, Hudac, C. M. (March, April, 2026). When a Face Feels Familiar: How Connections Influence Adolescent Brain Responses to Friend's Faces. <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/nelson_k_sra26.pdf" target="_blank">Presented at the 2026 Institute for Mind and Brain Conference: Creativity in Human and Artificial Systems, Columbia, SC; 2026 Society for Research on Adolescence Conference, Toronto, Canada.</a> |
+                        <a href="/assets/media/experience/FamiliarFaces_Nelson.pdf"> PDF <i class="fa-solid fa-file-image" alt="image file icon"></i></a>
+                        </p>`
             },
 
             {
@@ -1048,9 +1051,26 @@ const projects = [
             {
                 number: 2,
 
+                label: "Programming",
+
+                title: "Task Creation",
+
+                content: `<p>
+                    For tasks in the B-RAD Lab, we used <a href="https://pstnet.com/products/e-prime/" target="blank">E-Prime</a>, a behavioral research software used to present stimuli during tasks. We used E-Prime for all of our
+                    tasks while participants participated.</p><br>
+                <p>
+                    Depending on the study, participants would be actively or passively viewing a screen,
+                    making decisions, pressing buttons, or playing games. Some tasks required moderate coding in E-Basic, a programming
+                    script similar to Visual Basic (VBA).
+                </p>`
+            },
+
+            {
+                number: 3,
+
                 label: "Research Project",
 
-                title: "Social Connection and Well-Being Study (SCWB)",
+                title: "Social Connection and Well-Being (SCWB) Study",
 
                 content: `<p>
                 This study is an NIH R01-funded research project (PI: Caitlin Hudac, <a href="https://www.b-radlab.com/" target="_blank">B-RAD Lab</a>) focusing on adolescents.
@@ -1064,7 +1084,52 @@ const projects = [
             },
 
             {
-                number: 3,
+                number: 4,
+
+                label: "Research Project",
+
+                title: "SCWB Study",
+
+                content: `<p>
+                    The study used a longitudinal structure, meaning tasks were completed over time. For this study,
+                    three main tasks were completed across a year. The first and last task were study visits, where
+                    adolescent participants would come in-person to the B-RAD lab and wear an EEG net,
+                    complete 6 tasks, and complete some surveys. Parents also participated by completing survey measures.</p>
+                <p>
+                    Tasks aimed to measure different domains of social connection, including social quantity, social quality,
+                    need (to belong, to have social experiences), and well-being.
+                </p><br>
+                <p>
+                    After the first visit, participants were tasked with completing daily surveys across two weeks. They also had a
+                    six-month follow-up of survey measures after their first visit.
+                </p>`
+            },
+
+            {
+                number: 5,
+
+                label: "Research Project",
+
+                title: "SCWB Study",
+
+                content: `<p>
+                    For SCWB, I created the code for two tasks and refined/redesigned
+                    three tasks that were used in the task battery using E-Basic. There were five total tasks that participants would complete in the first and last visit:<br>
+                        <ol>
+                            <li>The FaceFamAI Task (<a href="/assets/media/experience/FamiliarAIFaces_Johnson.pdf" target="_blank">1st Poster <i class="fa-solid fa-file-image" alt="image file icon"></i></a> | <a href="/assets/media/experience/FacePerception_Johnson.pdf" target="_blank">2nd Poster <i class="fa-solid fa-file-image" alt="image file icon"></i></a>, <a href="/assets/media/experience/FamiliarFaces_Nelson" target="_blank">3rd Poster <i class="fa-solid fa-file-image" alt="image file icon"></i></a>) on Social Quality</li>
+                            <li>The Fortune Teller Task (<a href="/assets/media/experience/Wingard_SANS_Final.pdf" target="_blank">Poster <i class="fa-solid fa-file-image" alt="image file icon"></i></a>) on Social Quantity</li>
+                            <li>The SCWB Think Task on Need</li>
+                                <ul>
+                                    <li>This task was counterbalanced and repeated twice, for positive and negative prompts</li>
+                                </ul>
+                            <li>The LRPics Task (<a href="https://www.sciencedirect.com/science/article/pii/S1878929325001021" target="_blank">Paper <i class="fa-solid fa-file-lines"></i></a>)</li>
+                            <li>The SBGazeMot (Social Behavioral Gaze Motion) Task on Social Function</li>
+                        </ol>
+                </p>`
+            },
+
+            {
+                number: 6,
 
                 label: "SCWB",
 
@@ -1074,25 +1139,47 @@ const projects = [
                 <p>In April 2025, I was able to attend the international <a href="https://socialaffectiveneuro.org/" target="_blank">Social Affective Neuroscience Society</a> conference and present on preliminary results from the <a href="/assets/media/experience/Wingard_SANS_Final.pdf" target="_blank"> FortuneTeller Task</a> for the Social Connection and Well-Being Study. You can find a quiz that I created modeled after said task <a href="/projects/fortune-teller/fortuneteller.html" target="_blank">here</a> to see what your fortune may be!
                 </p>
                 <p>Our undergraduate interns also completed two posters in April using preliminary data from this task, relating to <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-ntbs.pdf" target="_blank">Social Motivation</a> and <a href="https://www.b-radlab.com/uploads/1/4/2/0/142020983/discoverusc_fortuneteller-anxiety.pdf" target="_blank">Anxiety</a>.
+                <p>I also mentored other undergraduates on their research posters for previous projects. For a full list of presentations from my time with the Brain Research Across Development Lab,
+                visit my <a href="#publications" target="_blank">Publications</a> book.
                 </p>`
+
             },
 
             {
-                number: 5,
+                number: 7,
 
                 label: "B-RAD Lab",
 
                 title: "Lab Role",
 
-                content: `<p>I joined the Brain Research Across Development (<a href="https://www.b-radlab.com/" target="_blank">B-RAD</a>) Lab in February of 2024. Since then, I have taken on the lead role as Research Assistant for the SCWB Study, as well as minor roles including (but not limited to):
+                content: `<p>I joined the Brain Research Across Development (<a href="https://www.b-radlab.com/" target="_blank">B-RAD</a>) Lab in February of 2024. Between then and July 2025, I was a Research Assistant for the SCWB Study, as well as roles including (but not limited to):
                 <ul>
                     <li>Lending assistance with the <a href="https://www.b-radlab.com/bbad-study.html" target="_blank">BBAD</a>, <a href="https://www.b-radlab.com/autfriends.html" target="_blank">Autistic Friendships</a>, <a href="https://www.b-radlab.com/tbd-study.html" target="_blank">Teen Brain Decision</a> and <a href="https://www.b-radlab.com/mind-matters.html" target="_blank">Mind Matters</a> Studies</li>
                     <li>Collaborations with the <a href="https://starr-lab.com/summer-camp" target="_blank">STARR Lab</a> to host a psychology research summer camp</li>
-                    <li>Standing in as co-lab manager and mentoring 6-12 interns per semester</li>
-                    <li>Co-Author on <a href="https://www.b-radlab.com/posters.html" target="_blank">9</a> posters across 2 years</li>
+                    <li>Standing in as co-lab manager and mentoring <strong>20+</strong> interns across 1.5 years</li>
+                    <li>Co-Author on <a href="https://www.b-radlab.com/posters.html" target="_blank">10</a> posters</li>
                     <li>Co-Authored an article on inclusive neuroscience practices for gender diversity.</li>
                     <!--<li>Co-Author and first author in XX <a href="https://www.b-radlab.com/publications.html" target="_blank">publications</a></li>-->
                 </ul></p>`
+            },
+
+            {
+                number: 8,
+
+                label: "B-RAD Lab",
+
+                title: "Lab Impact",
+
+                content: `<p>
+                    The code that I created for SCWB was later used and refined for other novel tasks, including in the Teen brain Decision Study and the MindMatters Study.
+                    <strong>In total:</strong>
+                    <ul>
+                        <li>Recruited <strong>56</strong> adolescents and <strong>20+</strong> adults for the SCWB study, surpassing the halfway mark for desired recruitment.</li>
+                        <li>Ran <strong>300+</strong> EEG-based sessions, <strong>20</strong> EEG summer camp sessions, <strong>7</strong> survey measure summer camp sessions.</li>
+                        <li>Created <strong>6</strong> databases in REDCap, containing over <strong>50</strong> individual measures.</li>
+                        <li>Completed data entry for <strong>200+</strong> participants in REDCap and Excel.</li>
+                        <li>Developed <strong>3</strong> Excel-based tracking systems for participant & administrative information</li>
+                </p>`
             }
         ]
     },
@@ -2861,7 +2948,9 @@ async function createPublicationRoleChart(canvas) {
 
         "Mentor",
 
-        "Research Assistant"
+        "Research Assistant",
+
+        "Data Collector"
 
     ];
 
@@ -2884,7 +2973,10 @@ async function createPublicationRoleChart(canvas) {
             "#323f8b",
 
         "Research Assistant":
-            "#7a2e91"
+            "#7a2e91",
+
+        "Data Collector":
+            "#000099"
 
     };
 
@@ -3227,7 +3319,10 @@ async function createPublicationRoleChart(canvas) {
                                             "Mentor",
 
                                         "Research Assistant":
-                                            "RA"
+                                            "RA",
+
+                                        "Data Collector":
+                                            "Data"
 
                                     }[
                                         dataset.label
