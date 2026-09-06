@@ -1415,10 +1415,6 @@ windows.forEach(windowElement => {
    INTEREST FOLDER ICONS
    ========================================= */
 
-/* =========================================
-   INTEREST FOLDER ICONS
-   ========================================= */
-
 function setInterestFolderIcon(folder, isOpen) {
 
     const image =
@@ -1462,9 +1458,11 @@ const interestData = {
         title: "Art",
         content: `
             <p>
-                I enjoy drawing and exploring different forms of visual art.
-                This is also where my interest in creative projects and
-                digital experimentation comes together.
+                I enjoy drawing from time to time. I typically will use
+                traditional media (pen or pencil) on heavyweight paper.
+                I used to do digital drawing, using Procreate. Even when
+                I'm not drawing, I love to use creativity to support other
+                projects.
             </p>
         `
     },
@@ -1473,8 +1471,11 @@ const interestData = {
         title: "Books",
         content: `
             <p>
-                Books are a big part of how I explore new subjects, particularly
-                history, medicine, culture, and other unusual areas of research.
+                I love reading, especially when it's about my other interests.
+                I have a massive collection of books, with an even bigger collection
+                of books that I want to read. Often, I look for non-fiction books on
+                medical history, psychology, or other similar subjects, but I also
+                will occasionally read horror books.
             </p>
         `
     },
@@ -1483,41 +1484,60 @@ const interestData = {
         title: "Music",
         content: `
             <p>
-                I spend a lot of time listening to music. My music collection
-                covers a variety of artists and genres, depending on what I'm
-                in the mood for.
+                I spent a good bit of time listening to music. All of my Spotify
+                playlists are themed based off horror movies, with matching titles,
+                covers (behind the scenes horror), and descriptions. I love electronic
+                music and house music, but I do listen to a bit of everything, including:
+                reggaeton and perreo, rnb, rap, hardstyle, 80s, 2010s alternative rock/pop,
+                rock, metal, LA bounce, french pop, german pop, hypnagogic rock, and hyperpop.
             </p>
         `
     },
 
-    travel: {
-        title: "Travel",
+    history: {
+        title: "History",
+        content: `<p>
+            I love history and the cutlural heritage sector as a whole. My favorite subdomain
+            of history is medical history, specifically now-defunct medical practices. My Master's
+            thesis is on medical history in the Antebellum era, looping in my previous interest in
+            psychology (via phrenology and physiognomy). I'm especially interested in public history
+            and hope to leverage my skills in history in libraries and archives in the future.
+        </p>`
+    },
+
+    research: {
+        title: "Research",
         content: `
             <p>
-                I enjoy traveling, exploring unfamiliar places, and learning
-                about the history and culture connected to them.
+                One of my biggest interests is research. I love to go down rabbit holes on anything
+                that I find interesting (and sometimes write articles summarizing the results on Wikipedia...).
+                I previously wanted to pursue a career in research and have over 6 years of research experience in
+                psychology and neuroscience. Now that I'm pursuing my Master's degree, I am going to segue to digital
+                humanities and historical research using archival materials and other primary sources. 
             </p>
         `
     },
 
-    technology: {
-        title: "Technology",
-        content: `
-            <p>
-                I'm interested in technology, digital preservation, coding,
-                websites, and the ways technology can be used to make
-                information more accessible.
-            </p>
-        `
+    coding: {
+        title: "Coding",
+        content: `<p>
+            I usually will code by updating this website. I like programming
+            (specifically website development) because it allows me to use my
+            creativity and art skills to bring my ideas to life. I also sometimes
+            use coding via data analysis (Python, R). I was classically trained in
+            programming using Java and Prolog, and for my honors thesis I taught myself
+            Python and R. I have only self-taught HTML, CSS, and JavaScript.
+        </p>`
     },
 
     other: {
-        title: "Other Stuff",
+        title: "Other Interests",
         content: `
             <p>
-                This is the miscellaneous folder for all the other things
-                I find interesting, including cooking, hiking, horror media,
-                dinosaurs, and medical history.
+                My other interests include: dinosaurs, cooking, baking, hiking, and
+                horror media. I love watching horror movies and streams of horror games.
+                I occasionally play video games with my partner, and one of my favorite
+                pastimes is hanging out with friends and hosting powerpoint nights.
             </p>
         `
     }
